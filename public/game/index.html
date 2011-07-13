@@ -1,14 +1,14 @@
 <html>
 <!--- Main game page -->
-<!--php $akihabara_dir = "../akihabara-core-1.3.1/akihabara"?>-->
+<!--php $akihabara_dir = "../akihabara-core/akihabara"?>-->
 <head>
-  <script type="text/javascript" src="../akihabara-core-1.3.1/akihabara/gbox.js"></script>
-  <script type="text/javascript" src="../akihabara-core-1.3.1/akihabara/iphopad.js"></script>
-  <script type="text/javascript" src="../akihabara-core-1.3.1/akihabara/trigo.js"></script>
-  <script type="text/javascript" src="../akihabara-core-1.3.1/akihabara/toys.js"></script>
-  <script type="text/javascript" src="../akihabara-core-1.3.1/akihabara/help.js"></script>
-  <script type="text/javascript" src="../akihabara-core-1.3.1/akihabara/tool.js"></script>
-  <script type="text/javascript" src="../akihabara-core-1.3.1/akihabara/gamecycle.js"></script>
+  <script type="text/javascript" src="../akihabara-core/akihabara/gbox.js"></script>
+  <script type="text/javascript" src="../akihabara-core/akihabara/iphopad.js"></script>
+  <script type="text/javascript" src="../akihabara-core/akihabara/trigo.js"></script>
+  <script type="text/javascript" src="../akihabara-core/akihabara/toys.js"></script>
+  <script type="text/javascript" src="../akihabara-core/akihabara/help.js"></script>
+  <script type="text/javascript" src="../akihabara-core/akihabara/tool.js"></script>
+  <script type="text/javascript" src="../akihabara-core/akihabara/gamecycle.js"></script>
   <style>BODY { -webkit-user-select: none; margin: 0px }</style>
   <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
 </head>
@@ -24,10 +24,10 @@
 	  help.akihabaraInit('8by5');
 	 
 	  // Here we tell the game to look for an image called 'font.png' in the same directory as the HTML file and call it 'font' internally
-	  gbox.addImage('font', 'font.png');
+	  gbox.addImage('font', 'game/font.png');
 	 
 	  // Same thing for our logo here.
-	  gbox.addImage('logo', 'logo.png');
+	  gbox.addImage('logo', 'game/logo.png');
 	 
 	  // Fonts are mapped over an image, setting the first letter, the letter size, the length of all rows of letters and a horizontal/vertical gap.
 	  gbox.addFont({ id: 'small', image: 'font', firstletter: ' ', tileh: 8, tilew: 8, tilerow: 255, gapx: 0, gapy: 0 });
