@@ -1,6 +1,9 @@
 KingdomForge::Application.routes.draw do
+  get "game/index"
+  get "game" => "game#index"
+  get "akihabara" => "javascripts/akihabara"
   get "tileset" => "tileset#index"
-
+  get "tileset/index"
   get "home/index"
 
   # The priority is based upon order of creation:
