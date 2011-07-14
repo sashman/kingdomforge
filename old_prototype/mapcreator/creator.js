@@ -104,7 +104,7 @@ function add_init_control(){
 	control.appendChild(disp_grid_lines);
 	control.appendChild(disp_grid_lines_label);
 	
-
+//TODO php >.<
 	//create terrain chooser, function in creator_utils.js
 	getXMLDoc("terrain_request.php", add_terrain_chooser);
 	
@@ -183,6 +183,7 @@ function set_terrain(terrain_enum){
 	paint();
 
 	var n = terrain_array[terrain_enum].t_name;
+//TODO PHP FILE >.<
 	//request items asscoiated
 	getXMLDoc("terrain_set_request.php?terrain=" + n, add_terrain_set);
 }

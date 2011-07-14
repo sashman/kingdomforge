@@ -95,7 +95,7 @@ function post_state(){
 				document.getElementById("output").innerHTML = xmlhttp.responseText;
 			}
 		}
-		
+//TODO PHP FILE >.<
 		xmlhttp.open("POST","upload_to_modbuf.php?time="+new Date().getTime() ,true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send(params);
@@ -159,6 +159,7 @@ function request_state(file){
 			if(paint) paint();
 		}
 	}
+//PHP FILE? >.<
 	xmlhttp.open("GET", file + "?time="+new Date().getTime() ,true);
 	xmlhttp.send();
 }
