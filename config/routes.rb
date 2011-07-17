@@ -5,6 +5,7 @@ KingdomForge::Application.routes.draw do
   get "tileset" => "tileset#index"
   get "tileset/index"
   get "home/index"
+  get "tileset/expand_tiles"  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

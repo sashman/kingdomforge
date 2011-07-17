@@ -1,3 +1,10 @@
-<h1>Tileset#index</h1>
-<p>Find me in app/views/tileset/index.html.erb</p>
-<%= @terrain_items[0] %>
+<%= javascript_include_tag "ajaxHandlers" %>
+<h1>Tileset Manager</h1>
+<% @terrain_items.each do |superset| %>
+  <h3>Tile Superset: <%= superset["terrain_name"] %></h3>
+    <ul>
+    <li>ID: <%= superset["terrain_id"] %></li>
+    <li>Colour: <%= superset["colour"] %></li>
+    <%= link_to "[+]", {:action => "expand_tiles", :id => "#{superset['terrain_id']}"},:remote => "true" , :class => "expand_tiles", :id => "expand_tiles-#{superset['terrain_id']}",  :onclick => "return false;" %> 
+    </ul>
+<% end %>
