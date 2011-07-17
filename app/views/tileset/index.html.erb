@@ -5,6 +5,10 @@
     <ul>
     <li>ID: <%= superset["terrain_id"] %></li>
     <li>Colour: <%= superset["colour"] %></li>
-    <%= link_to "[+]", {:action => "expand_tiles", :id => "#{superset['terrain_id']}"},:remote => "true" , :class => "expand_tiles", :id => "expand_tiles-#{superset['terrain_id']}",  :onclick => "return false;" %> 
+    <%= link_to "[+]", {:action => "expand_tiles",	:id => "#{superset['terrain_id']}"},
+		:remote => "true",
+		:class => "expand_tiles",
+		:id => "expand_tiles-#{superset['terrain_id']}",
+		:onclick => "return false;" %> 
     </ul>
 <% end %>
