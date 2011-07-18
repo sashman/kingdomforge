@@ -39,7 +39,7 @@ akihabara_dir = "javascripts/";
 	
 	function loadMap(_global_x, _global_y) {
 		
-		$.get("/game/expand_tiles", { global_x: _global_x, global_y: _global_y },
+		$.get("game/get_map", { global_x: _global_x, global_y: _global_y },
 		   function(data){
 			 alert(data);
 		   });
