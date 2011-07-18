@@ -1,6 +1,5 @@
 $(document).ready(function(){
  
-
  $(".expand_tiles")
     .bind("ajax:success", function(evt, data, status, xhr){
 //      var $expansion = $("#")i
@@ -11,5 +10,5 @@ $(document).ready(function(){
       
     }
     });
-
+	
 });

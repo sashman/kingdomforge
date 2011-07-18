@@ -32,12 +32,17 @@ akihabara_dir = "javascripts/";
 	  // Fonts are mapped over an image, setting the first letter, the letter size, the length of all rows of letters and a horizontal/vertical gap.
 	  gbox.addFont({ id: 'small', image: 'font', firstletter: ' ', tileh: 8, tilew: 8, tilerow: 255, gapx: 0, gapy: 0 });
 	 
+	  loadMap(0,0);
 	  // When everything is ready, the 'loadAll' downloads all the needed resources, and then calls the function "main".
 	  gbox.loadAll(main);
 	}
 	
-	function loadMap(global_x, global_y) {
-		var 
+	function loadMap(_global_x, _global_y) {
+		
+		$.get("/game/expand_tiles", { global_x: _global_x, global_y: _global_y },
+		   function(data){
+			 alert(data);
+		   });
 	
 	/*
 		return help.asciiArtToMap([

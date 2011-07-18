@@ -1,4 +1,6 @@
 class GameController < ApplicationController
+	respond_to :xml
+
 	def index
 	end
 
@@ -10,6 +12,11 @@ class GameController < ApplicationController
 			file = File.new("public/data/map/" + global_x + "_" + global_y + ".xml", "rb")
 			out = file.read
 			file.close
+			
+			respond_with do |format|  
+				format.xml { render :xml => out }  
+			end 
+			
 		rescue => e
 			puts "***No map file found***"
 	end
