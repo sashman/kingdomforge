@@ -14,7 +14,7 @@ class GameController < ApplicationController
 			file.close
 			
 			respond_with do |format|  
-				format { render :text => out }  
+				format.text { render :text => out }  
 			end 
 			
 		rescue => e
