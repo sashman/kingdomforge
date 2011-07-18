@@ -4,11 +4,13 @@ $(document).ready(function(){
     .bind("ajax:success", function(evt, data, status, xhr){
 //      var $expansion = $("#")i
     var items = data["tile_items"];
-    var sender = data["submitter"];
-    $("#" + sender).hide();
+    var data_loc = data["data_loc"];
+    $("#" + data_loc).empty(); 
     for(var t in items){
-      
+      for(var v in items[t]){
+          $("#"+data_loc).append("hello");
+        }
     }
-    });
+  });
 	
 });

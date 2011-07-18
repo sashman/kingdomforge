@@ -18,9 +18,9 @@ class TilesetController < ApplicationController
 #      tile_items.push(result)
 #    end
 
-    submitter = "expand_tiles-#{params['id']}"
+    submitter = "tiles-#{params['id']}"
     container = Hash.new
-    container["submitter"] = submitter
+    container["data_loc"] = submitter
     container["tile_items"] = results
     respond_with do |format|  
       format.json { render :json => container }  
