@@ -2,21 +2,17 @@
 <h1>Tileset Manager</h1>
 <% @terrain_items.each do |superset| %>
   <h3>Tile Superset: <%= superset["terrain_name"] %></h3>
-    <table id="super-<%= superset['terrain_id']%>">
-    <tr><td>
-    <p>ID: <%= superset["terrain_id"] %></p>
-    <p>Colour: <%= superset["colour"] %></p>
-    </td>
-    <td>
-    <%= link_to "[+]", {:action => "expand_tiles",	:id => "#{superset['terrain_id']}"},
+    <table id="<%= superset['terrain_id']%>">
+    <thead>
+    <p>ID: <%= superset["terrain_id"] %> Colour: <%= superset["colour"] %></p>
+    <p><%= link_to "[+]", {:action => "expand_tiles",	:id => "#{superset['terrain_id']}"},
 		:remote => "true",
 		:class => "expand_tiles",
 		:id => "expand_tiles-#{superset['terrain_id']}",
-		:onclick => "$(this).hide();$(this).next().show(); $('#tiles-#{superset["terrain_id"]}').show()" %> 
-    <a onclick="$('#tiles-<%=superset["terrain_id"]%>').hide(); $(this).prev().show(); $(this).hide();" style="display:none;">[-]</a>
-    </td>
-    </tr>
-    <tr id="tiles-<%= superset['terrain_id']%>">
+		:onclick => "$(this).hide();$(this).next().show(); $('#data-#{superset["terrain_id"]}').show()" %> 
+    <a onclick="$('#data-<%=superset["terrain_id"]%>').hide(); $(this).prev().show(); $(this).hide();" style="display:none;">[-]</a></p>
+    </thead>
+    <tr id="data-<%= superset['terrain_id']%>">
     </tr>
     </table>
 <% end %>

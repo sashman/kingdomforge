@@ -17,12 +17,13 @@ class TilesetController < ApplicationController
 #    results.each do |result|
 #      tile_items.push(result)
 #    end
-
-    submitter = "tiles-#{params['id']}"
+    submitter = "#{params['id']}"
     container = Hash.new
-    container["data_loc"] = submitter
-    container["tile_items"] = results
-    respond_with do |format|  
+    container["data_loc"] = "data-#{submitter}"
+    container["tile_keys"] = results.fields
+    container["tile_items"] = results.each
+    puts container 
+   respond_with do |format|  
       format.json { render :json => container }  
     end  
   end

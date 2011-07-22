@@ -4,13 +4,25 @@ $(document).ready(function(){
     .bind("ajax:success", function(evt, data, status, xhr){
 //      var $expansion = $("#")i
     var items = data["tile_items"];
-    var data_loc = data["data_loc"];
-    $("#" + data_loc).empty(); 
-    for(var t in items){
-      for(var v in items[t]){
-          $("#"+data_loc).append("hello");
-        }
+    var keys = data["tile_keys"];
+    var data_loc_elem = $("#" + data["data_loc"]);
+
+    var insertString = ""; 
+    data_loc_elem.empty();
+    insertString += "<table><tr>";
+    for (var key in keys){
+      insertString += "<td>"+keys[key]+"</td>";
     }
+    insertString += "</tr>";
+    for(var t in items){
+    insertString += "<tr>";
+      for(var v in items[t]){
+        insertString += "<td>"+items[t][v]+"</td>";
+      }
+    insertString += "</tr>";
+    }
+    insertString += "</table>";
+    data_loc_elem.append(insertString);
   });
 	
 });
