@@ -1,4 +1,5 @@
 class TilesetController < ApplicationController
+  before_filter :authenticate_user! 
   respond_to :json
   require "mysql2"
   $client = Mysql2::Client.new(:host => "94.174.150.18", :username =>"wads", :password => "wads1990", :database=>"mapdb")

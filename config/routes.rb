@@ -1,4 +1,6 @@
 KingdomForge::Application.routes.draw do
+  devise_for :users
+
   get "game/index"
   get "game" => "game#index"
   get "akihabara" => "javascripts/akihabara"

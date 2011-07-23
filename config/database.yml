@@ -20,12 +20,28 @@
 #  <<: *common
 #  database: kf_production
 defaults: &defaults
-  adapter: mysql2
-  username: wads
-  password: wads1990
-  port: 3306
-  host: 94.174.150.18
+  adapter: sqlite3
+  timeout: 5000
 
 development:
   <<: *defaults
-  database: mapdb
+  database: db/db_development
+
+production:
+  <<: *defaults
+  database: db/db_production
+
+test:
+  <<: *defaults
+  database: db/db_test
+
+#defaults: &defaults
+#  adapter: mysql2
+#  username: wads
+#  password: wads1990
+#  port: 3306
+#  host: 94.174.150.18
+#
+#development:
+#  <<: *defaults
+#  database: mapdb
