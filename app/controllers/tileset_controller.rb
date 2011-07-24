@@ -19,7 +19,7 @@ class TilesetController < ApplicationController
 #    results.each do |result|
 #      tile_items.push(result)
 #    end
-    results = TerrainItem.where("id = ?", params['id'])
+    results = TerrainItem.where("terrain_type_id = ?", params['id'])
     submitter = "#{params['id']}"
     container = Hash.new
     container["data_loc"] = "data-#{submitter}"
