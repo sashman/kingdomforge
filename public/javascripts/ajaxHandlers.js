@@ -16,8 +16,9 @@ $(document).ready(function(){
     insertString += "</tr>";
     for(var t in items){
     insertString += "<tr>";
-      for(var v in items[t]){
-        insertString += "<td>"+items[t][v]+"</td>";
+      for(var v in keys){
+        //insertString += "<td>"+items[t][v]+"</td>";
+        insertString += "<td>"+items[t]["terrain_item"][keys[v]]+"</td>";
       }
     insertString += "</tr>";
     }

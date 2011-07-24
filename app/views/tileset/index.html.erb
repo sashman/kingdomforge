@@ -1,18 +1,18 @@
 <%= javascript_include_tag "ajaxHandlers" %>
 <h1>Tileset Manager</h1>
 <% @terrain_items.each do |superset| %>
-  <h3>Tile Superset: <%= superset["terrain_name"] %></h3>
-    <table id="<%= superset['terrain_id']%>">
+  <h3>Tile Superset: <%= superset[:name] %></h3>
+    <table id="<%= superset[:id]%>">
     <thead>
-    <p>ID: <%= superset["terrain_id"] %> Colour: <%= superset["colour"] %></p>
-    <p><%= link_to "[+]", {:action => "expand_tiles",	:id => "#{superset['terrain_id']}"},
+    <p>ID: <%= superset[:id] %> Colour: <%= superset[:colour] %></p>
+    <p><%= link_to "[+]", {:action => "expand_tiles",	:id => "#{superset[:id]}"},
 		:remote => "true",
 		:class => "expand_tiles",
-		:id => "expand_tiles-#{superset['terrain_id']}",
-		:onclick => "$(this).hide();$(this).next().show(); $('#data-#{superset["terrain_id"]}').show()" %> 
-    <a onclick="$('#data-<%=superset["terrain_id"]%>').hide(); $(this).prev().show(); $(this).hide();" style="display:none;">[-]</a></p>
+		:id => "expand_tiles-#{superset[:id]}",
+		:onclick => "$(this).hide();$(this).next().show(); $('#data-#{superset[:id]}').show()" %> 
+    <a onclick="$('#data-<%=superset[:id]%>').hide(); $(this).prev().show(); $(this).hide();" style="display:none;">[-]</a></p>
     </thead>
-    <tr id="data-<%= superset['terrain_id']%>">
+    <tr id="data-<%= superset[:id]%>">
     </tr>
     </table>
 <% end %>
