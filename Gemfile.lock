@@ -31,6 +31,8 @@ GEM
     arel (2.0.10)
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
+    composite_primary_keys (3.1.10)
+      activerecord (~> 3.0.0, >= 3.0.5)
     devise (1.4.2)
       bcrypt-ruby (~> 2.1.2)
       orm_adapter (~> 0.0.3)
@@ -83,6 +85,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  composite_primary_keys
   devise
   jquery-rails
   mysql2 (= 0.2.7)

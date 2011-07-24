@@ -5,6 +5,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'sqlite3'
 gem "rake", "0.8.7"
+gem "composite_primary_keys"
 # Bundle edge Rails instead:
 
 
