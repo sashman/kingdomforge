@@ -10,7 +10,41 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110723185042) do
+ActiveRecord::Schema.define(:version => 20110724192644) do
+
+  create_table "global_maps", :force => true do |t|
+    t.integer  "x"
+    t.integer  "y"
+    t.string   "src"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "item_sources", :force => true do |t|
+    t.integer  "pattern"
+    t.string   "src"
+    t.integer  "terrain_item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "terrain_items", :force => true do |t|
+    t.string   "name"
+    t.integer  "anchor_x"
+    t.integer  "anchor_y"
+    t.boolean  "passable"
+    t.boolean  "movable"
+    t.integer  "terrain_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "terrain_types", :force => true do |t|
+    t.string   "name"
+    t.string   "colour"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
