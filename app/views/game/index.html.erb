@@ -15,6 +15,13 @@ akihabara_dir = "javascripts/";
   <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
   <script>
   var maingame;
+
+
+  //map buffer used for loading maps
+  var map_buffer = new Array();
+  map_buffer[0] = new Array();
+
+  
   
   window.addEventListener('load', loadResources, false);
   
@@ -32,17 +39,86 @@ akihabara_dir = "javascripts/";
 	  // Fonts are mapped over an image, setting the first letter, the letter size, the length of all rows of letters and a horizontal/vertical gap.
 	  gbox.addFont({ id: 'small', image: 'font', firstletter: ' ', tileh: 8, tilew: 8, tilerow: 255, gapx: 0, gapy: 0 });
 	 
-	  loadMap(0,0);
+          request_Map(0,0);
+	  
 	  // When everything is ready, the 'loadAll' downloads all the needed resources, and then calls the function "main".
 	  gbox.loadAll(main);
 	}
 	
-	function loadMap(_global_x, _global_y) {
-		
+
+	function request_Map(_global_x, _global_y) {
+		parser = new DOMParser();	
 		$.get("game/get_map", { global_x: _global_x, global_y: _global_y },
 		   function(data){
-			 alert(data);
+			//deal with incoming map data
+			var map = {
+				tiles: new Array(),
+				content: new Array()
+			}
+			
+			var xmlDoc = parser.parseFromString(data,"text/xml");
+			var root = xmlDoc.childNodes[0];
+
+			var doc_tiles = root.getElementsByTagName("tile");
+
+			var i = 0;
+			for (k in doc_tiles){
+				var doc_tile = doc_tiles[k];
+				if(doc_tile.nodeName == "tile"){ 
+					var tile_tag = doc_tile.getAttribute("tag");
+					var tile = {
+						nk: i++, //numeric key
+						src: doc_tile.getElementsByTagName("src")[0],
+						range: doc_tile.getElementsByTagName("range")[0],
+						ext: doc_tile.getElementsByTagName("ext")[0],
+						pass: doc_tile.getElementsByTagName("pass")[0]
+					}
+					map.tiles[tile_tag] = tile;
+				}
+			}
+
+			var content =  root.getElementsByTagName("content");
+			var rows = xmlDoc.getElementsByTagName("content")[0].childNodes;
+			//load content
+			for(var i=0; i<rows.length; i++){
+				if(rows[i].firstChild)
+					map.content.push(rows[i].firstChild.nodeValue);
+			}
+			map_buffer[_global_x][_global_y] = map;
+
+			//render_map(map);
+			
 		   });
+	}
+
+	function render_map(map){
+		//check for ASCII representation of content
+		//alert(map.content.join("\n"));
+
+		var tra = [[null, ' ']];
+		
+		for(k in map.tiles){
+			var e = [map.nk, k];
+			tra.push(e);
+			i++;
+
+			gbox.addImage(k, map.tiles[k].src + "0" + map.tiles[k].ext);
+ 
+			gbox.addTiles({
+			id:      k,
+			image:   map.tiles[k].src + "0" + map.tiles[k].ext,
+			tileh:   25,
+			tilew:   25,
+			tilerow: 1,
+			gapx:    0,
+			gapy:    0});
+
+
+		}
+
+		var converted_map = help.asciiArtToMap(map.content, tra);
+		return converted_map;
+		
 	
 	/*
 		return help.asciiArtToMap([
@@ -80,13 +156,13 @@ akihabara_dir = "javascripts/";
 	}
 	
 	function main() {
-		gbox.setGroups(['game']);
+		gbox.setGroups(['background','game']);
 		maingame = gamecycle.createMaingame('game', 'game');
  
 		maingame.gameTitleIntroAnimation=function(reset) {
 		  if (reset) {
 		    toys.resetToy(this, 'rising');
-		  }
+		  }c
 		  gbox.blitFade(gbox.getBufferContext(),{ alpha: 1 });
 		 
 		  toys.logos.linear(this, 'rising', {
@@ -107,8 +183,59 @@ akihabara_dir = "javascripts/";
 		    return gbox.keyIsHit("a");
 		    }
 		};
+
+
+		maingame.initializeGame = function() {
+			
+			addMap();
+		}
  
+		map = {
+			tileset: 'map_pieces', // Specify that we're using the 'map_pieces' tiles that we created in the loadResources function
+		 
+		  // This loads an ASCII-definition of all the 'pieces' of the map as an array of integers specifying a type for each map tile
+		  // Each 'type' corresponds to a sprite in our tileset. For example, if a map tile has type 0, then it uses the first sprite in the
+		  //  map's tile set ('map_pieces', as defined above) and if a map tile has type 1, it uses the second sprite in the tile set, etc.
+		  // Also note that null is an allowed type for a map tile, and uses no sprite from the tile set
+			map: render_map(map_buffer[0][0]),
+		 
+		  // This function have to return true if the object 'obj' is checking if the tile 't' is a wall, so...
+			tileIsSolid: function(obj, t) {
+				return false;
+				//return t != null; // Is a wall if is not an empty space
+		  }
+		};
+
+		map = help.finalizeTilemap(map);
+
+		// Since finalizeMap has calculated the height and width, we can create a canvas that fits our map. Let's call it "map_canvas".
+		gbox.createCanvas('map_canvas', { w: map.w, h: map.h });
+		 
+		  // This function grabs the map from the "map" object and draws it onto our "map_canvas". So now the map is in the rendering pipeline.
+		gbox.blitTilemap(gbox.getCanvasContext('map_canvas'), map);
+
+
 		gbox.go();
+
 	}
+
+	// This is our function for adding the map object -- this keeps our main game code nice and clean
+	function addMap() {
+	  gbox.addObject({
+	    id:    'background_id', // This is the object ID
+	    group: 'background',    // We use the 'backround' group we created above with our 'setGroups' call.
+	 
+	    // The blit function is what happens during the game's draw cycle. Everything related to rendering and drawing goes here.
+	    blit: function() {
+	      // First let's clear the whole screen. Blitfade draws a filled rectangle over the given context (in this case, the screen)
+	      gbox.blitFade(gbox.getBufferContext(), { alpha: 1 });
+	 
+	      // Since we blitted the tilemap to 'map_canvas' back in our main function, we now draw 'map_canvas' onto the screen. The 'map_canvas' is
+	      // just a picture of our tilemap, and by blitting it here we're making sure that the picture re-draws every frame.
+	      gbox.blit(gbox.getBufferContext(), gbox.getCanvas('map_canvas'), { dx: 0, dy: 0, dw: gbox.getCanvas('map_canvas').width, dh: gbox.getCanvas('map_canvas').height, sourcecamera: true });
+	    }
+	  });
+	}
+
   
   </script>
