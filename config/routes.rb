@@ -9,6 +9,8 @@ KingdomForge::Application.routes.draw do
   get "home/index"
   get "tileset/expand_tiles"  
   get "game/get_map"
+  get "tileset/images_for_pattern"
+  get "tileset/patterns_for_item"
   resources :terrain_types
   # The priority is based upon order of creation:
   # first created -> highest priority.

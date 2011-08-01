@@ -1,0 +1,16 @@
+<div id="sender" data-sender:"<%= @terrainType %>" style="display:hidden;"></div>
+<table data-sender:"<%= @terrainType %>">
+<%# Keys row %>
+<tr>
+<% @fields.each do |field| %>
+<td><%= field %></td>
+<% end %>
+</tr>
+<% @results.each do |result| %>
+<tr>
+<% @fields.each do |field| %>
+<td><%= result{field} %></td>
+<% end %>
+</tr>
+<% end %>
+</table>
