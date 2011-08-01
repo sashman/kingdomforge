@@ -1,0 +1,27 @@
+*		{	margin:0; padding: 0;}
+li		{	margin-left:20px;}
+
+html,body	{	height:100%;}
+#wrapper	{	width:100%;
+			border: 1px solid #000000;
+			margin: -1px;}
+
+#header		{	height:150px;
+			width:100%;
+			border: 1px solid #000000;
+			margin: -1px;}
+
+#sidebar	{	min-width:60px;
+			width:18%;
+ 			height:100%;
+       			float:left;
+			border: 1px solid #000000;
+			margin: -1px;}
+
+#page		{	width:82%;
+			height:100%;
+			float:left;
+			border: 1px solid #000000;
+			margin: -1px;}
+#content	{	padding: 30px;}
+

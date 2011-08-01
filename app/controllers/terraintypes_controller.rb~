@@ -1,0 +1,12 @@
+class TerraintypesController < ApplicationController
+#  before_filter :authenticate_user! 
+
+  # GET /terraintypes/new
+  def new
+    @terraintype = Terraintype.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+    end
+  end
+end
