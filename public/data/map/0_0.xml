@@ -1,9 +1,9 @@
 <map x="0" y="0" type = "grass" colour = "#008800">
 
 <tile tag = "g">
-<src>data/img/terrain/grass</src>
+<src>img/terrain/grass</src>
 <range>0:9</range>
-<ext>png</ext>
+<ext>.png</ext>
 <pass>true</pass>
 </tile>
 
