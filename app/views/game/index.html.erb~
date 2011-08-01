@@ -30,9 +30,9 @@ akihabara_dir = "javascripts/";
 	  // The title (which appears in the browser title bar) is the text we're passing to the function.
 	 help.akihabaraInit({
 	    title: 'KingdomForge',
-	    //width: 640,
-	    //height: 480,
-	    //zoom: 1
+	    width: 640,
+	    height: 480,
+	    zoom: 1
 	    });
 	 
 	  // Here we tell the game to look for an image called 'font.png' in the same directory as the HTML file and call it 'font' internally
