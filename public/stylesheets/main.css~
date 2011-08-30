@@ -2,14 +2,13 @@
 li		{	margin-left:20px;}
 
 html,body	{	height:100%;}
-#wrapper	{	width:100%;
-			border: 1px solid #000000;
-			margin: -1px;}
+
+div.page-title  {	max-height:220px;
+			height:80px;}
+#wrapper	{	width:100%;}
 
 #header		{	height:150px;
-			width:100%;
-			border: 1px solid #000000;
-			margin: -1px;}
+			width:100%;}
 
 #sidebar	{	min-width:60px;
 			width:18%;
@@ -23,5 +22,24 @@ html,body	{	height:100%;}
 			float:left;
 			border: 1px solid #000000;
 			margin: -1px;}
-#content	{	padding: 30px;}
+#content	{	padding: 20px;}
+#tileset-main   {
+			width:50%;
+			height:100%;
+			float:left;
+}
 
+#tileset-main h2 {	margin-bottom:15px;}
+#tileset-options h2 {	margin-bottom:15px;}
+#tileset-options{	background-color:#EEEEEE;
+			width:50%;
+			height:100%;
+			float:left;
+			margin:-5px;
+			padding:5px;}
+
+#tileset-options td {	width:65px;
+			height:65px;
+			border: 1px solid #000000;}
+
+.superset-data td {	max-width:80px;  }	

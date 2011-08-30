@@ -30,9 +30,9 @@ akihabara_dir = "javascripts/";
 	  // The title (which appears in the browser title bar) is the text we're passing to the function.
 	 help.akihabaraInit({
 	    title: 'KingdomForge',
-	    //width: 640,
-	    //height: 480,
-	    //zoom: 1
+	    width: 640,
+	    height: 480,
+	    zoom: 1
 	    });
 	 
 	  // Here we tell the game to look for an image called 'font.png' in the same directory as the HTML file and call it 'font' internally
@@ -47,6 +47,17 @@ akihabara_dir = "javascripts/";
           request_Map(0,0);
 
 	gbox.addFont({ id: 'small', image: 'font', firstletter: ' ', tileh: 8, tilew: 8, tilerow: 255, gapx: 0, gapy: 0 });
+
+	gbox.addImage('map_sheet', 'img/terrain/grass.png');
+			
+	gbox.addTiles({
+	id:      'map_pieces',
+	image:   'map_sheet',
+	tileh:   25,
+	tilew:   25,
+	tilerow: 100,
+	gapx:    0,
+	gapy:    0});
 	  
 	  // When everything is ready, the 'loadAll' downloads all the needed resources, and then calls the function "main".
 	  gbox.loadAll(main);
@@ -81,23 +92,13 @@ akihabara_dir = "javascripts/";
 				var tile = {
 					nk: i++, //numeric key
 					src: doc_tile.getElementsByTagName("src")[0].firstChild.nodeValue,
-					range: doc_tile.getElementsByTagName("range")[0].firstChild.nodeValue,
+					//range: doc_tile.getElementsByTagName("range")[0].firstChild.nodeValue,
 					ext: doc_tile.getElementsByTagName("ext")[0].firstChild.nodeValue,
 					pass: doc_tile.getElementsByTagName("pass")[0].firstChild.nodeValue
 				}
 				map.tiles[tile_tag] = tile;
 
-				gbox.addImage(tile_tag, tile.src + "0" + tile.ext);
- 				
 				
-				gbox.addTiles({
-				id:      'map_pieces',
-				image:   tile_tag,
-				tileh:   16,
-				tilew:   16,
-				tilerow: 1,
-				gapx:    0,
-				gapy:    0});
 
 			}
 		}
@@ -121,7 +122,7 @@ akihabara_dir = "javascripts/";
 
 		var tra = [[null, ' ']];
 		for(k in map.tiles){
-			alert(map.tiles[k].nk + ' ' + k);
+			//alert(map.tiles[k].nk + ' ' + k);
 			var e = [map.tiles[k].nk, k];
 			tra.push(e);
 		}
