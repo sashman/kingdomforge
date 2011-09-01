@@ -10,6 +10,10 @@ div.page-title  {	max-height:220px;
 #header		{	height:150px;
 			width:100%;}
 
+#user_nav	{	float:left;}
+#banner		{	float:left;}
+#banner img	{	height:100%;
+			width:35%;}
 #sidebar	{	min-width:60px;
 			width:18%;
  			height:100%;
