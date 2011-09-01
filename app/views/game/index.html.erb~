@@ -62,7 +62,7 @@ akihabara_dir = "javascripts/";
 	    id:      'player_tiles', // set a unique ID for future reference
 	    image:   'player_sheet', // Use the 'sprites' image, as loaded above
 	    tileh:   32,
-	    tilew:   26,
+	    tilew:   24,
 	    tilerow: 16,
 	    gapx:    0,
 	    gapy:    0
