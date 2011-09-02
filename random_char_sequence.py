@@ -1,5 +1,5 @@
 import random
-chars = ['g','h','i','j']
+chars = ['i','j','k','l']
 
 length = 15
 out = ''

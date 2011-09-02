@@ -1,5 +1,29 @@
 <map x="0" y="0" type = "grass" colour = "#008800">
 
+<tile tag = "a">
+<pass>true</pass>
+</tile>
+
+<tile tag = "b">
+<pass>true</pass>
+</tile>
+
+<tile tag = "c">
+<pass>true</pass>
+</tile>
+
+<tile tag = "d">
+<pass>true</pass>
+</tile>
+
+<tile tag = "e">
+<pass>true</pass>
+</tile>
+
+<tile tag = "f">
+<pass>true</pass>
+</tile>
+
 <tile tag = "g">
 <pass>true</pass>
 </tile>
@@ -16,22 +40,32 @@
 <pass>true</pass>
 </tile>
 
+<tile tag = "k">
+<pass>true</pass>
+</tile>
+
+<tile tag = "l">
+<pass>true</pass>
+</tile>
+
+
 <content>
-<r>jgjhihjhighgjhh</r>
-<r>hggjhhjhjjhhhji</r>
-<r>ihgijighighgjjj</r>
-<r>gjhigjhjijjigjj</r>
-<r>ghggjhggggjhgij</r>
-<r>hjjijihjgigighg</r>
-<r>ijighigjjhggjii</r>
-<r>ggggigjjijjhhgg</r>
-<r>hjihgjihhjjhggi</r>
-<r>gjiihhijhihihgg</r>
-<r>ighghhigghhjjgg</r>
-<r>ijjihjhhjihjjih</r>
-<r>ihjgigiiijjjjgj</r>
-<r>ihighhhghgijhgj</r>
-<r>jgihgjihgijighj</r>
+<r>jijllllllilklkk</r>
+<r>jlklkiijkkllkjk</r>
+<r>illiikkliiiilij</r>
+<r>ljjlikkljliljll</r>
+<r>lkljjklljlljiij</r>
+<r>jikkkkijkkkjkil</r>
+<r>iiliklljklkikii</r>
+<r>iiikljiiklikljj</r>
+<r>lkikklikikkkikk</r>
+<r>iijlklillijkkll</r>
+<r>ljkjklkjjlilkkk</r>
+<r>jlikkjiijjlikkk</r>
+<r>jkijiilkjkjkkij</r>
+<r>jjljlilikijjijj</r>
+<r>iikjjkjkikjlkll</r>
+
 </content>
 
 </map>

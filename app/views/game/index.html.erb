@@ -70,14 +70,14 @@ akihabara_dir = "javascripts/";
 	    gapy:    0
 	  });
 
-	gbox.addImage('map_sheet', 'img/terrain/grass_with_stump.png');
+	gbox.addImage('map_sheet', 'img/terrain/grass_with_cliffs.png');
 			
 	gbox.addTiles({
 	id:      'map_pieces',
 	image:   'map_sheet',
 	tileh:   25,
 	tilew:   25,
-	tilerow: 100,
+	tilerow: 5,
 	gapx:    0,
 	gapy:    0});
 	  
@@ -277,18 +277,19 @@ akihabara_dir = "javascripts/";
 		      this.x = 20;
 		      this.y = 20;
 
+			var anim_speed = 2;
 			// Here we define the list of animations. We can name these whatever we want.
 			  // These are referenced with this.animList[id].
 			  // So for example, this.animList[rightDown].frames[1] would return 12.
 			  this.animList = {
 			    still:     { speed: 1, frames: [0]     },
-			    right:     { speed: 3, frames: [8,9,10,11,12,13,14,15] },
+			    right:     { speed: anim_speed, frames: [8,9,10,11,12,13,14,15] },
 			    //rightDown: { speed: 3, frames: [2, 12] },
-			    down:      { speed: 3, frames: [24,25,26,27,28,29,30,31] },
+			    down:      { speed: anim_speed, frames: [24,25,26,27,28,29,30,31] },
 			    //downLeft:  { speed: 3, frames: [4, 14] },
-			    left:      { speed: 3, frames: [0,1,2,3,4,5,6,7] },
+			    left:      { speed: anim_speed, frames: [0,1,2,3,4,5,6,7] },
 			    //leftUp:    { speed: 3, frames: [6, 16] },
-			    up:        { speed: 3, frames: [16,17,18,19,20,21,22,23] },
+			    up:        { speed: anim_speed, frames: [16,17,18,19,20,21,22,23] },
 			    //upRight:   { speed: 3, frames: [8, 18] }
 			  };
 			 
