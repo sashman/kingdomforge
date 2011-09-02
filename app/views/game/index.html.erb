@@ -17,6 +17,8 @@ akihabara_dir = "javascripts/";
   var maingame;
   var map;
   var frameCount = 0;
+  var player_x = 0;
+  var player_y = 0;
 
 
   //map buffer used for loading maps
@@ -43,16 +45,16 @@ akihabara_dir = "javascripts/";
 	  gbox.addImage('font', '/img/font.png');
 	 
 	  // Same thing for our logo here.
-	  gbox.addImage('logo', '/img/logo.png');
+	  gbox.addImage('logo', '/img/black_banner.png');
 	 
 	  // Fonts are mapped over an image, setting the first letter, the letter size, the length of all rows of letters and a horizontal/vertical gap.
 	  
 	 
-          request_Map(0,0);
-          request_Map(1,0);
-          request_Map(0,1);
-          request_Map(-1,0);
-          request_Map(0,-1);
+          request_Map(player_x,player_y);
+          request_Map(player_x+1,player_y);
+          request_Map(player_x,player_x+1);
+          request_Map(player_x-1,player_y);
+          request_Map(player_x,player_y-1);
 
 	gbox.addFont({ id: 'small', image: 'font', firstletter: ' ', tileh: 8, tilew: 8, tilerow: 255, gapx: 0, gapy: 0 });
 
@@ -315,13 +317,14 @@ akihabara_dir = "javascripts/";
 		  // Set the animation.
 		  if (frameCount%this.animList[this.animIndex].speed == 0)
 		    this.frame = help.decideFrame(frameCount, this.animList[this.animIndex]);
-
 		 
 		  // This adds some friction to our accelerations so we stop when we're not accelerating, otherwise our game would control like Asteroids
 		  toys.topview.handleAccellerations(this);
 		 
 		  // This tells the physics engine to apply those forces
 		  toys.topview.applyForces(this);
+
+		checkBoundary(this);
 
 	    },
 	 
@@ -346,6 +349,35 @@ akihabara_dir = "javascripts/";
 	    },
 	  }); // end gbox.addObject for player
 
+	}
+
+	function checkBoundary(obj){
+		if(obj.group == 'player'){
+			var change = false;
+			if(obj.x + obj.w > map.w){
+				change = true;
+				obj.x = 1;
+				player_x++;
+			}else if(obj.x < 0){
+				change = true;
+				obj.x = map.w-obj.w;
+				player_x--;
+			}else if(obj.y < 0){
+				change = true;
+				obj.y = map.h-obj.h;
+				player_y--;
+			}else if(obj.y + obj.h > map.h){
+				change = true;
+				obj.y = 1;
+				player_y++;
+			}
+			if(change){
+				map.map = render_map(map_buffer[player_x][player_y]);
+				map = help.finalizeTilemap(map);
+				gbox.createCanvas('map_canvas', { w: map.w, h: map.h });
+				gbox.blitTilemap(gbox.getCanvasContext('map_canvas'), map);
+			}
+		}
 	}
 
   
