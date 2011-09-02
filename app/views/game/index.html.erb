@@ -371,6 +371,8 @@ akihabara_dir = "javascripts/";
 				obj.y = 1;
 				player_y++;
 			}
+			if(!map_buffer[player_x]) change = false;
+			if(!map_buffer[player_x][player_y]) change = false;
 			if(change){
 				map.map = render_map(map_buffer[player_x][player_y]);
 				map = help.finalizeTilemap(map);

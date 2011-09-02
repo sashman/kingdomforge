@@ -371,10 +371,13 @@ akihabara_dir = "javascripts/";
 				obj.y = 1;
 				player_y++;
 			}
-			map.map = render_map(map_buffer[player_x][player_y]);
-			map = help.finalizeTilemap(map);
-			gbox.createCanvas('map_canvas', { w: map.w, h: map.h });
-			gbox.blitTilemap(gbox.getCanvasContext('map_canvas'), map);
+			if(!map_buffer[player_x]) change = false;
+			if(change){
+				map.map = render_map(map_buffer[player_x][player_y]);
+				map = help.finalizeTilemap(map);
+				gbox.createCanvas('map_canvas', { w: map.w, h: map.h });
+				gbox.blitTilemap(gbox.getCanvasContext('map_canvas'), map);
+			}
 		}
 	}
 
