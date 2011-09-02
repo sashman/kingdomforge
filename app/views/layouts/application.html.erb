@@ -2,7 +2,9 @@
 <html>
 <head>
   <title>KingdomForge</title>
+  <% if not request.url.split('/').last.eql? "game" %>
   <%= stylesheet_link_tag :all %>
+  <% end %>
   <%= javascript_include_tag "jquery.min.js" %>
   <%= javascript_include_tag "jquery_ujs.js" %>
   <%= csrf_meta_tag %>
@@ -19,9 +21,10 @@
   <% end %>
 <p><%= link_to 'Tilset Manager', :controller => 'tileset' %>
 <%= link_to 'Game', :controller => 'game' %></p>
-</div>
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
+</div>
+<!--<div id="banner"><img src="img/lvl3.png"/></div>-->
 </div> <!-- header -->
 </div> <!-- wrapper -->
 <div id="sidebar">
