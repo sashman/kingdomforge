@@ -213,7 +213,7 @@ akihabara_dir = "javascripts/";
 		 
 		  // This function have to return true if the object 'obj' is checking if the tile 't' is a wall, so...
 			tileIsSolid: function(obj, t) {
-				var cur_map = map_buffer[player_x][player_x];
+				var cur_map = map_buffer[player_x][player_y];
 				for(k in cur_map.tiles){
 					if(cur_map.tiles[k].nk==t){
 						return (cur_map.tiles[k].pass);

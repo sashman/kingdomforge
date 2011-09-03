@@ -272,7 +272,7 @@ akihabara_dir = "javascripts/";
 	    group: 'player',
 	    tileset: 'player_tiles',
 
-	    colh:gbox.getTiles('player_tiles').tileh,
+	    //colh:gbox.getTiles('player_tiles').tileh,
 	 
 	    // the initialize function contains code that is run when the object is first created. In the case of the player object this only happens once, at the beginning of the game, or possibly after a player dies and respawns.
 	    initialize: function() {
