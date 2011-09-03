@@ -70,14 +70,14 @@ akihabara_dir = "javascripts/";
 	    gapy:    0
 	  });
 
-	gbox.addImage('map_sheet', 'img/terrain/grass_with_stump.png');
+	gbox.addImage('map_sheet', 'img/terrain/grass_with_cliffs.png');
 			
 	gbox.addTiles({
 	id:      'map_pieces',
 	image:   'map_sheet',
 	tileh:   25,
 	tilew:   25,
-	tilerow: 100,
+	tilerow: 5,
 	gapx:    0,
 	gapy:    0});
 	  
@@ -118,10 +118,9 @@ akihabara_dir = "javascripts/";
 					//ext: doc_tile.getElementsByTagName("ext")[0].firstChild.nodeValue,
 					pass: doc_tile.getElementsByTagName("pass")[0].firstChild.nodeValue
 				}
+				if(tile.pass == 'false') tile.pass = true;
+				else tile.pass = false;
 				map.tiles[tile_tag] = tile;
-
-				
-
 			}
 		}
 
@@ -214,7 +213,13 @@ akihabara_dir = "javascripts/";
 		 
 		  // This function have to return true if the object 'obj' is checking if the tile 't' is a wall, so...
 			tileIsSolid: function(obj, t) {
-				return false;
+				var cur_map = map_buffer[player_x][player_x];
+				for(k in cur_map.tiles){
+					if(cur_map.tiles[k].nk==t){
+						return (cur_map.tiles[k].pass);
+					}
+				}
+				//return false;
 				//return t != null; // Is a wall if is not an empty space
 		  }
 		};
@@ -266,6 +271,8 @@ akihabara_dir = "javascripts/";
 	    id: 'player_id',
 	    group: 'player',
 	    tileset: 'player_tiles',
+
+	    colh:gbox.getTiles('player_tiles').tileh,
 	 
 	    // the initialize function contains code that is run when the object is first created. In the case of the player object this only happens once, at the beginning of the game, or possibly after a player dies and respawns.
 	    initialize: function() {
@@ -325,7 +332,9 @@ akihabara_dir = "javascripts/";
 		  // This tells the physics engine to apply those forces
 		  toys.topview.applyForces(this);
 
-		checkBoundary(this);
+		  toys.topview.tileCollision(this, map, 'map', null, { tolerance: 2, approximation: 3 });
+
+		  checkBoundary(this);
 
 	    },
 	 
