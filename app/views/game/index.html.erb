@@ -19,6 +19,8 @@ akihabara_dir = "javascripts/";
   var frameCount = 0;
   var player_x = 0;
   var player_y = 0;
+  var player_last_dir = "";
+  
 
 
   //map buffer used for loading maps
@@ -313,14 +315,26 @@ akihabara_dir = "javascripts/";
 
 			// The if statements check for accelerations in the x and y directions and whether they are positive or negative. It then sets the animation index to the keyword corresponding to that direction.
 		  if (this.accx == 0 && this.accy == 0) this.animIndex = 'still';
-		  if (this.accx > 0 && this.accy == 0)  this.animIndex = 'right';
-		  //if (this.accx > 0 && this.accy > 0)   this.animIndex = 'rightDown';
-		  if (this.accx == 0 && this.accy > 0)  this.animIndex = 'down';
-		  //if (this.accx < 0 && this.accy > 0)   this.animIndex = 'downLeft';
-		  if (this.accx < 0 && this.accy == 0)  this.animIndex = 'left';
-		  //if (this.accx < 0 && this.accy < 0)   this.animIndex = 'leftUp';
-		  if (this.accx == 0 && this.accy < 0)  this.animIndex = 'up';
-		  //if (this.accx > 0 && this.accy < 0)   this.animIndex = "upRight";
+		  if (this.accx > 0 && this.accy == 0){
+			this.animIndex = 'right';
+			this.animList.still.frames = [8];
+			}
+		  
+		  if (this.accx == 0 && this.accy > 0){
+			this.animIndex = 'down';
+			this.animList.still.frames = [24];
+			}
+		  
+		  if (this.accx < 0 && this.accy == 0){
+			this.animIndex = 'left';
+			this.animList.still.frames = [0];
+			}
+		  
+		  if (this.accx == 0 && this.accy < 0){
+			this.animIndex = 'up';
+			this.animList.still.frames = [16];
+			}
+		  
 		 
 		  // Set the animation.
 		  if (frameCount%this.animList[this.animIndex].speed == 0)
