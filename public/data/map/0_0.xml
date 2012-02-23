@@ -1,70 +1,36 @@
-<map x="0" y="0" type = "grass" colour = "#008800">
-
-<tile tag = "a">
-<pass>false</pass>
-</tile>
-
-<tile tag = "b">
-<pass>false</pass>
-</tile>
-
-<tile tag = "c">
-<pass>false</pass>
-</tile>
-
-<tile tag = "d">
-<pass>false</pass>
-</tile>
-
-<tile tag = "e">
-<pass>false</pass>
-</tile>
-
-<tile tag = "f">
-<pass>false</pass>
-</tile>
-
-<tile tag = "g">
-<pass>false</pass>
-</tile>
-
-<tile tag = "h">
-<pass>false</pass>
-</tile>
-
-<tile tag = "i">
-<pass>true</pass>
-</tile>
-
-<tile tag = "j">
-<pass>true</pass>
-</tile>
-
-<tile tag = "k">
-<pass>true</pass>
-</tile>
-
-<tile tag = "l">
-<pass>true</pass>
-</tile>
-
+<map x="0" y="0" type = "grass" colour = "#008800" ><tile tag = "a"><pass>false</pass></tile><tile tag = "b"><pass>false</pass></tile><tile tag = "c"><pass>false</pass></tile><tile tag = "d"><pass>false</pass></tile><tile tag = "e"><pass>false</pass></tile><tile tag = "f"><pass>false</pass></tile><tile tag = "g"><pass>false</pass></tile><tile tag = "h"><pass>false</pass></tile><tile tag = "i"><pass>true</pass></tile><tile tag = "j"><pass>true</pass></tile><tile tag = "k"><pass>true</pass></tile><tile tag = "l"><pass>true</pass></tile>
 
 <content>
-<r>jikjiijjjklijkj</r>
-<r>ikilllkillljljl</r>
-<r>illkljlikljilil</r>
-<r>ilkkjljijkiklkj</r>
-<r>jjllikijikjjjji</r>
-<r>jlklkchhelikikk</r>
-<r>jjiikbjkfiljklk</r>
-<r>jkllljkifjllklk</r>
-<r>jkilibjlfiljjil</r>
-<r>kiljkaddgkikkkj</r>
-<r>kkikkkkjkljjjii</r>
-<r>jlllljjkkjkkill</r>
-<r>jllijijjlljlijj</r>
-<r>jikkljjikkjilji</r>
-<r>jjliljilkliljjj</r>
-</content>
-
-</map>
+<r>iiiiiiiiilkiiilkiijlliahgijljiii</r>
+<r>iiiiiigigkjkjjikiijjijjiilijiiii</r>
+<r>iiiiigiaglijkljliiilkkilkkllliii</r>
+<r>iiiiglikijjikjijkjijllklljjkjjii</r>
+<r>iiigililkjlkllliljkilijljiklijii</r>
+<r>iigijljkiillkikjljiljkjjjjkillki</r>
+<r>igklllililljkklkjijkjillkiilliki</r>
+<r>iekkjjjijiiiljkkjiljjjkkjjijjlie</r>
+<r>iijkkllljljjljjjilkiklklkiilikji</r>
+<r>iilkkjjkiilljilljiliklkjjkljklcg</r>
+<r>iiijiijlkkiililkkijjjjikllijjkik</r>
+<r>iiiijlijljiklikkjkjlkkiliijllkii</r>
+<r>iiiiijljilliilkliikjkliijiijijjl</r>
+<r>liggjiikljlkilkijjijljikjiijijjk</r>
+<r>cggkijiijklchhhheljjlilchheljjll</r>
+<r>igiilljllkcggiilahheklcggiahhhhh</r>
+<r>llijjiiljcgglljljkkaecggiklljiki</r>
+<r>hchhhechhgglkjkiikilaggljiljliil</r>
+<r>jagliagglkikjlljjiiijlijjiiijilk</r>
+<r>iilljkljillchhhejkkllkllchelkiii</r>
+<r>iiikjiijilibgjkelkkkjiiibgfllkkl</r>
+<r>kjlkjlljjijbkjjfjjllijkkagglkklj</r>
+<r>jjlililkjljaelcgijikkkiljllkjjjl</r>
+<r>liiikijjiilkagglijijjkllkkikjllk</r>
+<r>iljjlkllliiliklillkijjiiiikjljii</r>
+<r>ijjililkilkijjjiiljjijjijlkjjkjj</r>
+<r>lkjlkjjkillkiikillkliliklkliiijl</r>
+<r>klkiiikiljkijjiiikijkiljkkjcekkk</r>
+<r>jijiijikkliiljjikkkklikkjicgaeik</r>
+<r>kkjlkklkiliklikkkikikjkjjcgilagg</r>
+<r>liljkjkjljjjjijllkjcekijcgiiljki</r>
+<r>lklkkklilkjklkcelicgbljcglkliilk</r>
+</content></map>
