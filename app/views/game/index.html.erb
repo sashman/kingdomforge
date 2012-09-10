@@ -53,11 +53,13 @@ akihabara_dir = "javascripts/";
 	  // Fonts are mapped over an image, setting the first letter, the letter size, the length of all rows of letters and a horizontal/vertical gap.
 	  
 	 
+	 //Load the initial maps
           request_Map(player_x,player_y);
           request_Map(player_x+1,player_y);
-          request_Map(player_x,player_x+1);
-          request_Map(player_x-1,player_y);
-          request_Map(player_x,player_y-1);
+          request_Map(player_x,player_y+1);
+          request_Map(player_x+1,player_y+1);
+          // request_Map(player_x-1,player_y);
+          // request_Map(player_x,player_y-1);
 
 	gbox.addFont({ id: 'small', image: 'font', firstletter: ' ', tileh: 8, tilew: 8, tilerow: 255, gapx: 0, gapy: 0 });
 
@@ -379,6 +381,8 @@ akihabara_dir = "javascripts/";
 	function checkBoundary(obj){
 		if(obj.group == 'player'){
 			var change = false;
+			var old_x = player_x;
+			var old_y = player_y;
 			if(obj.x + obj.w > map.w){
 				change = true;
 				obj.x = 1;
@@ -396,8 +400,30 @@ akihabara_dir = "javascripts/";
 				obj.y = 1;
 				player_y++;
 			}
-			if(!map_buffer[player_x]) change = false;
-			else if(!map_buffer[player_x][player_y]) change = false;
+
+			if(!map_buffer[player_x] || !map_buffer[player_x][player_y]){
+				change = false;	
+				
+				// if(obj.x + obj.w > map.w){
+				// 	obj.x = map.w-obj.w;
+					
+
+				// }else if(obj.x < 0){
+				// 	obj.x = 1;
+
+				// }else if(obj.y < 0){
+				// 	obj.y = 1;
+
+				// }else if(obj.y + obj.h > map.h){
+				// 	obj.y = map.h-obj.h;
+					
+
+				// }
+				player_x = old_x;
+				player_y = old_y;
+					
+			} 
+
 			if(change){
 				map.map = render_map(map_buffer[player_x][player_y]);
 				map = help.finalizeTilemap(map);

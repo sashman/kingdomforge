@@ -1,70 +1,21 @@
-<map x="0" y="0" type = "grass" colour = "#008800">
+<map x = "1" y = "0" type = "grass" colour = "" >
 
-<tile tag = "a">
-<pass>false</pass>
-</tile>
-
-<tile tag = "b">
-<pass>false</pass>
-</tile>
-
-<tile tag = "c">
-<pass>false</pass>
-</tile>
-
-<tile tag = "d">
-<pass>false</pass>
-</tile>
-
-<tile tag = "e">
-<pass>false</pass>
-</tile>
-
-<tile tag = "f">
-<pass>false</pass>
-</tile>
-
-<tile tag = "g">
-<pass>false</pass>
-</tile>
-
-<tile tag = "h">
-<pass>false</pass>
-</tile>
-
-<tile tag = "i">
-<pass>true</pass>
-</tile>
-
-<tile tag = "j">
-<pass>true</pass>
-</tile>
-
-<tile tag = "k">
-<pass>true</pass>
-</tile>
-
-<tile tag = "l">
-<pass>true</pass>
-</tile>
-
+<tile tag = "a"><pass>false</pass></tile><tile tag = "b"><pass>false</pass></tile><tile tag = "c"><pass>false</pass></tile><tile tag = "d"><pass>false</pass></tile><tile tag = "e"><pass>false</pass></tile><tile tag = "f"><pass>false</pass></tile><tile tag = "g"><pass>false</pass></tile><tile tag = "h"><pass>false</pass></tile><tile tag = "i"><pass>false</pass></tile><tile tag = "j"><pass>false</pass></tile><tile tag = "k"><pass>false</pass></tile><tile tag = "l"><pass>false</pass></tile><tile tag = "m"><pass>false</pass></tile><tile tag = "n"><pass>true</pass></tile><tile tag = "o"><pass>true</pass></tile><tile tag = "p"><pass>true</pass></tile>
 
 <content>
-<r>kjkiikkiiklkjjk</r>
-<r>jililllkjljkijk</r>
-<r>kijjliikililjli</r>
-<r>liklljlikijlllk</r>
-<r>kilkkjkjlkiljik</r>
-<r>ilijkkjkljjjjjk</r>
-<r>kjkjljiijiklkll</r>
-<r>ijjiljkkilkiijl</r>
-<r>iklkjkllllkljji</r>
-<r>ikkjklijliljkkj</r>
-<r>jjiikkkiilllkkl</r>
-<r>jkjkkjkjkjjlkkl</r>
-<r>kkljjjiljijiiil</r>
-<r>jliiljjiijjkilk</r>
-<r>illkllkkkjjljkj</r>
-</content>
-
-</map>
+<r>nnnppppppppppnp</r>
+<r>oonnnnhgppfnope</r>
+<r>poopnoepndcopoe</r>
+<r>oonnonaidcnpnoa</r>
+<r>onpooooacpnoopp</r>
+<r>opponnnpnpnnpon</r>
+<r>oopnnopooooopon</r>
+<r>npnpnpnoonppoon</r>
+<r>pnppopnnoopnnno</r>
+<r>ononpppnonpopnh</r>
+<r>nnnnnponoppppna</r>
+<r>npoppnnpnpnpppn</r>
+<r>nnnooopnnoppnpo</r>
+<r>nnnnnnnnnopoonn</r>
+<r>jjiooopppdjjion</r>
+</content></map>

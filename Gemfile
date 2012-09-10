@@ -1,10 +1,10 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
+gem 'rails'
 gem 'jquery-rails'
 gem 'devise'
 gem 'sqlite3'
-gem "rake", "0.8.7"
+gem "rake"
 gem "composite_primary_keys"
 # Bundle edge Rails instead:
 
@@ -12,7 +12,7 @@ gem "composite_primary_keys"
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 #gem 'pg'
-gem 'mysql2', '0.2.7'
+gem 'mysql2'
 # Use unicorn as the web server
 # gem 'unicorn'
 

@@ -88,7 +88,7 @@ DEPENDENCIES
   composite_primary_keys
   devise
   jquery-rails
-  mysql2 (= 0.2.7)
-  rails (= 3.0.9)
-  rake (= 0.8.7)
+  mysql2
+  rails
+  rake
   sqlite3
