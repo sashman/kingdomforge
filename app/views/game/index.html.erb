@@ -17,8 +17,8 @@ akihabara_dir = "javascripts/";
   var maingame;
   var map;
   var frameCount = 0;
-  var player_x = 0;
-  var player_y = 0;
+  var player_x = 1;
+  var player_y = 1;
   var player_last_dir = "";
   
 
@@ -54,10 +54,24 @@ akihabara_dir = "javascripts/";
 	  
 	 
 	 //Load the initial maps
-          request_Map(player_x,player_y);
-          request_Map(player_x+1,player_y);
-          request_Map(player_x,player_y+1);
-          request_Map(player_x+1,player_y+1);
+
+	 for(var i = 0; i < 4; i++){
+	 	for (var j = 0; j < 4; j++) {
+	 		request_Map(i,j);
+	 	}
+	 }
+		  // request_Map(player_x-1,player_y-1);
+    //       request_Map(player_x-1,player_y);
+    //       request_Map(player_x,player_y-1);
+          
+    //       request_Map(player_x+1,player_y-1);
+    //       request_Map(player_x-1,player_y+1);
+
+    //       request_Map(player_x,player_y);
+    //       request_Map(player_x+1,player_y);
+    //       request_Map(player_x,player_y+1);
+    //       request_Map(player_x+1,player_y+1);
+
           // request_Map(player_x-1,player_y);
           // request_Map(player_x,player_y-1);
 
