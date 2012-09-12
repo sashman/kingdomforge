@@ -54,9 +54,10 @@ akihabara_dir = "javascripts/";
 	  
 	 
 	 //Load the initial maps
-
-	 for(var i = 0; i < 4; i++){
-	 	for (var j = 0; j < 4; j++) {
+	 var max_h_maps = 8;
+	 var max_w_maps = 8;
+	 for(var i = 0; i < max_h_maps; i++){
+	 	for (var j = 0; j < max_w_maps; j++) {
 	 		request_Map(i,j);
 	 	}
 	 }
