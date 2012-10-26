@@ -1,0 +1,47 @@
+# SQLite version 3.x
+#   gem install sqlite3
+#common: &common
+#  adapter: postgresql
+#  username: hugh 
+#  password: hughpass
+#
+#
+#development:
+#  <<: *common
+#  database: kf_dev
+## Warning: The database defined as "test" will be erased and
+## re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+#test:
+#  <<: *common
+#  database: kf_test
+#
+#production:
+#  <<: *common
+#  database: kf_production
+defaults: &defaults
+  adapter: sqlite3
+  timeout: 5000
+
+development:
+  <<: *defaults
+  database: db/db_development
+
+production:
+  <<: *defaults
+  database: db/db_production
+
+test:
+  <<: *defaults
+  database: db/db_test
+
+#defaults: &defaults
+#  adapter: mysql2
+#  username: wads
+#  password: wads1990
+#  port: 3306
+#  host: 94.174.150.18
+#
+#development:
+#  <<: *defaults
+#  database: mapdb

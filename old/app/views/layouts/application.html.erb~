@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KingdomForge</title>
+  <% if not request.url.split('/').last.eql? "game" %>
+  <%= stylesheet_link_tag :all %>
+  <% end %>
+  <%= javascript_include_tag "jquery.min.js" %>
+  <%= javascript_include_tag "jquery_ujs.js" %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+<div id="wrapper">
+<div id="header">
+<div id="user_nav">
+  <% if user_signed_in? %>
+    Signed in as <%= current_user.email %>. Not you?
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+  <% else %>
+    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+  <% end %>
+<p><%= link_to 'Tilset Manager', :controller => 'tileset' %>
+<%= link_to 'Game', :controller => 'game' %></p>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+</div>
+<div id="banner"><img src="img/lvl3.png"/></div>
+</div> <!-- header -->
+</div> <!-- wrapper -->
+<div id="sidebar">
+</div>
+<div id="page">
+<div id="content">
+<%= yield %>
+</div> <!-- content -->
+</div> <!-- page -->
+</body>
+</html>

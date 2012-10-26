@@ -1,0 +1,6 @@
+<h1>Kingdom Forge</h1>
+<p>Forging kingdoms n stuff</p>
+<ul>
+<li><%= link_to("Game", "game") %></li>
+<li><%= link_to("Tileset Manager", :controller => 'tileset'  ,:action => 'index') %></li>
+</ul>

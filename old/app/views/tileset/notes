@@ -1,0 +1,15 @@
+<div id="placeholder"></div>
+
+$.ajax({
+	url: "tileset/patterns_for_item"
+	cache: false,
+ 	success: function(html){
+		$("#placeholder").append(html);
+	}
+
+});
+
+def patterns_for_item
+  @tilesets = #whatever
+  render :layout => false
+end

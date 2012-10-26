@@ -1,0 +1,18 @@
+<% i = 0 %>
+<% @patterns.each do |pattern| %>
+<% ## Start a row %>
+<% if i == 3 %>
+<tr>
+<% end %>
+<%= link_to pattern.pattern, {:action => "images_for_pattern", :id => pattern.pattern},
+	:remote => "true",
+	:id => ((4*i)+j)%>
+	
+<% ## End a row %>
+<% if i == 3 %>
+<% i=0 %>
+</tr>
+<% else %>
+<% i++ %>
+<% end %>
+<% end %>

@@ -1,0 +1,482 @@
+<!--- Main game page -->
+<html>
+<head><title>kingdomforge</title>
+
+
+<script type="text/javascript">
+akihabara_dir = "";
+</script>
+<script type="text/javascript" src="jquery.js"></script>
+ <script type="text/javascript" src="/akihabara/gbox.js"></script>
+  <script type="text/javascript" src="/akihabara/iphopad.js"></script>
+  <script type="text/javascript" src="/akihabara/trigo.js"></script>
+  <script type="text/javascript" src="/akihabara/toys.js"></script>
+  <script type="text/javascript" src="/akihabara/help.js"></script>
+  <script type="text/javascript" src="/akihabara/tool.js"></script>
+  <script type="text/javascript" src="/akihabara/gamecycle.js"></script>
+  <style>BODY { -webkit-user-select: none; margin: 0px }</style>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+
+  <script>
+
+  var maingame;
+  var map;
+  var frameCount = 0;
+  var player_x = 0;
+  var player_y = 0;
+  var player_last_dir = "";
+  
+
+
+  //map buffer used for loading maps
+  var map_buffer = new Array();
+  //map_buffer[0] = new Array();
+  //map_buffer[1] = new Array();
+  //map_buffer[-1] = new Array();
+
+  
+  
+  window.addEventListener('load', loadResources, false);
+  
+  function loadResources() {
+	  // This initializes Akihabara with the default settings.
+	  // The title (which appears in the browser title bar) is the text we're passing to the function.
+	 help.akihabaraInit({
+	    title: 'KingdomForge',
+	    width: 640,
+	    height: 480,
+	    zoom: 1
+	    });
+	 
+	  // Here we tell the game to look for an image called 'font.png' in the same directory as the HTML file and call it 'font' internally
+	  gbox.addImage('font', '/img/font.png');
+	 
+	  // Same thing for our logo here.
+	  //gbox.addImage('logo', '/img/black_banner.png');
+	  gbox.addImage('logo', '/img/shield.png');
+	 
+	  // Fonts are mapped over an image, setting the first letter, the letter size, the length of all rows of letters and a horizontal/vertical gap.
+	  
+	 
+	 //Load the initial maps
+	 var max_h_maps = 8;
+	 var max_w_maps = 8;
+	 for(var i = 0; i < max_h_maps; i++){
+	 	for (var j = 0; j < max_w_maps; j++) {
+	 		request_Map(i,j);
+	 	}
+	 }
+		  // request_Map(player_x-1,player_y-1);
+    //       request_Map(player_x-1,player_y);
+    //       request_Map(player_x,player_y-1);
+          
+    //       request_Map(player_x+1,player_y-1);
+    //       request_Map(player_x-1,player_y+1);
+
+    //       request_Map(player_x,player_y);
+    //       request_Map(player_x+1,player_y);
+    //       request_Map(player_x,player_y+1);
+    //       request_Map(player_x+1,player_y+1);
+
+          // request_Map(player_x-1,player_y);
+          // request_Map(player_x,player_y-1);
+
+	gbox.addFont({ id: 'small', image: 'font', firstletter: ' ', tileh: 8, tilew: 8, tilerow: 255, gapx: 0, gapy: 0 });
+
+	gbox.addImage('player_sheet', 'img/character/link.gif');
+
+	gbox.addTiles({
+	    id:      'player_tiles', // set a unique ID for future reference
+	    image:   'player_sheet', // Use the 'sprites' image, as loaded above
+	    tileh:   32,
+	    tilew:   24,
+	    tilerow: 16,
+	    gapx:    0,
+	    gapy:    0
+	  });
+
+	gbox.addImage('map_sheet', 'img/terrain/grass_with_cliffs.png');
+			
+	gbox.addTiles({
+	id:      'map_pieces',
+	image:   'map_sheet',
+	tileh:   25,
+	tilew:   25,
+	tilerow: 4,
+	gapx:    0,
+	gapy:    0});
+	  
+	  // When everything is ready, the 'loadAll' downloads all the needed resources, and then calls the function "main".
+	  gbox.loadAll(main);
+	}
+
+	function request_Map(_global_x, _global_y) {
+
+
+		var data = $.ajax({
+		  url: "/get_map",
+		  data: "global_x=" + _global_x + "&global_y=" + _global_y,
+		  async: false
+		 }).responseText;
+
+		parser = new DOMParser();	
+		//deal with incoming map data
+		var map = {
+			tiles: new Array(),
+			content: new Array()
+		}
+		
+		var xmlDoc = parser.parseFromString(data,"text/xml");
+		var root = xmlDoc.childNodes[0];
+
+		var doc_tiles = root.getElementsByTagName("tile");
+
+		var i = 0;
+		for (k in doc_tiles){
+			var doc_tile = doc_tiles[k];
+			if(doc_tile.nodeName == "tile"){ 
+				var tile_tag = doc_tile.getAttribute("tag");
+				var tile = {
+					nk: i++, //numeric key
+					//src: doc_tile.getElementsByTagName("src")[0].firstChild.nodeValue,
+					//range: doc_tile.getElementsByTagName("range")[0].firstChild.nodeValue,
+					//ext: doc_tile.getElementsByTagName("ext")[0].firstChild.nodeValue,
+					pass: doc_tile.getElementsByTagName("pass")[0].firstChild.nodeValue
+				}
+				if(tile.pass == 'false') tile.pass = true;
+				else tile.pass = false;
+				map.tiles[tile_tag] = tile;
+			}
+		}
+
+		var content =  root.getElementsByTagName("content");
+		var rows = xmlDoc.getElementsByTagName("content")[0].childNodes;
+		//load content
+		for(var i=0; i<rows.length; i++){
+			if(rows[i].firstChild)
+				map.content.push(rows[i].firstChild.nodeValue);
+		}
+
+		if(map_buffer[_global_x])
+			map_buffer[_global_x][_global_y] = map;
+		else{
+			map_buffer[_global_x] = Array();
+			map_buffer[_global_x][_global_y] = map;
+		}
+		//render_map(map);
+
+	}
+
+	function render_map(map){
+		//check for ASCII representation of content
+		//alert(map.content.join("\n"));
+
+		var tra = [[null, ' ']];
+		for(k in map.tiles){
+			//alert(map.tiles[k].nk + ' ' + k);
+			var e = [map.tiles[k].nk, k];
+			tra.push(e);
+		}
+
+		var converted_map = help.asciiArtToMap(map.content, tra);
+		return converted_map;
+
+	}
+	
+	function main() {
+		gbox.setGroups(['background','player','game']);
+		maingame = gamecycle.createMaingame('game', 'game');
+ 
+
+		// Disable the default difficulty-choice menu; we don't need it for our tutorial
+		  maingame.gameMenu = function() { return true; };
+		 
+		  // Disable the default "Let's begin" screen; we don't need it for our tutorial
+		  maingame.gameIntroAnimation = function() { return true; };
+
+		maingame.gameTitleIntroAnimation=function(reset) {
+		  if (reset) {
+		    toys.resetToy(this, 'rising');
+		  }
+		  gbox.blitFade(gbox.getBufferContext(),{ alpha: 1 });
+		 
+		  toys.logos.linear(this, 'rising', {
+		    image: 'logo',
+		    sx:    gbox.getScreenW()/2-gbox.getImage('logo').width/2,
+		    sy:    gbox.getScreenH(),
+		    x:     gbox.getScreenW()/2-gbox.getImage('logo').width/2,
+		    y:     20,
+		    spceed: 1
+		  });
+		};
+		
+		maingame.pressStartIntroAnimation=function(reset) {
+		  if (reset) {
+		    toys.resetToy(this,"default-blinker");
+		  } else {
+		    toys.text.blink(this,"default-blinker",gbox.getBufferContext(),{font:"small",text:"PRESS Z TO START",valign:gbox.ALIGN_MIDDLE,halign:gbox.ALIGN_CENTER,dx:0,dy:Math.floor(gbox.getScreenH()/3),dw:gbox.getScreenW(),dh:Math.floor(gbox.getScreenH()/3)*2,blinkspeed:10});
+		    return gbox.keyIsHit("a");
+		    }
+		};
+
+
+		maingame.initializeGame = function() {
+
+			addPlayer();
+			addMap();
+			
+		}
+ 
+		map = {
+			tileset: 'map_pieces', // Specify that we're using the 'map_pieces' tiles that we created in the loadResources function
+		 
+		  // This loads an ASCII-definition of all the 'pieces' of the map as an array of integers specifying a type for each map tile
+		  // Each 'type' corresponds to a sprite in our tileset. For example, if a map tile has type 0, then it uses the first sprite in the
+		  //  map's tile set ('map_pieces', as defined above) and if a map tile has type 1, it uses the second sprite in the tile set, etc.
+		  // Also note that null is an allowed type for a map tile, and uses no sprite from the tile set
+			map: render_map(map_buffer[0][0]),
+		 
+		  // This function have to return true if the object 'obj' is checking if the tile 't' is a wall, so...
+			tileIsSolid: function(obj, t) {
+				var cur_map = map_buffer[player_x][player_y];
+				for(k in cur_map.tiles){
+					if(cur_map.tiles[k].nk==t){
+						return (cur_map.tiles[k].pass);
+					}
+				}
+				//return false;
+				//return t != null; // Is a wall if is not an empty space
+		  }
+		};
+
+		map = help.finalizeTilemap(map);
+
+		// Since finalizeMap has calculated the height and width, we can create a canvas that fits our map. Let's call it "map_canvas".
+
+		gbox.createCanvas('map_canvas', { w: map.w, h: map.h });
+		 
+		  // This function grabs the map from the "map" object and draws it onto our "map_canvas". So now the map is in the rendering pipeline.
+		gbox.blitTilemap(gbox.getCanvasContext('map_canvas'), map);
+
+
+		gbox.go();
+
+	}
+
+	// This is our function for adding the map object -- this keeps our main game code nice and clean
+	function addMap() {
+	  gbox.addObject({
+	    id:    'background_id', // This is the object ID
+	    group: 'background',    // We use the 'backround' group we created above with our 'setGroups' call.
+	 
+		first: function() {
+		      frameCount++;
+		    },
+
+
+	    // The blit function is what happens during the game's draw cycle. Everything related to rendering and drawing goes here.
+	    blit: function() {
+	      // First let's clear the whole screen. Blitfade draws a filled rectangle over the given context (in this case, the screen)
+	      gbox.blitFade(gbox.getBufferContext(), { alpha: 1 });
+	 
+	      // Since we blitted the tilemap to 'map_canvas' back in our main function, we now dracw 'map_canvas' onto the screen. The 'map_canvas' is
+	      // just a picture of our tilemap, and by blitting it here we're making sure that the picture re-draws every frame.
+	      gbox.blit(gbox.getBufferContext(), gbox.getCanvas('map_canvas'), { dx: 0, dy: 0, dw: gbox.getCanvas('map_canvas').width, dh: gbox.getCanvas('map_canvas').height, sourcecamera: true });
+	    }
+	  });
+
+	// Our wrapper function for adding a player object -- this keeps our main game code nice and clean
+	}
+
+	function addPlayer() {
+	  // gbox.addObject creates a new object in your game, with variables and functions. In this case we're creating the player.
+	  gbox.addObject({
+	 
+	    // id refers to the specific object, group is the group it's in for rendering purposes, tileset is where the graphics come from
+	    id: 'player_id',
+	    group: 'player',
+	    tileset: 'player_tiles',
+
+	    //colh:gbox.getTiles('player_tiles').tileh,
+	 
+	    // the initialize function contains code that is run when the object is first created. In the case of the player object this only happens once, at the beginning of the game, or possibly after a player dies and respawns.
+	    initialize: function() {
+		      // Here we're just telling it to initialize the object, in this case our player.
+		      toys.topview.initialize(this, {});
+		     
+		      // ** New code for Part 3 **
+		      // And we set the starting position for our player.
+		      this.x = 20;
+		      this.y = 20;
+
+			var anim_speed = 2;
+			// Here we define the list of animations. We can name these whatever we want.
+			  // These are referenced with this.animList[id].
+			  // So for example, this.animList[rightDown].frames[1] would return 12.
+			  this.animList = {
+			    still:     { speed: 1, frames: [0]     },
+			    right:     { speed: anim_speed, frames: [8,9,10,11,12,13,14,15] },
+			    //rightDown: { speed: 3, frames: [2, 12] },
+			    down:      { speed: anim_speed, frames: [24,25,26,27,28,29,30,31] },
+			    //downLeft:  { speed: 3, frames: [4, 14] },
+			    left:      { speed: anim_speed, frames: [0,1,2,3,4,5,6,7] },
+			    //leftUp:    { speed: 3, frames: [6, 16] },
+			    up:        { speed: anim_speed, frames: [16,17,18,19,20,21,22,23] },
+			    //upRight:   { speed: 3, frames: [8, 18] }
+			  };
+			 
+			  // Set the starting animation for the player object.
+			  this.animIndex = 'still';
+
+	    },
+	 
+	    // the first function is like a step function. it runs every frame and does calculations. it's called first because it happens before the rendering, so we calculate new positions and actions and THEN render the object
+	    first: function() {
+	      // Toys.topview.controlKeys sets the main key controls. In this case we want to use the arrow keys which
+		  //  are mapped to their english names. Inside this function it applies acceleration values to each of these directions
+		  toys.topview.controlKeys(this, { left: 'left', right: 'right', up: 'up', down: 'down' });
+
+			// The if statements check for accelerations in the x and y directions and whether they are positive or negative. It then sets the animation index to the keyword corresponding to that direction.
+		  if (this.accx == 0 && this.accy == 0) this.animIndex = 'still';
+		  if (this.accx > 0 && this.accy == 0){
+			this.animIndex = 'right';
+			this.animList.still.frames = [8];
+			}
+		  
+		  if (this.accx == 0 && this.accy > 0){
+			this.animIndex = 'down';
+			this.animList.still.frames = [24];
+			}
+		  
+		  if (this.accx < 0 && this.accy == 0){
+			this.animIndex = 'left';
+			this.animList.still.frames = [0];
+			}
+		  
+		  if (this.accx == 0 && this.accy < 0){
+			this.animIndex = 'up';
+			this.animList.still.frames = [16];
+			}
+		  
+		 
+		  // Set the animation.
+		  if (frameCount%this.animList[this.animIndex].speed == 0)
+		    this.frame = help.decideFrame(frameCount, this.animList[this.animIndex]);
+		 
+		  // This adds some friction to our accelerations so we stop when we're not accelerating, otherwise our game would control like Asteroids
+		  toys.topview.handleAccellerations(this);
+		 
+		  // This tells the physics engine to apply those forces
+		  toys.topview.applyForces(this);
+
+		  toys.topview.tileCollision(this, map, 'map', null, { tolerance: 2, approximation: 3 });
+
+		  checkBoundary(this);
+
+	    },
+	 
+	    // the blit function is what happens during the game's draw cycle. everything related to rendering and drawing goes here
+	    blit: function() {
+	      // Clear the screen.
+		  //gbox.blitFade(gbox.getBufferContext(),{});
+		 
+		  // Render the current sprite.. don't worry too much about what's going on here. We're pretty much doing
+		  //  the default drawing function, sending along the tileset, the frame info, coordinates, whether the
+		  //  spries is flipped, camera info, and the alpha transparency value
+		  gbox.blitTile(gbox.getBufferContext(), {
+		    tileset: this.tileset,
+		    tile:    this.frame,
+		    dx:      this.x,
+		    dy:      this.y,
+		    fliph:   this.fliph,
+		    flipv:   this.flipv,
+		    camera:  this.camera,
+		    alpha:   1.0
+		  });
+	    },
+	  }); // end gbox.addObject for player
+
+	}
+
+	//return whether the players global coordinates fall within the existing maps
+	function playerInWorld(){
+		return (map_buffer[player_x] && map_buffer[player_x][player_y])
+	}
+
+	function checkBoundary(obj){
+		if(obj.group == 'player'){
+			var change = false;
+			var old_x = player_x;
+			var old_y = player_y;
+
+
+			if(obj.x + obj.w > map.w){
+				
+				player_x++;
+
+				if(playerInWorld()){
+					change = true;
+					obj.x = 1;
+				} else {
+					obj.x = map.w - obj.w;
+				}
+
+			}else if(obj.x < 0){
+
+				player_x--;
+
+				if(playerInWorld()){
+					change = true;
+					obj.x = map.w-obj.w;
+				} else {
+					obj.x = 0;
+				}
+
+
+			}else if(obj.y < 0){
+				
+				player_y--;
+
+				if(playerInWorld()){
+					change = true;
+					obj.y = map.h-obj.h;
+				}else{
+					obj.y = 0;
+				}
+
+			}else if(obj.y + obj.h > map.h){
+				
+				player_y++;
+
+				if(playerInWorld()){
+					change = true;
+					obj.y = 1;
+				} else {
+					obj.y = map.h - obj.h;
+				}
+			}
+
+			if(!change){
+
+				player_x = old_x;
+				player_y = old_y;
+					
+			} else {
+
+				map.map = render_map(map_buffer[player_x][player_y]);
+				map = help.finalizeTilemap(map);
+				gbox.createCanvas('map_canvas', { w: map.w, h: map.h });
+				gbox.blitTilemap(gbox.getCanvasContext('map_canvas'), map);
+			}
+		}
+	}
+
+  
+  </script>
+
+
+</head>
+
+<body>
+</body>
+</html>
