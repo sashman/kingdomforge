@@ -1,5 +1,0 @@
-<p id="notice"><%= notice %></p>
-
-
-<%= link_to 'Edit', edit_terrain_type_path(@terrain_type) %> |
-<%= link_to 'Back', terrain_types_path %>
