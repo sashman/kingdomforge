@@ -50,7 +50,9 @@
 
       var x = url.parse(request.url, true).query['global_x'];
       var y = url.parse(request.url, true).query['global_y'];
-      console.log("map request recieved x=" + x + " y=" + y);
+      
+      //debug
+      //console.log("map request recieved x=" + x + " y=" + y);
 
       res.writeHead(200, {'content-type': 'text/xml'});
       fs.readFile("data/map/"+x+"_"+y+".xml", function(err, file) {  
@@ -62,8 +64,6 @@
                 res.end('\n', "utf-8");  
             });
 
-      //res.write( JSON.stringify({ test : 'test'}) );
-      //res.end('\n');
     });
 
     //This handler will listen for requests on /*, any file from the root of our server.
@@ -105,59 +105,7 @@
 
 
 
-//ajax handling
-/*
-    app.get('/get_map', function(request, res) {
-      console.log(request.params.value);
 
-      var x = url.parse(request.url, true).query['global_x'];
-      var y = url.parse(request.url, true).query['global_y'];
-      console.log("map request recieved x=" + x + " y=" + y);
-
-      res.writeHead(200, {'content-type': 'text/xml'});
-      fs.readFile("data/map/"+x+"_"+y+".xml", function(err, file) {  
-                if(err) {  
-                    // write an error response or nothing here  
-                    return;  
-                }
-                res.write(file);  
-                res.end('\n', "utf-8");  
-            });
-
-      //res.write( JSON.stringify({ test : 'test'}) );
-      //res.end('\n');
-    });
-
-*/
-/*
-	http.createServer(function(request, response){
-		var path = url.parse(request.url).pathname;
-		if(path=="/get_map"){
-
-			var x = url.parse(request.url, true).query['global_x'];
-			var y = url.parse(request.url, true).query['global_y'];
-		    console.log("map request recieved x=" + x + " y=" + y);
-		    
-		  
-		    response.writeHead(200, {"Content-Type": "text/plain"});
-		    response.end("data/map/"+x+"_"+y+".xml");
-		    console.log("map sent");
-		}else{
-
-			
-		    fs.readFile('./index.html', function(err, file) {  
-		        if(err) {  
-		            // write an error response or nothing here  
-		            return;  
-		        }  
-		        response.writeHead(200, { 'Content-Type': 'text/html' });  
-		        response.end(file, "utf-8");  
-		    });
-
-			
-		}
-	}).listen(8001);
-*/
 
 
 /*
