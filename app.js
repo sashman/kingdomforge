@@ -50,7 +50,7 @@
 
       var x = url.parse(request.url, true).query['global_x'];
       var y = url.parse(request.url, true).query['global_y'];
-      
+
       //debug
       //console.log("map request recieved x=" + x + " y=" + y);
 
@@ -104,11 +104,6 @@
     });
 
 
-
-
-
-
-/*
 
         //Enter the game server code. The game server handles
         //client connections looking for a game, creating games,
@@ -166,4 +161,3 @@
      
     }); //sio.sockets.on connection
 
-*/
