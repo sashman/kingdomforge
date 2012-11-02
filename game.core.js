@@ -129,10 +129,11 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
 
             //Start a physics loop, this is separate to the rendering
             //as this happens at a fixed frequency
-        this.create_physics_simulation();
+
+        //this.create_physics_simulation();
 
             //Start a fast paced timer for measuring time easier
-        this.create_timer();
+        //this.create_timer();
 
             //Client specific initialisation
         if(!this.server) {
@@ -141,17 +142,17 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
             //this.keyboard = new THREEx.KeyboardState();
 
                 //Create the default configuration settings
-            this.client_create_configuration();
+            //this.client_create_configuration();
 
                 //A list of recent server updates we interpolate across
                 //This is the buffer that is the driving factor for our networking
             this.server_updates = [];
 
                 //Connect to the socket.io server!
-            this.client_connect_to_server();
+            //this.client_connect_to_server();
 
                 //We start pinging the server to determine latency
-            this.client_create_ping_timer();
+            //this.client_create_ping_timer();
 
                 //Set their colors from the storage or locally
             this.color = localStorage.getItem('color') || '#cc8822' ;

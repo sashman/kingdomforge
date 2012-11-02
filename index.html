@@ -6,8 +6,11 @@
 <script type="text/javascript">
 akihabara_dir = "";
 </script>
-<script type="text/javascript" src="jquery.js"></script>
- <script type="text/javascript" src="/akihabara/gbox.js"></script>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="game.core.js"></script>
+  <script type="text/javascript" src="gamne.server.js"></script>
+
+  <script type="text/javascript" src="/akihabara/gbox.js"></script>
   <script type="text/javascript" src="/akihabara/iphopad.js"></script>
   <script type="text/javascript" src="/akihabara/trigo.js"></script>
   <script type="text/javascript" src="/akihabara/toys.js"></script>
@@ -108,6 +111,7 @@ akihabara_dir = "";
 	  
 	  // When everything is ready, the 'loadAll' downloads all the needed resources, and then calls the function "main".
 	  gbox.loadAll(main);
+
 	}
 
 	function request_Map(_global_x, _global_y) {
@@ -222,8 +226,11 @@ akihabara_dir = "";
 
 		maingame.initializeGame = function() {
 
+			var game = game_core();
 			addPlayer();
 			addMap();
+
+
 			
 		}
  
