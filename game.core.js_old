@@ -54,7 +54,7 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
 
 /* The game_core class */
 
-    var game_core = function(_players, game_instance){
+    var game_core = function(player, game_instance){
 
             //Store the instance, if any
         if(game_instance)
@@ -63,10 +63,10 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
         this.server = this.instance !== undefined;
 
             //Used in collision etc.
-        // this.world = {
-        //     width : 720,
-        //     height : 480
-        // };
+        this.world = {
+            width : 720,
+            height : 480
+        };
 
             //We create a player set, passing them
             //the game that is running them, as well
@@ -78,14 +78,11 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
                 //self : new game_player(this,this.instance.player_host),
                 //other : new game_player(this,this.instance.player_client)
 
-                // self : new Player(),
-                // other : new game_player(this,this.instance.player_client)
-                
-                self: _players[0];
-                others: _players.slice(1, _players.length);
+                self : new Player(),
+                other : new game_player(this,this.instance.player_client)
             };
 
-           // this.players.self.pos = {x:20,y:20};
+           this.players.self.pos = {x:20,y:20};
 
         } else {
 
@@ -95,28 +92,28 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
             };
 
                 //Debugging ghosts, to help visualise things
-            // this.ghosts = {
-            //         //Our ghost position on the server
-            //     server_pos_self : new game_player(this),
-            //         //The other players server position as we receive it
-            //     server_pos_other : new game_player(this),
-            //         //The other players ghost destination position (the lerp)
-            //     pos_other : new game_player(this)
-            // };
+            this.ghosts = {
+                    //Our ghost position on the server
+                server_pos_self : new game_player(this),
+                    //The other players server position as we receive it
+                server_pos_other : new game_player(this),
+                    //The other players ghost destination position (the lerp)
+                pos_other : new game_player(this)
+            };
 
-            // this.ghosts.pos_other.state = 'dest_pos';
+            this.ghosts.pos_other.state = 'dest_pos';
 
-            // this.ghosts.pos_other.info_color = 'rgba(255,255,255,0.1)';
+            this.ghosts.pos_other.info_color = 'rgba(255,255,255,0.1)';
 
-            // this.ghosts.server_pos_self.info_color = 'rgba(255,255,255,0.2)';
-            // this.ghosts.server_pos_other.info_color = 'rgba(255,255,255,0.2)';
+            this.ghosts.server_pos_self.info_color = 'rgba(255,255,255,0.2)';
+            this.ghosts.server_pos_other.info_color = 'rgba(255,255,255,0.2)';
 
-            // this.ghosts.server_pos_self.state = 'server_pos';
-            // this.ghosts.server_pos_other.state = 'server_pos';
+            this.ghosts.server_pos_self.state = 'server_pos';
+            this.ghosts.server_pos_other.state = 'server_pos';
 
-            // this.ghosts.server_pos_self.pos = { x:20, y:20 };
-            // this.ghosts.pos_other.pos = { x:500, y:200 };
-            // this.ghosts.server_pos_other.pos = { x:500, y:200 };
+            this.ghosts.server_pos_self.pos = { x:20, y:20 };
+            this.ghosts.pos_other.pos = { x:500, y:200 };
+            this.ghosts.server_pos_other.pos = { x:500, y:200 };
         }
 
             //The speed at which the clients move.
