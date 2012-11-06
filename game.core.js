@@ -120,7 +120,7 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
         }
 
             //The speed at which the clients move.
-        this.playerspeed = 120;
+        // this.playerspeed = 120;
 
             //Set up some physics integration values
         this._pdt = 0.0001;                 //The physics update delta time
@@ -382,15 +382,15 @@ game_core.prototype.process_input = function( player ) {
 
 
 
-game_core.prototype.physics_movement_vector_from_direction = function(x,y) {
+// game_core.prototype.physics_movement_vector_from_direction = function(x,y) {
 
-        //Must be fixed step, at physics sync speed.
-    return {
-        x : (x * (this.playerspeed * 0.015)).fixed(3),
-        y : (y * (this.playerspeed * 0.015)).fixed(3)
-    };
+//         //Must be fixed step, at physics sync speed.
+//     return {
+//         x : (x * (this.playerspeed * 0.015)).fixed(3),
+//         y : (y * (this.playerspeed * 0.015)).fixed(3)
+//     };
 
-}; //game_core.physics_movement_vector_from_direction
+// }; //game_core.physics_movement_vector_from_direction
 
 game_core.prototype.update_physics = function() {
 
