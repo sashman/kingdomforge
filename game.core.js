@@ -78,11 +78,11 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
                 //self : new game_player(this,this.instance.player_host),
                 //other : new game_player(this,this.instance.player_client)
 
-                // self : new Player(),
-                // other : new game_player(this,this.instance.player_client)
+                 self : new Player(),
+                 other : new game_player(this,this.instance.player_client)
                 
-                self: _players[0];
-                others: _players.slice(1, _players.length);
+                //self: _players[0];
+                //others: _players.slice(1, _players.length);
             };
 
            // this.players.self.pos = {x:20,y:20};
@@ -163,9 +163,9 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
             this.players.self.color = this.color;
 
                 //Make this only if requested
-            if(String(window.location).indexOf('debug') != -1) {
-                this.client_create_debug_gui();
-            }
+            // if(String(window.location).indexOf('debug') != -1) {
+            //     this.client_create_debug_gui();
+            // }
 
         } else { //if !server
 
@@ -236,37 +236,37 @@ game_core.prototype.v_lerp = function(v,tv,t) { return { x: this.lerp(v.x, tv.x,
         this.inputs = [];
 
             //The world bounds we are confined to
-        this.pos_limits = {
-            x_min: this.size.hx,
-            x_max: this.game.world.width - this.size.hx,
-            y_min: this.size.hy,
-            y_max: this.game.world.height - this.size.hy
-        };
+        // this.pos_limits = {
+        //     x_min: this.size.hx,
+        //     x_max: this.game.world.width - this.size.hx,
+        //     y_min: this.size.hy,
+        //     y_max: this.game.world.height - this.size.hy
+        // };
 
             //The 'host' of a game gets created with a player instance since
             //the server already knows who they are. If the server starts a game
             //with only a host, the other player is set up in the 'else' below
-        if(player_instance) {
-            this.pos = { x:20, y:20 };
-        } else {
-            this.pos = { x:500, y:200 };
-        }
+        // if(player_instance) {
+        //     this.pos = { x:20, y:20 };
+        // } else {
+        //     this.pos = { x:500, y:200 };
+        // }
 
     }; //game_player.constructor
   
-    game_player.prototype.draw = function(){
+    // game_player.prototype.draw = function(){
 
-            //Set the color for this player
-        game.ctx.fillStyle = this.color;
+    //         //Set the color for this player
+    //     game.ctx.fillStyle = this.color;
 
-            //Draw a rectangle for us
-        game.ctx.fillRect(this.pos.x - this.size.hx, this.pos.y - this.size.hy, this.size.x, this.size.y);
+    //         //Draw a rectangle for us
+    //     game.ctx.fillRect(this.pos.x - this.size.hx, this.pos.y - this.size.hy, this.size.x, this.size.y);
 
-            //Draw a status update
-        game.ctx.fillStyle = this.info_color;
-        game.ctx.fillText(this.state, this.pos.x+10, this.pos.y + 4);
+    //         //Draw a status update
+    //     game.ctx.fillStyle = this.info_color;
+    //     game.ctx.fillText(this.state, this.pos.x+10, this.pos.y + 4);
     
-    }; //game_player.draw
+    // }; //game_player.draw
 
 /*
 
@@ -304,33 +304,33 @@ game_core.prototype.update = function(t) {
     Shared between server and client.
     In this example, `item` is always of type game_player.
 */
-game_core.prototype.check_collision = function( item ) {
+// game_core.prototype.check_collision = function( item ) {
 
-        //Left wall.
-    if(item.pos.x <= item.pos_limits.x_min) {
-        item.pos.x = item.pos_limits.x_min;
-    }
+//         //Left wall.
+//     if(item.pos.x <= item.pos_limits.x_min) {
+//         item.pos.x = item.pos_limits.x_min;
+//     }
 
-        //Right wall
-    if(item.pos.x >= item.pos_limits.x_max ) {
-        item.pos.x = item.pos_limits.x_max;
-    }
+//         //Right wall
+//     if(item.pos.x >= item.pos_limits.x_max ) {
+//         item.pos.x = item.pos_limits.x_max;
+//     }
     
-        //Roof wall.
-    if(item.pos.y <= item.pos_limits.y_min) {
-        item.pos.y = item.pos_limits.y_min;
-    }
+//         //Roof wall.
+//     if(item.pos.y <= item.pos_limits.y_min) {
+//         item.pos.y = item.pos_limits.y_min;
+//     }
 
-        //Floor wall
-    if(item.pos.y >= item.pos_limits.y_max ) {
-        item.pos.y = item.pos_limits.y_max;
-    }
+//         //Floor wall
+//     if(item.pos.y >= item.pos_limits.y_max ) {
+//         item.pos.y = item.pos_limits.y_max;
+//     }
 
-        //Fixed point helps be more deterministic
-    item.pos.x = item.pos.x.fixed(4);
-    item.pos.y = item.pos.y.fixed(4);
+//         //Fixed point helps be more deterministic
+//     item.pos.x = item.pos.x.fixed(4);
+//     item.pos.y = item.pos.y.fixed(4);
     
-}; //game_core.check_collision
+// }; //game_core.check_collision
 
 
 game_core.prototype.process_input = function( player ) {
