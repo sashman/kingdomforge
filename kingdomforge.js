@@ -31,8 +31,8 @@ function objectIsAlive(th) {
 
 function go() {
 
-	console.write("LOADED");
-	AkihabaraGamebox.setGroups.setGroups(['background','player','game']);
+	
+	AkihabaraGamebox.setGroups(['background','player','game']);
 	// AkihabaraAudio.setAudioChannels({bgmusic:{volume:0.8},sfx:{volume:1.0}});
 
 	// player, walls, bullets and foes are under z-index layer
@@ -43,15 +43,15 @@ function go() {
 	// Title intro
 	maingame.gameTitleIntroAnimation=function(reset) {
 		  if (reset) {
-		    toys.resetToy(this, 'rising');
+		    AkihabaraToys.resetToy(this, 'rising');
 		  }
-		  gbox.blitFade(gbox.getBufferContext(),{ alpha: 1 });
+		  AkihabaraGamebox.blitFade(AkihabaraGamebox.getBufferContext(),{ alpha: 1 });
 		 
-		  toys.logos.linear(this, 'rising', {
+		  AkihabaraToys.logos.linear(this, 'rising', {
 		    image: 'logo',
-		    sx:    gbox.getScreenW()/2-gbox.getImage('logo').width/2,
-		    sy:    gbox.getScreenH(),
-		    x:     gbox.getScreenW()/2-gbox.getImage('logo').width/2,
+		    sx:    AkihabaraGamebox.getScreenW()/2-AkihabaraGamebox.getImage('logo').width/2,
+		    sy:    AkihabaraGamebox.getScreenH(),
+		    x:     AkihabaraGamebox.getScreenW()/2-AkihabaraGamebox.getImage('logo').width/2,
 		    y:     20,
 		    spceed: 1
 		  });
@@ -136,6 +136,74 @@ function go() {
 	// 	});
 	// }
 
+	maingame.addMap = function () {
+	  AkihabaraGamebox.addObject({
+	    id:    'background_id', // This is the object ID
+	    group: 'background',    // We use the 'backround' group we created above with our 'setGroups' call.
+	 
+		first: function() {
+		      frameCount++;
+		    },
+
+
+	    // The blit function is what happens during the game's draw cycle. Everything related to rendering and drawing goes here.
+	    blit: function() {
+	      // First let's clear the whole screen. Blitfade draws a filled rectangle over the given context (in this case, the screen)
+	      AkihabaraGamebox.blitFade(AkihabaraGamebox.getBufferContext(), { alpha: 1 });
+	 
+	      // Since we blitted the tilemap to 'map_canvas' back in our main function, we now dracw 'map_canvas' onto the screen. The 'map_canvas' is
+	      // just a picture of our tilemap, and by blitting it here we're making sure that the picture re-draws every frame.
+	      AkihabaraGamebox.blit(AkihabaraGamebox.getBufferContext(), AkihabaraGamebox.getCanvas('map_canvas'), { dx: 0, dy: 0, dw: AkihabaraGamebox.getCanvas('map_canvas').width, dh: AkihabaraGamebox.getCanvas('map_canvas').height, sourcecamera: true });
+	    }
+	  });
+
+	// Our wrapper function for adding a player object -- this keeps our main game code nice and clean
+	}
+
+	maingame.addPlayer = function () {
+	  // AkihabaraGamebox.addObject creates a new object in your game, with variables and functions. In this case we're creating the player.
+	  AkihabaraGamebox.addObject({
+	 
+	    // id refers to the specific object, group is the group it's in for rendering purposes, tileset is where the graphics come from
+	    id: 'player_id',
+	    group: 'player',
+	    tileset: 'player_tiles',
+
+	    //colh:AkihabaraGamebox.getTiles('player_tiles').tileh,
+	 
+	    // the initialize function contains code that is run when the object is first created. In the case of the player object this only happens once, at the beginning of the game, or possibly after a player dies and respawns.
+	    initialize: function() {
+		      // Here we're just telling it to initialize the object, in this case our player.
+		      AkihabaraTopview.initialize(this, {});
+		     
+		      // ** New code for Part 3 **
+		      // And we set the starting position for our player.
+		      this.x = 20;
+		      this.y = 20;
+
+			var anim_speed = 2;
+			// Here we define the list of animations. We can name these whatever we want.
+			  // These are referenced with this.animList[id].
+			  // So for example, this.animList[rightDown].frames[1] would return 12.
+			  this.animList = {
+			    still:     { speed: 1, frames: [0]     },
+			    right:     { speed: anim_speed, frames: [8,9,10,11,12,13,14,15] },
+			    //rightDown: { speed: 3, frames: [2, 12] },
+			    down:      { speed: anim_speed, frames: [24,25,26,27,28,29,30,31] },
+			    //downLeft:  { speed: 3, frames: [4, 14] },
+			    left:      { speed: anim_speed, frames: [0,1,2,3,4,5,6,7] },
+			    //leftUp:    { speed: 3, frames: [6, 16] },
+			    up:        { speed: anim_speed, frames: [16,17,18,19,20,21,22,23] },
+			    //upRight:   { speed: 3, frames: [8, 18] }
+			  };
+			 
+			  // Set the starting animation for the player object.
+			  this.animIndex = 'still';
+
+	    	}
+		});
+	}
+
 	// Game initialization
 	maingame.initializeGame=function() {
 		// Prepare hud
@@ -165,15 +233,43 @@ function go() {
 		// AkihabaraGamebox.addObject(new Player());
 
 		// var game = game_core();
-		addPlayer();
-		addMap();
+		this.addPlayer();
+		this.addMap();
 	};
 
-	// Add a npc (Not Playing Charachter)
-	maingame.addNpc=function(x,y,still,dialogue,questid,talking,silence) {
-		// An easy way to create an NPC.
-		AkihabaraGamebox.addObject(new Npc(x,y,still,dialogue,questid,talking,silence));
-	}
+	map = {
+			tileset: 'map_pieces', // Specify that we're using the 'map_pieces' tiles that we created in the loadResources function
+		 
+		  // This loads an ASCII-definition of all the 'pieces' of the map as an array of integers specifying a type for each map tile
+		  // Each 'type' corresponds to a sprite in our tileset. For example, if a map tile has type 0, then it uses the first sprite in the
+		  //  map's tile set ('map_pieces', as defined above) and if a map tile has type 1, it uses the second sprite in the tile set, etc.
+		  // Also note that null is an allowed type for a map tile, and uses no sprite from the tile set
+			map: render_map(map_buffer[0][0]),
+		 
+		  // This function have to return true if the object 'obj' is checking if the tile 't' is a wall, so...
+			tileIsSolid: function(obj, t) {
+				var cur_map = map_buffer[player_x][player_y];
+				for(k in cur_map.tiles){
+					if(cur_map.tiles[k].nk==t){
+						return (cur_map.tiles[k].pass);
+					}
+				}
+				//return false;
+				//return t != null; // Is a wall if is not an empty space
+		  }
+		};
+
+		map = AkihabaraTile.finalizeTilemap(map);
+
+		// Since finalizeMap has calculated the height and width, we can create a canvas that fits our map. Let's call it "map_canvas".
+
+		AkihabaraGamebox.createCanvas('map_canvas', { w: map.w, h: map.h });
+		 
+		  // This function grabs the map from the "map" object and draws it onto our "map_canvas". So now the map is in the rendering pipeline.
+		AkihabaraGamebox.blitTilemap(AkihabaraGamebox.getCanvasContext('map_canvas'), map);
+
+
+	
 
 	AkihabaraGamebox.go();
 }
@@ -190,7 +286,8 @@ AkihabaraGamebox.onLoad(function () {
 	    });
 	 
 	//AkihabaraGamebox.addBundle({file:"resources/bundle.js"});
-
+	AkihabaraGamebox.addImage('font', '/img/font.png');
+	AkihabaraGamebox.addImage('logo', '/img/shield.png');
 	 
 	 //Load the initial maps
 	 var max_h_maps = 8;
@@ -288,7 +385,6 @@ AkihabaraGamebox.onLoad(function () {
 		}
 		//render_map(map);
 
-		alert("map " + _global_x +","+_global_y);
 
 	}
 
@@ -303,7 +399,7 @@ AkihabaraGamebox.onLoad(function () {
 			tra.push(e);
 		}
 
-		var converted_map = help.asciiArtToMap(map.content, tra);
+		var converted_map = AkihabaraTile.asciiArtToMap(map.content, tra);
 		return converted_map;
 
 	}
