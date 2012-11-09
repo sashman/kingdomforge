@@ -200,9 +200,76 @@ function go() {
 			  // Set the starting animation for the player object.
 			  this.animIndex = 'still';
 
-	    	}
-		});
+	    	},
+	 
+	    // the first function is like a step function. it runs every frame and does calculations. it's called first because it happens before the rendering, so we calculate new positions and actions and THEN render the object
+	    first: function() {
+	      // Toys.topview.controlKeys sets the main key controls. In this case we want to use the arrow keys which
+		  //  are mapped to their english names. Inside this function it applies acceleration values to each of these directions
+		  AkihabaraTopview.controlKeys(this, { left: 'left', right: 'right', up: 'up', down: 'down' });
+
+			// The if statements check for accelerations in the x and y directions and whether they are positive or negative. It then sets the animation index to the keyword corresponding to that direction.
+		  if (this.accx == 0 && this.accy == 0) this.animIndex = 'still';
+		  if (this.accx > 0 && this.accy == 0){
+			this.animIndex = 'right';
+			this.animList.still.frames = [8];
+			}
+		  
+		  if (this.accx == 0 && this.accy > 0){
+			this.animIndex = 'down';
+			this.animList.still.frames = [24];
+			}
+		  
+		  if (this.accx < 0 && this.accy == 0){
+			this.animIndex = 'left';
+			this.animList.still.frames = [0];
+			}
+		  
+		  if (this.accx == 0 && this.accy < 0){
+			this.animIndex = 'up';
+			this.animList.still.frames = [16];
+			}
+		  
+		 
+		  // Set the animation.
+		  if (frameCount%this.animList[this.animIndex].speed == 0)
+		    this.frame = AkihabaraGamebox.decideFrame(frameCount, this.animList[this.animIndex]);
+		 
+		  // This adds some friction to our accelerations so we stop when we're not accelerating, otherwise our game would control like Asteroids
+		  AkihabaraTopview.handleAccellerations(this);
+		 
+		  // This tells the physics engine to apply those forces
+		  AkihabaraTopview.applyForces(this);
+
+		  AkihabaraTopview.tileCollision(this, map, 'map', null, { tolerance: 2, approximation: 3 });
+
+		  checkBoundary(this);
+
+	    },
+	 
+	    // the blit function is what happens during the game's draw cycle. everything related to rendering and drawing goes here
+	    blit: function() {
+	      // Clear the screen.
+		  //gbox.blitFade(gbox.getBufferContext(),{});
+		 
+		  // Render the current sprite.. don't worry too much about what's going on here. We're pretty much doing
+		  //  the default drawing function, sending along the tileset, the frame info, coordinates, whether the
+		  //  spries is flipped, camera info, and the alpha transparency value
+		  AkihabaraGamebox.blitTile(AkihabaraGamebox.getBufferContext(), {
+		    tileset: this.tileset,
+		    tile:    this.frame,
+		    dx:      this.x,
+		    dy:      this.y,
+		    fliph:   this.fliph,
+		    flipv:   this.flipv,
+		    camera:  this.camera,
+		    alpha:   1.0
+		  });
+	    },
+	  }); // end gbox.addObject for player
 	}
+
+
 
 	// Game initialization
 	maingame.initializeGame=function() {
@@ -402,4 +469,78 @@ AkihabaraGamebox.onLoad(function () {
 		var converted_map = AkihabaraTile.asciiArtToMap(map.content, tra);
 		return converted_map;
 
+	}
+
+	//return whether the players global coordinates fall within the existing maps
+	function playerInWorld(){
+		return (map_buffer[player_x] && map_buffer[player_x][player_y])
+	}
+
+	//boundary checks for the submaps
+	function checkBoundary(obj){
+		if(obj.group == 'player'){
+			var change = false;
+			var old_x = player_x;
+			var old_y = player_y;
+
+
+			if(obj.x + obj.w > map.w){
+				
+				player_x++;
+
+				if(playerInWorld()){
+					change = true;
+					obj.x = 1;
+				} else {
+					obj.x = map.w - obj.w;
+				}
+
+			}else if(obj.x < 0){
+
+				player_x--;
+
+				if(playerInWorld()){
+					change = true;
+					obj.x = map.w-obj.w;
+				} else {
+					obj.x = 0;
+				}
+
+
+			}else if(obj.y < 0){
+				
+				player_y--;
+
+				if(playerInWorld()){
+					change = true;
+					obj.y = map.h-obj.h;
+				}else{
+					obj.y = 0;
+				}
+
+			}else if(obj.y + obj.h > map.h){
+				
+				player_y++;
+
+				if(playerInWorld()){
+					change = true;
+					obj.y = 1;
+				} else {
+					obj.y = map.h - obj.h;
+				}
+			}
+
+			if(!change){
+
+				player_x = old_x;
+				player_y = old_y;
+					
+			} else {
+
+				map.map = render_map(map_buffer[player_x][player_y]);
+				map = AkihabaraTile.finalizeTilemap(map);
+				AkihabaraGamebox.createCanvas('map_canvas', { w: map.w, h: map.h });
+				AkihabaraGamebox.blitTilemap(AkihabaraGamebox.getCanvasContext('map_canvas'), map);
+			}
+		}
 	}
