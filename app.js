@@ -103,9 +103,9 @@
 
     });
 
+    
 
 
-/*
         //Enter the game server code. The game server handles
         //client connections looking for a game, creating games,
         //leaving games, joining games and ending games when they leave.
@@ -117,6 +117,7 @@
         //maintain the list if players.
     sio.sockets.on('connection', function (client) {
         
+        console.log("calling findGame");
             //Generate a new UUID, looks something like
             //5b2ca132-64bd-4513-99da-90e838ca47d1
             //and store this on their socket/connection
@@ -127,6 +128,7 @@
 
             //now we can find them a game to play with someone.
             //if no game exists with someone waiting, they create one and wait.
+        //console.log("calling findGame");
         game_server.findGame(client);
 
             //Useful to know when someone connects
@@ -162,4 +164,3 @@
      
     }); //sio.sockets.on connection
 
-*/

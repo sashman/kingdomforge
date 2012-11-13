@@ -9,6 +9,7 @@ Based on Kesiev's TLoS
 
 var audioserver;
 var maingame;
+var netgame;
 var noface; // Is a fake "actor" in dialogues. The text is ever in the same place.
 var tilemaps={}, dialogues={}, credits={};
 
@@ -30,6 +31,8 @@ function objectIsAlive(th) {
 }
 
 function go() {
+	netgame = new game_core();
+	netgame.update( new Date().getTime() );
 
 	
 	AkihabaraGamebox.setGroups(['background','player','game']);
@@ -224,23 +227,23 @@ function go() {
 		  //AkihabaraTopview.setStaticSpeed(this, 2.5);
 
 			// The if statements check for accelerations in the x and y directions and whether they are positive or negative. It then sets the animation index to the keyword corresponding to that direction.
-		  if (this.accx == 0 && this.accy == 0) this.animIndex = 'still';
-		  if (this.accx > 0 && this.accy == 0){
+		  if (this.velx == 0 && this.vely == 0) this.animIndex = 'still';
+		  if (this.velx > 0 && this.vely == 0){
 			this.animIndex = 'right';
 			this.animList.still.frames = [8];
 			}
 		  
-		  if (this.accx == 0 && this.accy > 0){
+		  if (this.velx == 0 && this.vely > 0){
 			this.animIndex = 'down';
 			this.animList.still.frames = [24];
 			}
 		  
-		  if (this.accx < 0 && this.accy == 0){
+		  if (this.velx < 0 && this.vely == 0){
 			this.animIndex = 'left';
 			this.animList.still.frames = [0];
 			}
 		  
-		  if (this.accx == 0 && this.accy < 0){
+		  if (this.velx == 0 && this.vely < 0){
 			this.animIndex = 'up';
 			this.animList.still.frames = [16];
 			}
@@ -251,7 +254,7 @@ function go() {
 		    this.frame = AkihabaraGamebox.decideFrame(frameCount, this.animList[this.animIndex]);
 		 
 		  // This adds some friction to our accelerations so we stop when we're not accelerating, otherwise our game would control like Asteroids
-		  AkihabaraTopview.handleAccellerations(this);
+		  AkihabaraTopview.handleVelocity(this);
 		 
 		  // This tells the physics engine to apply those forces
 		  AkihabaraTopview.applyForces(this);
@@ -314,7 +317,7 @@ function go() {
 
 		// AkihabaraGamebox.addObject(new Player());
 
-		// var game = game_core();
+		
 		this.addPlayer();
 		this.addMap();
 	};

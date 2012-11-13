@@ -54,13 +54,19 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
 
 /* The game_core class */
 
-    var game_core = function(_players, game_instance){
+    var game_core = function(game_instance){
+
+
 
             //Store the instance, if any
-        if(game_instance)
-            this.instance = game_instance;
+
+        this.instance = game_instance;
             //Store a flag if we are the server
         this.server = this.instance !== undefined;
+
+        if(this.server) console.log("game_core started as server");
+        else console.log("game_core started as client");
+
 
             //Used in collision etc.
         // this.world = {
@@ -75,11 +81,8 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
         if(this.server) {
 
             this.players = {
-                //self : new game_player(this,this.instance.player_host),
-                //other : new game_player(this,this.instance.player_client)
-
-                 self : new Player(),
-                 other : new game_player(this,this.instance.player_client)
+                self : new game_player(this,this.instance.player_host),
+                other : new game_player(this,this.instance.player_client)
                 
                 //self: _players[0];
                 //others: _players.slice(1, _players.length);
@@ -95,28 +98,28 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
             };
 
                 //Debugging ghosts, to help visualise things
-            // this.ghosts = {
-            //         //Our ghost position on the server
-            //     server_pos_self : new game_player(this),
-            //         //The other players server position as we receive it
-            //     server_pos_other : new game_player(this),
-            //         //The other players ghost destination position (the lerp)
-            //     pos_other : new game_player(this)
-            // };
+            this.ghosts = {
+                    //Our ghost position on the server
+                server_pos_self : new game_player(this),
+                    //The other players server position as we receive it
+                server_pos_other : new game_player(this),
+                    //The other players ghost destination position (the lerp)
+                pos_other : new game_player(this)
+            };
 
-            // this.ghosts.pos_other.state = 'dest_pos';
+            this.ghosts.pos_other.state = 'dest_pos';
 
-            // this.ghosts.pos_other.info_color = 'rgba(255,255,255,0.1)';
+            this.ghosts.pos_other.info_color = 'rgba(255,255,255,0.1)';
 
-            // this.ghosts.server_pos_self.info_color = 'rgba(255,255,255,0.2)';
-            // this.ghosts.server_pos_other.info_color = 'rgba(255,255,255,0.2)';
+            this.ghosts.server_pos_self.info_color = 'rgba(255,255,255,0.2)';
+            this.ghosts.server_pos_other.info_color = 'rgba(255,255,255,0.2)';
 
-            // this.ghosts.server_pos_self.state = 'server_pos';
-            // this.ghosts.server_pos_other.state = 'server_pos';
+            this.ghosts.server_pos_self.state = 'server_pos';
+            this.ghosts.server_pos_other.state = 'server_pos';
 
-            // this.ghosts.server_pos_self.pos = { x:20, y:20 };
-            // this.ghosts.pos_other.pos = { x:500, y:200 };
-            // this.ghosts.server_pos_other.pos = { x:500, y:200 };
+            this.ghosts.server_pos_self.pos = { x:20, y:20 };
+            this.ghosts.pos_other.pos = { x:500, y:200 };
+            this.ghosts.server_pos_other.pos = { x:500, y:200 };
         }
 
             //The speed at which the clients move.
@@ -145,14 +148,14 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
             //this.keyboard = new THREEx.KeyboardState();
 
                 //Create the default configuration settings
-            //this.client_create_configuration();
+            this.client_create_configuration();
 
                 //A list of recent server updates we interpolate across
                 //This is the buffer that is the driving factor for our networking
             this.server_updates = [];
 
                 //Connect to the socket.io server!
-            //this.client_connect_to_server();
+            this.client_connect_to_server();
 
                 //We start pinging the server to determine latency
             //this.client_create_ping_timer();
@@ -382,15 +385,15 @@ game_core.prototype.process_input = function( player ) {
 
 
 
-// game_core.prototype.physics_movement_vector_from_direction = function(x,y) {
+game_core.prototype.physics_movement_vector_from_direction = function(x,y) {
 
-//         //Must be fixed step, at physics sync speed.
-//     return {
-//         x : (x * (this.playerspeed * 0.015)).fixed(3),
-//         y : (y * (this.playerspeed * 0.015)).fixed(3)
-//     };
+        //Must be fixed step, at physics sync speed.
+    return {
+        x : (x * (1 * 0.015)).fixed(3),
+        y : (y * (1 * 0.015)).fixed(3)
+    };
 
-// }; //game_core.physics_movement_vector_from_direction
+}; //game_core.physics_movement_vector_from_direction
 
 game_core.prototype.update_physics = function() {
 
@@ -483,7 +486,7 @@ game_core.prototype.handle_server_input = function(client, input, input_time, in
     and usually start with client_* to make things clearer.
 
 */
-
+var keys = { left: 'left', right: 'right', up: 'up', down: 'down' };
 game_core.prototype.client_handle_input = function(){
 
     //if(this.lit > this.local_time) return;
@@ -493,42 +496,74 @@ game_core.prototype.client_handle_input = function(){
         //It also sends the input information to the server immediately
         //as it is pressed. It also tags each input with a sequence number.
 
+    //console.log(AkihabaraInput);
+
     var x_dir = 0;
     var y_dir = 0;
     var input = [];
     this.client_has_input = false;
 
-    if( this.keyboard.pressed('A') ||
-        this.keyboard.pressed('left')) {
+    if( AkihabaraInput.keyIsPressed(keys.left) || keys.pressleft) {
 
             x_dir = -1;
             input.push('l');
 
         } //left
 
-    if( this.keyboard.pressed('D') ||
-        this.keyboard.pressed('right')) {
+    if( AkihabaraInput.keyIsPressed(keys.right) || keys.pressright) {
 
             x_dir = 1;
             input.push('r');
 
         } //right
 
-    if( this.keyboard.pressed('S') ||
-        this.keyboard.pressed('down')) {
+    if( AkihabaraInput.keyIsPressed(keys.up) || keys.pressup) {
 
             y_dir = 1;
             input.push('d');
 
         } //down
 
-    if( this.keyboard.pressed('W') ||
-        this.keyboard.pressed('up')) {
+    if( AkihabaraInput.keyIsPressed(keys.down) || keys.pressdown) {
 
             y_dir = -1;
             input.push('u');
 
         } //up
+
+
+
+    // if( this.keyboard.pressed('A') ||
+    //     this.keyboard.pressed('left')) {
+
+    //         x_dir = -1;
+    //         input.push('l');
+
+    //     } //left
+
+    // if( this.keyboard.pressed('D') ||
+    //     this.keyboard.pressed('right')) {
+
+    //         x_dir = 1;
+    //         input.push('r');
+
+    //     } //right
+
+    // if( this.keyboard.pressed('S') ||
+    //     this.keyboard.pressed('down')) {
+
+    //         y_dir = 1;
+    //         input.push('d');
+
+    //     } //down
+
+    // if( this.keyboard.pressed('W') ||
+    //     this.keyboard.pressed('up')) {
+
+    //         y_dir = -1;
+    //         input.push('u');
+
+    //     } //up
 
     if(input.length) {
 
@@ -796,7 +831,7 @@ game_core.prototype.client_update_local_position = function(){
         this.players.self.pos = current_state;
         
             //We handle collision on client if predicting.
-        this.check_collision( this.players.self );
+        // this.check_collision( this.players.self );
 
     }  //if(this.client_predict)
 
@@ -821,10 +856,10 @@ game_core.prototype.client_update_physics = function() {
 game_core.prototype.client_update = function() {
 
         //Clear the screen area
-    this.ctx.clearRect(0,0,720,480);
+    // this.ctx.clearRect(0,0,720,480);
 
         //draw help/information if required
-    this.client_draw_info();
+    // this.client_draw_info();
 
         //Capture inputs from the player
     this.client_handle_input();
@@ -838,14 +873,14 @@ game_core.prototype.client_update = function() {
     }
 
         //Now they should have updated, we can draw the entity
-    this.players.other.draw();
+    // this.players.other.draw();
 
         //When we are doing client side prediction, we smooth out our position
         //across frames using local input states we have stored.
     this.client_update_local_position();
 
         //And then we finally draw
-    this.players.self.draw();
+    // this.players.self.draw();
 
         //and these
     if(this.show_dest_pos && !this.naive_approach) {
@@ -895,6 +930,7 @@ game_core.prototype.client_create_ping_timer = function() {
     }.bind(this), 1000);
     
 }; //game_core.client_create_ping_timer
+
 
 
 game_core.prototype.client_create_configuration = function() {
