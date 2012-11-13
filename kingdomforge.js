@@ -66,11 +66,23 @@ function go() {
 		// }
 	},
 
+	// Disable the default difficulty-choice menu; we don't need it for our tutorial
+	maingame.gameMenu = function() { return true; };
+
 	// No level intro animation
 	maingame.gameIntroAnimation=function() { return true; }
 
 	// No end level animation
 	maingame.endlevelIntroAnimation=function() { return true; }
+
+	maingame.pressStartIntroAnimation=function(reset) {
+	  if (reset) {
+	    AkihabaraToys.resetToy(this,"default-blinker");
+	  } else {
+	    AkihabaraToys.text.blink(this,"default-blinker",AkihabaraGamebox.getBufferContext(),{font:"small",text:"PRESS Z TO START",valign:AkihabaraGamebox.ALIGN_MIDDLE,halign:AkihabaraGamebox.ALIGN_CENTER,dx:0,dy:Math.floor(AkihabaraGamebox.getScreenH()/3),dw:AkihabaraGamebox.getScreenW(),dh:Math.floor(AkihabaraGamebox.getScreenH()/3)*2,blinkspeed:10});
+	    return AkihabaraInput.keyIsHit("a");
+	    }
+	};
 
 	// Level animation
 	// maingame.levelIntroAnimation=function(reset) {
@@ -207,6 +219,9 @@ function go() {
 	      // Toys.topview.controlKeys sets the main key controls. In this case we want to use the arrow keys which
 		  //  are mapped to their english names. Inside this function it applies acceleration values to each of these directions
 		  AkihabaraTopview.controlKeys(this, { left: 'left', right: 'right', up: 'up', down: 'down' });
+
+		  //set speed
+		  //AkihabaraTopview.setStaticSpeed(this, 2.5);
 
 			// The if statements check for accelerations in the x and y directions and whether they are positive or negative. It then sets the animation index to the keyword corresponding to that direction.
 		  if (this.accx == 0 && this.accy == 0) this.animIndex = 'still';
