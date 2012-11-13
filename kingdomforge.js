@@ -285,6 +285,7 @@ function go() {
 		  });
 	    },
 	  }); // end gbox.addObject for player
+		netgame.players.self.entity = AkihabaraGamebox.getObject("player", "player_id");
 	}
 
 

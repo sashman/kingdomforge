@@ -136,10 +136,10 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
             //Start a physics loop, this is separate to the rendering
             //as this happens at a fixed frequency
 
-        //this.create_physics_simulation();
+        this.create_physics_simulation();
 
             //Start a fast paced timer for measuring time easier
-        //this.create_timer();
+        this.create_timer();
 
             //Client specific initialisation
         if(!this.server) {
@@ -217,6 +217,9 @@ game_core.prototype.v_lerp = function(v,tv,t) { return { x: this.lerp(v.x, tv.x,
 */
 
     var game_player = function( game_instance, player_instance ) {
+
+        //console.log(AkihabaraGamebox.getGroups());
+        entity = null;
 
             //Store the instance, if any
         this.instance = player_instance;
@@ -378,6 +381,7 @@ game_core.prototype.process_input = function( player ) {
         player.last_input_seq = player.inputs[ic-1].seq;
     }
 
+
         //give it back
     return resulting_vector;
 
@@ -416,6 +420,8 @@ game_core.prototype.update_physics = function() {
 
     //Updated at 15ms , simulates the world state
 game_core.prototype.server_update_physics = function() {
+
+    console.log("server update");
 
         //Handle player one
     this.players.self.old_state.pos = this.pos( this.players.self.pos );
