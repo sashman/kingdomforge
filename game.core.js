@@ -158,7 +158,7 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
             this.client_connect_to_server();
 
                 //We start pinging the server to determine latency
-            //this.client_create_ping_timer();
+            this.client_create_ping_timer();
 
                 //Set their colors from the storage or locally
             this.color = localStorage.getItem('color') || '#cc8822' ;
@@ -421,9 +421,7 @@ game_core.prototype.update_physics = function() {
     //Updated at 15ms , simulates the world state
 game_core.prototype.server_update_physics = function() {
 
-    console.log("server update");
-
-        //Handle player one
+            //Handle player one
     this.players.self.old_state.pos = this.pos( this.players.self.pos );
     var new_dir = this.process_input(this.players.self);
     this.players.self.pos = this.v_add( this.players.self.old_state.pos, new_dir );
@@ -433,9 +431,11 @@ game_core.prototype.server_update_physics = function() {
     var other_new_dir = this.process_input(this.players.other);
     this.players.other.pos = this.v_add( this.players.other.old_state.pos, other_new_dir);
 
+    console.log(this.players.other.pos);
+
         //Keep the physics position in the world
-    this.check_collision( this.players.self );
-    this.check_collision( this.players.other );
+    // this.check_collision( this.players.self );
+    // this.check_collision( this.players.other );
 
     this.players.self.inputs = []; //we have cleared the input buffer, so remove this
     this.players.other.inputs = []; //we have cleared the input buffer, so remove this
@@ -593,6 +593,9 @@ game_core.prototype.client_handle_input = function(){
             //Go
         this.socket.send(  server_packet  );
 
+        // debug
+        // console.log(server_packet);
+
             //Return the direction if needed
         return this.physics_movement_vector_from_direction( x_dir, y_dir );
 
@@ -601,6 +604,7 @@ game_core.prototype.client_handle_input = function(){
         return {x:0,y:0};
 
     }
+
 
 }; //game_core.client_handle_input
 
@@ -860,6 +864,7 @@ game_core.prototype.client_update_physics = function() {
 }; //game_core.client_update_physics
 
 game_core.prototype.client_update = function() {
+
 
         //Clear the screen area
     // this.ctx.clearRect(0,0,720,480);
