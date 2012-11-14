@@ -425,11 +425,17 @@ game_core.prototype.server_update_physics = function() {
     this.players.self.old_state.pos = this.pos( this.players.self.pos );
     var new_dir = this.process_input(this.players.self);
     this.players.self.pos = this.v_add( this.players.self.old_state.pos, new_dir );
+    this.players.self.entity.x = this.players.self.pos.x;
+    this.players.self.entity.y = this.players.self.pos.y;
+
 
         //Handle player two
     this.players.other.old_state.pos = this.pos( this.players.other.pos );
     var other_new_dir = this.process_input(this.players.other);
     this.players.other.pos = this.v_add( this.players.other.old_state.pos, other_new_dir);
+    this.players.other.entity.x = this.players.other.pos.x;
+    this.players.other.entity.y = this.players.other.pos.y;
+
 
     console.log(this.players.other.pos);
 
