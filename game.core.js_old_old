@@ -54,9 +54,7 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
 
 /* The game_core class */
 
-    var game_core = function(game_instance, player){
-
-
+    var game_core = function(player, game_instance){
 
             //Store the instance, if any
         if(game_instance)
@@ -64,15 +62,11 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
             //Store a flag if we are the server
         this.server = this.instance !== undefined;
 
-        if(this.server) console.log("game_core started as server");
-        else console.log("game_core started as client");
-
-
             //Used in collision etc.
-        // this.world = {
-        //     width : 720,
-        //     height : 480
-        // };
+        this.world = {
+            width : 720,
+            height : 480
+        };
 
             //We create a player set, passing them
             //the game that is running them, as well
@@ -80,22 +74,22 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
         
         if(this.server) {
 
-            //this.addPlayer(new Player(), this,this.instance.player_host, true);
-             this.players = {
-                 self : new Player(this,this.instance.player_host),
-                 other : new Player(this,this.instance.player_client)
+            this.players = {
+                //self : new game_player(this,this.instance.player_host),
+                //other : new game_player(this,this.instance.player_client)
 
-             };
+                self : new Player(),
+                other : new game_player(this,this.instance.player_client)
+            };
 
-           // this.players.self.pos = {x:20,y:20};
+           this.players.self.pos = {x:20,y:20};
 
         } else {
 
-
-            // this.players = {
-            //     self : new game_player(this),
-            //     other : new game_player(this)
-            // };
+            this.players = {
+                self : new game_player(this),
+                other : new game_player(this)
+            };
 
                 //Debugging ghosts, to help visualise things
             this.ghosts = {
@@ -120,10 +114,10 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
             this.ghosts.server_pos_self.pos = { x:20, y:20 };
             this.ghosts.pos_other.pos = { x:500, y:200 };
             this.ghosts.server_pos_other.pos = { x:500, y:200 };
-         }
+        }
 
             //The speed at which the clients move.
-        // this.playerspeed = 120;
+        this.playerspeed = 120;
 
             //Set up some physics integration values
         this._pdt = 0.0001;                 //The physics update delta time
@@ -136,10 +130,10 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
             //Start a physics loop, this is separate to the rendering
             //as this happens at a fixed frequency
 
-        this.create_physics_simulation();
+        //this.create_physics_simulation();
 
             //Start a fast paced timer for measuring time easier
-        this.create_timer();
+        //this.create_timer();
 
             //Client specific initialisation
         if(!this.server) {
@@ -148,27 +142,27 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
             //this.keyboard = new THREEx.KeyboardState();
 
                 //Create the default configuration settings
-            this.client_create_configuration();
+            //this.client_create_configuration();
 
                 //A list of recent server updates we interpolate across
                 //This is the buffer that is the driving factor for our networking
             this.server_updates = [];
 
                 //Connect to the socket.io server!
-            this.client_connect_to_server();
+            //this.client_connect_to_server();
 
                 //We start pinging the server to determine latency
-            this.client_create_ping_timer();
+            //this.client_create_ping_timer();
 
                 //Set their colors from the storage or locally
             this.color = localStorage.getItem('color') || '#cc8822' ;
             localStorage.setItem('color', this.color);
-            // this.players.self.color = this.color;
+            this.players.self.color = this.color;
 
                 //Make this only if requested
-            // if(String(window.location).indexOf('debug') != -1) {
-            //     this.client_create_debug_gui();
-            // }
+            if(String(window.location).indexOf('debug') != -1) {
+                this.client_create_debug_gui();
+            }
 
         } else { //if !server
 
@@ -191,19 +185,6 @@ if( 'undefined' != typeof global ) {
         as well as some helpers for rounding numbers to fixed point.
 
 */
-game_core.prototype.addPlayer = function(player, game_instance, player_instance ,self){
-
-    if(self){
-
-        player.instance = player_instance;
-        player.game = game_instance;
-        this.players.self = player;
-
-        this.ghosts.server_pos_self : new game_player(this),
-
-    }
-
-};
 
     // (4.22208334636).fixed(n) will return fixed point value to n places, default n = 3
 Number.prototype.fixed = function(n) { n = n || 3; return parseFloat(this.toFixed(n)); };
@@ -229,13 +210,9 @@ game_core.prototype.v_lerp = function(v,tv,t) { return { x: this.lerp(v.x, tv.x,
         as well as to draw that state when required.
 */
 
-/*
     var game_player = function( game_instance, player_instance ) {
 
-        //console.log(AkihabaraGamebox.getGroups());
-        entity = null;
-
-            3//Store the instance, if any
+            //Store the instance, if any
         this.instance = player_instance;
         this.game = game_instance;
 
@@ -256,39 +233,37 @@ game_core.prototype.v_lerp = function(v,tv,t) { return { x: this.lerp(v.x, tv.x,
         this.inputs = [];
 
             //The world bounds we are confined to
-        // this.pos_limits = {
-        //     x_min: this.size.hx,
-        //     x_max: this.game.world.width - this.size.hx,
-        //     y_min: this.size.hy,
-        //     y_max: this.game.world.height - this.size.hy
-        // };
+        this.pos_limits = {
+            x_min: this.size.hx,
+            x_max: this.game.world.width - this.size.hx,
+            y_min: this.size.hy,
+            y_max: this.game.world.height - this.size.hy
+        };
 
             //The 'host' of a game gets created with a player instance since
             //the server already knows who they are. If the server starts a game
             //with only a host, the other player is set up in the 'else' below
-        // if(player_instance) {
-        //     this.pos = { x:20, y:20 };
-        // } else {
-        //     this.pos = { x:500, y:200 };
-        // }
+        if(player_instance) {
+            this.pos = { x:20, y:20 };
+        } else {
+            this.pos = { x:500, y:200 };
+        }
 
     }; //game_player.constructor
   
-    // game_player.prototype.draw = function(){
+    game_player.prototype.draw = function(){
 
-    //         //Set the color for this player
-    //     game.ctx.fillStyle = this.color;
+            //Set the color for this player
+        game.ctx.fillStyle = this.color;
 
-    //         //Draw a rectangle for us
-    //     game.ctx.fillRect(this.pos.x - this.size.hx, this.pos.y - this.size.hy, this.size.x, this.size.y);
+            //Draw a rectangle for us
+        game.ctx.fillRect(this.pos.x - this.size.hx, this.pos.y - this.size.hy, this.size.x, this.size.y);
 
-    //         //Draw a status update
-    //     game.ctx.fillStyle = this.info_color;
-    //     game.ctx.fillText(this.state, this.pos.x+10, this.pos.y + 4);
+            //Draw a status update
+        game.ctx.fillStyle = this.info_color;
+        game.ctx.fillText(this.state, this.pos.x+10, this.pos.y + 4);
     
-    // }; //game_player.draw
-
-    */
+    }; //game_player.draw
 
 /*
 
@@ -326,33 +301,33 @@ game_core.prototype.update = function(t) {
     Shared between server and client.
     In this example, `item` is always of type game_player.
 */
-// game_core.prototype.check_collision = function( item ) {
+game_core.prototype.check_collision = function( item ) {
 
-//         //Left wall.
-//     if(item.pos.x <= item.pos_limits.x_min) {
-//         item.pos.x = item.pos_limits.x_min;
-//     }
+        //Left wall.
+    if(item.pos.x <= item.pos_limits.x_min) {
+        item.pos.x = item.pos_limits.x_min;
+    }
 
-//         //Right wall
-//     if(item.pos.x >= item.pos_limits.x_max ) {
-//         item.pos.x = item.pos_limits.x_max;
-//     }
+        //Right wall
+    if(item.pos.x >= item.pos_limits.x_max ) {
+        item.pos.x = item.pos_limits.x_max;
+    }
     
-//         //Roof wall.
-//     if(item.pos.y <= item.pos_limits.y_min) {
-//         item.pos.y = item.pos_limits.y_min;
-//     }
+        //Roof wall.
+    if(item.pos.y <= item.pos_limits.y_min) {
+        item.pos.y = item.pos_limits.y_min;
+    }
 
-//         //Floor wall
-//     if(item.pos.y >= item.pos_limits.y_max ) {
-//         item.pos.y = item.pos_limits.y_max;
-//     }
+        //Floor wall
+    if(item.pos.y >= item.pos_limits.y_max ) {
+        item.pos.y = item.pos_limits.y_max;
+    }
 
-//         //Fixed point helps be more deterministic
-//     item.pos.x = item.pos.x.fixed(4);
-//     item.pos.y = item.pos.y.fixed(4);
+        //Fixed point helps be more deterministic
+    item.pos.x = item.pos.x.fixed(4);
+    item.pos.y = item.pos.y.fixed(4);
     
-// }; //game_core.check_collision
+}; //game_core.check_collision
 
 
 game_core.prototype.process_input = function( player ) {
@@ -397,7 +372,6 @@ game_core.prototype.process_input = function( player ) {
         player.last_input_seq = player.inputs[ic-1].seq;
     }
 
-
         //give it back
     return resulting_vector;
 
@@ -409,8 +383,8 @@ game_core.prototype.physics_movement_vector_from_direction = function(x,y) {
 
         //Must be fixed step, at physics sync speed.
     return {
-        x : (x * (1 * 0.015)).fixed(3),
-        y : (y * (1 * 0.015)).fixed(3)
+        x : (x * (this.playerspeed * 0.015)).fixed(3),
+        y : (y * (this.playerspeed * 0.015)).fixed(3)
     };
 
 }; //game_core.physics_movement_vector_from_direction
@@ -437,39 +411,19 @@ game_core.prototype.update_physics = function() {
     //Updated at 15ms , simulates the world state
 game_core.prototype.server_update_physics = function() {
 
-            //Handle player one
+        //Handle player one
     this.players.self.old_state.pos = this.pos( this.players.self.pos );
     var new_dir = this.process_input(this.players.self);
     this.players.self.pos = this.v_add( this.players.self.old_state.pos, new_dir );
-
-    if(this.players.self.entity){
-        this.players.self.entity.set_pos(this.players.self.old_state.pos);
-    }
-
 
         //Handle player two
     this.players.other.old_state.pos = this.pos( this.players.other.pos );
     var other_new_dir = this.process_input(this.players.other);
     this.players.other.pos = this.v_add( this.players.other.old_state.pos, other_new_dir);
 
-    if(this.players.other.entity){
-        this.players.other.entity.set_pos(this.players.other.pos);
-    }
-
-    // 
-
         //Keep the physics position in the world
-
-    if(this.players.self.entity)
-        this.checkBoundary(this.player.self.enity);
-
-    if(this.players.other.entity)
-        this.checkBoundary(this.player.other.enity);
-
-    if(this.players.other.entity)
-    // console.log(this.players.other.enity.x + ", " + this.players.other.enity.y);
-    // this.check_collision( this.players.self );
-    // this.check_collision( this.players.other );
+    this.check_collision( this.players.self );
+    this.check_collision( this.players.other );
 
     this.players.self.inputs = []; //we have cleared the input buffer, so remove this
     this.players.other.inputs = []; //we have cleared the input buffer, so remove this
@@ -526,7 +480,7 @@ game_core.prototype.handle_server_input = function(client, input, input_time, in
     and usually start with client_* to make things clearer.
 
 */
-var keys = { left: 'left', right: 'right', up: 'up', down: 'down' };
+
 game_core.prototype.client_handle_input = function(){
 
     //if(this.lit > this.local_time) return;
@@ -536,74 +490,42 @@ game_core.prototype.client_handle_input = function(){
         //It also sends the input information to the server immediately
         //as it is pressed. It also tags each input with a sequence number.
 
-    //console.log(AkihabaraInput);
-
     var x_dir = 0;
     var y_dir = 0;
     var input = [];
     this.client_has_input = false;
 
-    if( AkihabaraInput.keyIsPressed(keys.left) || keys.pressleft) {
+    if( this.keyboard.pressed('A') ||
+        this.keyboard.pressed('left')) {
 
             x_dir = -1;
             input.push('l');
 
         } //left
 
-    if( AkihabaraInput.keyIsPressed(keys.right) || keys.pressright) {
+    if( this.keyboard.pressed('D') ||
+        this.keyboard.pressed('right')) {
 
             x_dir = 1;
             input.push('r');
 
         } //right
 
-    if( AkihabaraInput.keyIsPressed(keys.up) || keys.pressup) {
+    if( this.keyboard.pressed('S') ||
+        this.keyboard.pressed('down')) {
 
             y_dir = 1;
             input.push('d');
 
         } //down
 
-    if( AkihabaraInput.keyIsPressed(keys.down) || keys.pressdown) {
+    if( this.keyboard.pressed('W') ||
+        this.keyboard.pressed('up')) {
 
             y_dir = -1;
             input.push('u');
 
         } //up
-
-
-
-    // if( this.keyboard.pressed('A') ||
-    //     this.keyboard.pressed('left')) {
-
-    //         x_dir = -1;
-    //         input.push('l');
-
-    //     } //left
-
-    // if( this.keyboard.pressed('D') ||
-    //     this.keyboard.pressed('right')) {
-
-    //         x_dir = 1;
-    //         input.push('r');
-
-    //     } //right
-
-    // if( this.keyboard.pressed('S') ||
-    //     this.keyboard.pressed('down')) {
-
-    //         y_dir = 1;
-    //         input.push('d');
-
-    //     } //down
-
-    // if( this.keyboard.pressed('W') ||
-    //     this.keyboard.pressed('up')) {
-
-    //         y_dir = -1;
-    //         input.push('u');
-
-    //     } //up
 
     if(input.length) {
 
@@ -627,9 +549,6 @@ game_core.prototype.client_handle_input = function(){
             //Go
         this.socket.send(  server_packet  );
 
-        // debug
-        // console.log(server_packet);
-
             //Return the direction if needed
         return this.physics_movement_vector_from_direction( x_dir, y_dir );
 
@@ -638,7 +557,6 @@ game_core.prototype.client_handle_input = function(){
         return {x:0,y:0};
 
     }
-
 
 }; //game_core.client_handle_input
 
@@ -875,7 +793,7 @@ game_core.prototype.client_update_local_position = function(){
         this.players.self.pos = current_state;
         
             //We handle collision on client if predicting.
-        // this.check_collision( this.players.self );
+        this.check_collision( this.players.self );
 
     }  //if(this.client_predict)
 
@@ -899,12 +817,11 @@ game_core.prototype.client_update_physics = function() {
 
 game_core.prototype.client_update = function() {
 
-
         //Clear the screen area
-    // this.ctx.clearRect(0,0,720,480);
+    this.ctx.clearRect(0,0,720,480);
 
         //draw help/information if required
-    // this.client_draw_info();
+    this.client_draw_info();
 
         //Capture inputs from the player
     this.client_handle_input();
@@ -918,14 +835,14 @@ game_core.prototype.client_update = function() {
     }
 
         //Now they should have updated, we can draw the entity
-    // this.players.other.draw();
+    this.players.other.draw();
 
         //When we are doing client side prediction, we smooth out our position
         //across frames using local input states we have stored.
     this.client_update_local_position();
 
         //And then we finally draw
-    // this.players.self.draw();
+    this.players.self.draw();
 
         //and these
     if(this.show_dest_pos && !this.naive_approach) {
@@ -975,7 +892,6 @@ game_core.prototype.client_create_ping_timer = function() {
     }.bind(this), 1000);
     
 }; //game_core.client_create_ping_timer
-
 
 
 game_core.prototype.client_create_configuration = function() {

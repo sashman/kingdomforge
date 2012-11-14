@@ -123,7 +123,7 @@
 
             //Create a new game core instance, this actually runs the
             //game code like collisions and such.
-        thegame.gamecore = new game_core( thegame );
+        thegame.gamecore = new game_core( thegame, null );
             //Start updating the game loop on the server
         thegame.gamecore.update( new Date().getTime() );
 
