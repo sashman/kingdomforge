@@ -22,6 +22,7 @@
 
         //Import shared game library code.
     require('./game.core.js');
+    require('./player.js');
     
 
         //A simple wrapper for logging so we can toggle it,

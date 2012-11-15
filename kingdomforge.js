@@ -221,38 +221,38 @@ function go() {
 	};
 
 	map = {
-			tileset: 'map_pieces', // Specify that we're using the 'map_pieces' tiles that we created in the loadResources function
-		 
-		  // This loads an ASCII-definition of all the 'pieces' of the map as an array of integers specifying a type for each map tile
-		  // Each 'type' corresponds to a sprite in our tileset. For example, if a map tile has type 0, then it uses the first sprite in the
-		  //  map's tile set ('map_pieces', as defined above) and if a map tile has type 1, it uses the second sprite in the tile set, etc.
-		  // Also note that null is an allowed type for a map tile, and uses no sprite from the tile set
-			map: render_map(map_buffer[0][0]),
-		 
-		  // This function have to return true if the object 'obj' is checking if the tile 't' is a wall, so...
-			tileIsSolid: function(obj, t) {
-				var cur_map = map_buffer[player_x][player_y];
-				for(k in cur_map.tiles){
-					if(cur_map.tiles[k].nk==t){
-						return (cur_map.tiles[k].pass);
-					}
+		tileset: 'map_pieces', // Specify that we're using the 'map_pieces' tiles that we created in the loadResources function
+	 
+	  // This loads an ASCII-definition of all the 'pieces' of the map as an array of integers specifying a type for each map tile
+	  // Each 'type' corresponds to a sprite in our tileset. For example, if a map tile has type 0, then it uses the first sprite in the
+	  //  map's tile set ('map_pieces', as defined above) and if a map tile has type 1, it uses the second sprite in the tile set, etc.
+	  // Also note that null is an allowed type for a map tile, and uses no sprite from the tile set
+		map: render_map(map_buffer[0][0]),
+	 
+	  // This function have to return true if the object 'obj' is checking if the tile 't' is a wall, so...
+		tileIsSolid: function(obj, t) {
+			var cur_map = map_buffer[player_x][player_y];
+			for(k in cur_map.tiles){
+				if(cur_map.tiles[k].nk==t){
+					return (cur_map.tiles[k].pass);
 				}
-				//return false;
-				//return t != null; // Is a wall if is not an empty space
-		  }
-		};
+			}
+			//return false;
+			//return t != null; // Is a wall if is not an empty space
+	  }
+	};
 
-		map = AkihabaraTile.finalizeTilemap(map);
+	map = AkihabaraTile.finalizeTilemap(map);
 
-		// Since finalizeMap has calculated the height and width, we can create a canvas that fits our map. Let's call it "map_canvas".
+	// Since finalizeMap has calculated the height and width, we can create a canvas that fits our map. Let's call it "map_canvas".
 
-		AkihabaraGamebox.createCanvas('map_canvas', { w: map.w, h: map.h });
-		 
-		  // This function grabs the map from the "map" object and draws it onto our "map_canvas". So now the map is in the rendering pipeline.
-		AkihabaraGamebox.blitTilemap(AkihabaraGamebox.getCanvasContext('map_canvas'), map);
+	AkihabaraGamebox.createCanvas('map_canvas', { w: map.w, h: map.h });
+	 
+	  // This function grabs the map from the "map" object and draws it onto our "map_canvas". So now the map is in the rendering pipeline.
+	AkihabaraGamebox.blitTilemap(AkihabaraGamebox.getCanvasContext('map_canvas'), map);
 
 
-	
+
 
 	AkihabaraGamebox.go();
 }
@@ -393,9 +393,9 @@ AkihabaraGamebox.onLoad(function () {
 	}
 
 	game_core.prototype.checkBoundary = function (obj){
-
 		checkBoundary(obj);
 	}
+	
 	//boundary checks for the submaps
 	function checkBoundary(obj){
 		if(obj.group == 'player'){

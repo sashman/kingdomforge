@@ -117,7 +117,6 @@
         //maintain the list if players.
     sio.sockets.on('connection', function (client) {
         
-        console.log("calling findGame");
             //Generate a new UUID, looks something like
             //5b2ca132-64bd-4513-99da-90e838ca47d1
             //and store this on their socket/connection

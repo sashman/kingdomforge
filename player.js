@@ -6,7 +6,12 @@ var Player = function(game_instance, player_instance){
     group: 'player',
     tileset: 'player_tiles',
 
+    instance : player_instance,
+    game : game_instance,
     
+
+    x : 0,
+	y : 0,
 
     //colh:AkihabaraGamebox.getTiles('player_tiles').tileh,
  
@@ -17,8 +22,7 @@ var Player = function(game_instance, player_instance){
 	     
 	      // ** New code for Part 3 **
 	      // And we set the starting position for our player.
-	      this.x = 20;
-	      this.y = 20;
+	      
 
 		var anim_speed = 2;
 		// Here we define the list of animations. We can name these whatever we want.
@@ -40,12 +44,6 @@ var Player = function(game_instance, player_instance){
 		  this.animIndex = 'still';
 
     	},
-
-    //converting function
-    set_pos: function(pos){
-    	this.x = pos.x;
-    	this.y = pos.y;
-    },
  
     // the first function is like a step function. it runs every frame and does calculations. it's called first because it happens before the rendering, so we calculate new positions and actions and THEN render the object
     first: function() {
@@ -114,6 +112,26 @@ var Player = function(game_instance, player_instance){
 	    camera:  this.camera,
 	    alpha:   1.0
 	  });
-    }
+    },
+
+    set_pos : function(pos){
+
+    	this.x = pos.x;
+    	this.y = pos.y;
+    },
+
+   //These are used in moving us around later
+    old_state : {pos:{x:0,y:0}},
+    cur_state : {pos:{x:0,y:0}},
+    state_time : new Date().getTime(),
+
+        //Our local history of inputs
+    inputs : [],
 
 });}
+
+
+
+if( 'undefined' != typeof global ) {
+    module.exports = global.Player = Player;
+}
