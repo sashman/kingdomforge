@@ -46,6 +46,10 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
 
 }() );
 
+//map buffer used for loading maps
+var map_buffer = new Array();
+
+
         //Now the main game class. This gets created on
         //both server and client. Server creates one for
         //each game that is hosted, and client creates one
@@ -761,9 +765,9 @@ game_core.prototype.client_process_net_updates = function() {
         this.ghosts.pos_other.set_pos(this.v_lerp(other_past_pos, other_target_pos, time_point));
 
         if(this.client_smoothing) {
-            this.players.other.set_pos(this.v_lerp( this.players.other.pos, this.ghosts.pos_other.pos, this._pdt*this.client_smooth));
+            this.players.other.set_pos(this.v_lerp( this.players.other, this.ghosts.pos_other, this._pdt*this.client_smooth));
         } else {
-            this.players.other.set_pos( this.pos(this.ghosts.pos_other.pos));
+            this.players.other.set_pos( this.pos(this.ghosts.pos_other));
         }
 
             //Now, if not predicting client movement , we will maintain the local player position
@@ -783,7 +787,7 @@ game_core.prototype.client_process_net_updates = function() {
 
                 //Smoothly follow the destination position
             if(this.client_smoothing) {
-                this.players.self.set_pos( this.v_lerp( this.players.self.pos, local_target, this._pdt*this.client_smooth));
+                this.players.self.set_pos( this.v_lerp( this.players.self, local_target, this._pdt*this.client_smooth));
             } else {
                 this.players.self.set_pos( this.pos( local_target ));
             }
@@ -1078,15 +1082,15 @@ game_core.prototype.client_reset_positions = function() {
     player_client.set_pos( { x:500, y:200 });
 
         //Make sure the local player physics is updated
-    this.players.self.old_state.pos = this.pos(this.players.self.pos);
-    this.players.self.set_pos( this.pos(this.players.self.pos));
-    this.players.self.cur_state.pos = this.pos(this.players.self.pos);
+    this.players.self.old_state.pos = this.pos(this.players.self);
+    this.players.self.set_pos( this.pos(this.players.self));
+    this.players.self.cur_state.pos = this.pos(this.players.self);
 
         //Position all debug view items to their owners position
-    this.ghosts.server_pos_self.set_pos( this.pos(this.players.self.pos));
+    this.ghosts.server_pos_self.set_pos( this.pos(this.players.self));
 
-    this.ghosts.server_pos_other.set_pos( this.pos(this.players.other.pos));
-    this.ghosts.pos_other.set_pos( this.pos(this.players.other.pos));
+    this.ghosts.server_pos_other.set_pos( this.pos(this.players.other));
+    this.ghosts.pos_other.set_pos( this.pos(this.players.other));
 
 }; //game_core.client_reset_positions
 

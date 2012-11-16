@@ -19,8 +19,8 @@ var frameCount = 0;
   
 
 
-  //map buffer used for loading maps
-  var map_buffer = new Array();
+//map buffer used for loading maps
+var map_buffer = new Array();
 
 // In games like Zelda, object are alive also outside of the screen.
 // So, let's calculate a distance threshold from the camera
@@ -180,7 +180,7 @@ function go() {
 	maingame.addPlayer = function () {
 	  // AkihabaraGamebox.addObject creates a new object in your game, with variables and functions. In this case we're creating the player.
 	  AkihabaraGamebox.addObject(
-	 	new Player()
+	 	new Player(null,null,map)
 	    ); // end gbox.addObject for player
 		//netgame.players.self.entity = AkihabaraGamebox.getObject("player", "player_id");
 	}
@@ -219,11 +219,13 @@ function go() {
 		this.addPlayer();
 		this.addMap();
 
+
 		netgame = new game_core(null, AkihabaraGamebox.getObject("player", "player_id"));
 		netgame.update( new Date().getTime() );
 	};
 
-	map = new Map();
+	map = new Map(0,0);
+	
 
 	// Since finalizeMap has calculated the height and width, we can create a canvas that fits our map. Let's call it "map_canvas".
 
@@ -368,80 +370,10 @@ AkihabaraGamebox.onLoad(function () {
 
 	}
 
-	//return whether the players global coordinates fall within the existing maps
-	function playerInWorld(player){
-		return (map_buffer[player.map_x] && map_buffer[player.map_x][player.map_y])
-	}
-
+	
+/*
 	game_core.prototype.checkBoundary = function (obj){
 		checkBoundary(obj);
 	}
+*/	
 	
-	//boundary checks for the submaps
-	function checkBoundary(obj){
-		if(obj.group == 'player'){
-			var change = false;
-			var old_x = obj.map_x;
-			var old_y = obj.map_y;
-
-
-			if(obj.x + obj.w > map.w){
-				
-				obj.map_x++;
-
-				if(playerInWorld()){
-					change = true;
-					obj.x = 1;
-				} else {
-					obj.x = map.w - obj.w;
-				}
-
-			}else if(obj.x < 0){
-
-				obj.map_x--;
-
-				if(playerInWorld()){
-					change = true;
-					obj.x = map.w-obj.w;
-				} else {
-					obj.x = 0;
-				}
-
-
-			}else if(obj.y < 0){
-				
-				obj.map_y--;
-
-				if(playerInWorld()){
-					change = true;
-					obj.y = map.h-obj.h;
-				}else{
-					obj.y = 0;
-				}
-
-			}else if(obj.y + obj.h > map.h){
-				
-				obj.map_y++;
-
-				if(playerInWorld()){
-					change = true;
-					obj.y = 1;
-				} else {
-					obj.y = map.h - obj.h;
-				}
-			}
-
-			if(!change){
-
-				obj.map_x = old_x;
-				obj.map_y = old_y;
-					
-			} else {
-
-				map.map = render_map(map_buffer[obj.map_x][obj.map_y]);
-				map = AkihabaraTile.finalizeTilemap(map);
-				AkihabaraGamebox.createCanvas('map_canvas', { w: map.w, h: map.h });
-				AkihabaraGamebox.blitTilemap(AkihabaraGamebox.getCanvasContext('map_canvas'), map);
-			}
-		}
-	}

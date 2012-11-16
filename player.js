@@ -1,4 +1,4 @@
-var Player = function(game_instance, player_instance){
+var Player = function(game_instance, player_instance, _map){
 	return({
 
 // id refers to the specific object, group is the group it's in for rendering purposes, tileset is where the graphics come from
@@ -15,6 +15,8 @@ var Player = function(game_instance, player_instance){
 
 	map_x : 0,
 	map_y : 0,
+
+	map : _map,
 
     //colh:AkihabaraGamebox.getTiles('player_tiles').tileh,
  
@@ -93,7 +95,7 @@ var Player = function(game_instance, player_instance){
 
 	  AkihabaraTopview.tileCollision(this, map, 'map', null, { tolerance: 2, approximation: 3 });
 
-	  checkBoundary(this);
+	  this.map.checkBoundary(this);
 
     },
  
