@@ -15,9 +15,7 @@ var tilemaps={}, dialogues={}, credits={};
 
 var map;
 var frameCount = 0;
-var player_x = 0;
-var player_y = 0;
-var player_last_dir = "";
+
   
 
 
@@ -167,7 +165,12 @@ function go() {
 	 
 	      // Since we blitted the tilemap to 'map_canvas' back in our main function, we now dracw 'map_canvas' onto the screen. The 'map_canvas' is
 	      // just a picture of our tilemap, and by blitting it here we're making sure that the picture re-draws every frame.
-	      AkihabaraGamebox.blit(AkihabaraGamebox.getBufferContext(), AkihabaraGamebox.getCanvas('map_canvas'), { dx: 0, dy: 0, dw: AkihabaraGamebox.getCanvas('map_canvas').width, dh: AkihabaraGamebox.getCanvas('map_canvas').height, sourcecamera: true });
+	      AkihabaraGamebox.blit(AkihabaraGamebox.getBufferContext(),
+	      	AkihabaraGamebox.getCanvas('map_canvas'), {
+	      									 dx: 0, dy: 0,
+	      									 dw: AkihabaraGamebox.getCanvas('map_canvas').width,
+	      									 dh: AkihabaraGamebox.getCanvas('map_canvas').height,
+	      									 sourcecamera: true });
 	    }
 	  });
 
@@ -220,29 +223,7 @@ function go() {
 		netgame.update( new Date().getTime() );
 	};
 
-	map = {
-		tileset: 'map_pieces', // Specify that we're using the 'map_pieces' tiles that we created in the loadResources function
-	 
-	  // This loads an ASCII-definition of all the 'pieces' of the map as an array of integers specifying a type for each map tile
-	  // Each 'type' corresponds to a sprite in our tileset. For example, if a map tile has type 0, then it uses the first sprite in the
-	  //  map's tile set ('map_pieces', as defined above) and if a map tile has type 1, it uses the second sprite in the tile set, etc.
-	  // Also note that null is an allowed type for a map tile, and uses no sprite from the tile set
-		map: render_map(map_buffer[0][0]),
-	 
-	  // This function have to return true if the object 'obj' is checking if the tile 't' is a wall, so...
-		tileIsSolid: function(obj, t) {
-			var cur_map = map_buffer[player_x][player_y];
-			for(k in cur_map.tiles){
-				if(cur_map.tiles[k].nk==t){
-					return (cur_map.tiles[k].pass);
-				}
-			}
-			//return false;
-			//return t != null; // Is a wall if is not an empty space
-	  }
-	};
-
-	map = AkihabaraTile.finalizeTilemap(map);
+	map = new Map();
 
 	// Since finalizeMap has calculated the height and width, we can create a canvas that fits our map. Let's call it "map_canvas".
 
@@ -388,8 +369,8 @@ AkihabaraGamebox.onLoad(function () {
 	}
 
 	//return whether the players global coordinates fall within the existing maps
-	function playerInWorld(){
-		return (map_buffer[player_x] && map_buffer[player_x][player_y])
+	function playerInWorld(player){
+		return (map_buffer[player.map_x] && map_buffer[player.map_x][player.map_y])
 	}
 
 	game_core.prototype.checkBoundary = function (obj){
@@ -400,13 +381,13 @@ AkihabaraGamebox.onLoad(function () {
 	function checkBoundary(obj){
 		if(obj.group == 'player'){
 			var change = false;
-			var old_x = player_x;
-			var old_y = player_y;
+			var old_x = obj.map_x;
+			var old_y = obj.map_y;
 
 
 			if(obj.x + obj.w > map.w){
 				
-				player_x++;
+				obj.map_x++;
 
 				if(playerInWorld()){
 					change = true;
@@ -417,7 +398,7 @@ AkihabaraGamebox.onLoad(function () {
 
 			}else if(obj.x < 0){
 
-				player_x--;
+				obj.map_x--;
 
 				if(playerInWorld()){
 					change = true;
@@ -429,7 +410,7 @@ AkihabaraGamebox.onLoad(function () {
 
 			}else if(obj.y < 0){
 				
-				player_y--;
+				obj.map_y--;
 
 				if(playerInWorld()){
 					change = true;
@@ -440,7 +421,7 @@ AkihabaraGamebox.onLoad(function () {
 
 			}else if(obj.y + obj.h > map.h){
 				
-				player_y++;
+				obj.map_y++;
 
 				if(playerInWorld()){
 					change = true;
@@ -452,12 +433,12 @@ AkihabaraGamebox.onLoad(function () {
 
 			if(!change){
 
-				player_x = old_x;
-				player_y = old_y;
+				obj.map_x = old_x;
+				obj.map_y = old_y;
 					
 			} else {
 
-				map.map = render_map(map_buffer[player_x][player_y]);
+				map.map = render_map(map_buffer[obj.map_x][obj.map_y]);
 				map = AkihabaraTile.finalizeTilemap(map);
 				AkihabaraGamebox.createCanvas('map_canvas', { w: map.w, h: map.h });
 				AkihabaraGamebox.blitTilemap(AkihabaraGamebox.getCanvasContext('map_canvas'), map);

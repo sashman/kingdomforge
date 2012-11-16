@@ -13,6 +13,9 @@ var Player = function(game_instance, player_instance){
     x : 0,
 	y : 0,
 
+	map_x : 0,
+	map_y : 0,
+
     //colh:AkihabaraGamebox.getTiles('player_tiles').tileh,
  
     // the initialize function contains code that is run when the object is first created. In the case of the player object this only happens once, at the beginning of the game, or possibly after a player dies and respawns.
