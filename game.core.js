@@ -1,4 +1,5 @@
-/*  Copyright (c) 2012 Sven "FuzzYspo0N" Bergström
+
+/*  Copyright (c) 2012 Sven "FuzzYspo0N" BergstrÃ¶m
     
     written by : http://underscorediscovery.com
     written for : http://buildnewgames.com/real-time-multiplayer/
@@ -13,7 +14,7 @@
     // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
     // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
 
-    // requestAnimationFrame polyfill by Erik Möller
+    // requestAnimationFrame polyfill by Erik MÃ¶ller
     // fixes from Paul Irish and Tino Zijdel
 
 
@@ -363,6 +364,7 @@ game_core.prototype.process_input = function( player ) {
 
     //It's possible to have recieved multiple inputs by now,
     //so we process each one
+    var move_speed_factor = 4;
     var x_dir = 0;
     var y_dir = 0;
     var ic = player.inputs.length;
@@ -382,10 +384,10 @@ game_core.prototype.process_input = function( player ) {
                     x_dir += 1;
                 }
                 if(key == 'd') {
-                    y_dir += 1;
+                    y_dir -= 1;
                 }
                 if(key == 'u') {
-                    y_dir -= 1;
+                    y_dir += 1;
                 }
             } //for all input values
 
@@ -393,7 +395,7 @@ game_core.prototype.process_input = function( player ) {
     } //if we have inputs
 
         //we have a direction vector now, so apply the same physics as the client
-    var resulting_vector = this.physics_movement_vector_from_direction(x_dir,y_dir);
+    var resulting_vector = this.physics_movement_vector_from_direction(x_dir*move_speed_factor,y_dir*move_speed_factor);
     if(player.inputs.length) {
         //we can now clear the array since these have been processed
 
@@ -464,8 +466,8 @@ game_core.prototype.server_update_physics = function() {
     //Keep the physics position in the world
     // this.check_collision( this.players.other );
 
-    this.checkBoundary(this.players.self);
-    this.checkBoundary(this.players.other);
+    // this.checkBoundary(this.players.self);
+    // this.checkBoundary(this.players.other);
 
     this.players.self.inputs = []; //we have cleared the input buffer, so remove this
     this.players.other.inputs = []; //we have cleared the input buffer, so remove this
