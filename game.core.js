@@ -872,7 +872,13 @@ game_core.prototype.client_update_local_position = function(){
 
             //Make sure the visual position matches the states we have stored
         //this.players.self.pos = this.v_add( old_state, this.v_mul_scalar( this.v_sub(current_state,old_state), t )  );
-        this.players.self.set_pos( current_state);
+
+        /*
+
+        This where the net engine sets the local position
+
+        */
+        //this.players.self.set_pos( current_state);
         
             //We handle collision on client if predicting.
         // this.check_collision( this.players.self );
