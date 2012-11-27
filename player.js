@@ -10,8 +10,8 @@ var Player = function(game_instance, player_instance, _map){
     game : game_instance,
     
 
-    x : 0,
-	y : 0,
+    x : 20,
+	y : 20,
 
 	map_x : 0,
 	map_y : 0,

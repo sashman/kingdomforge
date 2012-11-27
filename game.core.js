@@ -123,8 +123,8 @@ var map_buffer = new Array();
             this.ghosts.server_pos_other.state = 'server_pos';
 
             this.ghosts.server_pos_self.set_pos( { x:20, y:20 });
-            this.ghosts.pos_other.set_pos( { x:500, y:200 });
-            this.ghosts.server_pos_other.set_pos( { x:500, y:200 });
+            this.ghosts.pos_other.set_pos( { x:30, y:30 });
+            this.ghosts.server_pos_other.set_pos( { x:30, y:30 });
          }
 
             //The speed at which the clients move.
@@ -364,7 +364,7 @@ game_core.prototype.process_input = function( player ) {
 
     //It's possible to have recieved multiple inputs by now,
     //so we process each one
-    var move_speed_factor = 4;
+    // var move_speed_factor = 4;
     var x_dir = 0;
     var y_dir = 0;
     var ic = player.inputs.length;
@@ -395,7 +395,7 @@ game_core.prototype.process_input = function( player ) {
     } //if we have inputs
 
         //we have a direction vector now, so apply the same physics as the client
-    var resulting_vector = this.physics_movement_vector_from_direction(x_dir*move_speed_factor,y_dir*move_speed_factor);
+    var resulting_vector = this.physics_movement_vector_from_direction(x_dir,y_dir);
     if(player.inputs.length) {
         //we can now clear the array since these have been processed
 
@@ -801,8 +801,6 @@ game_core.prototype.client_process_net_updates = function() {
 
 game_core.prototype.client_onserverupdate_recieved = function(data){
 
-
-        console.log(data.cp.x +  ", " + data.cp.y);
             //Lets clarify the information we have locally. One of the players is 'hosting' and
             //the other is a joined in client, so we name these host and client for making sure
             //the positions we get from the server are mapped onto the correct local sprites
@@ -859,6 +857,8 @@ game_core.prototype.client_onserverupdate_recieved = function(data){
 
 }; //game_core.client_onserverupdate_recieved
 
+
+var c = 0;
 game_core.prototype.client_update_local_position = function(){
 
  if(this.client_predict) {
@@ -879,7 +879,11 @@ game_core.prototype.client_update_local_position = function(){
 
         */
         //this.players.self.set_pos( current_state);
-        
+        if(c%100 == 0){
+            console.log("net engine location: " + current_state.x + " " + current_state.y);
+            console.log("aki engine location: " + this.players.self.x + " " + this.players.self.y);
+        }
+        c++;
             //We handle collision on client if predicting.
         // this.check_collision( this.players.self );
 
@@ -1087,7 +1091,7 @@ game_core.prototype.client_reset_positions = function() {
 
         //Host always spawns at the top left.
     player_host.set_pos( { x:20,y:20 });
-    player_client.set_pos( { x:500, y:200 });
+    player_client.set_pos( { x:30, y:30 });
 
         //Make sure the local player physics is updated
     this.players.self.old_state.pos = this.pos(this.players.self);
