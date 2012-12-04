@@ -413,10 +413,11 @@ game_core.prototype.process_input = function( player ) {
 
 game_core.prototype.physics_movement_vector_from_direction = function(x,y) {
 
+    var scaling = 1.5;
         //Must be fixed step, at physics sync speed.
     return {
-        x : (x * (0.5)).fixed(2),
-        y : (y * (0.5)).fixed(2)
+        x : (x * (scaling)).fixed(2),
+        y : (y * (scaling)).fixed(2)
     };
 
 }; //game_core.physics_movement_vector_from_direction
@@ -525,8 +526,13 @@ game_core.prototype.handle_server_input = function(client, input, input_time, in
 
 */
 var keys = { left: 'left', right: 'right', up: 'up', down: 'down' };
+var start = new Date().getTime();
+var total = 0;
 game_core.prototype.client_handle_input = function(){
 
+    total = new Date().getTime() - start;
+    console.log("NET KEY HANDLE " + total);
+    start = new Date().getTime();
     //if(this.lit > this.local_time) return;
     //this.lit = this.local_time+0.5; //one second delay
 
@@ -534,37 +540,39 @@ game_core.prototype.client_handle_input = function(){
         //It also sends the input information to the server immediately
         //as it is pressed. It also tags each input with a sequence number.
 
-    //console.log(AkihabaraInput);
-
     var x_dir = 0;
     var y_dir = 0;
     var input = [];
     this.client_has_input = false;
 
-    if( AkihabaraInput.keyIsPressed(keys.left) || keys.pressleft) {
-
-            x_dir = -1;
+    //if( AkihabaraInput.keyIsPressed(keys.left) || keys.pressleft) {
+    if(this.players.self.accx < 0){
+            //x_dir = -1;
+            x_dir = this.players.self.accx;
             input.push('l');
 
         } //left
 
-    if( AkihabaraInput.keyIsPressed(keys.right) || keys.pressright) {
-
-            x_dir = 1;
+    // if( AkihabaraInput.keyIsPressed(keys.right) || keys.pressright) {
+    if(this.players.self.accx > 0){
+            // x_dir = 1;
+            x_dir = this.players.self.accx;
             input.push('r');
 
         } //right
 
-    if( AkihabaraInput.keyIsPressed(keys.up) || keys.pressup) {
-
-            y_dir = 1;
+    // if( AkihabaraInput.keyIsPressed(keys.up) || keys.pressup) {
+    if(this.players.self.accy > 0){
+            // y_dir = 1;
+            y_dir = this.players.self.accy;
             input.push('d');
 
         } //down
 
-    if( AkihabaraInput.keyIsPressed(keys.down) || keys.pressdown) {
-
-            y_dir = -1;
+    // if( AkihabaraInput.keyIsPressed(keys.down) || keys.pressdown) {
+    if(this.players.self.accy < 0){
+            // y_dir = -1;
+            y_dir = this.players.self.accy;
             input.push('u');
 
         } //up
@@ -858,7 +866,7 @@ game_core.prototype.client_onserverupdate_recieved = function(data){
 }; //game_core.client_onserverupdate_recieved
 
 
-var c = 0;
+var p = 0;
 game_core.prototype.client_update_local_position = function(){
 
  if(this.client_predict) {
@@ -879,11 +887,12 @@ game_core.prototype.client_update_local_position = function(){
 
         */
         //this.players.self.set_pos( current_state);
-        if(c%100 == 0){
-            console.log("net engine location: " + current_state.x + " " + current_state.y);
-            console.log("aki engine location: " + this.players.self.x + " " + this.players.self.y);
+        if(p%100 == 0){
+            // console.log("t: " + p);
+            // console.log("net engine location: " + current_state.x + " " + current_state.y);
+            // console.log("aki engine location: " + this.players.self.x + " " + this.players.self.y);
         }
-        c++;
+        p++;
             //We handle collision on client if predicting.
         // this.check_collision( this.players.self );
 

@@ -50,11 +50,16 @@ var Player = function(game_instance, player_instance, _map){
 
     	},
  
+ 	start : new Date().getTime(),
+	total : 0,
     // the first function is like a step function. it runs every frame and does calculations. it's called first because it happens before the rendering, so we calculate new positions and actions and THEN render the object
     first: function() {
       // Toys.topview.controlKeys sets the main key controls. In this case we want to use the arrow keys which
 	  //  are mapped to their english names. Inside this function it applies acceleration values to each of these directions
 	  AkihabaraTopview.controlKeys(this, { left: 'left', right: 'right', up: 'up', down: 'down' });
+	  this.total = new Date().getTime() - this.start;
+	    console.log("AKI KEY HANDLE " + this.total);
+	    this.start = new Date().getTime();
 
 	  //set speed
 	  //AkihabaraTopview.setStaticSpeed(this, 2.5);
