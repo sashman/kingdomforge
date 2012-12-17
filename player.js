@@ -56,10 +56,10 @@ var Player = function(game_instance, player_instance, _map){
     first: function() {
       // Toys.topview.controlKeys sets the main key controls. In this case we want to use the arrow keys which
 	  //  are mapped to their english names. Inside this function it applies acceleration values to each of these directions
-	  AkihabaraTopview.controlKeys(this, { left: 'left', right: 'right', up: 'up', down: 'down' });
-	  this.total = new Date().getTime() - this.start;
-	    console.log("AKI KEY HANDLE " + this.total);
-	    this.start = new Date().getTime();
+		AkihabaraTopview.controlKeys(this, { left: 'left', right: 'right', up: 'up', down: 'down' });
+		// this.total = new Date().getTime() - this.start;
+		// console.log("AKI KEY HANDLE " + this.total);
+		// this.start = new Date().getTime();
 
 	  //set speed
 	  //AkihabaraTopview.setStaticSpeed(this, 2.5);

@@ -319,12 +319,15 @@ game_core.prototype.update = function(t) {
         this.client_update();
     } else {
         this.server_update();
+        this.updateid = window.requestAnimationFrame( this.update.bind(this), this.viewport );
     }
 
         //schedule the next update
-    this.updateid = window.requestAnimationFrame( this.update.bind(this), this.viewport );
+        //removed to be called from outide
+    // this.updateid = window.requestAnimationFrame( this.update.bind(this), this.viewport );
 
 }; //game_core.update
+
 
 
 /*
@@ -531,7 +534,7 @@ var total = 0;
 game_core.prototype.client_handle_input = function(){
 
     total = new Date().getTime() - start;
-    console.log("NET KEY HANDLE " + total);
+    // console.log("NET KEY HANDLE " + total);
     start = new Date().getTime();
     //if(this.lit > this.local_time) return;
     //this.lit = this.local_time+0.5; //one second delay
