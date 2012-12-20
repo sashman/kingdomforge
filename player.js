@@ -9,9 +9,11 @@ var Player = function(game_instance, player_instance, _map){
     instance : player_instance,
     game : game_instance,
     
+    init_x : 0,
+    init_y : 0,
 
-    x : 20,
-	y : 20,
+    x : 0,
+	y : 0,
 
 	map_x : 0,
 	map_y : 0,

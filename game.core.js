@@ -122,7 +122,7 @@ var map_buffer = new Array();
             this.ghosts.server_pos_self.state = 'server_pos';
             this.ghosts.server_pos_other.state = 'server_pos';
 
-            this.ghosts.server_pos_self.set_pos( { x:20, y:20 });
+            this.ghosts.server_pos_self.set_pos( { x:this.players.self.init_x, y:this.players.self.init_y });
             this.ghosts.pos_other.set_pos( { x:30, y:30 });
             this.ghosts.server_pos_other.set_pos( { x:30, y:30 });
          }
@@ -416,7 +416,7 @@ game_core.prototype.process_input = function( player ) {
 
 game_core.prototype.physics_movement_vector_from_direction = function(x,y) {
 
-    var scaling = 1.5;
+    var scaling = 4.0833;
         //Must be fixed step, at physics sync speed.
     return {
         x : (x * (scaling)).fixed(2),
@@ -469,6 +469,8 @@ game_core.prototype.server_update_physics = function() {
 
     //Keep the physics position in the world
     // this.check_collision( this.players.other );
+    if(this.players.self.x < 0) this.players.self.x = 0;
+    if(this.players.self.y < 0) this.players.self.y = 0;
 
     // this.checkBoundary(this.players.self);
     // this.checkBoundary(this.players.other);
@@ -877,6 +879,8 @@ game_core.prototype.client_update_local_position = function(){
             //Work out the time we have since we updated the state
         var t = (this.local_time - this.players.self.state_time) / this._pdt;
 
+
+
             //Then store the states for clarity,
         var old_state = this.players.self.old_state.pos;
         var current_state = this.players.self.cur_state.pos;
@@ -884,20 +888,27 @@ game_core.prototype.client_update_local_position = function(){
             //Make sure the visual position matches the states we have stored
         //this.players.self.pos = this.v_add( old_state, this.v_mul_scalar( this.v_sub(current_state,old_state), t )  );
 
+
+        if(this.players.self.x < 0) this.players.self.x = 0;
+        if(this.players.self.y < 0) this.players.self.y = 0;
+
         /*
 
         This where the net engine sets the local position
 
         */
         //this.players.self.set_pos( current_state);
-        if(p%100 == 0){
+        if(p%10 == 0){
             // console.log("t: " + p);
-            // console.log("net engine location: " + current_state.x + " " + current_state.y);
-            // console.log("aki engine location: " + this.players.self.x + " " + this.players.self.y);
+             //console.log("net engine location: " + current_state.x + " " + current_state.y);
+             //console.log("aki engine location: " + this.players.self.x + " " + this.players.self.y);
+             console.log(this.players.self.x + ", " + current_state.x);
         }
         p++;
             //We handle collision on client if predicting.
         // this.check_collision( this.players.self );
+        //temp col check
+
 
     }  //if(this.client_predict)
 
@@ -1102,7 +1113,7 @@ game_core.prototype.client_reset_positions = function() {
     var player_client = this.players.self.host ?  this.players.other : this.players.self;
 
         //Host always spawns at the top left.
-    player_host.set_pos( { x:20,y:20 });
+    player_host.set_pos( { x:this.players.self.init_x,y:this.players.self.init_y });
     player_client.set_pos( { x:30, y:30 });
 
         //Make sure the local player physics is updated

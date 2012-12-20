@@ -32,11 +32,11 @@ function go() {
 	
 
 	
-	AkihabaraGamebox.setGroups(['background','player','game']);
+	AkihabaraGamebox.setGroups(['background','player', 'net', 'game']);
 	// AkihabaraAudio.setAudioChannels({bgmusic:{volume:0.8},sfx:{volume:1.0}});
 
 	// player, walls, bullets and foes are under z-index layer
-	AkihabaraGamebox.setRenderOrder(["background",AkihabaraGamebox.ZINDEX_LAYER,'player','game']);
+	AkihabaraGamebox.setRenderOrder(["background",AkihabaraGamebox.ZINDEX_LAYER,'player', 'net', 'game']);
 
 	maingame=AkihabaraGamecycle.createMaingame("game","game");
 
@@ -216,12 +216,28 @@ function go() {
 		// AkihabaraGamebox.addObject(new Player());
 
 		
+
 		this.addPlayer();
 		this.addMap();
 
+		AkihabaraGamebox.addObject({
+		    id:    'net_id', // This is the object ID
+		    group: 'net',    // We use the 'backround' group we created above with our 'setGroups' call.
+		 
+			first: function() {
+				
+				netgame.update( new Date().getTime() );
+			},
+
+
+		    // The blit function is what happens during the game's draw cycle. Everything related to rendering and drawing goes here.
+		    blit: function() {
+		    }
+		  });
+
 
 		netgame = new game_core(null, AkihabaraGamebox.getObject("player", "player_id"));
-		netgame.update( new Date().getTime() );
+		
 	};
 
 	map = new Map(0,0);
