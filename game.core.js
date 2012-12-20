@@ -416,7 +416,8 @@ game_core.prototype.process_input = function( player ) {
 
 game_core.prototype.physics_movement_vector_from_direction = function(x,y) {
 
-    var scaling = 4.0833;
+    // var scaling = 4.0833;
+    var scaling = 2;
         //Must be fixed step, at physics sync speed.
     return {
         x : (x * (scaling)).fixed(2),
@@ -554,7 +555,7 @@ game_core.prototype.client_handle_input = function(){
     if(this.players.self.accx < 0){
             //x_dir = -1;
             x_dir = this.players.self.accx;
-            input.push('l');
+            for (var i = 0; i < Math.abs(x_dir); i++) input.push('l');
 
         } //left
 
@@ -562,7 +563,7 @@ game_core.prototype.client_handle_input = function(){
     if(this.players.self.accx > 0){
             // x_dir = 1;
             x_dir = this.players.self.accx;
-            input.push('r');
+            for (var i = 0; i < Math.abs(x_dir); i++) input.push('r');
 
         } //right
 
@@ -570,7 +571,7 @@ game_core.prototype.client_handle_input = function(){
     if(this.players.self.accy > 0){
             // y_dir = 1;
             y_dir = this.players.self.accy;
-            input.push('d');
+            for (var i = 0; i < Math.abs(y_dir); i++)input.push('d');
 
         } //down
 
@@ -578,8 +579,7 @@ game_core.prototype.client_handle_input = function(){
     if(this.players.self.accy < 0){
             // y_dir = -1;
             y_dir = this.players.self.accy;
-            input.push('u');
-
+            for (var i = 0; i < Math.abs(y_dir); i++) input.push('u');
         } //up
 
 
