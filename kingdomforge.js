@@ -240,7 +240,7 @@ function go() {
 		
 	};
 
-	map = new Map(0,0);
+	map = new Map(0,0, map_buffer);
 	
 
 	// Since finalizeMap has calculated the height and width, we can create a canvas that fits our map. Let's call it "map_canvas".

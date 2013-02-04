@@ -1,0 +1,52 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'c:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'nodequery' ]
+2 info using npm@1.1.65
+3 info using node@v0.8.14
+4 verbose read json c:\Users\sashman\kingdomforge\package.json
+5 warn package.json realtime-multiplayer-in-html5@1.0.0 No README.md file found!
+6 verbose read json c:\Users\sashman\kingdomforge\node_modules\express\package.json
+7 verbose read json c:\Users\sashman\kingdomforge\node_modules\jquery\package.json
+8 verbose read json c:\Users\sashman\kingdomforge\node_modules\jsdom\package.json
+9 verbose read json c:\Users\sashman\kingdomforge\node_modules\node-uuid\package.json
+10 verbose read json c:\Users\sashman\kingdomforge\node_modules\socket.io\package.json
+11 verbose from cache c:\Users\sashman\kingdomforge\package.json
+12 verbose readDependencies using package.json deps
+13 verbose cache add [ 'nodequery', null ]
+14 silly cache add name=undefined spec="nodequery" args=["nodequery",null]
+15 verbose parsed url { pathname: 'nodequery', path: 'nodequery', href: 'nodequery' }
+16 silly lockFile 8bec7194-nodequery nodequery
+17 verbose lock nodequery C:\Users\sashman\AppData\Roaming\npm-cache\8bec7194-nodequery.lock
+18 silly lockFile 8bec7194-nodequery nodequery
+19 verbose addNamed [ 'nodequery', '' ]
+20 verbose addNamed [ null, '' ]
+21 silly lockFile e4046cdf-nodequery nodequery@
+22 verbose lock nodequery@ C:\Users\sashman\AppData\Roaming\npm-cache\e4046cdf-nodequery.lock
+23 silly addNameRange { name: 'nodequery', range: '', hasData: false }
+24 verbose url raw nodequery
+25 verbose url resolving [ 'https://registry.npmjs.org/', './nodequery' ]
+26 verbose url resolved https://registry.npmjs.org/nodequery
+27 info trying registry request attempt 1 at 17:25:02
+28 http GET https://registry.npmjs.org/nodequery
+29 http 404 https://registry.npmjs.org/nodequery
+30 silly registry.get cb [ 404,
+30 silly registry.get   { server: 'CouchDB/1.2.1 (Erlang OTP/R15B)',
+30 silly registry.get     date: 'Mon, 04 Feb 2013 17:23:34 GMT',
+30 silly registry.get     'content-type': 'application/json',
+30 silly registry.get     'content-length': '52',
+30 silly registry.get     'cache-control': 'must-revalidate' } ]
+31 silly lockFile e4046cdf-nodequery nodequery@
+32 error 404 'nodequery' is not in the npm registry.
+32 error 404 You should bug the author to publish it
+32 error 404
+32 error 404 Note that you can also install from a
+32 error 404 tarball, folder, or http url, or git url.
+33 error System Windows_NT 6.1.7601
+34 error command "c:\\Program Files\\nodejs\\node.exe" "c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "nodequery"
+35 error cwd c:\Users\sashman\kingdomforge
+36 error node -v v0.8.14
+37 error npm -v 1.1.65
+38 error code E404
+39 verbose exit [ 1, true ]

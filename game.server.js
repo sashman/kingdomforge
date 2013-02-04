@@ -24,6 +24,7 @@
     require('./game.core.js');
     require('./player.js');
     require('./map.js');
+    require('./akihabara/src/tile.js');
     
 
         //A simple wrapper for logging so we can toggle it,

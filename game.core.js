@@ -18,7 +18,6 @@
     // fixes from Paul Irish and Tino Zijdel
 
 
-
 var frame_time = 60/1000; // run the local game at 16ms/ 60hz
 if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 22hz
 
@@ -50,6 +49,65 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
 //map buffer used for loading maps
 var map_buffer = new Array();
 
+function request_Map(_global_x, _global_y) {
+
+    var $ = window.jQuery;
+    var data = $.ajax({
+      url: "/get_map",
+      data: "global_x=" + _global_x + "&global_y=" + _global_y,
+      async: false
+     }).responseText;
+
+    parser = new DOMParser();   
+    //deal with incoming map data
+    var map = {
+        tiles: new Array(),
+        content: new Array()
+    }
+    
+    var xmlDoc = parser.parseFromString(data,"text/xml");
+    var root = xmlDoc.childNodes[0];
+
+    var doc_tiles = root.getElementsByTagName("tile");
+
+    var i = 0;
+    for (k in doc_tiles){
+        var doc_tile = doc_tiles[k];
+        if(doc_tile.nodeName == "tile"){ 
+            var tile_tag = doc_tile.getAttribute("tag");
+            var tile = {
+                nk: i++, //numeric key
+                //src: doc_tile.getElementsByTagName("src")[0].firstChild.nodeValue,
+                //range: doc_tile.getElementsByTagName("range")[0].firstChild.nodeValue,
+                //ext: doc_tile.getElementsByTagName("ext")[0].firstChild.nodeValue,
+                pass: doc_tile.getElementsByTagName("pass")[0].firstChild.nodeValue
+            }
+            if(tile.pass == 'false') tile.pass = true;
+            else tile.pass = false;
+            map.tiles[tile_tag] = tile;
+        }
+    }
+
+    var content =  root.getElementsByTagName("content");
+    var rows = xmlDoc.getElementsByTagName("content")[0].childNodes;
+    //load content
+    for(var i=0; i<rows.length; i++){
+        if(rows[i].firstChild)
+            map.content.push(rows[i].firstChild.nodeValue);
+    }
+
+    if(map_buffer[_global_x])
+        map_buffer[_global_x][_global_y] = map;
+    else{
+        map_buffer[_global_x] = Array();
+        map_buffer[_global_x][_global_y] = map;
+    }
+    //render_map(map);
+
+
+}
+
+
 
         //Now the main game class. This gets created on
         //both server and client. Server creates one for
@@ -58,6 +116,7 @@ var map_buffer = new Array();
     
 
 /* The game_core class */
+    
 
     var game_core = function(game_instance, player){
 
@@ -71,6 +130,8 @@ var map_buffer = new Array();
 
         if(this.server) console.log("game_core started as server");
         else console.log("game_core started as client");
+
+        
 
 
             //Used in collision etc.
@@ -91,6 +152,7 @@ var map_buffer = new Array();
                  other : new Player(this,this.instance.player_client)
 
              };
+
 
            // this.players.self.pos = {x:20,y:20};
 
@@ -126,6 +188,17 @@ var map_buffer = new Array();
             this.ghosts.pos_other.set_pos( { x:30, y:30 });
             this.ghosts.server_pos_other.set_pos( { x:30, y:30 });
          }
+
+        var max_h_maps = 8;
+        var max_w_maps = 8;
+        for(var i = 0; i < max_h_maps; i++){
+           for (var j = 0; j < max_w_maps; j++) {
+               request_Map(i,j);
+           }
+        }
+
+        this.players.self.map = new Map(this.players.self.init_x, this.players.self.init_y, map_buffer);
+        this.players.other.map = new Map(this.players.other.init_x, this.players.other.init_y, map_buffer);
 
             //The speed at which the clients move.
         // this.playerspeed = 120;
@@ -470,8 +543,10 @@ game_core.prototype.server_update_physics = function() {
 
     //Keep the physics position in the world
     // this.check_collision( this.players.other );
-    if(this.players.self.x < 0) this.players.self.x = 0;
-    if(this.players.self.y < 0) this.players.self.y = 0;
+    this.players.self.map.checkBoundary(this.players.self);
+    this.players.other.map.checkBoundary(this.players.other);
+    //if(this.players.self.x < 0) this.players.self.x = 0;
+    //if(this.players.self.y < 0) this.players.self.y = 0;
 
     // this.checkBoundary(this.players.self);
     // this.checkBoundary(this.players.other);

@@ -11,7 +11,7 @@ var Map = function(init_x, init_y){
 	 
 	  // This function have to return true if the object 'obj' is checking if the tile 't' is a wall, so...
 		tileIsSolid: function(obj, t) {
-			var player = AkihabaraGamebox.getObject("player", "player_id");
+			var player = obj;//AkihabaraGamebox.getObject("player", "player_id");
 			var cur_map;
 			if(player)
 				cur_map = map_buffer[player.map_x][player.map_y];
@@ -92,6 +92,22 @@ var Map = function(init_x, init_y){
 
 		playerInWorld : function (player){
 			return (map_buffer[player.map_x] && map_buffer[player.map_x][player.map_y])
+		},
+
+		render_map : function(map){
+			//check for ASCII representation of content
+			//alert(map.content.join("\n"));
+
+			var tra = [[null, ' ']];
+			for(k in map.tiles){
+				//alert(map.tiles[k].nk + ' ' + k);
+				var e = [map.tiles[k].nk, k];
+				tra.push(e);
+			}
+
+			var converted_map = AkihabaraTile.asciiArtToMap(map.content, tra);
+			return converted_map;
+
 		}
 
 
