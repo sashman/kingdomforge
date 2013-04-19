@@ -51,7 +51,7 @@ var map_buffer = new Array();
 
 function request_Map(_global_x, _global_y) {
 
-    var $ = window.jQuery;
+    var $ = require('jquery');
     var data = $.ajax({
       url: "/get_map",
       data: "global_x=" + _global_x + "&global_y=" + _global_y,
