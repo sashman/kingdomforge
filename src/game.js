@@ -63,89 +63,89 @@ Crafty.c('Actor', {
 });
 
 // Grass actors
-Crafty.c('Grass0', {
+Crafty.c('GRASS0', {
 	init: function() {
 		this.requires('Actor, spr_grass0');
 	},
 });
-Crafty.c('Grass1', {
+Crafty.c('GRASS1', {
 	init: function() {
 		this.requires('Actor, spr_grass1');
 	},
 });
-Crafty.c('Grass2', {
+Crafty.c('GRASS2', {
 	init: function() {
 		this.requires('Actor, spr_grass2');
 	},
 });
-Crafty.c('Grass3', {
+Crafty.c('GRASS3', {
 	init: function() {
 		this.requires('Actor, spr_grass3');
 	},
 });
 
 // Cliffs
-Crafty.c('Cliff_NE_NS', {
+Crafty.c('CLIFF_NE_NS', {
 	init: function() {
 		this.requires('Actor, Solid, spr_cliff_NE_NS');
 	},
 });
-Crafty.c('Cliff_NE_SN', {
+Crafty.c('CLIFF_NE_SN', {
 	init: function() {
 		this.requires('Actor, Solid, spr_cliff_NE_SN');
 	},
 });
-Crafty.c('Cliff_NW_NS', {
+Crafty.c('CLIFF_NW_NS', {
 	init: function() {
 		this.requires('Actor, Solid, spr_cliff_NW_NS');
 	},
 });
-Crafty.c('Cliff_NE_NS', {
+Crafty.c('CLIFF_NE_NS', {
 	init: function() {
 		this.requires('Actor, Solid, spr_cliff_NE_NS');
 	},
 });
-Crafty.c('Cliff_SE_NS', {
+Crafty.c('CLIFF_SE_NS', {
 	init: function() {
 		this.requires('Actor, Solid, spr_cliff_SE_NS');
 	},
 });
-Crafty.c('Cliff_NS_EW', {
+Crafty.c('CLIFF_NS_EW', {
 	init: function() {
 		this.requires('Actor, Solid, spr_cliff_NS_EW');
 	},
 });
-Crafty.c('Cliff_NS_WE', {
+Crafty.c('CLIFF_NS_WE', {
 	init: function() {
 		this.requires('Actor, Solid, spr_cliff_NS_WE');
 	},
 });
-Crafty.c('Cliff_NW_SN', {
+Crafty.c('CLIFF_NW_SN', {
 	init: function() {
 		this.requires('Actor, Solid, spr_cliff_NW_SN');
 	},
 });
-Crafty.c('Cliff_SE_SN', {
+Crafty.c('CLIFF_SE_SN', {
 	init: function() {
 		this.requires('Actor, Solid, spr_cliff_SE_SN');
 	},
 });
-Crafty.c('Cliff_SW_NS', {
+Crafty.c('CLIFF_SW_NS', {
 	init: function() {
 		this.requires('Actor, Solid, spr_cliff_SW_NS');
 	},
 });
-Crafty.c('Cliff_WE_NS', {
+Crafty.c('CLIFF_WE_NS', {
 	init: function() {
 		this.requires('Actor, Solid, spr_cliff_WE_NS');
 	},
 });
-Crafty.c('Cliff_WE_SN', {
+Crafty.c('CLIFF_WE_SN', {
 	init: function() {
 		this.requires('Actor, Solid, spr_cliff_WE_SN');
 	},
 });
-Crafty.c('Cliff_SW_SN', {
+Crafty.c('CLIFF_SW_SN', {
 	init: function() {
 		this.requires('Actor, Solid, spr_cliff_SW_SN');
 	},
