@@ -4,8 +4,8 @@ Game = {
 		width:  32,
 		height: 32,
 		tile: {
-			width:  16,
-			height: 16
+			width:  24,
+			height: 24
 		},
 		map: {}
 	},
@@ -351,7 +351,8 @@ Crafty.scene('Loading', function(){
 		//  to remind us that they simply cause the entity
 		//  to be drawn with a certain sprite
 		
-		Crafty.sprite(25, 'https://dl.dropboxusercontent.com/u/939544/assets/img/terrain/grass_with_cliffs.png', {
+		Crafty.sprite(25, 25, 'https://dl.dropboxusercontent.com/u/939544/assets/img/terrain/grass_with_cliffs.png', {
+			//need to double check
 			spr_cliff_NE_NS:    [0, 0],
 			spr_cliff_NE_SN:    [0, 1],
 			spr_cliff_NW_NS:    [0, 2],
