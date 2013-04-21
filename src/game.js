@@ -169,6 +169,9 @@ Crafty.c('Bush', {
 });
 */
 
+//player position
+var pp = {x:2,y:2}
+
 // This is the player-controlled character
 Crafty.c('PlayerCharacter', {
 	init: function() {
@@ -261,7 +264,7 @@ Crafty.scene('Game', function() {
 	}
 
 	//get map terrain
-	var local_map = Game.map_grid.map.submaps[0][0];
+	var local_map = Game.map_grid.map.submaps[pp.x][pp.y];
 	// Place a tree at every edge square on our grid of 16x16 tiles
 	//=========================================================
 	// GENERATE TERRAIN
@@ -271,11 +274,12 @@ Crafty.scene('Game', function() {
 			var at_edge = x == 0 || x == Game.map_grid.width - 1 || y == 0 || y == Game.map_grid.height - 1;
 
 			// Place grass everywhere, using a random sprite
-			var grass_type = Crafty.math.randomInt(0, 3);
-			Crafty.e('Grass' + grass_type).at(x, y);
+			//var grass_type = Crafty.math.randomInt(0, 3);
+			//Crafty.e('GRASS' + grass_type).at(x, y);
 
 			//TODO: use loaded terrain here
-
+			var tile = local_map["map"]["content"][y][x]["type"];
+			Crafty.e(tile).at(x, y);
 
 		}
 	}
@@ -376,8 +380,7 @@ Crafty.scene('Loading', function(){
 		//load initial maps statically
 		Game.map_grid.map = new Map();
 
-		//player position
-		var pp = {x:1,y:1}
+		//pp - player position
 
 		for(var i = pp.x-1; i < pp.x+1; i++)
 			for(var j = pp.y-1; j < pp.y+1; j++)
