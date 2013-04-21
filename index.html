@@ -2,32 +2,48 @@
 <html>
 <head>
 
-	<script type="text/javascript" src="player.js"></script>
-	<script type="text/javascript" src="map.js"></script>
+	<!--<script type="text/javascript" src="player.js"></script>
+	<script type="text/javascript" src="map.js"></script>-->
+
+
 	<script type="text/javascript" src="jquery.js"></script>
 	<script type="text/javascript" src="game.core.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<!-- <script type="text/javascript" src="game.server.js"></script> -->
 
-	<script type="text/javascript" src="akihabara/src/akihabara.js"></script>
-	<script type="text/javascript" src="akihabara/src/input.js"></script>
-	<script type="text/javascript" src="akihabara/src/audio.js"></script>
-	<script type="text/javascript" src="akihabara/src/debug.js"></script>
-	<script type="text/javascript" src="akihabara/src/trigo.js"></script>
-	<script type="text/javascript" src="akihabara/src/plugins/topview.js"></script>
-	<script type="text/javascript" src="akihabara/src/gbox.js"></script>
-	<script type="text/javascript" src="akihabara/src/iphopad.js"></script>
-	<script type="text/javascript" src="akihabara/src/toys.js"></script>
-	<script type="text/javascript" src="akihabara/src/tile.js"></script>
-	<script type="text/javascript" src="akihabara/src/helpers.js"></script>
-	<script type="text/javascript" src="akihabara/src/tools.js"></script>
-	<script type="text/javascript" src="akihabara/src/gamecycle.js"></script>
-	<script type="text/javascript" src="akihabara/src/devices.js"></script>
+	<script src="lib/crafty-min.js"></script><style type="text/css"></style>
+	<script src="src/game.js"></script>
 
-	<script type="text/javascript" src="kingdomforge.js"></script>
+	<script>
+		window.addEventListener('load', Game.start);
+	</script>
+	<style type="text/css" media="screen">
+		body {
+		  	background: black;
+		  	text-align: center;
+		  	color: #DDD;
+		  	font-family: Arial;
+		}
+
+		.controls {
+		  color: #BBB;
+		}
+
+		#cr-stage { margin: 20px auto 0; }
+
+		.bottom {
+		  font-size: 12px;
+		  color: #888;
+		  margin-top: 50px;
+		}
+
+		.bottom a {
+		  color: #AAA;
+		}
+	</style>
 	
-	<style type="text/css">BODY { -webkit-user-select:none; margin:0px}</style>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+	
 	<title>KingdomForge</title>
 </head>
 <body>
