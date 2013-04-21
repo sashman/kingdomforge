@@ -54,8 +54,8 @@
       //debug
       //console.log("map request recieved x=" + x + " y=" + y);
 
-      res.writeHead(200, {'content-type': 'text/xml'});
-      fs.readFile("data/map/"+x+"_"+y+".xml", function(err, file) {  
+      res.writeHead(200, {'content-type': 'text/json'});
+      fs.readFile("data/map/"+x+"_"+y+".map", function(err, file) {  
                 if(err) {  
                     // write an error response or nothing here  
                     return;  

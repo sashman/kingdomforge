@@ -6,7 +6,8 @@ Game = {
 		tile: {
 			width:  16,
 			height: 16
-		}
+		},
+		map: {}
 	},
 
 	// The total width of the game screen. Since our grid takes up the entire screen
@@ -259,8 +260,8 @@ Crafty.scene('Game', function() {
 		}
 	}
 
-	
-
+	//get map terrain
+	var local_map = Game.map_grid.map.submaps[0][0];
 	// Place a tree at every edge square on our grid of 16x16 tiles
 	//=========================================================
 	// GENERATE TERRAIN
@@ -371,6 +372,17 @@ Crafty.scene('Loading', function(){
 			spr_player:  [0, 0],
 		});
 		
+
+		//load initial maps statically
+		Game.map_grid.map = new Map();
+
+		//player position
+		var pp = {x:1,y:1}
+
+		for(var i = pp.x-1; i < pp.x+1; i++)
+			for(var j = pp.y-1; j < pp.y+1; j++)
+				Game.map_grid.map.load_submap(i,j);
+
 
 
 		// Draw some text for the player to see in case the file
