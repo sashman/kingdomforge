@@ -4,8 +4,8 @@ Game = {
 		width:  32,
 		height: 32,
 		tile: {
-			width:  24,
-			height: 24
+			width:  25,
+			height: 25
 		},
 		map: {}
 	},
@@ -170,7 +170,7 @@ Crafty.c('Bush', {
 */
 
 //player position
-var pp = {x:2,y:2}
+var pp = {x:1,y:1}
 
 // This is the player-controlled character
 Crafty.c('PlayerCharacter', {
@@ -265,6 +265,7 @@ Crafty.scene('Game', function() {
 
 	//get map terrain
 	var local_map = Game.map_grid.map.submaps[pp.x][pp.y];
+
 	// Place a tree at every edge square on our grid of 16x16 tiles
 	//=========================================================
 	// GENERATE TERRAIN
@@ -280,10 +281,28 @@ Crafty.scene('Game', function() {
 			//TODO: use loaded terrain here
 			var tile = local_map["map"]["content"][y][x]["type"];
 			Crafty.e(tile).at(x, y);
-
 		}
 	}
-
+	
+/*
+test
+	Crafty.e("CLIFF_NE_NS").at(0,0);
+	Crafty.e("CLIFF_NE_SN").at(0,1);
+	Crafty.e("CLIFF_NW_NS").at(0,2);
+	Crafty.e("CLIFF_SE_NS").at(0,3);
+	Crafty.e("CLIFF_NS_EW").at(1,0);
+	Crafty.e("CLIFF_NS_WE").at(1,1);
+	Crafty.e("CLIFF_NW_SN").at(1,2);
+	Crafty.e("CLIFF_SE_SN").at(1,3);
+	Crafty.e("CLIFF_SW_NS").at(2,0);
+	Crafty.e("CLIFF_WE_NS").at(2,1);
+	Crafty.e("CLIFF_WE_SN").at(2,2);
+	Crafty.e("GRASS0").at(2,3);
+	Crafty.e("CLIFF_SW_SN").at(3,0);
+	Crafty.e("GRASS1").at(3,1);
+	Crafty.e("GRASS2").at(3,2);
+	Crafty.e("GRASS3").at(3,3);
+*/
 	// Player character, placed at 5, 5 on our grid
 	this.player = Crafty.e('PlayerCharacter').at(5, 5);
 	this.occupied[this.player.at().x][this.player.at().y] = true;
@@ -353,22 +372,23 @@ Crafty.scene('Loading', function(){
 		
 		Crafty.sprite(25, 25, 'https://dl.dropboxusercontent.com/u/939544/assets/img/terrain/grass_with_cliffs.png', {
 			//need to double check
-			spr_cliff_NE_NS:    [0, 0],
-			spr_cliff_NE_SN:    [0, 1],
-			spr_cliff_NW_NS:    [0, 2],
-			spr_cliff_SE_NS:    [0, 3],
-			spr_cliff_NS_EW:    [1, 0],
-			spr_cliff_NS_WE:    [1, 1],
-			spr_cliff_NW_SN:    [1, 2],
-			spr_cliff_SE_SN:    [1, 3],
-			spr_cliff_SW_NS:    [2, 0],
-			spr_cliff_WE_NS:    [2, 1],
-			spr_cliff_WE_SN:    [2, 2],
-			spr_grass0:         [2, 3],
-			spr_cliff_SW_SN:    [3, 0],
-			spr_grass1:         [3, 1],
-			spr_grass2:         [3, 2],
-			spr_grass3:         [3, 3]
+
+			spr_cliff_NE_NS:    [0,0],
+			spr_cliff_NE_SN:    [1,0],
+			spr_cliff_NW_NS:    [2,0],
+			spr_cliff_SE_NS:    [3,0],
+			spr_cliff_NS_EW:    [0,1],
+			spr_cliff_NS_WE:    [1,1],
+			spr_cliff_NW_SN:    [2,1],
+			spr_cliff_SE_SN:    [3,1],
+			spr_cliff_SW_NS:    [0,2],
+			spr_cliff_WE_NS:    [1,2],
+			spr_cliff_WE_SN:    [2,2],
+			spr_grass0:         [3,2],
+			spr_cliff_SW_SN:    [0,3],
+			spr_grass1:         [1,3],
+			spr_grass2:         [2,3],
+			spr_grass3:         [3,3]
 		});
 		
 
