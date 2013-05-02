@@ -170,7 +170,9 @@ Crafty.c('Bush', {
 */
 
 //player position
-var pp = {x:1,y:1}
+//hardcoded initial position
+var pp = {x : 1, y : 1};
+
 
 // This is the player-controlled character
 Crafty.c('PlayerCharacter', {
@@ -206,7 +208,24 @@ Crafty.c('PlayerCharacter', {
 				this.stop();
 			}
 		});
+		this.player = new Player();
+		this.player.submap.x = 1;
+		this.player.submap.y = 1;
+		this.bind("Change", this.updatePlayer);
 	},
+
+	updatePlayer: function(pos)
+	{
+		if(typeof pos === "undefined") return;
+		pos.x = pos._x;
+		pos.y = pos._y;
+		
+		this.player.submap_pos.x = pos.x;
+		this.player.submap_pos.y = pos.y;
+		this.player.global_pos = this.player.submap_to_global(this.player.submap_pos, this.player.submap);
+
+	},
+
 
 	// Registers a stop-movement function to be called when
 	//  this entity hits an entity with the "Solid" component
@@ -402,7 +421,7 @@ Crafty.scene('Loading', function(){
 		Game.map_grid.map = new Map();
 
 		//pp - player position
-
+		
 		for(var i = pp.x-1; i < pp.x+1; i++)
 			for(var j = pp.y-1; j < pp.y+1; j++)
 				Game.map_grid.map.load_submap(i,j);

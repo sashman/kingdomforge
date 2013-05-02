@@ -1,5 +1,6 @@
 function Map(){
 
+	this.submaps = [];
 	this.load_submap = function(_global_x,_global_y)
 	{
 
@@ -24,6 +25,6 @@ function Map(){
 
 	};
 
-	this.submaps = [];
+	
 
 }
