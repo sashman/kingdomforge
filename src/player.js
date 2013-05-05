@@ -17,7 +17,7 @@ function Player(){
 		y : 0
 	};
 
-	this.submap_to_global = function(pos, submap)
+	this.submap_to_global = function(submap, pos)
 	{
 		return {
 			x : this.submap.x * this.submap_size + this.submap_pos.x,

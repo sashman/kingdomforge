@@ -171,7 +171,7 @@ Crafty.c('Bush', {
 
 //player position
 //hardcoded initial position
-var pp = {x : 1, y : 1};
+
 
 
 // This is the player-controlled character
@@ -222,7 +222,7 @@ Crafty.c('PlayerCharacter', {
 		
 		this.player.submap_pos.x = pos.x;
 		this.player.submap_pos.y = pos.y;
-		this.player.global_pos = this.player.submap_to_global(this.player.submap_pos, this.player.submap);
+		this.player.global_pos = this.player.submap_to_global(this.player.submap, this.player.submap_pos);
 
 	},
 
@@ -282,12 +282,25 @@ Crafty.scene('Game', function() {
 		}
 	}
 
-	//get map terrain
-	var local_map = Game.map_grid.map.submaps[pp.x][pp.y];
+	// Player character, placed at 5, 5 on our grid
+	this.player = Crafty.e('PlayerCharacter').at(5, 5);
+	this.occupied[this.player.at().x][this.player.at().y] = true;
+	Crafty('PlayerCharacter').z = 1;
+
+	//load surrounding maps
+	var pp = this.player.player.submap;
+	for(var i = pp.x-1; i < pp.x+1; i++)
+			for(var j = pp.y-1; j < pp.y+1; j++)
+				Game.map_grid.map.load_submap(i,j);
+
+	//get map terrain for current submap
+	//var local_map = Game.map_grid.map.submaps[pp.x][pp.y];
+	var local_map = Game.map_grid.map.submaps[this.player.player.submap.x][this.player.player.submap.y];
+	
 
 	// Place a tree at every edge square on our grid of 16x16 tiles
 	//=========================================================
-	// GENERATE TERRAIN
+	// RENDER TERRAIN
 	//=========================================================
 	for (var x = 0; x < Game.map_grid.width; x++) {
 		for (var y = 0; y < Game.map_grid.height; y++) {
@@ -300,31 +313,11 @@ Crafty.scene('Game', function() {
 			//TODO: use loaded terrain here
 			var tile = local_map["map"]["content"][y][x]["type"];
 			Crafty.e(tile).at(x, y);
+			Crafty(tile).z = 0;
 		}
 	}
 	
-/*
-test
-	Crafty.e("CLIFF_NE_NS").at(0,0);
-	Crafty.e("CLIFF_NE_SN").at(0,1);
-	Crafty.e("CLIFF_NW_NS").at(0,2);
-	Crafty.e("CLIFF_SE_NS").at(0,3);
-	Crafty.e("CLIFF_NS_EW").at(1,0);
-	Crafty.e("CLIFF_NS_WE").at(1,1);
-	Crafty.e("CLIFF_NW_SN").at(1,2);
-	Crafty.e("CLIFF_SE_SN").at(1,3);
-	Crafty.e("CLIFF_SW_NS").at(2,0);
-	Crafty.e("CLIFF_WE_NS").at(2,1);
-	Crafty.e("CLIFF_WE_SN").at(2,2);
-	Crafty.e("GRASS0").at(2,3);
-	Crafty.e("CLIFF_SW_SN").at(3,0);
-	Crafty.e("GRASS1").at(3,1);
-	Crafty.e("GRASS2").at(3,2);
-	Crafty.e("GRASS3").at(3,3);
-*/
-	// Player character, placed at 5, 5 on our grid
-	this.player = Crafty.e('PlayerCharacter').at(5, 5);
-	this.occupied[this.player.at().x][this.player.at().y] = true;
+	
 
 
 	// Show the victory screen once all villages are visisted
@@ -422,9 +415,7 @@ Crafty.scene('Loading', function(){
 
 		//pp - player position
 		
-		for(var i = pp.x-1; i < pp.x+1; i++)
-			for(var j = pp.y-1; j < pp.y+1; j++)
-				Game.map_grid.map.load_submap(i,j);
+		
 
 
 
