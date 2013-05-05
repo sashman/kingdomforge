@@ -224,6 +224,9 @@ Crafty.c('PlayerCharacter', {
 		this.player.submap_pos.y = pos.y;
 		this.player.global_pos = this.player.submap_to_global(this.player.submap, this.player.submap_pos);
 
+		//TODO change the tiles in the submap buffer, and smoothly slide the sprites
+		//if the submap changes, load the newly needed ones and unload the old
+
 	},
 
 
@@ -282,6 +285,7 @@ Crafty.scene('Game', function() {
 		}
 	}
 
+
 	// Player character, placed at 5, 5 on our grid
 	this.player = Crafty.e('PlayerCharacter').at(5, 5);
 	this.occupied[this.player.at().x][this.player.at().y] = true;
@@ -294,11 +298,13 @@ Crafty.scene('Game', function() {
 				Game.map_grid.map.load_submap(i,j);
 
 	//get map terrain for current submap
-	//var local_map = Game.map_grid.map.submaps[pp.x][pp.y];
-	var local_map = Game.map_grid.map.submaps[this.player.player.submap.x][this.player.player.submap.y];
-	
+	var local_map = Game.map_grid.map.submaps[pp.x][pp.y];
+	/*TODO
 
-	// Place a tree at every edge square on our grid of 16x16 tiles
+	Instead of loading just current submap, work out what tiles are needed for a submap buffer
+	*/
+
+	
 	//=========================================================
 	// RENDER TERRAIN
 	//=========================================================
@@ -317,9 +323,6 @@ Crafty.scene('Game', function() {
 		}
 	}
 	
-	
-
-
 	// Show the victory screen once all villages are visisted
 	this.show_victory = this.bind('VillageVisited', function() {
 		if (!Crafty('Village').length) {
