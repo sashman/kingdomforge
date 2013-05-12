@@ -1,8 +1,12 @@
 function Map(){
 
 	this.submaps = [];
+
+	this.total_submaps = { x : 0, y : 0 };
+	
 	this.load_submap = function(_global_x,_global_y)
 	{
+		//console.log("requesting " + _global_x + "," + _global_y);
 
 		var data = $.ajax({
 			url: "/get_map",

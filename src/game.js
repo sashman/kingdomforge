@@ -1,8 +1,8 @@
 Game = {
 	// This defines our grid's size and the size of each of its tiles
 	map_grid: {
-		width:  32,
-		height: 32,
+		width:  32 ,
+		height: 32 ,
 		tile: {
 			width:  25,
 			height: 25
@@ -209,12 +209,27 @@ Crafty.c('PlayerCharacter', {
 			}
 		});
 		this.player = new Player();
-		this.player.submap.x = 1;
-		this.player.submap.y = 1;
-		this.bind("Change", this.updatePlayer);
+		this.player.submap.x = 3;
+		this.player.submap.y = 3;
+		this.bind("Change", this.updatePlayerChanged);
+		this.bind("Moved", this.updatePlayerMoved);
 	},
 
-	updatePlayer: function(pos)
+	updatePlayerMoved: function(pos)
+	{
+		var vpx = this._x - (Crafty.viewport.width/2),
+			vpy = this._y - (Crafty.viewport.height/2);
+
+		if(vpx > 0 && vpx < (Game.width() - Crafty.viewport.width) ){
+			Crafty.viewport.x= -vpx;
+		}
+		if(vpy > 0 && vpy < (Game.height()- Crafty.viewport.height) ){
+			Crafty.viewport.y= -vpy;
+		}
+
+	},
+
+	updatePlayerChanged: function(pos)
 	{
 		if(typeof pos === "undefined") return;
 		pos.x = pos._x;
@@ -276,6 +291,10 @@ Crafty.c('Village', {
 // -------------
 // Runs the core gameplay loop
 Crafty.scene('Game', function() {
+
+	Crafty.viewport.init(16*32, 16*32);
+
+
 	// A 2D array to keep track of all occupied tiles
 	this.occupied = new Array(Game.map_grid.width);
 	for (var i = 0; i < Game.map_grid.width; i++) {
@@ -287,41 +306,55 @@ Crafty.scene('Game', function() {
 
 
 	// Player character, placed at 5, 5 on our grid
-	this.player = Crafty.e('PlayerCharacter').at(5, 5);
+	this.player = Crafty.e('PlayerCharacter').at(10, 20);
+	//Crafty.viewport.follow(this.player, 0, 0);
 	this.occupied[this.player.at().x][this.player.at().y] = true;
 	Crafty('PlayerCharacter').z = 1;
 
 	//load surrounding maps
 	var pp = this.player.player.submap;
-	for(var i = pp.x-1; i < pp.x+1; i++)
-			for(var j = pp.y-1; j < pp.y+1; j++)
-				Game.map_grid.map.load_submap(i,j);
+	
 
 	//get map terrain for current submap
-	var local_map = Game.map_grid.map.submaps[pp.x][pp.y];
+	//this.player.player.view_map = Game.map_grid.map.submaps[pp.x][pp.y];
+	this.player.player.set_view_map(Game.map_grid.map);
+	this.view_map = this.player.player.view_map;
+	
+
 	/*TODO
 
 	Instead of loading just current submap, work out what tiles are needed for a submap buffer
 	*/
 
-	
+	//console.log(this.view_map.length);
 	//=========================================================
 	// RENDER TERRAIN
 	//=========================================================
-	for (var x = 0; x < Game.map_grid.width; x++) {
-		for (var y = 0; y < Game.map_grid.height; y++) {
-			var at_edge = x == 0 || x == Game.map_grid.width - 1 || y == 0 || y == Game.map_grid.height - 1;
+	//for (var x = 0; x < Game.map_grid.width; x++) {
+	//	for (var y = 0; y < Game.map_grid.height; y++) {
+	//		var at_edge = x == 0 || x == Game.map_grid.width - 1 || y == 0 || y == Game.map_grid.height - 1;
+	for (var y = 0; y < this.view_map.length; y++) {
+		for (var x = 0; x < this.view_map[0].length; x++) {
 
+		
 			// Place grass everywhere, using a random sprite
 			//var grass_type = Crafty.math.randomInt(0, 3);
 			//Crafty.e('GRASS' + grass_type).at(x, y);
 
 			//TODO: use loaded terrain here
-			var tile = local_map["map"]["content"][y][x]["type"];
+			//var tile = local_map["map"]["content"][y][x]["type"];
+			//console.log("creating entity x: " + x + " y: " + y);// + " " + this.view_map[y][x]["type"]);
+			var tile = this.view_map[y][x]["type"];
 			Crafty.e(tile).at(x, y);
 			Crafty(tile).z = 0;
+
+			//debug
+			//Crafty.e('2D, DOM, Text')
+			//.attr({ x: x*32, y: y*32 })
+			//.text(x + "," + y);
 		}
 	}
+	console.log(Crafty.viewport.bounds);
 	
 	// Show the victory screen once all villages are visisted
 	this.show_victory = this.bind('VillageVisited', function() {
@@ -415,12 +448,6 @@ Crafty.scene('Loading', function(){
 
 		//load initial maps statically
 		Game.map_grid.map = new Map();
-
-		//pp - player position
-		
-		
-
-
 
 		// Draw some text for the player to see in case the file
 		//  takes a noticeable amount of time to load
