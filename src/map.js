@@ -25,7 +25,7 @@ function Map(){
 		}
 			
 		//use map_object["map"]["content"][x][y]["type"] to get tile type 
-		//alert(map_object["map"]["x"] + "," + map_object["map"]["y"]);
+
 
 	};
 
