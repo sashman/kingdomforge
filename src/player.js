@@ -56,7 +56,7 @@ function Player(){
 	this.set_view_map = function(map)
 	{
 
-		var n = 0;
+		var n = 1;
 		for(var i = this.submap.x-n; i <= this.submap.x+n; i++)
 			for(var j = this.submap.y-n; j <= this.submap.y+n; j++)
 				map.load_submap(i,j);

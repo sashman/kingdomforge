@@ -1,8 +1,8 @@
 Game = {
 	// This defines our grid's size and the size of each of its tiles
 	map_grid: {
-		width:  32 ,
-		height: 32 ,
+		width:  32 *3,
+		height: 32 *3,
 		tile: {
 			width:  25,
 			height: 25
@@ -292,7 +292,7 @@ Crafty.c('Village', {
 // Runs the core gameplay loop
 Crafty.scene('Game', function() {
 
-	Crafty.viewport.init(16*32, 16*32);
+	Crafty.viewport.init(16*Game.map_grid.tile.width, 16*Game.map_grid.tile.height);
 
 
 	// A 2D array to keep track of all occupied tiles
@@ -344,14 +344,16 @@ Crafty.scene('Game', function() {
 			//TODO: use loaded terrain here
 			//var tile = local_map["map"]["content"][y][x]["type"];
 			//console.log("creating entity x: " + x + " y: " + y);// + " " + this.view_map[y][x]["type"]);
+
 			var tile = this.view_map[y][x]["type"];
 			Crafty.e(tile).at(x, y);
 			Crafty(tile).z = 0;
 
+
 			//debug
-			//Crafty.e('2D, DOM, Text')
-			//.attr({ x: x*32, y: y*32 })
-			//.text(x + "," + y);
+			// Crafty.e('2D, DOM, Text')
+			// .attr({ x: x*Game.map_grid.tile.width, y: y*Game.map_grid.tile.height })
+			// .text(x + "," + y);
 		}
 	}
 	console.log(Crafty.viewport.bounds);
