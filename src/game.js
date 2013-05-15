@@ -409,10 +409,25 @@ Crafty.scene('Loading', function(){
 
 
 	Crafty.load(
+		//new
+		//['http://localhost:4004/img/terrain/terrain.png',
+		//old
 		['https://dl.dropboxusercontent.com/u/939544/assets/img/terrain/grass_with_cliffs.png',
 		'https://dl.dropboxusercontent.com/u/939544/assets/img/character/link.gif'
 		], function(){
 		// Once the images are loaded...
+
+		//get sprite sheet metadata
+		var spritesheet_json = $.ajax({
+			url: "/img/terrain/terrain.json",
+			data: "",
+			async: false
+			}).responseText;
+		var spritesheet_json = JSON && JSON.parse(spritesheet_json) || $.parseJSON(spritesheet_json);
+
+		//TODO: use spritesheet_json to get sprite coordinate and size
+		
+
 
 		// Define the individual sprites in the image
 		// Each one (spr_tree, etc.) becomes a component
@@ -420,9 +435,8 @@ Crafty.scene('Loading', function(){
 		//  to remind us that they simply cause the entity
 		//  to be drawn with a certain sprite
 		
+		//old sprite sheet
 		Crafty.sprite(25, 25, 'https://dl.dropboxusercontent.com/u/939544/assets/img/terrain/grass_with_cliffs.png', {
-			//need to double check
-
 			spr_cliff_NE_NS:    [0,0],
 			spr_cliff_NE_SN:    [1,0],
 			spr_cliff_NW_NS:    [2,0],
@@ -448,7 +462,7 @@ Crafty.scene('Loading', function(){
 		});
 		
 
-		//load initial maps statically
+		//load initial map
 		Game.map_grid.map = new Map();
 
 		// Draw some text for the player to see in case the file

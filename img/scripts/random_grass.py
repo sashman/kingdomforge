@@ -1,13 +1,15 @@
 import sys, os, re, PIL, Image, ImageDraw, random
 
+#check for size
 if(len(sys.argv) < 2):
     print "Usage " + str(sys.argv[0]) + " <size>"
     sys.exit(0)
 
+#get number of grass files already present
 files = os.listdir(".")
 grass_count = len([f for f in files if(re.match("^grass.*\.png", f))])
 
-
+#add unique number
 image_file = "grass"+str(grass_count)+".png"
 height = int(sys.argv[1])
 width = int(sys.argv[1])
