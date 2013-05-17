@@ -2,7 +2,7 @@
 
 {
 	"filename": "CLIFF_NE_SN.png",
-	"frame": {"x":545,"y":113,"w":16,"h":16},
+	"frame": {"x":577,"y":65,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -10,23 +10,23 @@
 },
 {
 	"filename": "CLIFF_NS_EW.png",
-	"frame": {"x":513,"y":57,"w":16,"h":56},
+	"frame": {"x":513,"y":81,"w":16,"h":48},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":56},
-	"sourceSize": {"w":16,"h":56}
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
+	"sourceSize": {"w":16,"h":48}
 },
 {
 	"filename": "CLIFF_NS_WE.png",
-	"frame": {"x":569,"y":1,"w":16,"h":56},
+	"frame": {"x":513,"y":33,"w":16,"h":48},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":56},
-	"sourceSize": {"w":16,"h":56}
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
+	"sourceSize": {"w":16,"h":48}
 },
 {
 	"filename": "CLIFF_NW_SN.png",
-	"frame": {"x":545,"y":97,"w":16,"h":16},
+	"frame": {"x":561,"y":65,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -34,7 +34,7 @@
 },
 {
 	"filename": "CLIFF_SE_NS.png",
-	"frame": {"x":529,"y":113,"w":16,"h":16},
+	"frame": {"x":545,"y":113,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -42,7 +42,7 @@
 },
 {
 	"filename": "CLIFF_SE_SN.png",
-	"frame": {"x":529,"y":97,"w":16,"h":16},
+	"frame": {"x":545,"y":97,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -50,7 +50,7 @@
 },
 {
 	"filename": "CLIFF_SW_NS.png",
-	"frame": {"x":513,"y":33,"w":16,"h":16},
+	"frame": {"x":529,"y":113,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -58,7 +58,7 @@
 },
 {
 	"filename": "CLIFF_SW_SN.png",
-	"frame": {"x":513,"y":113,"w":16,"h":16},
+	"frame": {"x":529,"y":97,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -66,19 +66,19 @@
 },
 {
 	"filename": "CLIFF_WE_NS.png",
-	"frame": {"x":513,"y":17,"w":56,"h":16},
+	"frame": {"x":513,"y":17,"w":48,"h":16},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":56,"h":16},
-	"sourceSize": {"w":56,"h":16}
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":16},
+	"sourceSize": {"w":48,"h":16}
 },
 {
 	"filename": "CLIFF_WE_SN.png",
-	"frame": {"x":513,"y":1,"w":56,"h":16},
+	"frame": {"x":513,"y":1,"w":48,"h":16},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":56,"h":16},
-	"sourceSize": {"w":56,"h":16}
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":16},
+	"sourceSize": {"w":48,"h":16}
 },
 {
 	"filename": "GRASS0.png",
@@ -114,14 +114,6 @@
 },
 {
 	"filename": "SMALL_GRASS0.png",
-	"frame": {"x":561,"y":89,"w":32,"h":32},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
-	"sourceSize": {"w":32,"h":32}
-},
-{
-	"filename": "SMALL_GRASS1.png",
 	"frame": {"x":529,"y":65,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
@@ -129,8 +121,16 @@
 	"sourceSize": {"w":32,"h":32}
 },
 {
+	"filename": "SMALL_GRASS1.png",
+	"frame": {"x":561,"y":33,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32}
+},
+{
 	"filename": "SMALL_GRASS2.png",
-	"frame": {"x":561,"y":57,"w":32,"h":32},
+	"frame": {"x":529,"y":33,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -138,7 +138,7 @@
 },
 {
 	"filename": "SMALL_GRASS3.png",
-	"frame": {"x":529,"y":33,"w":32,"h":32},
+	"frame": {"x":561,"y":1,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -151,6 +151,6 @@
 	"format": "RGBA8888",
 	"size": {"w":594,"h":130},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:38b89927fa5255172a53631a492c354f$"
+	"smartupdate": "$TexturePacker:SmartUpdate:125f078bfa2c837ed97df6a2108e6cf2$"
 }
 }
