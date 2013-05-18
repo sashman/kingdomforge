@@ -69,10 +69,10 @@
 		{ "type": "GRASS3", "x": 47, "y": 369, "xoffset": 0, "yoffset": 0 },
 		{ "type": "GRASS0", "x": 51, "y": 369, "xoffset": 0, "yoffset": 0 },
 		{ "type": "GRASS2", "x": 55, "y": 369, "xoffset": 0, "yoffset": 0 },
-		{ "type": "GRASS3", "x": 59, "y": 369, "xoffset": 0, "yoffset": 0 },
+		{ "type": "GRASS3", "x": 59, "y": 369, "xoffset": 0, "yoffset": 0 }
 	],
 
-	"background": 
+	"detail": 
 	[
 		{ "type": "CLIFF_SE_SN", "x": 32, "y": 341, "xoffset": 8, "yoffset": 8 },
 		{ "type": "CLIFF_WE_SN", "x": 33, "y": 341, "xoffset": -8, "yoffset": 8 },
@@ -208,7 +208,8 @@
 		{ "type": "CLIFF_SE_NS", "x": 49, "y": 372, "xoffset": 8, "yoffset": 8 },
 		{ "type": "CLIFF_WE_NS", "x": 50, "y": 372, "xoffset": -8, "yoffset": 8 },
 		{ "type": "CLIFF_SW_NS", "x": 51, "y": 372, "xoffset": 8, "yoffset": 8 },
-		{ "type": "CLIFF_NS_WE", "x": 56, "y": 372, "xoffset": 8, "yoffset": -8 },
+		{ "type": "CLIFF_NS_WE", "x": 56, "y": 372, "xoffset": 8, "yoffset": -8 }
 	]
+}
 }
 }

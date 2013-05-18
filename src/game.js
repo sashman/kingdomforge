@@ -1,11 +1,11 @@
 Game = {
 	// This defines our grid's size and the size of each of its tiles
 	map_grid: {
-		width:  32 *3,
-		height: 32 *3,
+		width:  32,
+		height: 32,
 		tile: {
-			width:  25,
-			height: 25
+			width:  128,
+			height: 128
 		},
 		map: {}
 	},
@@ -65,89 +65,111 @@ Crafty.c('Actor', {
 // Grass actors
 Crafty.c('GRASS0', {
 	init: function() {
-		this.requires('Actor, spr_grass0');
+		this.requires('Actor, spr_GRASS0');
 	},
 });
 Crafty.c('GRASS1', {
 	init: function() {
-		this.requires('Actor, spr_grass1');
+		this.requires('Actor, spr_GRASS1');
 	},
 });
 Crafty.c('GRASS2', {
 	init: function() {
-		this.requires('Actor, spr_grass2');
+		this.requires('Actor, spr_GRASS2');
 	},
 });
 Crafty.c('GRASS3', {
 	init: function() {
-		this.requires('Actor, spr_grass3');
+		this.requires('Actor, spr_GRASS3');
+	},
+});
+
+// Grass actors
+Crafty.c('SMALL_GRASS0', {
+	init: function() {
+		this.requires('Actor, spr_SMALL_GRASS0');
+	},
+});
+Crafty.c('SMALL_GRASS1', {
+	init: function() {
+		this.requires('Actor, spr_SMALL_GRASS1');
+	},
+});
+Crafty.c('SMALL_GRASS2', {
+	init: function() {
+		this.requires('Actor, spr_SMALL_GRASS2');
+	},
+});
+Crafty.c('SMALL_GRASS3', {
+	init: function() {
+		this.requires('Actor, spr_SMALL_GRASS3');
 	},
 });
 
 // Cliffs
 Crafty.c('CLIFF_NE_NS', {
 	init: function() {
-		this.requires('Actor, Solid, spr_cliff_NE_NS');
+		this.requires('Actor, Solid, spr_CLIFF_NE_NS');
 	},
 });
 Crafty.c('CLIFF_NE_SN', {
 	init: function() {
-		this.requires('Actor, Solid, spr_cliff_NE_SN');
+		this.requires('Actor, Solid, spr_CLIFF_NE_SN');
 	},
 });
 Crafty.c('CLIFF_NW_NS', {
 	init: function() {
-		this.requires('Actor, Solid, spr_cliff_NW_NS');
+		this.requires('Actor, Solid, spr_CLIFF_NW_NS');
 	},
 });
 Crafty.c('CLIFF_NE_NS', {
 	init: function() {
-		this.requires('Actor, Solid, spr_cliff_NE_NS');
+		this.requires('Actor, Solid, spr_CLIFF_NE_NS');
 	},
 });
 Crafty.c('CLIFF_SE_NS', {
 	init: function() {
-		this.requires('Actor, Solid, spr_cliff_SE_NS');
+		this.requires('Actor, Solid, spr_CLIFF_SE_NS');
 	},
 });
 Crafty.c('CLIFF_NS_EW', {
 	init: function() {
-		this.requires('Actor, Solid, spr_cliff_NS_EW');
+		this.requires('Actor, Solid, spr_CLIFF_NS_EW');
 	},
 });
 Crafty.c('CLIFF_NS_WE', {
 	init: function() {
-		this.requires('Actor, Solid, spr_cliff_NS_WE');
+		this.requires('Actor, Solid, spr_CLIFF_NS_WE');
 	},
 });
 Crafty.c('CLIFF_NW_SN', {
 	init: function() {
-		this.requires('Actor, Solid, spr_cliff_NW_SN');
+		this.requires('Actor, Solid, spr_CLIFF_NW_SN');
 	},
 });
 Crafty.c('CLIFF_SE_SN', {
 	init: function() {
-		this.requires('Actor, Solid, spr_cliff_SE_SN');
+		this.requires('Actor, Solid, spr_CLIFF_SE_SN');
 	},
 });
 Crafty.c('CLIFF_SW_NS', {
 	init: function() {
-		this.requires('Actor, Solid, spr_cliff_SW_NS');
+		this.requires('Actor, Solid, spr_CLIFF_SW_NS');
 	},
 });
 Crafty.c('CLIFF_WE_NS', {
 	init: function() {
-		this.requires('Actor, Solid, spr_cliff_WE_NS');
+		this.requires('Actor, Solid, spr_CLIFF_WE_NS');
 	},
 });
 Crafty.c('CLIFF_WE_SN', {
 	init: function() {
-		this.requires('Actor, Solid, spr_cliff_WE_SN');
+		this.requires('Actor, Solid, spr_CLIFF_WE_SN');
 	},
 });
 Crafty.c('CLIFF_SW_SN', {
 	init: function() {
-		this.requires('Actor, Solid, spr_cliff_SW_SN');
+		this.requires('Actor, Solid, spr_CLIFF_SW_SN');
 	},
 });
 
@@ -316,7 +338,7 @@ Crafty.scene('Game', function() {
 	
 
 	//get map terrain for current submap
-	//this.player.player.view_map = Game.map_grid.map.submaps[pp.x][pp.y];
+	
 	this.player.player.set_view_map(Game.map_grid.map);
 	this.view_map = this.player.player.view_map;
 	
@@ -333,19 +355,17 @@ Crafty.scene('Game', function() {
 	//for (var x = 0; x < Game.map_grid.width; x++) {
 	//	for (var y = 0; y < Game.map_grid.height; y++) {
 	//		var at_edge = x == 0 || x == Game.map_grid.width - 1 || y == 0 || y == Game.map_grid.height - 1;
-	for (var y = 0; y < this.view_map.length; y++) {
-		for (var x = 0; x < this.view_map[0].length; x++) {
+	//for (var y = 0; y < this.view_map.length; y++) {
+	//	for (var x = 0; x < this.view_map[0].length; x++) {
 
-		
-			// Place grass everywhere, using a random sprite
-			//var grass_type = Crafty.math.randomInt(0, 3);
-			//Crafty.e('GRASS' + grass_type).at(x, y);
+	//render background terrain
+	for (var i = 0; i < this.view_map["background"].length; i++) {
 
-			//TODO: use loaded terrain here
-			//var tile = local_map["map"]["content"][y][x]["type"];
-			//console.log("creating entity x: " + x + " y: " + y);// + " " + this.view_map[y][x]["type"]);
+			
+			// use loaded terrain here
 
-			var tile = this.view_map[y][x]["type"];
+			var tile  = "CLIFF_WE_SN";
+			//var tile = this.view_map[y][x]["type"];
 			Crafty.e(tile).at(x, y);
 			Crafty(tile).z = 0;
 
@@ -354,7 +374,7 @@ Crafty.scene('Game', function() {
 			// Crafty.e('2D, DOM, Text')
 			// .attr({ x: x*Game.map_grid.tile.width, y: y*Game.map_grid.tile.height })
 			// .text(x + "," + y);
-		}
+	//	}
 	}
 	console.log(Crafty.viewport.bounds);
 	
@@ -425,8 +445,19 @@ Crafty.scene('Loading', function(){
 			}).responseText;
 		var spritesheet_json = JSON && JSON.parse(spritesheet_json) || $.parseJSON(spritesheet_json);
 
-		//TODO: use spritesheet_json to get sprite coordinate and size
-		
+		//use spritesheet_json to get sprite coordinate and size
+		var spr_map = {}
+		var frames = spritesheet_json["frames"];
+		for (var i = 0; i < frames.length; i ++) {
+			//create new sprite entity with filename - extension and + "spr_" at the start
+			var spr = "spr_"+frames[i]["filename"].slice(0,-4);
+			spr_map[spr] = [];
+			spr_map[spr][0] = frames[i]["frame"]["x"];
+			spr_map[spr][1] = frames[i]["frame"]["y"];
+			spr_map[spr][2] = frames[i]["frame"]["w"];
+			spr_map[spr][3] = frames[i]["frame"]["h"];
+		}
+		Crafty.sprite('http://localhost:4004/img/terrain/terrain.png', spr_map);
 
 
 		// Define the individual sprites in the image
@@ -436,6 +467,7 @@ Crafty.scene('Loading', function(){
 		//  to be drawn with a certain sprite
 		
 		//old sprite sheet
+		/*
 		Crafty.sprite(25, 25, 'https://dl.dropboxusercontent.com/u/939544/assets/img/terrain/grass_with_cliffs.png', {
 			spr_cliff_NE_NS:    [0,0],
 			spr_cliff_NE_SN:    [1,0],
@@ -454,6 +486,7 @@ Crafty.scene('Loading', function(){
 			spr_grass2:         [2,3],
 			spr_grass3:         [3,3]
 		});
+		*/
 		
 
 		
