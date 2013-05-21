@@ -1,11 +1,11 @@
 Game = {
 	// This defines our grid's size and the size of each of its tiles
 	map_grid: {
-		width:  32,
-		height: 32,
+		width:  32 *3,
+		height: 32 *3,
 		tile: {
-			width:  128,
-			height: 128
+			width:  32,
+			height: 32
 		},
 		map: {}
 	},
@@ -62,6 +62,7 @@ Crafty.c('Actor', {
 	},
 });
 
+/*
 // Grass actors
 Crafty.c('GRASS0', {
 	init: function() {
@@ -329,9 +330,9 @@ Crafty.scene('Game', function() {
 
 	// Player character, placed at 5, 5 on our grid
 	this.player = Crafty.e('PlayerCharacter').at(10, 20);
-	//Crafty.viewport.follow(this.player, 0, 0);
+	Crafty.viewport.centerOn(this.player, 60);
 	this.occupied[this.player.at().x][this.player.at().y] = true;
-	Crafty('PlayerCharacter').z = 1;
+	this.player.z = 2;
 
 	//load surrounding maps
 	var pp = this.player.player.submap;
@@ -358,25 +359,40 @@ Crafty.scene('Game', function() {
 	//for (var y = 0; y < this.view_map.length; y++) {
 	//	for (var x = 0; x < this.view_map[0].length; x++) {
 
+
 	//render background terrain
 	for (var i = 0; i < this.view_map["background"].length; i++) {
 
+			var tile_object = this.view_map["background"][i];
 			
-			// use loaded terrain here
+			//console.log(tile_object);
 
-			var tile  = "CLIFF_WE_SN";
-			//var tile = this.view_map[y][x]["type"];
-			Crafty.e(tile).at(x, y);
-			Crafty(tile).z = 0;
-
-
+			//var tile  = "CLIFF_WE_SN";
+			var tile = tile_object["type"];
+			var tile_ent = Crafty.e("Actor", "spr_"+tile);
+			tile_ent.at(tile_object["x"] - this.view_map["xoffset"], tile_object["y"] - this.view_map["yoffset"]);
+			tile_ent.z = 0;
 			//debug
 			// Crafty.e('2D, DOM, Text')
 			// .attr({ x: x*Game.map_grid.tile.width, y: y*Game.map_grid.tile.height })
 			// .text(x + "," + y);
-	//	}
 	}
-	console.log(Crafty.viewport.bounds);
+
+	//render background terrain
+	for (var i = 0; i < this.view_map["detail"].length; i++) {
+		var tile_object = this.view_map["detail"][i];
+
+		//console.log(tile_object);
+
+		var tile = tile_object["type"];
+		var tile_ent = Crafty.e("Actor", "Solid", "spr_"+tile);
+		tile_ent.at(tile_object["x"] - this.view_map["xoffset"], tile_object["y"] - this.view_map["yoffset"]);
+		//Crafty(tile).attr({ x: + tile_object["xoffset"]
+		tile_ent.shift(tile_object["xoffset"], tile_object["yoffset"]);
+		tile_ent.z = 1;
+	}
+
+	
 	
 	// Show the victory screen once all villages are visisted
 	this.show_victory = this.bind('VillageVisited', function() {
@@ -446,11 +462,13 @@ Crafty.scene('Loading', function(){
 		var spritesheet_json = JSON && JSON.parse(spritesheet_json) || $.parseJSON(spritesheet_json);
 
 		//use spritesheet_json to get sprite coordinate and size
+		
 		var spr_map = {}
-		var frames = spritesheet_json["frames"];
-		for (var i = 0; i < frames.length; i ++) {
+		var frames = spritesheet_json.frames;
+
+		for (var i in frames) {
 			//create new sprite entity with filename - extension and + "spr_" at the start
-			var spr = "spr_"+frames[i]["filename"].slice(0,-4);
+			var spr = "spr_"+i.slice(0,-4);
 			spr_map[spr] = [];
 			spr_map[spr][0] = frames[i]["frame"]["x"];
 			spr_map[spr][1] = frames[i]["frame"]["y"];

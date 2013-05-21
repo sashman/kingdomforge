@@ -3,7 +3,7 @@ function Player(){
 	this.submap_size = 32;
 
 	//surrounding buffer
-	this.view_map = { "background" : [], "detail" : []};
+	this.view_map = { "xoffset" : 0, "xoffset" : 0,  "background" : [], "detail" : [] };
 
 	//relative to teh visible view port
 	this.view_relative_pos = {
@@ -68,13 +68,19 @@ function Player(){
 
 
 				//add backgrounds
-				this.view_map["background"].concat(smap["background"]);
+				this.view_map["background"] = this.view_map["background"].concat(smap["background"]);
 				//add detail
-				this.view_map["detail"].concat(smap["detail"]);
+				this.view_map["detail"] = this.view_map["detail"].concat(smap["detail"]);
 
 				
 			}
 		}
+
+		this.view_map["xoffset"] = this.view_map["background"][0]["x"];
+		this.view_map["yoffset"] = this.view_map["background"][0]["y"];
+
+
+
 
 	}
 
