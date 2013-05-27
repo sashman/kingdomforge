@@ -340,6 +340,7 @@ Crafty.scene('Game', function() {
 
 	//get map terrain for current submap
 	
+	var start = new Date().getTime();
 	this.player.player.set_view_map(Game.map_grid.map);
 	this.view_map = this.player.player.view_map;
 	
@@ -392,7 +393,9 @@ Crafty.scene('Game', function() {
 		tile_ent.z = 1;
 	}
 
-	
+	var end = new Date().getTime();
+	var time = end - start;
+	console.log(this.view_map["background"].length + " + " + this.view_map["detail"].length + " map tiles loaded in " + time + "ms");
 	
 	// Show the victory screen once all villages are visisted
 	this.show_victory = this.bind('VillageVisited', function() {
