@@ -1,6 +1,10 @@
 kingdomforge
 ============
 
+Prerequisites:
+* node.js
+* Python2.7
+
 Running:
 
 If needed:
