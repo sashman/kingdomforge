@@ -21,7 +21,7 @@
     global.window = global.document = global;
 
         //Import shared game library code.
-    //require('./game.core.js');
+    require('./game.core.js');
     
     //require('./map.js');
     
