@@ -309,7 +309,7 @@ Crafty.scene('Victory', function() {
 
 
 //temp network module
-var game = {};
+var net_game = {};
 
 
 // Loading scene
@@ -401,7 +401,8 @@ Crafty.scene('Loading', function(){
 		/*
 		Initiate network code here
 		*/
-		game = new game_core();
+		net_game = new networking();
+		net_game.connect_to_server();
 
 		// Draw some text for the player to see in case the file
 		//  takes a noticeable amount of time to load

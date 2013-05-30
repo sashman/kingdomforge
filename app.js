@@ -30,11 +30,12 @@
 //and will serve any file the user requests from the root of your web server (where you launch the script from)
 //so keep this in mind - this is not a production script but a development teaching tool.
 
-        //Tell the server to listen for incoming connections
-    app.listen( gameport );
+    ////Tell the server to listen for incoming connections
+    //app.listen( gameport );
 
-        //Log something so we know that it succeeded.
-    console.log('\t :: Express :: Listening on port ' + gameport );
+    var server = http.createServer(app).listen(gameport, function(){
+        console.log('\t :: Express :: Listening on port ' + gameport );
+    });
 
         //By default, we forward the / path to index.html automatically.
     app.get( '/', function( req, res ){
@@ -89,7 +90,7 @@
 //This way, when the client requests '/socket.io/' files, socket.io determines what the client needs.
         
         //Create a socket.io instance using our express server
-    var sio = io.listen(http.createServer(app));
+    var sio = io.listen(server);
 
         //Configure the socket.io connection settings.
         //See http://socket.io/
