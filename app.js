@@ -21,7 +21,7 @@
      	url 			= require('url'),
 
         verbose         = false,
-        app             = express.createServer();
+        app             = express();
 
 /* Express server set up. */
 
@@ -89,7 +89,7 @@
 //This way, when the client requests '/socket.io/' files, socket.io determines what the client needs.
         
         //Create a socket.io instance using our express server
-    var sio = io.listen(app);
+    var sio = io.listen(http.createServer(app));
 
         //Configure the socket.io connection settings.
         //See http://socket.io/

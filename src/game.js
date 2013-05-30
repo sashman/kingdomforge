@@ -186,8 +186,11 @@ Crafty.c('Village', {
 // Runs the core gameplay loop
 Crafty.scene('Game', function() {
 
-	Crafty.viewport.init(16*Game.map_grid.tile.width, 16*Game.map_grid.tile.height);
+	
 
+
+
+	Crafty.viewport.init(16*Game.map_grid.tile.width, 16*Game.map_grid.tile.height);
 
 	// A 2D array to keep track of all occupied tiles
 	this.occupied = new Array(Game.map_grid.width);
@@ -304,6 +307,11 @@ Crafty.scene('Victory', function() {
 	this.unbind('KeyDown', this.restart_game);
 });
 
+
+//temp network module
+var game = {};
+
+
 // Loading scene
 // -------------
 // Handles the loading of binary assets such as images and audio files
@@ -389,6 +397,11 @@ Crafty.scene('Loading', function(){
 
 		//load initial map
 		Game.map_grid.map = new Map();
+
+		/*
+		Initiate network code here
+		*/
+		game = new game_core();
 
 		// Draw some text for the player to see in case the file
 		//  takes a noticeable amount of time to load
