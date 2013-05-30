@@ -124,6 +124,11 @@
             //Keep track
         this.game_count++;
 
+
+        /*
+        ======
+            start
+
             //Create a new game core instance, this actually runs the
             //game code like collisions and such.
         thegame.gamecore = new game_core( thegame, null );
@@ -139,6 +144,7 @@
         player.hosting = true;
         
         this.log('player ' + player.userid + ' created a game with id ' + player.game.id);
+        */
 
             //return it
         return thegame;
