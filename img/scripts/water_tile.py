@@ -1,5 +1,5 @@
 '''
-gnerate_water_tile.py
+water_tile.py
 
 Module contains methods used to generate a water tile image by calculating a
 voronoi diagram and colouring each cell of the voronoi diagram a different shade
