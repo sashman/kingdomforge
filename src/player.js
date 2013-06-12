@@ -1,5 +1,23 @@
 function Player(){
 
+	//========================
+	// Properties related networking
+	//========================	
+	this.id = "1";
+
+	//These are used in moving us around later
+    this.old_state = {};
+    this.cur_state = {};
+    this.state_time = new Date().getTime()
+
+
+    //Our local history of inputs
+    this.inputs = [];
+
+
+	//========================
+	// Properties related to the world
+	//========================
 	this.submap_size = 32;
 
 	//surrounding buffer

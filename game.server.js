@@ -138,13 +138,16 @@
             //tell the player that they are now the host
             //s=server message, h=you are hosting
 
-        player.send('s.h.'+ String(thegame.gamecore.local_time).replace('.','-'));
-        console.log('server host at  ' + thegame.gamecore.local_time);
-        player.game = thegame;
+        */
+        //var original_time = thegame.gamecore.local_time;
+
+        player.send('s.h.'+ String(new Date().getTime()).replace('.','-'));
+        console.log('server host at  ' + new Date().getTime());
+        //player.game = thegame;
         player.hosting = true;
         
-        this.log('player ' + player.userid + ' created a game with id ' + player.game.id);
-        */
+        this.log('player ' + player.userid + ' created a game with id ' + thegame.id);
+        
 
             //return it
         return thegame;
@@ -210,9 +213,13 @@
 
             //now we tell both that the game is ready to start
             //clients will reset their positions in this case.
+
+        game.player_client.send('s.r.'+ String(new Date().getTime()).replace('.','-'));
+        game.player_host.send('s.r.'+ String(new Date().getTime()).replace('.','-'));
+            /*
         game.player_client.send('s.r.'+ String(game.gamecore.local_time).replace('.','-'));
         game.player_host.send('s.r.'+ String(game.gamecore.local_time).replace('.','-'));
- 
+        */
             //set this flag, so that the update loop can run it.
         game.active = true;
 
