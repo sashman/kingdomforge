@@ -90,7 +90,6 @@ Crafty.c('PlayerCharacter', {
 		// Watch for a change of direction and switch animations accordingly
 		var animation_speed = 4;
 		this.bind('NewDirection', function(data) {
-			this.stop();
 			if (data.x > 0) {
 				this.animate('PlayerMovingRight', animation_speed, -1);
 			} else if (data.x < 0) {
@@ -99,6 +98,8 @@ Crafty.c('PlayerCharacter', {
 				this.animate('PlayerMovingDown', animation_speed, -1);
 			} else if (data.y < 0) {
 				this.animate('PlayerMovingUp', animation_speed, -1);
+			} else {
+				this.stop();
 			}
 		});
 		this.player = new Player();
@@ -400,8 +401,8 @@ Crafty.scene('Loading', function(){
 		/*
 		Initiate network code here
 		*/
-		//net_game = new networking();
-		//net_game.connect_to_server();
+		net_game = new networking();
+		net_game.connect_to_server();
 
 		// Draw some text for the player to see in case the file
 		//  takes a noticeable amount of time to load
