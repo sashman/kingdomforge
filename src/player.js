@@ -12,12 +12,15 @@ function Player(){
 
 
     //Our local history of inputs
+    this.key_inputs = [];
     this.inputs = [];
 
 
 	//========================
 	// Properties related to the world
 	//========================
+	this.playerspeed = 1;
+
 	this.submap_size = 32;
 
 	//surrounding buffer

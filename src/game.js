@@ -107,10 +107,12 @@ Crafty.c('PlayerCharacter', {
 		this.player.submap.y = 3;
 		this.bind("Change", this.updatePlayerChanged);
 		this.bind("Moved", this.updatePlayerMoved);
+		this.bind("KeyDown", this.updatePlayerKeyDown);
 	},
 
 	updatePlayerMoved: function(pos)
 	{
+		console.log(pos);
 		var vpx = this._x - (Crafty.viewport.width/2),
 			vpy = this._y - (Crafty.viewport.height/2);
 
@@ -126,6 +128,8 @@ Crafty.c('PlayerCharacter', {
 	updatePlayerChanged: function(pos)
 	{
 		if(typeof pos === "undefined") return;
+
+
 		pos.x = pos._x;
 		pos.y = pos._y;
 		
@@ -135,8 +139,29 @@ Crafty.c('PlayerCharacter', {
 
 		//TODO change the tiles in the submap buffer, and smoothly slide the sprites
 		//if the submap changes, load the newly needed ones and unload the old
-
 	},
+
+	//store key presses
+	updatePlayerKeyDown: function(e)
+	{
+		if(e.key == Crafty.keys['LEFT_ARROW']) {
+
+	 	   this.key_inputs.push("l");
+
+	    } else if (e.key == Crafty.keys['RIGHT_ARROW']) {
+
+	    	this.key_inputs.push("r");
+
+	    } else if (e.key == Crafty.keys['UP_ARROW']) {
+
+	    	this.key_inputs.push("u");
+
+	    } else if (e.key == Crafty.keys['DOWN_ARROW']) {
+
+	    	this.key_inputs.push("d");
+
+	    }
+	}
 
 
 	// Registers a stop-movement function to be called when
@@ -401,8 +426,8 @@ Crafty.scene('Loading', function(){
 		/*
 		Initiate network code here
 		*/
-		net_game = new networking();
-		net_game.connect_to_server();
+		//net_game = new networking();
+		//net_game.connect_to_server();
 
 		// Draw some text for the player to see in case the file
 		//  takes a noticeable amount of time to load

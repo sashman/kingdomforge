@@ -18,13 +18,16 @@ var networking = function(player){
     this._dt = new Date().getTime();    //The local timer delta
     this._dte = new Date().getTime();   //The local timer last frame time
 
+
+    this.create_physics_simulation();
+
     this.server_updates = [];
 
     //Connect to the socket.io server!
     //this.client_connect_to_server();
 
     //We start pinging the server to determine latency
-    this.create_ping_timer();         
+    this.create_ping_timer();
 
 }
 
@@ -204,6 +207,16 @@ networking.prototype.create_ping_timer = function() {
     
 }; //game_core.client_create_ping_timer
 
+networking.prototype.create_physics_simulation = function() {
+
+    setInterval(function(){
+        this._pdt = (new Date().getTime() - this._pdte)/1000.0;
+        this._pdte = new Date().getTime();
+        this.update_physics();
+    }.bind(this), 15);
+
+}; //game_core.client_create_physics_simulation
+
 
 /* ==============================================
 * 
@@ -233,11 +246,50 @@ networking.prototype.update = function(t) {
 
 }; //game_core.update
 
+networking.prototype.handle_input = function() {
 
-game_core.prototype.client_update = function() {
+    var x_dir = 0;
+    var y_dir = 0;
+    var input = this.theplayer.inputs;
+
+    if(input.length)
+    {
+
+        this.input_seq += 1;
+
+            //Store the input state as a snapshot of what happened.
+        this.theplayer.inputs.push({
+            inputs : input,
+            time : this.local_time.fixed(3),
+            seq : this.input_seq
+        });
+
+            //Send the packet of information to the server.
+            //The input packets are labelled with an 'i' in front.
+        var server_packet = 'i.';
+            server_packet += input.join('-') + '.';
+            server_packet += this.local_time.toFixed(3).replace('.','-') + '.';
+            server_packet += this.input_seq;
+
+            //Go
+        this.socket.send(  server_packet  );
+
+            //Return the direction if needed
+            //================================================
+            //return not used
+            //================================================
+        //return this.physics_movement_vector_from_direction( x_dir, y_dir );
+        this.theplayer.inputs = [];
+
+    }
+    
+
+}
+
+networking.prototype.client_update = function() {
 
     //Capture inputs from the player
-    //this.handle_input();
+    this.handle_input();
     //see game_core.prototype.client_handle_input 
     //at this point we want to gather up all the client movement events
     //push them to a queue
@@ -276,3 +328,112 @@ game_core.prototype.client_update = function() {
     this.client_refresh_fps();
 
 }; //game_core.update_client
+
+
+networking.prototype.client_process_net_updates = function() {
+
+        //No updates...
+    if(!this.server_updates.length) return;
+
+    //First : Find the position in the updates, on the timeline
+    //We call this current_time, then we find the past_pos and the target_pos using this,
+    //searching throught the server_updates array for current_time in between 2 other times.
+    // Then :  other player position = lerp ( past_pos, target_pos, current_time );
+
+        //Find the position in the timeline of updates we stored.
+    var current_time = this.client_time;
+    var count = this.server_updates.length-1;
+    var target = null;
+    var previous = null;
+
+        //We look from the 'oldest' updates, since the newest ones
+        //are at the end (list.length-1 for example). This will be expensive
+        //only when our time is not found on the timeline, since it will run all
+        //samples. Usually this iterates very little before breaking out with a target.
+    for(var i = 0; i < count; ++i) {
+
+        var point = this.server_updates[i];
+        var next_point = this.server_updates[i+1];
+
+            //Compare our point in time with the server times we have
+        if(current_time > point.t && current_time < next_point.t) {
+            target = next_point;
+            previous = point;
+            break;
+        }
+    }
+
+        //With no target we store the last known
+        //server position and move to that instead
+    if(!target) {
+        target = this.server_updates[0];
+        previous = this.server_updates[0];
+    }
+
+        //Now that we have a target and a previous destination,
+        //We can interpolate between then based on 'how far in between' we are.
+        //This is simple percentage maths, value/target = [0,1] range of numbers.
+        //lerp requires the 0,1 value to lerp to? thats the one.
+
+     if(target && previous) {
+
+        this.target_time = target.t;
+
+        var difference = this.target_time - current_time;
+        var max_difference = (target.t - previous.t).fixed(3);
+        var time_point = (difference/max_difference).fixed(3);
+
+            //Because we use the same target and previous in extreme cases
+            //It is possible to get incorrect values due to division by 0 difference
+            //and such. This is a safe guard and should probably not be here. lol.
+        if( isNaN(time_point) ) time_point = 0;
+        if(time_point == -Infinity) time_point = 0;
+        if(time_point == Infinity) time_point = 0;
+
+            //The most recent server update
+        var latest_server_data = this.server_updates[ this.server_updates.length-1 ];
+
+            //These are the exact server positions from this tick, but only for the ghost
+        var other_server_pos = this.players.self.host ? latest_server_data.cp : latest_server_data.hp;
+
+            //The other players positions in this timeline, behind us and in front of us
+        var other_target_pos = this.players.self.host ? target.cp : target.hp;
+        var other_past_pos = this.players.self.host ? previous.cp : previous.hp;
+
+            //update the dest block, this is a simple lerp
+            //to the target from the previous point in the server_updates buffer
+        this.ghosts.server_pos_other.pos = this.pos(other_server_pos);
+        this.ghosts.pos_other.pos = this.v_lerp(other_past_pos, other_target_pos, time_point);
+
+        if(this.client_smoothing) {
+            this.players.other.pos = this.v_lerp( this.players.other.pos, this.ghosts.pos_other.pos, this._pdt*this.client_smooth);
+        } else {
+            this.players.other.pos = this.pos(this.ghosts.pos_other.pos);
+        }
+
+            //Now, if not predicting client movement , we will maintain the local player position
+            //using the same method, smoothing the players information from the past.
+        if(!this.client_predict && !this.naive_approach) {
+
+                //These are the exact server positions from this tick, but only for the ghost
+            var my_server_pos = this.players.self.host ? latest_server_data.hp : latest_server_data.cp;
+
+                //The other players positions in this timeline, behind us and in front of us
+            var my_target_pos = this.players.self.host ? target.hp : target.cp;
+            var my_past_pos = this.players.self.host ? previous.hp : previous.cp;
+
+                //Snap the ghost to the new server position
+            this.ghosts.server_pos_self.pos = this.pos(my_server_pos);
+            var local_target = this.v_lerp(my_past_pos, my_target_pos, time_point);
+
+                //Smoothly follow the destination position
+            if(this.client_smoothing) {
+                this.players.self.pos = this.v_lerp( this.players.self.pos, local_target, this._pdt*this.client_smooth);
+            } else {
+                this.players.self.pos = this.pos( local_target );
+            }
+        }
+
+    } //if target && previous
+
+}; //game_core.client_process_net_updates
