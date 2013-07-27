@@ -160,7 +160,7 @@ Crafty.c('PlayerCharacter', {
 	    	this.key_inputs.push("d");
 
 	    }
-	}
+	},
 
 
 	// Registers a stop-movement function to be called when
