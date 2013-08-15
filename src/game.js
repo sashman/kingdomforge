@@ -111,7 +111,7 @@ Crafty.c('PlayerCharacter', {
 
 	updatePlayerMoved: function(pos)
 	{
-		console.log(pos);
+		//console.log(pos);
 		var vpx = this._x - (Crafty.viewport.width/2),
 			vpy = this._y - (Crafty.viewport.height/2);
 
@@ -122,27 +122,43 @@ Crafty.c('PlayerCharacter', {
 			Crafty.viewport.y= -vpy;
 		}
 
+
+		if(typeof pos === "undefined") return;
+
+		var pix_per_submap = this.player.submap_size * 32;
+		var x_submap_offset = this.player.view_map["xorigin"] - this.player.view_map_radius;
+		var y_submap_offset = this.player.view_map["yorigin"] - this.player.view_map_radius;
+
+		this.player.submap.x = Math.floor(pos.x/ pix_per_submap) + x_submap_offset;
+		this.player.submap.y = Math.floor(pos.y/ pix_per_submap) + y_submap_offset;
+		
+		this.player.submap_pos.x = pos.x % pix_per_submap;
+		this.player.submap_pos.y = pos.y % pix_per_submap;
+		this.player.global_pos = this.player.submap_to_global(this.player.submap, this.player.submap_pos);
+
+		//TODO chnage the if to trigger when player is on teh boundary of the view map
+		// see view_map_radius in player class
+
+		console.log(this.player.submap_pos.x + "," + this.player.submap_pos.y + "  " + this.player.submap.x + "," + this.player.submap.y + "  " +
+		 this.player.global_pos.x + "," + this.player.global_pos.y);
+		if(this.player.submap.x != this.player.view_map["xorigin"] || this.player.submap.y != this.player.view_map["yorigin"]){
+
+			console.log("new view map origin " + this.player.submap.x + "," + this.player.submap.y);
+
+		}
 	},
 
 	updatePlayerChanged: function(pos)
 	{
-		if(typeof pos === "undefined") return;
-
-
-		pos.x = pos._x;
-		pos.y = pos._y;
 		
-		this.player.submap_pos.x = pos.x;
-		this.player.submap_pos.y = pos.y;
-		this.player.global_pos = this.player.submap_to_global(this.player.submap, this.player.submap_pos);
-
-		//TODO change the tiles in the submap buffer, and smoothly slide the sprites
-		//if the submap changes, load the newly needed ones and unload the old
 	},
 
 	//store key presses
 	updatePlayerKeyDown: function(e)
 	{
+		/*
+		//TODO link to players input buffer
+		Taking out just now
 		if(e.key == Crafty.keys['LEFT_ARROW']) {
 
 	 	   this.key_inputs.push("l");
@@ -158,8 +174,8 @@ Crafty.c('PlayerCharacter', {
 	    } else if (e.key == Crafty.keys['DOWN_ARROW']) {
 
 	    	this.key_inputs.push("d");
-
 	    }
+	    */
 	},
 
 
@@ -227,7 +243,7 @@ Crafty.scene('Game', function() {
 
 
 	// Player character, placed at 5, 5 on our grid
-	this.player = Crafty.e('PlayerCharacter').at(10, 20);
+	this.player = Crafty.e('PlayerCharacter').at(33, 33);
 	Crafty.viewport.centerOn(this.player, 60);
 	this.occupied[this.player.at().x][this.player.at().y] = true;
 	this.player.z = 2;

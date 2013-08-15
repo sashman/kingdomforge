@@ -23,8 +23,13 @@ function Player(){
 
 	this.submap_size = 32;
 
-	//surrounding buffer
-	this.view_map = { "xoffset" : 0, "xoffset" : 0,  "background" : [], "detail" : [] };
+	//view mao size
+	this.view_map_radius = 1
+
+	//current surrounding buffer
+	this.view_map = { "xorigin": 0, "yorigin": 0, "xoffset" : 0, "xoffset" : 0,  "background" : [], "detail" : [] };
+	//surrounding buffer used fgor switching
+	this.buffer_view_map = { "xorigin": 0, "yorigin": 0, "xoffset" : 0, "xoffset" : 0,  "background" : [], "detail" : [] };
 
 	//relative to teh visible view port
 	this.view_relative_pos = {
@@ -50,7 +55,7 @@ function Player(){
 		y : 0
 	};
 
-
+	//covertion functions
 	this.submap_to_global = function(submap, pos)
 	{
 		return {
@@ -74,19 +79,20 @@ function Player(){
 		}		
 	}
 
+
+	// sets the current view map of the player
+	// stitches the surrounding submaps in one to be used for rendering
 	this.set_view_map = function(map)
 	{
 
-		var n = 1;
+		var n = this.view_map_radius;
 		for(var i = this.submap.x-n; i <= this.submap.x+n; i++)
 			for(var j = this.submap.y-n; j <= this.submap.y+n; j++)
 				map.load_submap(i,j);
-
-
+		
 		for(var i = this.submap.x-n; i <= this.submap.x+n; i++){
 			for(var j = this.submap.y-n; j <= this.submap.y+n; j++){
 				var smap = map.submaps[i][j]["map"]["content"];
-
 
 				//add backgrounds
 				this.view_map["background"] = this.view_map["background"].concat(smap["background"]);
@@ -99,9 +105,37 @@ function Player(){
 
 		this.view_map["xoffset"] = this.view_map["background"][0]["x"];
 		this.view_map["yoffset"] = this.view_map["background"][0]["y"];
+		this.view_map["xorigin"] = this.submap.x;
+		this.view_map["yorigin"] = this.submap.y;
+	}
+
+	//create a buffered view map for the given coords
+	this.fill_buffer_view_map = function(map, new_submap_x, new_submap_y)
+	{
+
+		var n = this.view_map_radius;
+		for(var i = new_submap_x-n; i <= new_submap_x-n+n; i++)
+			for(var j = new_submap_y-n; j <= new_submap_y+n; j++)
+				map.load_submap(i,j);
 
 
+		for(var i = new_submap_x-n; i <= new_submap_x-n+n; i++){
+			for(var j = new_submap_y-n; j <= new_submap_y+n; j++){
+				var smap = map.submaps[i][j]["map"]["content"];
 
+				//add backgrounds
+				this.buffer_view_map["background"] = this.buffer_view_map["background"].concat(smap["background"]);
+				//add detail
+				this.buffer_view_map["detail"] = this.buffer_view_map["detail"].concat(smap["detail"]);
+
+				
+			}
+		}
+
+		this.buffer_view_map["xoffset"] = this.buffer_view_map["background"][0]["x"];
+		this.buffer_view_map["yoffset"] = this.buffer_view_map["background"][0]["y"];
+		this.buffer_view_map["xorigin"] = this.submap.x;
+		this.buffer_view_map["yorigin"] = this.submap.y;
 
 	}
 
