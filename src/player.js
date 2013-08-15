@@ -139,5 +139,12 @@ function Player(){
 
 	}
 
+	this.switch_view_maps = function()
+	{
+		var t = this.view_map;
+		this.view_map = this.buffer_view_map;
+		this.buffer_view_map = t;
+		t = undefined;
+	}
 
 }

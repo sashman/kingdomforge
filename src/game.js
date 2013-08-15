@@ -7,7 +7,8 @@ Game = {
 			width:  32,
 			height: 32
 		},
-		map: {}
+		map: {},
+		map_entities: []
 	},
 
 	// The total width of the game screen. Since our grid takes up the entire screen
@@ -139,11 +140,52 @@ Crafty.c('PlayerCharacter', {
 		//TODO chnage the if to trigger when player is on teh boundary of the view map
 		// see view_map_radius in player class
 
-		console.log(this.player.submap_pos.x + "," + this.player.submap_pos.y + "  " + this.player.submap.x + "," + this.player.submap.y + "  " +
-		 this.player.global_pos.x + "," + this.player.global_pos.y);
+		//console.log(this.player.submap_pos.x + "," + this.player.submap_pos.y + "  " + this.player.submap.x + "," + this.player.submap.y + "  " +
+		// this.player.global_pos.x + "," + this.player.global_pos.y);
 		if(this.player.submap.x != this.player.view_map["xorigin"] || this.player.submap.y != this.player.view_map["yorigin"]){
 
 			console.log("new view map origin " + this.player.submap.x + "," + this.player.submap.y);
+			var start = new Date().getTime();
+			this.player.fill_buffer_view_map(Game.map_grid.map, this.player.submap.x, this.player.submap.y);
+			this.player.switch_view_maps();
+			this.view_map = this.player.view_map;
+
+			for(var i = 0; i < Game.map_grid.map_entities.length; i ++){
+
+				Game.map_grid.map_entities[i].destroy();
+			}
+			Game.map_grid.map_entities = [];
+
+				//render background terrain
+			for (var i = 0; i < this.view_map["background"].length; i++) {
+
+					var tile_object = this.view_map["background"][i];
+					var tile = tile_object["type"];
+					var tile_ent = Crafty.e("Actor", "spr_"+tile);
+					tile_ent.at(tile_object["x"] - this.view_map["xoffset"], tile_object["y"] - this.view_map["yoffset"]);
+					tile_ent.z = 0;
+				Game.map_grid.map_entities.push(tile_ent);
+			}
+
+			//render background terrain
+			for (var i = 0; i < this.view_map["detail"].length; i++) {
+				var tile_object = this.view_map["detail"][i];
+
+				var tile = tile_object["type"];
+				var tile_ent = Crafty.e("Actor", "Solid", "spr_"+tile);
+				tile_ent.at(tile_object["x"] - this.view_map["xoffset"], tile_object["y"] - this.view_map["yoffset"]);
+				tile_ent.shift(tile_object["xoffset"], tile_object["yoffset"]);
+				tile_ent.z = 1;
+				Game.map_grid.map_entities.push(tile_ent);
+			}
+
+			var end = new Date().getTime();
+			var time = end - start;
+			console.log(this.view_map["background"].length + " + " + this.view_map["detail"].length + " map tiles loaded in " + time + "ms");
+			
+
+
+			console.log("set new origin " + this.player.view_map["xorigin"] + "," + this.player.view_map["yorigin"]);
 
 		}
 	},
@@ -221,6 +263,9 @@ Crafty.c('Village', {
 });
 */
 
+
+
+
 // Game scene
 // -------------
 // Runs the core gameplay loop
@@ -244,7 +289,7 @@ Crafty.scene('Game', function() {
 
 	// Player character, placed at 5, 5 on our grid
 	this.player = Crafty.e('PlayerCharacter').at(33, 33);
-	Crafty.viewport.centerOn(this.player, 60);
+	Crafty.viewport.centerOn(this.player, 1);
 	this.occupied[this.player.at().x][this.player.at().y] = true;
 	this.player.z = 2;
 
@@ -278,33 +323,24 @@ Crafty.scene('Game', function() {
 	//render background terrain
 	for (var i = 0; i < this.view_map["background"].length; i++) {
 
-			var tile_object = this.view_map["background"][i];
-			
-			//console.log(tile_object);
-
-			//var tile  = "CLIFF_WE_SN";
-			var tile = tile_object["type"];
-			var tile_ent = Crafty.e("Actor", "spr_"+tile);
-			tile_ent.at(tile_object["x"] - this.view_map["xoffset"], tile_object["y"] - this.view_map["yoffset"]);
-			tile_ent.z = 0;
-			//debug
-			// Crafty.e('2D, DOM, Text')
-			// .attr({ x: x*Game.map_grid.tile.width, y: y*Game.map_grid.tile.height })
-			// .text(x + "," + y);
+		var tile_object = this.view_map["background"][i];
+		var tile = tile_object["type"];
+		var tile_ent = Crafty.e("Actor", "spr_"+tile);
+		tile_ent.at(tile_object["x"] - this.view_map["xoffset"], tile_object["y"] - this.view_map["yoffset"]);
+		tile_ent.z = 0;
+		Game.map_grid.map_entities.push(tile_ent);
 	}
 
 	//render background terrain
 	for (var i = 0; i < this.view_map["detail"].length; i++) {
 		var tile_object = this.view_map["detail"][i];
 
-		//console.log(tile_object);
-
 		var tile = tile_object["type"];
 		var tile_ent = Crafty.e("Actor", "Solid", "spr_"+tile);
 		tile_ent.at(tile_object["x"] - this.view_map["xoffset"], tile_object["y"] - this.view_map["yoffset"]);
-		//Crafty(tile).attr({ x: + tile_object["xoffset"]
 		tile_ent.shift(tile_object["xoffset"], tile_object["yoffset"]);
 		tile_ent.z = 1;
+		Game.map_grid.map_entities.push(tile_ent);
 	}
 
 	var end = new Date().getTime();
