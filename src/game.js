@@ -1,8 +1,8 @@
 Game = {
 	// This defines our grid's size and the size of each of its tiles
 	map_grid: {
-		width:  32 *3,
-		height: 32 *3,
+		width:  32 * 3,
+		height: 32 * 3,
 		tile: {
 			width:  32,
 			height: 32
@@ -37,8 +37,58 @@ Game = {
 	render_terrain_entities: function(view_map)
 	{
 
-		console.log("VM origin ", view_map["xorigin"], view_map["yorigin"]);
+		// console.log("VM origin ", view_map["xorigin"], view_map["yorigin"]);
 
+
+		for (var i = 0; i < view_map.submaps.length; i++) {
+			for (var j = 0; j < view_map.submaps[i].length; j++) {
+				
+				if(!view_map.submaps[i][j]) continue;
+			
+				var submap = view_map.submaps[i][j]["content"];
+				
+				// console.log("index", i, j);
+				// console.log("submap", view_map.submaps[i][j]["x"], view_map.submaps[i][j]["y"]);
+
+				//render background terrain
+				for (var k = 0; k < submap["background"].length; k++) {
+
+					var tile_object = submap["background"][k];
+					var tile = tile_object["type"];
+					var x = tile_object["x"] - view_map["xoffset"];
+					var y = tile_object["y"] - view_map["yoffset"];
+					
+					var tile_ent = Crafty.e("Actor", "spr_"+tile);
+					tile_ent.at(x, y);
+					tile_ent.z = 0;
+					tile_ent.keep = true;
+					this.map_grid.map_entities[tile+"_"+x+"_"+y] = tile_ent;
+
+
+				}
+
+				//render detail terrain
+				for (var k = 0; k < submap["detail"].length; k++) {
+
+					var tile_object = submap["detail"][k];
+					var tile = tile_object["type"];
+					var x = tile_object["x"] - view_map["xoffset"];
+					var y = tile_object["y"] - view_map["yoffset"];
+
+					var tile_ent = Crafty.e("Actor", "Solid", "spr_"+tile);
+					tile_ent.at(x, y);
+					tile_ent.shift(tile_object["xoffset"], tile_object["yoffset"]);
+					tile_ent.z = 1;
+					tile_ent.keep = true;
+					this.map_grid.map_entities[tile+"_"+x+"_"+y] = tile_ent;
+
+				}
+
+			}
+		}
+
+
+/*
 		for(var i = 0; i < Game.map_grid.map_entities.length; i ++){
 			if(Game.map_grid.map_entities.hasOwnProperty(i))
 				Game.map_grid.map_entities[i].keep = false;
@@ -99,7 +149,7 @@ Game = {
 				//test
 				Game.map_grid.map_entities[i].shift(0, 32*32);
 			}
-			*/
+			
 
 
 			if(Game.map_grid.map_entities.hasOwnProperty(i) && !Game.map_grid.map_entities[i].keep)
@@ -108,7 +158,7 @@ Game = {
 				delete Game.map_grid.map_entities[i];
 			}
 		}
-
+*/
 	}
 }
 
@@ -177,8 +227,8 @@ Crafty.c('PlayerCharacter', {
 			}
 		});
 		this.player = new Player();
-		this.player.submap.x = 5;
-		this.player.submap.y = 5;
+		this.player.submap.x = 10;
+		this.player.submap.y = 10;
 		this.bind("Change", this.updatePlayerChanged);
 		this.bind("Moved", this.updatePlayerMoved);
 		this.bind("KeyDown", this.updatePlayerKeyDown);
@@ -226,6 +276,7 @@ Crafty.c('PlayerCharacter', {
 		// see view_map_radius in player class
 
 		this.print_coords();
+		/*
 		if(this.player.submap.x != this.player.view_map["xorigin"] || this.player.submap.y != this.player.view_map["yorigin"]){
 
 			//console.log("***new view map origin " + this.player.submap.x + "," + this.player.submap.y);
@@ -249,8 +300,8 @@ Crafty.c('PlayerCharacter', {
 			//console.log(this);
 			console.log( " -> moved to " );
 			this.print_coords();
-
 		}
+		*/
 	},
 
 	updatePlayerChanged: function(pos)
@@ -328,7 +379,8 @@ Crafty.scene('Game', function() {
 
 
 	// Player character, placed at 5, 5 on our grid
-	this.player = Crafty.e('PlayerCharacter').at(33, 33);
+	this.player = Crafty.e('PlayerCharacter')
+	this.player.at(33, 33);
 	Crafty.viewport.centerOn(this.player, 1);
 	this.occupied[this.player.at().x][this.player.at().y] = true;
 	this.player.z = 2;
@@ -359,7 +411,8 @@ Crafty.scene('Game', function() {
 
 	var end = new Date().getTime();
 	var time = end - start;
-	console.log(this.view_map["background"].length + " + " + this.view_map["detail"].length + " map tiles loaded in " + time + "ms");
+	//console.log(this.view_map["background"].length + " + " + this.view_map["detail"].length + " map tiles loaded in " + time + "ms");
+	console.log("map tiles loaded in " + time + "ms");
 	
 	// Show the victory screen once all villages are visisted
 	this.show_victory = this.bind('VillageVisited', function() {

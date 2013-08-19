@@ -27,9 +27,7 @@ function Player(){
 	this.view_map_radius = 1
 
 	//current surrounding buffer
-	this.view_map = { "xorigin": 0, "yorigin": 0, "xoffset" : 0, "xoffset" : 0,  "background" : [], "detail" : [] };
-	//surrounding buffer used fgor switching
-	this.buffer_view_map = { "xorigin": 0, "yorigin": 0, "xoffset" : 0, "xoffset" : 0,  "background" : [], "detail" : [] };
+	this.view_map = { "xorigin": 0, "yorigin": 0, "xoffset" : 0, "xoffset" : 0,  "submaps" : []};
 
 	//relative to teh visible view port
 	this.view_relative_pos = {
@@ -90,61 +88,61 @@ function Player(){
 			for(var j = this.submap.y-n; j <= this.submap.y+n; j++)
 				map.load_submap(i,j);
 		
+		var view_x = 0;
+		var view_y = 0;
 		for(var i = this.submap.x-n; i <= this.submap.x+n; i++){
+			view_y = 0;
 			for(var j = this.submap.y-n; j <= this.submap.y+n; j++){
-				var smap = map.submaps[i][j]["map"]["content"];
-
-				//add backgrounds
-				this.view_map["background"] = this.view_map["background"].concat(smap["background"]);
-				//add detail
-				this.view_map["detail"] = this.view_map["detail"].concat(smap["detail"]);
-
 				
+				if(!this.view_map.submaps[view_x])
+					this.view_map.submaps[view_x] = [];
+
+				this.view_map.submaps[view_x][view_y] = map.submaps[i][j]["map"];
+				view_y++;	
 			}
+			view_x++;
 		}
 
-		this.view_map["xoffset"] = this.view_map["background"][0]["x"];
-		this.view_map["yoffset"] = this.view_map["background"][0]["y"];
+		this.view_map["xoffset"] = this.view_map.submaps[0][0]["content"]["background"][0]["x"];
+		this.view_map["yoffset"] = this.view_map.submaps[0][0]["content"]["background"][0]["y"];
 		this.view_map["xorigin"] = this.submap.x;
 		this.view_map["yorigin"] = this.submap.y;
-	}
+	},
 
-	//create a buffered view map for the given coords
-	this.fill_buffer_view_map = function(map, new_submap_x, new_submap_y)
+	this.shift_view_map = function(map, direction)
 	{
 
-		var n = this.view_map_radius;
-		for(var i = new_submap_x-n; i <= new_submap_x-n+n; i++)
-			for(var j = new_submap_y-n; j <= new_submap_y+n; j++)
-				map.load_submap(i,j);
+		// directions
+		// 0 NORTH
+		// 1 EAST
+		// 2 SOUTH
+		// 4 WEST
+		switch(direction)
+		{
+			//NORTH
+			case 0:
 
 
-		for(var i = new_submap_x-n; i <= new_submap_x-n+n; i++){
-			for(var j = new_submap_y-n; j <= new_submap_y+n; j++){
-				var smap = map.submaps[i][j]["map"]["content"];
 
-				//add backgrounds
-				this.buffer_view_map["background"] = this.buffer_view_map["background"].concat(smap["background"]);
-				//add detail
-				this.buffer_view_map["detail"] = this.buffer_view_map["detail"].concat(smap["detail"]);
 
-				
-			}
+
+			break;
+
+			//EAST
+			case 1:
+			break;
+
+			//SOUTH
+			case 2:
+			break;
+
+			//WEST
+			case 3:
+			break;
+
+
 		}
 
-		this.buffer_view_map["xoffset"] = this.buffer_view_map["background"][0]["x"];
-		this.buffer_view_map["yoffset"] = this.buffer_view_map["background"][0]["y"];
-		this.buffer_view_map["xorigin"] = this.submap.x;
-		this.buffer_view_map["yorigin"] = this.submap.y;
-
-	}
-
-	this.switch_view_maps = function()
-	{
-		var t = this.view_map;
-		this.view_map = this.buffer_view_map;
-		this.buffer_view_map = t;
-		t = undefined;
 	}
 
 }
