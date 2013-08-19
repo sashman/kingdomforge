@@ -29,6 +29,8 @@ function Player(){
 	//current surrounding buffer
 	this.view_map = { "xorigin": 0, "yorigin": 0, "xoffset" : 0, "xoffset" : 0,  "submaps" : []};
 
+	this.submap_buffer = [];
+
 	//relative to teh visible view port
 	this.view_relative_pos = {
 		x : 0,
@@ -112,6 +114,9 @@ function Player(){
 	this.shift_view_map = function(map, direction)
 	{
 
+		//set up rows/columns to be moved
+		var y_index = true;
+		var buffer_row, mid_to_edge_row, edge_to_mid_row, new_row;
 		// directions
 		// 0 NORTH
 		// 1 EAST
@@ -121,27 +126,86 @@ function Player(){
 		{
 			//NORTH
 			case 0:
-
-
-
-
-
+				buffer_row = 2;
+				mid_to_edge_row = 1;
+				edge_to_mid_row = 0;
+				new_row = edge_to_mid_row;
 			break;
 
 			//EAST
 			case 1:
+				y_index = false;
+				buffer_row = 0;
+				mid_to_edge_row = 1;
+				edge_to_mid_row = 2;
+				new_row = edge_to_mid_row;
 			break;
 
 			//SOUTH
 			case 2:
+				buffer_row = 0;
+				mid_to_edge_row = 1;
+				edge_to_mid_row = 2;
+				new_row = edge_to_mid_row;
 			break;
 
 			//WEST
 			case 3:
+				y_index = false;
+				buffer_row = 2;
+				mid_to_edge_row = 1;
+				edge_to_mid_row = 0;
+				new_row = edge_to_mid_row;
 			break;
 
-
+			default:
+				return;
+			break;
 		}
+
+
+		//save row to buffer
+		if(y_index)
+		{
+			for (var i = 0; i < this.view_map.submaps.length; i++) {
+
+				var submap = this.view_map.submaps[i][buffer_row];
+				//save
+				if(!this.submap_buffer[submap.x]) this.submap_buffer[submap.x] = [];
+				this.submap_buffer[submap.x][submap.y] = submap;
+			}
+		} else {
+			for (var i = 0; i < this.view_map.submaps[0].length; i++) {
+
+				var submap = this.view_map.submaps[buffer_row][i];
+				//save
+				if(!this.submap_buffer[submap.x]) this.submap_buffer[submap.x] = [];
+				this.submap_buffer[submap.x][submap.y] = submap;
+			}
+		}
+
+		//shift mid row to edge
+		if(y_index)
+		{
+			for (var i = 0; i < this.view_map.submaps.length; i++) {
+
+				var submap = this.view_map.submaps[i][mid_to_edge_row];
+				//shit to buffer row
+				this.view_map.submaps[i][buffer_row] = submap;
+			}
+		} else {
+			for (var i = 0; i < this.view_map.submaps[0].length; i++) {
+
+				
+				var submap = this.view_map.submaps[mid_to_edge_row][i];
+				//shit to buffer row
+				this.view_map.submaps[buffer_row][i] = submap;
+			}
+		}
+
+		//shift edge row to mid
+
+		//get new row
 
 	}
 
