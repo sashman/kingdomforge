@@ -91,11 +91,15 @@ Game = {
 		}
 
 		for(var i = 0; i < Game.map_grid.map_entities.length; i ++){
+
+			//Check if the entities need to be moved
+			/*
 			if(Game.map_grid.map_entities.hasOwnProperty(i))
 			{
+				//test
 				Game.map_grid.map_entities[i].shift(0, 32*32);
-
 			}
+			*/
 
 
 			if(Game.map_grid.map_entities.hasOwnProperty(i) && !Game.map_grid.map_entities[i].keep)
