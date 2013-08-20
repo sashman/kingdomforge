@@ -62,7 +62,8 @@ Game = {
 					tile_ent.at(x, y);
 					tile_ent.z = 0;
 					tile_ent.keep = true;
-					this.map_grid.map_entities[tile+"_"+x+"_"+y] = tile_ent;
+					// this.map_grid.map_entities[tile+"_"+x+"_"+y] = tile_ent;
+					tile_object.ent = tile_ent;
 
 
 				}
@@ -80,7 +81,8 @@ Game = {
 					tile_ent.shift(tile_object["xoffset"], tile_object["yoffset"]);
 					tile_ent.z = 1;
 					tile_ent.keep = true;
-					this.map_grid.map_entities[tile+"_"+x+"_"+y] = tile_ent;
+					// this.map_grid.map_entities[tile+"_"+x+"_"+y] = tile_ent;
+					tile_object.ent = tile_ent;
 
 				}
 
@@ -276,6 +278,28 @@ Crafty.c('PlayerCharacter', {
 		// see view_map_radius in player class
 
 		this.print_coords();
+
+		var change = false;
+			//detect north
+		if(this.player.submap.y < this.player.view_map["yorigin"]){
+
+			this.player.shift_view_map(Game.map_grid.map, 3);
+			change = true;
+			//detect south
+		} else if(this.player.submap.y > this.player.view_map["yorigin"]){
+
+			this.player.shift_view_map(Game.map_grid.map, 1);
+			change = true;
+		}
+
+		if(change)
+		{
+			this.at(33,33);//pix_per_submap + this.player.submap_pos.x;
+			//this.y = 33;//pix_per_submap + this.player.submap_pos.y;
+			Crafty.viewport.centerOn(this.player, 0);
+			console.log( " -> moved to " );
+			this.print_coords();
+		}
 		/*
 		if(this.player.submap.x != this.player.view_map["xorigin"] || this.player.submap.y != this.player.view_map["yorigin"]){
 
