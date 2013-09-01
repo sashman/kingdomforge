@@ -27,6 +27,7 @@ function Map(){
 			this.submaps[_global_x][_global_y] = map_object;
 		}
 			
+		console.log(this.submaps[_global_x][_global_y]);
 		//use map_object["map"]["content"][x][y]["type"] to get tile type 
 
 

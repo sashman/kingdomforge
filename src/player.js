@@ -125,7 +125,7 @@ function Player(){
 		console.log("shift", direction);
 
 		//set up rows/columns to be moved
-		var y_index = true;
+		var north_south_dir = true;
 		var buffer_row, mid_to_edge_row, edge_to_mid_row, new_row_offset;
 		// directions
 		// 0 NORTH
@@ -135,7 +135,7 @@ function Player(){
 		switch(direction)
 		{
 			
-			//WEST
+			//NORTH						
 			case 0:
 				buffer_row = 2;
 				mid_to_edge_row = 1;
@@ -143,17 +143,16 @@ function Player(){
 				new_row_offset = -1;
 			break;
 
-			//SOUTH
+			//EAST
 			case 1:
-				y_index = false;
-				buffer_row = 0;
+				north_south_dir = false;
+				buffer_row = 2;
 				mid_to_edge_row = 1;
-				edge_to_mid_row = 2;
-				new_row_offset = 1;
+				edge_to_mid_row = 0;
+				new_row_offset = -1;
 			break;
 
-			
-			//EAST
+			//SOUTH
 			case 2:
 				buffer_row = 0;
 				mid_to_edge_row = 1;
@@ -161,19 +160,16 @@ function Player(){
 				new_row_offset = 1;
 			break;
 
-			
-			//NORTH
+			//WEST
 			case 3:
-				y_index = false;
-				buffer_row = 2;
+				north_south_dir = false;
+				buffer_row = 0;
 				mid_to_edge_row = 1;
-				edge_to_mid_row = 0;
-				new_row_offset = -1;
+				edge_to_mid_row = 2;
+				new_row_offset = 1;
 			break;
 
-			default:
-				return;
-			break;
+			default: return;
 		}
 
 		console.log("shift", direction);
@@ -182,7 +178,7 @@ function Player(){
 
 		var submap;
 		//save row to buffer
-		if(y_index)
+		if(north_south_dir)
 		{
 			for (var i = 0; i < this.view_map.submaps.length; i++) {
 
@@ -206,7 +202,7 @@ function Player(){
 		}
 
 		//shift mid row to edge
-		if(y_index)
+		if(north_south_dir)
 		{
 			for (var i = 0; i < this.view_map.submaps.length; i++)
 			{
@@ -228,7 +224,7 @@ function Player(){
 		}
 
 		//shift edge row to mid
-		if(y_index)
+		if(north_south_dir)
 		{
 			for (var i = 0; i < this.view_map.submaps.length; i++){
 				console.log("shift", this.view_map.submaps[i][edge_to_mid_row].x, this.view_map.submaps[i][mid_to_edge_row].y,
@@ -245,34 +241,38 @@ function Player(){
 		}
 
 		//get new row
-		if(y_index)
+		if(north_south_dir)
 		{
 			for (var i = 0; i < this.view_map.submaps.length; i++) {
-				var submap_newx = this.view_map.submaps[i][mid_to_edge_row]["x"]+new_row_offset;
-				var submap_newy = this.view_map.submaps[i][mid_to_edge_row]["y"];
+				var submap_newx = this.view_map.submaps[i][mid_to_edge_row]["x"];
+				var submap_newy = this.view_map.submaps[i][mid_to_edge_row]["y"]+new_row_offset;
+
+				
 				if(this.submap_buffer[submap_newx] && this.submap_buffer[submap_newx][submap_newy]){
 					console.log("cached", submap_newx, submap_newy);
 					submap = this.submap_buffer[submap_newx][submap_newy];
 				}else
 				{
 					map.load_submap(submap_newx,submap_newy);
-					submap = map.submaps[submap_newx][submap_newy];
+					submap = map.submaps[submap_newx][submap_newy].map;
 				}
+				console.log(submap);
 				
 				this.view_map.submaps[i][edge_to_mid_row] = submap;
 			}
 		} else {
 			for (var i = 0; i < this.view_map.submaps[mid_to_edge_row].length; i++) {
-				var submap_newx = this.view_map.submaps[mid_to_edge_row][i]["x"];
-				var submap_newy = this.view_map.submaps[mid_to_edge_row][i]["y"]+new_row_offset;
+				var submap_newx = this.view_map.submaps[mid_to_edge_row][i]["x"]+new_row_offset;
+				var submap_newy = this.view_map.submaps[mid_to_edge_row][i]["y"];
 
+				//console.log("to request ", submap_newx, submap_newy);
 				if(this.submap_buffer[submap_newx] && this.submap_buffer[submap_newx][submap_newy]){
 					console.log("cached", submap_newx, submap_newy);
 					submap = this.submap_buffer[submap_newx][submap_newy];
 				}else
 				{
 					map.load_submap(submap_newx,submap_newy);
-					submap = map.submaps[submap_newx][submap_newy];
+					submap = map.submaps[submap_newx][submap_newy].map;
 				}
 				
 				this.view_map.submaps[edge_to_mid_row][i] = submap;

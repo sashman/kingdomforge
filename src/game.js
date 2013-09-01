@@ -283,12 +283,12 @@ Crafty.c('PlayerCharacter', {
 			//detect north
 		if(this.player.submap.y < this.player.view_map["yorigin"]){
 
-			this.player.shift_view_map(Game.map_grid.map, 3);
+			this.player.shift_view_map(Game.map_grid.map, 0);
 			change = true;
 			//detect south
 		} else if(this.player.submap.y > this.player.view_map["yorigin"]){
 
-			this.player.shift_view_map(Game.map_grid.map, 1);
+			this.player.shift_view_map(Game.map_grid.map, 2);
 			change = true;
 		}
 
