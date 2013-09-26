@@ -183,21 +183,15 @@ function Player(){
 			for (var i = 0; i < this.view_map.submaps.length; i++) {
 
 				submap = this.view_map.submaps[i][buffer_row];
-				//save
-				if(!this.submap_buffer[submap.x]) this.submap_buffer[submap.x] = [];
-				this.submap_buffer[submap.x][submap.y] = submap;
 
-				console.log("buffer row saved", submap.x, submap.y);
+				this.save_submap(submap);
 			}
 		} else {
 			for (var i = 0; i < this.view_map.submaps[mid_to_edge_row].length; i++) {
 
 				submap = this.view_map.submaps[buffer_row][i];
-				//save
-				if(!this.submap_buffer[submap.x]) this.submap_buffer[submap.x] = [];
-				this.submap_buffer[submap.x][submap.y] = submap;
 
-				console.log("buffer row saved", submap.x, submap.y);
+				this.save_submap(submap);	
 			}
 		}
 
@@ -206,10 +200,11 @@ function Player(){
 		{
 			for (var i = 0; i < this.view_map.submaps.length; i++)
 			{
-				console.log("shift", this.view_map.submaps[i][mid_to_edge_row].x, this.view_map.submaps[i][edge_to_mid_row].y,
-					" to ", this.view_map.submaps[i][buffer_row].x, this.view_map.submaps[i][buffer_row].y);
+				// console.log("shift", this.view_map.submaps[i][mid_to_edge_row].x, this.view_map.submaps[i][edge_to_mid_row].y,
+				// 	" to ", this.view_map.submaps[i][buffer_row].x, this.view_map.submaps[i][buffer_row].y);
 
 				this.view_map.submaps[i][buffer_row] = this.view_map.submaps[i][mid_to_edge_row];
+				this.move_submap(this.view_map.submaps[i][buffer_row], direction);
 
 			}
 				
@@ -218,6 +213,7 @@ function Player(){
 			for (var i = 0; i < this.view_map.submaps[mid_to_edge_row].length; i++)
 			{
 				this.view_map.submaps[buffer_row][i] = this.view_map.submaps[mid_to_edge_row][i];
+				this.move_submap(this.view_map.submaps[buffer_row][i], direction);
 			}
 				
 			
@@ -227,16 +223,20 @@ function Player(){
 		if(north_south_dir)
 		{
 			for (var i = 0; i < this.view_map.submaps.length; i++){
-				console.log("shift", this.view_map.submaps[i][edge_to_mid_row].x, this.view_map.submaps[i][mid_to_edge_row].y,
-					" to ", this.view_map.submaps[i][mid_to_edge_row].x, this.view_map.submaps[i][mid_to_edge_row].y);
+				// console.log("shift", this.view_map.submaps[i][edge_to_mid_row].x, this.view_map.submaps[i][mid_to_edge_row].y,
+				// 	" to ", this.view_map.submaps[i][mid_to_edge_row].x, this.view_map.submaps[i][mid_to_edge_row].y);
 
 				this.view_map.submaps[i][mid_to_edge_row] = this.view_map.submaps[i][edge_to_mid_row];
+				this.move_submap(this.view_map.submaps[i][mid_to_edge_row], direction);
 			}
 				
 			
 		} else {
 			for (var i = 0; i < this.view_map.submaps[mid_to_edge_row].length; i++)
+			{
 				this.view_map.submaps[mid_to_edge_row][i] = this.view_map.submaps[edge_to_mid_row][i];
+				this.move_submap(this.view_map.submaps[mid_to_edge_row][i], direction);
+			}
 			
 		}
 
@@ -256,9 +256,12 @@ function Player(){
 					map.load_submap(submap_newx,submap_newy);
 					submap = map.submaps[submap_newx][submap_newy].map;
 				}
-				console.log(submap);
+				
 				
 				this.view_map.submaps[i][edge_to_mid_row] = submap;
+
+				this.move_submap(submap, direction);
+
 			}
 		} else {
 			for (var i = 0; i < this.view_map.submaps[mid_to_edge_row].length; i++) {
@@ -267,7 +270,7 @@ function Player(){
 
 				//console.log("to request ", submap_newx, submap_newy);
 				if(this.submap_buffer[submap_newx] && this.submap_buffer[submap_newx][submap_newy]){
-					console.log("cached", submap_newx, submap_newy);
+					console.log("using cached", submap_newx, submap_newy);
 					submap = this.submap_buffer[submap_newx][submap_newy];
 				}else
 				{
@@ -276,6 +279,8 @@ function Player(){
 				}
 				
 				this.view_map.submaps[edge_to_mid_row][i] = submap;
+
+				this.move_submap(submap, direction);
 			}
 		}
 
@@ -289,6 +294,111 @@ function Player(){
 			console.log(line);
 		}
 
+	}
+
+	this.move_submap = function(submap, direction)
+	{
+
+		var x_move = 0;
+		var y_move = 0;
+		// directions
+		// 0 NORTH
+		// 1 EAST
+		// 2 SOUTH
+		// 4 WEST
+		switch(direction)
+		{
+						
+			//NORTH						
+			case 0:
+				x_move = 0;
+				y_move = 32 *32;
+			break;
+
+			//EAST
+			case 1:
+
+			break;
+
+			//SOUTH
+			case 2:
+				x_move = 0;
+				y_move = - 32 *32;
+				
+			break;
+
+			//WEST
+			case 3:
+				
+			break;
+
+			default: return;
+		}
+
+		submap = submap.content;
+
+		console.log("Moving map entities");
+		//hide background tiles
+		for (var k = 0; k < submap["background"].length; k++) {
+			var tile_object = submap["background"][k];
+
+			//console.log(tile_object);
+
+			var tile_ent = tile_object.ent;
+			if(tile_ent)
+			{
+				tile_ent.shift(x_move, y_move);
+				tile_object.label.shift(x_move, y_move);
+			}
+				
+			
+		}
+
+		//render detail terrain
+		for (var k = 0; k < submap["detail"].length; k++) {
+			var tile_object = submap["detail"][k];
+			var tile_ent = tile_object.ent;
+			if(tile_ent)
+			{
+				tile_ent.shift(x_move, y_move);	
+			}
+			
+		}
+		console.log("Done moving");
+
+	}
+
+	this.save_submap = function(submap)
+	{
+
+		//save
+		if(!this.submap_buffer[submap.x]) this.submap_buffer[submap.x] = [];
+		this.submap_buffer[submap.x][submap.y] = submap;
+
+		console.log("***submap saved to buffer", submap.x, submap.y);
+
+		submap = submap.content;
+
+		//hide background tiles
+		for (var k = 0; k < submap["background"].length; k++) {
+			var tile_object = submap["background"][k];
+			var tile_ent = tile_object.ent;
+			tile_ent.visible = false;
+			tile_ent.at(-1000, -1000);
+			tile_ent.z = 0;
+			tile_object.label.at(-1000, -1000);
+		}
+
+		//render detail terrain
+		for (var k = 0; k < submap["detail"].length; k++) {
+			var tile_object = submap["detail"][k];
+			var tile_ent = tile_object.ent;
+			tile_ent.visible = false;
+			tile_ent.at(-1000, -1000);
+			tile_ent.z = 0;
+		}
+
+ 
 	}
 
 }
