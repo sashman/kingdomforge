@@ -44,50 +44,76 @@ Game = {
 			for (var j = 0; j < view_map.submaps[i].length; j++) {
 				
 				if(!view_map.submaps[i][j]) continue;
-			
-				var submap = view_map.submaps[i][j]["content"];
-				
-				// console.log("index", i, j);
-				// console.log("submap", view_map.submaps[i][j]["x"], view_map.submaps[i][j]["y"]);
 
-				//render background terrain
-				for (var k = 0; k < submap["background"].length; k++) {
-
-					var tile_object = submap["background"][k];
-					var tile = tile_object["type"];
-					var x = tile_object["x"] - view_map["xoffset"];
-					var y = tile_object["y"] - view_map["yoffset"];
-					
-					var tile_ent = Crafty.e("Actor", "spr_"+tile);
-					tile_ent.at(x, y);
-					tile_ent.z = 0;
-					tile_ent.keep = true;
-					// this.map_grid.map_entities[tile+"_"+x+"_"+y] = tile_ent;
-					tile_object.ent = tile_ent;
-
-
-				}
-
-				//render detail terrain
-				for (var k = 0; k < submap["detail"].length; k++) {
-
-					var tile_object = submap["detail"][k];
-					var tile = tile_object["type"];
-					var x = tile_object["x"] - view_map["xoffset"];
-					var y = tile_object["y"] - view_map["yoffset"];
-
-					var tile_ent = Crafty.e("Actor", "Solid", "spr_"+tile);
-					tile_ent.at(x, y);
-					tile_ent.shift(tile_object["xoffset"], tile_object["yoffset"]);
-					tile_ent.z = 1;
-					tile_ent.keep = true;
-					// this.map_grid.map_entities[tile+"_"+x+"_"+y] = tile_ent;
-					tile_object.ent = tile_ent;
-
-				}
+				this.render_submap(view_map, view_map.submaps[i][j]);
 
 			}
 		}
+	},
+
+	render_submap : function(view_map, _submap)
+	{
+
+		var submap_x = _submap.x;
+		var submap_y = _submap.y;
+		var north_trigger, south_trigger, east_trigger, west_trigger = undefined;
+		var submap = _submap.content;
+
+		var start = new Date().getTime();
+		for (var k = 0; k < submap["background"].length; k++) {
+
+			var tile_object = submap["background"][k];
+			var tile = tile_object["type"];
+			var x = tile_object["x"] - view_map["xoffset"];
+			var y = tile_object["y"] - view_map["yoffset"];
+			
+			
+			
+			var tile_ent = Crafty.e("Actor", "spr_"+tile);
+			
+
+			tile_ent.at(x, y);
+			tile_ent.z = 0;
+			tile_ent.keep = true;
+			tile_object.ent = tile_ent;
+			
+			//tile_object.label = Crafty.e("2D, DOM, Text, Actor").at(x,y).text(submap_x + "," + submap_y);
+
+			//set boundary triggers
+			if(north_trigger === undefined || north_trigger > tile_ent.y) north_trigger = tile_ent.y;
+			if(south_trigger === undefined || south_trigger < tile_ent.y+tile_ent.h) south_trigger = tile_ent.y + tile_ent.h;
+			if(east_trigger === undefined || east_trigger < tile_ent.x + tile_ent.w) east_trigger = tile_ent.x + tile_ent.w;
+			if(west_trigger === undefined || west_trigger > tile_ent.x) west_trigger = tile_ent.x;
+	
+		}
+		
+
+		_submap.north_trigger = north_trigger;
+		_submap.south_trigger = south_trigger;
+		_submap.east_trigger = east_trigger;
+		_submap.west_trigger = west_trigger;
+		
+		//render detail terrain
+		for (var k = 0; k < submap["detail"].length; k++) {
+
+			var tile_object = submap["detail"][k];
+			var tile = tile_object["type"];
+			var x = tile_object["x"] - view_map["xoffset"];
+			var y = tile_object["y"] - view_map["yoffset"];
+
+			var tile_ent = Crafty.e("Actor", "Solid", "spr_"+tile);
+			tile_ent.at(x, y);
+			tile_ent.shift(tile_object["xoffset"], tile_object["yoffset"]);
+			tile_ent.z = 1;
+			tile_ent.keep = true;
+			tile_object.ent = tile_ent;
+
+		}
+
+		var time = new Date().getTime() - start;
+		console.log("all created" , time , "ms");
+		
+	}
 
 
 /*
@@ -161,7 +187,7 @@ Game = {
 			}
 		}
 */
-	}
+	
 }
 
 // The Grid component allows an element to be located
@@ -216,7 +242,9 @@ Crafty.c('PlayerCharacter', {
 
 		// Watch for a change of direction and switch animations accordingly
 		var animation_speed = 4;
+		/*
 		this.bind('NewDirection', function(data) {
+			console.log(this);
 			this.stop();
 			if (data.x > 0) {
 				this.animate('PlayerMovingRight', animation_speed, -1);
@@ -228,7 +256,8 @@ Crafty.c('PlayerCharacter', {
 				this.animate('PlayerMovingUp', animation_speed, -1);
 			}
 		});
-		this.player = new Player();
+		*/
+		this.player = new Player(Game);
 		this.player.submap.x = 10;
 		this.player.submap.y = 10;
 		this.bind("Change", this.updatePlayerChanged);
@@ -253,52 +282,77 @@ Crafty.c('PlayerCharacter', {
 		var vpx = this._x - (Crafty.viewport.width/2),
 			vpy = this._y - (Crafty.viewport.height/2);
 
-		if(vpx > 0 && vpx < (Game.width() - Crafty.viewport.width) ){
+		//if(vpx > 0 && vpx < (Game.width() - Crafty.viewport.width) )
 			Crafty.viewport.x= -vpx;
-		}
-		if(vpy > 0 && vpy < (Game.height()- Crafty.viewport.height) ){
+		
+		//if(vpy > 0 && vpy < (Game.height()- Crafty.viewport.height) )
 			Crafty.viewport.y= -vpy;
-		}
-
-
-		if(typeof pos === "undefined") return;
+		
 
 		var pix_per_submap = this.player.submap_size * 32;
-		var x_submap_offset = this.player.view_map["xorigin"] - this.player.view_map_radius;
-		var y_submap_offset = this.player.view_map["yorigin"] - this.player.view_map_radius;
 
-		this.player.submap.x = Math.floor(pos.x/ pix_per_submap) + x_submap_offset;
-		this.player.submap.y = Math.floor(pos.y/ pix_per_submap) + y_submap_offset;
-		
+
+		var origin_submap = this.player.view_map.submaps[this.player.view_map_radius][this.player.view_map_radius];
+		// console.log("north trigger", "ps y", origin_submap.north_trigger);
+		this.player.submap.x = origin_submap.x;//Math.floor(pos.x/ pix_per_submap) + x_submap_offset;
+		this.player.submap.y = origin_submap.y;//Math.floor(pos.y/ pix_per_submap) + y_submap_offset;
+
+		//var x_submap_offset = this.player.view_map["xorigin"] - this.player.view_map_radius;
+		//var y_submap_offset = this.player.view_map["yorigin"] - this.player.view_map_radius;
+
 		this.player.submap_pos.x = pos.x % pix_per_submap;
 		this.player.submap_pos.y = pos.y % pix_per_submap;
 		this.player.global_pos = this.player.submap_to_global(this.player.submap, this.player.submap_pos);
 
-		//TODO chnage the if to trigger when player is on teh boundary of the view map
+		//TODO chnage the if to trigger when player is on the boundary of the view map
 		// see view_map_radius in player class
 
-		this.print_coords();
+		// this.print_coords();
 
 		var change = false;
-			//detect north
-		if(this.player.submap.y < this.player.view_map["yorigin"]){
+
+		var original_x = this.x;
+		var original_y = this.y;
+		//MOVED NORTH
+		//if(this.player.submap_pos.x < 0){
+		// if(this.player.submap.y < this.player.view_map["yorigin"]){
+		if(pos.y <= origin_submap.north_trigger){
+
+			console.log("=========Triggered North===============");
+			this.print_coords();
+			var start = new Date().getTime();
 
 			this.player.shift_view_map(Game.map_grid.map, 0);
+
+			var end = new Date().getTime();
+			var time = end - start;
+
+			console.log("=================================");
+			console.log("map realoded total" , time , "ms");
+			//move player
+			//this.at(33,63);
+			// this.shift(0, 32*32);
+
 			change = true;
-			//detect south
+
+		//MOVED SOUTH
 		} else if(this.player.submap.y > this.player.view_map["yorigin"]){
 
 			this.player.shift_view_map(Game.map_grid.map, 2);
 			change = true;
 		}
+		var start = new Date().getTime();
 
 		if(change)
 		{
-			this.at(33,33);//pix_per_submap + this.player.submap_pos.x;
+
+			//pix_per_submap + this.player.submap_pos.x;
 			//this.y = 33;//pix_per_submap + this.player.submap_pos.y;
 			Crafty.viewport.centerOn(this.player, 0);
 			console.log( " -> moved to " );
 			this.print_coords();
+			console.log("y origin", this.player.view_map["yorigin"]);
+
 		}
 		/*
 		if(this.player.submap.x != this.player.view_map["xorigin"] || this.player.submap.y != this.player.view_map["yorigin"]){
@@ -326,6 +380,11 @@ Crafty.c('PlayerCharacter', {
 			this.print_coords();
 		}
 		*/
+
+		var end = new Date().getTime();
+		var time = end - start;
+		if(time > 0)
+			console.log("rest of event" , time , "ms");
 	},
 
 	updatePlayerChanged: function(pos)
@@ -385,9 +444,6 @@ Crafty.c('PlayerCharacter', {
 // -------------
 // Runs the core gameplay loop
 Crafty.scene('Game', function() {
-
-	
-
 
 	var vp_tile_size = 16;
 	Crafty.viewport.init(vp_tile_size*Game.map_grid.tile.width, vp_tile_size*Game.map_grid.tile.height);
@@ -495,7 +551,7 @@ Crafty.scene('Loading', function(){
 		//['http://localhost:4004/img/terrain/terrain.png',
 		//old
 		['http://localhost:4004/img/terrain/terrain.png',
-		'https://dl.dropboxusercontent.com/u/939544/assets/img/character/link.gif'
+		'http://localhost:4004/img/character/link.gif'
 		], function(){
 		// Once the images are loaded...
 
@@ -554,7 +610,7 @@ Crafty.scene('Loading', function(){
 		
 
 		
-		Crafty.sprite(24,32,'https://dl.dropboxusercontent.com/u/939544/assets/img/character/link.gif', {
+		Crafty.sprite(24,32,'http://localhost:4004/img/character/link.gif', {
 			spr_player:  [0, 0],
 		});
 		

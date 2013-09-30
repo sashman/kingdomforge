@@ -1,4 +1,4 @@
-function Player(){
+function Player(game){
 
 	//========================
 	// Properties related networking
@@ -86,8 +86,9 @@ function Player(){
 	{
 
 		var n = this.view_map_radius;
-		for(var i = this.submap.x-n; i <= this.submap.x+n; i++)
-			for(var j = this.submap.y-n; j <= this.submap.y+n; j++)
+		var n_cache = n + 0;
+		for(var i = this.submap.x-n_cache; i <= this.submap.x+n_cache; i++)
+			for(var j = this.submap.y-n_cache; j <= this.submap.y+n_cache; j++)
 				map.load_submap(i,j);
 		
 		var view_x = 0;
@@ -106,6 +107,7 @@ function Player(){
 
 		this.view_map["xoffset"] = this.view_map.submaps[0][0]["content"]["background"][0]["x"];
 		this.view_map["yoffset"] = this.view_map.submaps[0][0]["content"]["background"][0]["y"];
+		//important not to change!
 		this.view_map["xorigin"] = this.submap.x;
 		this.view_map["yorigin"] = this.submap.y;
 
@@ -172,10 +174,6 @@ function Player(){
 			default: return;
 		}
 
-		console.log("shift", direction);
-
-
-
 		var submap;
 		//save row to buffer
 		if(north_south_dir)
@@ -204,7 +202,7 @@ function Player(){
 				// 	" to ", this.view_map.submaps[i][buffer_row].x, this.view_map.submaps[i][buffer_row].y);
 
 				this.view_map.submaps[i][buffer_row] = this.view_map.submaps[i][mid_to_edge_row];
-				this.move_submap(this.view_map.submaps[i][buffer_row], direction);
+				// this.move_submap(this.view_map.submaps[i][buffer_row], direction);
 
 			}
 				
@@ -213,7 +211,7 @@ function Player(){
 			for (var i = 0; i < this.view_map.submaps[mid_to_edge_row].length; i++)
 			{
 				this.view_map.submaps[buffer_row][i] = this.view_map.submaps[mid_to_edge_row][i];
-				this.move_submap(this.view_map.submaps[buffer_row][i], direction);
+				// this.move_submap(this.view_map.submaps[buffer_row][i], direction);
 			}
 				
 			
@@ -227,18 +225,21 @@ function Player(){
 				// 	" to ", this.view_map.submaps[i][mid_to_edge_row].x, this.view_map.submaps[i][mid_to_edge_row].y);
 
 				this.view_map.submaps[i][mid_to_edge_row] = this.view_map.submaps[i][edge_to_mid_row];
-				this.move_submap(this.view_map.submaps[i][mid_to_edge_row], direction);
+				// this.move_submap(this.view_map.submaps[i][mid_to_edge_row], direction);
 			}
-				
+			
+			
+
 			
 		} else {
 			for (var i = 0; i < this.view_map.submaps[mid_to_edge_row].length; i++)
 			{
 				this.view_map.submaps[mid_to_edge_row][i] = this.view_map.submaps[edge_to_mid_row][i];
-				this.move_submap(this.view_map.submaps[mid_to_edge_row][i], direction);
+				// this.move_submap(this.view_map.submaps[mid_to_edge_row][i], direction);
 			}
 			
 		}
+	
 
 		//get new row
 		if(north_south_dir)
@@ -251,38 +252,68 @@ function Player(){
 				if(this.submap_buffer[submap_newx] && this.submap_buffer[submap_newx][submap_newy]){
 					console.log("cached", submap_newx, submap_newy);
 					submap = this.submap_buffer[submap_newx][submap_newy];
-				}else
-				{
-					map.load_submap(submap_newx,submap_newy);
-					submap = map.submaps[submap_newx][submap_newy].map;
+					this.view_map.submaps[i][edge_to_mid_row] = submap;
 				}
-				
-				
-				this.view_map.submaps[i][edge_to_mid_row] = submap;
+				else
+				{
+					var start = new Date().getTime();
 
-				this.move_submap(submap, direction);
+					map.load_submap(submap_newx,submap_newy);
+
+					var time = new Date().getTime() - start;
+					console.log("map loaded " + time + "ms");
+
+					submap = map.submaps[submap_newx][submap_newy].map;
+					this.view_map.submaps[i][edge_to_mid_row] = submap;
+
+					start = new Date().getTime();
+
+					game.render_submap(this.view_map, submap);
+
+					var time = new Date().getTime() - start;
+					console.log("map rendered " + time + "ms");
+				}
 
 			}
+
 		} else {
 			for (var i = 0; i < this.view_map.submaps[mid_to_edge_row].length; i++) {
 				var submap_newx = this.view_map.submaps[mid_to_edge_row][i]["x"]+new_row_offset;
 				var submap_newy = this.view_map.submaps[mid_to_edge_row][i]["y"];
 
-				//console.log("to request ", submap_newx, submap_newy);
+				
 				if(this.submap_buffer[submap_newx] && this.submap_buffer[submap_newx][submap_newy]){
 					console.log("using cached", submap_newx, submap_newy);
 					submap = this.submap_buffer[submap_newx][submap_newy];
+					this.view_map.submaps[edge_to_mid_row][i] = submap;
+
 				}else
 				{
+					var start = new Date().getTime();
+
 					map.load_submap(submap_newx,submap_newy);
+
+					var time = new Date().getTime() - start;
+					console.log("map loaded " + time + "ms");
+					
 					submap = map.submaps[submap_newx][submap_newy].map;
+					this.view_map.submaps[edge_to_mid_row][i] = submap;
+
+
+					start = new Date().getTime();
+
+					game.render_submap(this.view_map, submap);
+
+					var time = new Date().getTime() - start;
+					console.log("map rendered " + time + "ms");
 				}
 				
-				this.view_map.submaps[edge_to_mid_row][i] = submap;
+				
 
-				this.move_submap(submap, direction);
+				// this.move_submap(submap, direction);
 			}
 		}
+
 
 		
 		for (var i = 0; i < this.view_map.submaps.length; i++) {
@@ -335,10 +366,12 @@ function Player(){
 			default: return;
 		}
 
+
+		console.log("Moving map entities", submap.x, submap.y);
 		submap = submap.content;
 
-		console.log("Moving map entities");
-		//hide background tiles
+		
+		//shift  background tiles
 		for (var k = 0; k < submap["background"].length; k++) {
 			var tile_object = submap["background"][k];
 
@@ -364,7 +397,7 @@ function Player(){
 			}
 			
 		}
-		console.log("Done moving");
+		// console.log("Done moving");
 
 	}
 
@@ -386,7 +419,8 @@ function Player(){
 			tile_ent.visible = false;
 			tile_ent.at(-1000, -1000);
 			tile_ent.z = 0;
-			tile_object.label.at(-1000, -1000);
+			if(tile_object.label)
+				tile_object.label.at(-1000, -1000);
 		}
 
 		//render detail terrain
