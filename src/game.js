@@ -116,77 +116,6 @@ Game = {
 	}
 
 
-/*
-		for(var i = 0; i < Game.map_grid.map_entities.length; i ++){
-			if(Game.map_grid.map_entities.hasOwnProperty(i))
-				Game.map_grid.map_entities[i].keep = false;
-		}
-		
-
-		//render background terrain
-		for (var i = 0; i < view_map["background"].length; i++) {
-
-			var tile_object = view_map["background"][i];
-			var tile = tile_object["type"];
-			var x = tile_object["x"] - view_map["xoffset"];
-			var y = tile_object["y"] - view_map["yoffset"];
-
-			if(Game.map_grid.map_entities.length && (tile+"_"+x+"_"+y) in this.map_grid.map_entities)
-			{
-				tile_ent.keep = true;
-				continue;	
-			}
-			
-			
-			var tile_ent = Crafty.e("Actor", "spr_"+tile);
-			tile_ent.at(x, y);
-			tile_ent.z = 0;
-			tile_ent.keep = true;
-			this.map_grid.map_entities[tile+"_"+x+"_"+y] = tile_ent;
-		}
-
-		//render background terrain
-		for (var i = 0; i < view_map["detail"].length; i++) {
-
-			var tile_object = view_map["detail"][i];
-			var tile = tile_object["type"];
-			var x = tile_object["x"] - view_map["xoffset"];
-			var y = tile_object["y"] - view_map["yoffset"];
-			
-			if(Game.map_grid.map_entities.length && (tile+"_"+x+"_"+y) in this.map_grid.map_entities)
-			{
-				tile_ent.keep = true;
-				continue;	
-			}
-
-			var tile_ent = Crafty.e("Actor", "Solid", "spr_"+tile);
-			tile_ent.at(x, y);
-			tile_ent.shift(tile_object["xoffset"], tile_object["yoffset"]);
-			tile_ent.z = 1;
-			tile_ent.keep = true;
-			this.map_grid.map_entities[tile+"_"+x+"_"+y] = tile_ent;
-
-		}
-
-		for(var i = 0; i < Game.map_grid.map_entities.length; i ++){
-
-			//Check if the entities need to be moved
-			/*
-			if(Game.map_grid.map_entities.hasOwnProperty(i))
-			{
-				//test
-				Game.map_grid.map_entities[i].shift(0, 32*32);
-			}
-			
-
-
-			if(Game.map_grid.map_entities.hasOwnProperty(i) && !Game.map_grid.map_entities[i].keep)
-			{
-				Game.map_grid.map_entities[i].destroy();
-				delete Game.map_grid.map_entities[i];
-			}
-		}
-*/
 	
 }
 
@@ -333,15 +262,16 @@ Crafty.c('PlayerCharacter', {
 			//this.at(33,63);
 			// this.shift(0, 32*32);
 
-			change = true;
+
 
 		//MOVED SOUTH
 		} else if(this.player.submap.y > this.player.view_map["yorigin"]){
 
 			this.player.shift_view_map(Game.map_grid.map, 2);
-			change = true;
+			
 		}
 		var start = new Date().getTime();
+
 
 		if(change)
 		{

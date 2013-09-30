@@ -261,17 +261,14 @@ function Player(game){
 					map.load_submap(submap_newx,submap_newy);
 
 					var time = new Date().getTime() - start;
-					console.log("map loaded " + time + "ms");
+					console.log("map loaded" , time , "ms");
 
 					submap = map.submaps[submap_newx][submap_newy].map;
 					this.view_map.submaps[i][edge_to_mid_row] = submap;
 
-					start = new Date().getTime();
 
 					game.render_submap(this.view_map, submap);
 
-					var time = new Date().getTime() - start;
-					console.log("map rendered " + time + "ms");
 				}
 
 			}
@@ -294,18 +291,13 @@ function Player(game){
 					map.load_submap(submap_newx,submap_newy);
 
 					var time = new Date().getTime() - start;
-					console.log("map loaded " + time + "ms");
+					console.log("map loaded" , time , "ms");
 					
 					submap = map.submaps[submap_newx][submap_newy].map;
 					this.view_map.submaps[edge_to_mid_row][i] = submap;
 
-
-					start = new Date().getTime();
-
 					game.render_submap(this.view_map, submap);
 
-					var time = new Date().getTime() - start;
-					console.log("map rendered " + time + "ms");
 				}
 				
 				
