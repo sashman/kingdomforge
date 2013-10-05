@@ -73,12 +73,12 @@ Game = {
 			var tile_ent = this.unbin_entity(tile);
 			if(!tile_ent) tile_ent = Crafty.e("Actor", "Solid", "spr_"+tile);
 
-			tile_ent.at(x, y);
+			tile_ent.at(x, y);0
 			tile_ent.z = 0;
 			tile_ent.keep = true;
 			tile_object.ent = tile_ent;
 			
-			//tile_object.label = Crafty.e("2D, DOM, Text, Actor").at(x,y).text(submap_x + "," + submap_y);
+			// tile_object.label = Crafty.e("2D, DOM, Text, Actor").at(x,y).text(submap_x + "," + submap_y);
 
 			//set boundary triggers
 			if(north_trigger === undefined || north_trigger > tile_ent.y) north_trigger = tile_ent.y;
@@ -265,8 +265,6 @@ Crafty.c('PlayerCharacter', {
 		var original_x = this.x;
 		var original_y = this.y;
 		//MOVED NORTH
-		//if(this.player.submap_pos.x < 0){
-		// if(this.player.submap.y < this.player.view_map["yorigin"]){
 		if(pos.y <= origin_submap.north_trigger){
 
 			console.log("=========Triggered North===============");
@@ -279,29 +277,93 @@ Crafty.c('PlayerCharacter', {
 			var time = end - start;
 
 			console.log("=================================");
-			console.log("map realoded total" , time , "ms");
-			/*
+			
+			
 			var total_bin = 0;
 			for (var i in Game.terrain_bin) {
 				total_bin += Game.terrain_bin[i].entities.length;
 			};
-			console.log(total_bin, "in bin")
-			*/
-			//move player
-			//this.at(33,63);
-			// this.shift(0, 32*32);
 
-
+			console.log("map realoded total" , time , "ms", ":" , total_bin, "in bin");
+			
 
 		//MOVED SOUTH
-		} else if(this.player.submap.y > this.player.view_map["yorigin"]){
+		} else if(pos.y >= origin_submap.south_trigger){
+
+			console.log("=========Triggered South===============");
+			this.print_coords();
+			var start = new Date().getTime();
 
 			this.player.shift_view_map(Game.map_grid.map, 2);
+
+			var end = new Date().getTime();
+			var time = end - start;
+
+			console.log("=================================");
+			
+			
+			var total_bin = 0;
+			for (var i in Game.terrain_bin) {
+				total_bin += Game.terrain_bin[i].entities.length;
+			};
+
+			console.log("map realoded total" , time , "ms", ":" , total_bin, "in bin");
 			
 		}
+
+
+		//MOVED WEST
+		if(pos.x <= origin_submap.west_trigger){
+
+			console.log("=========Triggered West===============");
+			this.print_coords();
+			var start = new Date().getTime();
+
+			this.player.shift_view_map(Game.map_grid.map, 3);
+
+			var end = new Date().getTime();
+			var time = end - start;
+
+			console.log("=================================");
+			
+			
+			var total_bin = 0;
+			for (var i in Game.terrain_bin) {
+				total_bin += Game.terrain_bin[i].entities.length;
+			};
+
+			console.log("map realoded total" , time , "ms", ":" , total_bin, "in bin");
+			
+
+		//MOVED EAST
+		} else if(pos.x >= origin_submap.east_trigger){
+
+			console.log("=========Triggered East===============");
+			this.print_coords();
+			var start = new Date().getTime();
+
+			this.player.shift_view_map(Game.map_grid.map, 1);
+
+			var end = new Date().getTime();
+			var time = end - start;
+
+			console.log("=================================");
+			
+			
+			var total_bin = 0;
+			for (var i in Game.terrain_bin) {
+				total_bin += Game.terrain_bin[i].entities.length;
+			};
+
+			console.log("map realoded total" , time , "ms", ":" , total_bin, "in bin");
+			
+		}
+		
+
+
 		var start = new Date().getTime();
 
-
+		/*
 		if(change)
 		{
 

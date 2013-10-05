@@ -148,10 +148,11 @@ function Player(game){
 			//EAST
 			case 1:
 				north_south_dir = false;
-				buffer_row = 2;
+				buffer_row = 0;
 				mid_to_edge_row = 1;
-				edge_to_mid_row = 0;
-				new_row_offset = -1;
+				edge_to_mid_row = 2;
+				new_row_offset = 1;
+				
 			break;
 
 			//SOUTH
@@ -165,10 +166,10 @@ function Player(game){
 			//WEST
 			case 3:
 				north_south_dir = false;
-				buffer_row = 0;
+				buffer_row = 2;
 				mid_to_edge_row = 1;
-				edge_to_mid_row = 2;
-				new_row_offset = 1;
+				edge_to_mid_row = 0;
+				new_row_offset = -1;
 			break;
 
 			default: return;
@@ -266,10 +267,8 @@ function Player(game){
 					submap = map.submaps[submap_newx][submap_newy].map;
 					this.view_map.submaps[i][edge_to_mid_row] = submap;
 
-
-					game.render_submap(this.view_map, submap);
-
 				}
+				game.render_submap(this.view_map, submap);
 
 			}
 
@@ -296,13 +295,10 @@ function Player(game){
 					submap = map.submaps[submap_newx][submap_newy].map;
 					this.view_map.submaps[edge_to_mid_row][i] = submap;
 
-					game.render_submap(this.view_map, submap);
-
 				}
 				
+				game.render_submap(this.view_map, submap);
 				
-
-				// this.move_submap(submap, direction);
 			}
 		}
 
@@ -423,7 +419,9 @@ function Player(game){
 			var tile_ent = tile_object.ent;
 
 			game.bin_entity(tile_ent, tile);
-			
+			tile_ent.visible = false;
+			tile_ent.at(-1000, -1000);
+			tile_ent.z = 0;
 		}
 
  
