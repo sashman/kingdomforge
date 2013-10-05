@@ -407,24 +407,27 @@ function Player(game){
 		//hide background tiles
 		for (var k = 0; k < submap["background"].length; k++) {
 			var tile_object = submap["background"][k];
+			var tile = tile_object.type;
 			var tile_ent = tile_object.ent;
-			tile_ent.visible = false;
-			tile_ent.at(-1000, -1000);
-			tile_ent.z = 0;
-			if(tile_object.label)
-				tile_object.label.at(-1000, -1000);
+
+			game.bin_entity(tile_ent, tile);
+
+			//if(tile_object.label)
+			//	tile_object.label.at(-1000, -1000);
 		}
 
 		//render detail terrain
 		for (var k = 0; k < submap["detail"].length; k++) {
 			var tile_object = submap["detail"][k];
+			var tile = tile_object.type;
 			var tile_ent = tile_object.ent;
-			tile_ent.visible = false;
-			tile_ent.at(-1000, -1000);
-			tile_ent.z = 0;
+
+			game.bin_entity(tile_ent, tile);
+			
 		}
 
  
+
 	}
 
 }

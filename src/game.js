@@ -11,6 +11,8 @@ Game = {
 		map_entities: []
 	},
 
+	terrain_bin: {},
+
 	// The total width of the game screen. Since our grid takes up the entire screen
 	//  this is just the width of a tile times the width of the grid
 	width: function() {
@@ -68,9 +70,8 @@ Game = {
 			var y = tile_object["y"] - view_map["yoffset"];
 			
 			
-			
-			var tile_ent = Crafty.e("Actor", "spr_"+tile);
-			
+			var tile_ent = this.unbin_entity(tile);
+			if(!tile_ent) tile_ent = Crafty.e("Actor", "Solid", "spr_"+tile);
 
 			tile_ent.at(x, y);
 			tile_ent.z = 0;
@@ -101,7 +102,9 @@ Game = {
 			var x = tile_object["x"] - view_map["xoffset"];
 			var y = tile_object["y"] - view_map["yoffset"];
 
-			var tile_ent = Crafty.e("Actor", "Solid", "spr_"+tile);
+			
+			var tile_ent = this.unbin_entity(tile);
+			if(!tile_ent) tile_ent = Crafty.e("Actor", "Solid", "spr_"+tile);
 			tile_ent.at(x, y);
 			tile_ent.shift(tile_object["xoffset"], tile_object["yoffset"]);
 			tile_ent.z = 1;
@@ -113,9 +116,28 @@ Game = {
 		var time = new Date().getTime() - start;
 		console.log("all created" , time , "ms");
 		
+	},
+
+	bin_entity : function(entity, type){
+
+		entity.visible = false;
+		entity.at(-10000, -10000);
+
+		if(!this.terrain_bin[type]) this.terrain_bin[type] = { entities: [] };
+		this.terrain_bin[type].entities.push(entity);
+
+	},
+
+	unbin_entity : function(type){
+
+		if(!this.terrain_bin[type]) return undefined;
+		if(this.terrain_bin[type].entities.length == 0) return undefined;
+
+		var entity = this.terrain_bin[type].entities.pop();
+		entity.visible = true;
+		
+		return entity;
 	}
-
-
 	
 }
 
@@ -258,6 +280,13 @@ Crafty.c('PlayerCharacter', {
 
 			console.log("=================================");
 			console.log("map realoded total" , time , "ms");
+			/*
+			var total_bin = 0;
+			for (var i in Game.terrain_bin) {
+				total_bin += Game.terrain_bin[i].entities.length;
+			};
+			console.log(total_bin, "in bin")
+			*/
 			//move player
 			//this.at(33,63);
 			// this.shift(0, 32*32);
