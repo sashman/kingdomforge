@@ -17,6 +17,7 @@ function Map(){
 			async: false
 			}).responseText;
 
+		if(data.length == 0) return;
 		//console.log(data);
 		var map_object = JSON && JSON.parse(data) || $.parseJSON(data);
 

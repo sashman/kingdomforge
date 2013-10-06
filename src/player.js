@@ -283,7 +283,8 @@ function Player(game){
 					submap = this.submap_buffer[submap_newx][submap_newy];
 					this.view_map.submaps[edge_to_mid_row][i] = submap;
 
-				}else
+				}
+				else
 				{
 					var start = new Date().getTime();
 
