@@ -186,32 +186,33 @@ Crafty.c('PlayerCharacter', {
 			//.stopOnSolids()
 			.onHit('Village', this.visitVillage)
 
-			.animate('PlayerMovingUp',    0, 1, 7)
-			.animate('PlayerMovingRight', 8, 0, 15)
-			.animate('PlayerMovingDown',  8, 1, 15)
-			.animate('PlayerMovingLeft',  0, 0, 7);
+			.animate('walk_up',    0, 1, 7)
+			.animate('walk_right', 8, 0, 15)
+			.animate('walk_down',  8, 1, 15)
+			.animate('walk_left',  0, 0, 7)
 
 		// Watch for a change of direction and switch animations accordingly
 		var animation_speed = 4;
-		/*
+		
+		
 		this.bind('NewDirection', function(data) {
-			console.log(this);
+			
 			this.stop();
 			if (data.x > 0) {
-				this.animate('PlayerMovingRight', animation_speed, -1);
+				this.animate('walk_right', animation_speed, -1);
 			} else if (data.x < 0) {
-				this.animate('PlayerMovingLeft', animation_speed, -1);
+				this.animate('walk_left', animation_speed, -1);
 			} else if (data.y > 0) {
-				this.animate('PlayerMovingDown', animation_speed, -1);
+				this.animate('walk_down', animation_speed, -1);
 			} else if (data.y < 0) {
-				this.animate('PlayerMovingUp', animation_speed, -1);
+				this.animate('walk_up', animation_speed, -1);
 			}
 		});
-		*/
+		
+
 		this.player = new Player(Game);
 		this.player.submap.x = 10;
 		this.player.submap.y = 10;
-		this.bind("Change", this.updatePlayerChanged);
 		this.bind("Moved", this.updatePlayerMoved);
 		this.bind("KeyDown", this.updatePlayerKeyDown);
 	},
@@ -358,59 +359,7 @@ Crafty.c('PlayerCharacter', {
 			console.log("map realoded total" , time , "ms", ":" , total_bin, "in bin");
 			
 		}
-		
 
-
-		var start = new Date().getTime();
-
-		/*
-		if(change)
-		{
-
-			//pix_per_submap + this.player.submap_pos.x;
-			//this.y = 33;//pix_per_submap + this.player.submap_pos.y;
-			Crafty.viewport.centerOn(this.player, 0);
-			console.log( " -> moved to " );
-			this.print_coords();
-			console.log("y origin", this.player.view_map["yorigin"]);
-
-		}
-		/*
-		if(this.player.submap.x != this.player.view_map["xorigin"] || this.player.submap.y != this.player.view_map["yorigin"]){
-
-			//console.log("***new view map origin " + this.player.submap.x + "," + this.player.submap.y);
-			var start = new Date().getTime();
-			this.player.fill_buffer_view_map(Game.map_grid.map, this.player.submap.x, this.player.submap.y);
-			this.player.switch_view_maps();
-			this.view_map = this.player.view_map;
-			console.log("set new origin " + this.player.view_map["xorigin"] + "," + this.player.view_map["yorigin"]);
-
-			// UPDATE TERRAIN ENTITIES
-			Game.render_terrain_entities(this.view_map);
-
-			var end = new Date().getTime();
-			var time = end - start;
-			console.log(this.view_map["background"].length + " + " + this.view_map["detail"].length + " map tiles loaded in " + time + "ms");
-
-			this.x = pix_per_submap + this.player.submap_pos.x;
-			this.y = pix_per_submap + this.player.submap_pos.y;
-			Crafty.viewport.centerOn(this.player, 0);
-
-			//console.log(this);
-			console.log( " -> moved to " );
-			this.print_coords();
-		}
-		*/
-
-		var end = new Date().getTime();
-		var time = end - start;
-		if(time > 0)
-			console.log("rest of event" , time , "ms");
-	},
-
-	updatePlayerChanged: function(pos)
-	{
-		
 	},
 
 	//store key presses

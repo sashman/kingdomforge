@@ -304,7 +304,8 @@ function Player(game){
 		}
 
 
-		
+		//DEBUG
+		/*
 		for (var i = 0; i < this.view_map.submaps.length; i++) {
 			
 			var line = "";
@@ -313,6 +314,7 @@ function Player(game){
 			}
 			console.log(line);
 		}
+		*/
 
 	}
 
@@ -409,8 +411,6 @@ function Player(game){
 
 			game.bin_entity(tile_ent, tile);
 
-			//if(tile_object.label)
-			//	tile_object.label.at(-1000, -1000);
 		}
 
 		//render detail terrain
@@ -420,9 +420,7 @@ function Player(game){
 			var tile_ent = tile_object.ent;
 
 			game.bin_entity(tile_ent, tile);
-			tile_ent.visible = false;
-			tile_ent.at(-1000, -1000);
-			tile_ent.z = 0;
+
 		}
 
  
