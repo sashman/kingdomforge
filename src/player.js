@@ -86,7 +86,7 @@ function Player(game){
 	{
 
 		var n = this.view_map_radius;
-		var n_cache = n + 0;
+		var n_cache = n + 4;
 		for(var i = this.submap.x-n_cache; i <= this.submap.x+n_cache; i++)
 			for(var j = this.submap.y-n_cache; j <= this.submap.y+n_cache; j++)
 				map.load_submap(i,j);
@@ -123,8 +123,6 @@ function Player(game){
 
 	this.shift_view_map = function(map, direction)
 	{
-
-		console.log("shift", direction);
 
 		//set up rows/columns to be moved
 		var north_south_dir = true;
@@ -199,44 +197,25 @@ function Player(game){
 		{
 			for (var i = 0; i < this.view_map.submaps.length; i++)
 			{
-				// console.log("shift", this.view_map.submaps[i][mid_to_edge_row].x, this.view_map.submaps[i][edge_to_mid_row].y,
-				// 	" to ", this.view_map.submaps[i][buffer_row].x, this.view_map.submaps[i][buffer_row].y);
-
-				this.view_map.submaps[i][buffer_row] = this.view_map.submaps[i][mid_to_edge_row];
-				// this.move_submap(this.view_map.submaps[i][buffer_row], direction);
-
+				this.view_map.submaps[i][buffer_row] = this.view_map.submaps[i][mid_to_edge_row];	
 			}
-				
-			
 		} else {
 			for (var i = 0; i < this.view_map.submaps[mid_to_edge_row].length; i++)
 			{
-				this.view_map.submaps[buffer_row][i] = this.view_map.submaps[mid_to_edge_row][i];
-				// this.move_submap(this.view_map.submaps[buffer_row][i], direction);
+				this.view_map.submaps[buffer_row][i] = this.view_map.submaps[mid_to_edge_row][i];	
 			}
-				
-			
 		}
 
 		//shift edge row to mid
 		if(north_south_dir)
 		{
 			for (var i = 0; i < this.view_map.submaps.length; i++){
-				// console.log("shift", this.view_map.submaps[i][edge_to_mid_row].x, this.view_map.submaps[i][mid_to_edge_row].y,
-				// 	" to ", this.view_map.submaps[i][mid_to_edge_row].x, this.view_map.submaps[i][mid_to_edge_row].y);
-
 				this.view_map.submaps[i][mid_to_edge_row] = this.view_map.submaps[i][edge_to_mid_row];
-				// this.move_submap(this.view_map.submaps[i][mid_to_edge_row], direction);
 			}
-			
-			
-
-			
 		} else {
 			for (var i = 0; i < this.view_map.submaps[mid_to_edge_row].length; i++)
 			{
 				this.view_map.submaps[mid_to_edge_row][i] = this.view_map.submaps[edge_to_mid_row][i];
-				// this.move_submap(this.view_map.submaps[mid_to_edge_row][i], direction);
 			}
 			
 		}
@@ -318,79 +297,6 @@ function Player(game){
 
 	}
 
-	this.move_submap = function(submap, direction)
-	{
-
-		var x_move = 0;
-		var y_move = 0;
-		// directions
-		// 0 NORTH
-		// 1 EAST
-		// 2 SOUTH
-		// 4 WEST
-		switch(direction)
-		{
-						
-			//NORTH						
-			case 0:
-				x_move = 0;
-				y_move = 32 *32;
-			break;
-
-			//EAST
-			case 1:
-
-			break;
-
-			//SOUTH
-			case 2:
-				x_move = 0;
-				y_move = - 32 *32;
-				
-			break;
-
-			//WEST
-			case 3:
-				
-			break;
-
-			default: return;
-		}
-
-
-		console.log("Moving map entities", submap.x, submap.y);
-		submap = submap.content;
-
-		
-		//shift  background tiles
-		for (var k = 0; k < submap["background"].length; k++) {
-			var tile_object = submap["background"][k];
-
-			//console.log(tile_object);
-
-			var tile_ent = tile_object.ent;
-			if(tile_ent)
-			{
-				tile_ent.shift(x_move, y_move);
-				tile_object.label.shift(x_move, y_move);
-			}
-				
-			
-		}
-
-		//render detail terrain
-		for (var k = 0; k < submap["detail"].length; k++) {
-			var tile_object = submap["detail"][k];
-			var tile_ent = tile_object.ent;
-			if(tile_ent)
-			{
-				tile_ent.shift(x_move, y_move);	
-			}
-			
-		}
-		// console.log("Done moving");
-
-	}
 
 	this.save_submap = function(submap)
 	{

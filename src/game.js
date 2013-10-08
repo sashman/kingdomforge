@@ -72,8 +72,7 @@ Game = {
 			
 			var tile_ent = this.unbin_entity(tile);
 			if(!tile_ent) tile_ent = Crafty.e("Actor", "Solid", "spr_"+tile);
-
-			tile_ent.at(x, y);0
+			tile_ent.at(x, y);
 			tile_ent.z = 0;
 			tile_ent.keep = true;
 			tile_object.ent = tile_ent;
@@ -114,14 +113,14 @@ Game = {
 		}
 
 		var time = new Date().getTime() - start;
-		console.log("all created" , time , "ms");
+		console.log("submap rendered" , time , "ms");
 		
 	},
 
 	bin_entity : function(entity, type){
 
 		entity.visible = false;
-		entity.at(-10000, -10000);
+		//entity.at(-10000, -10000);
 
 		if(!this.terrain_bin[type]) this.terrain_bin[type] = { entities: [] };
 		this.terrain_bin[type].entities.push(entity);
@@ -265,6 +264,9 @@ Crafty.c('PlayerCharacter', {
 
 		var original_x = this.x;
 		var original_y = this.y;
+
+		var total_bin = 0;
+		var count_bin = false;
 		//MOVED NORTH
 		if(pos.y <= origin_submap.north_trigger){
 
@@ -280,10 +282,13 @@ Crafty.c('PlayerCharacter', {
 			console.log("=================================");
 			
 			
-			var total_bin = 0;
-			for (var i in Game.terrain_bin) {
-				total_bin += Game.terrain_bin[i].entities.length;
-			};
+			
+			if(count_bin)
+			{
+				for (var i in Game.terrain_bin) {
+					total_bin += Game.terrain_bin[i].entities.length;
+				};
+			}
 
 			console.log("map realoded total" , time , "ms", ":" , total_bin, "in bin");
 			
@@ -303,10 +308,12 @@ Crafty.c('PlayerCharacter', {
 			console.log("=================================");
 			
 			
-			var total_bin = 0;
-			for (var i in Game.terrain_bin) {
-				total_bin += Game.terrain_bin[i].entities.length;
-			};
+			if(count_bin)
+			{
+				for (var i in Game.terrain_bin) {
+					total_bin += Game.terrain_bin[i].entities.length;
+				};
+			}
 
 			console.log("map realoded total" , time , "ms", ":" , total_bin, "in bin");
 			
@@ -328,10 +335,12 @@ Crafty.c('PlayerCharacter', {
 			console.log("=================================");
 			
 			
-			var total_bin = 0;
-			for (var i in Game.terrain_bin) {
-				total_bin += Game.terrain_bin[i].entities.length;
-			};
+			if(count_bin)
+			{
+				for (var i in Game.terrain_bin) {
+					total_bin += Game.terrain_bin[i].entities.length;
+				};
+			}
 
 			console.log("map realoded total" , time , "ms", ":" , total_bin, "in bin");
 			
@@ -351,10 +360,12 @@ Crafty.c('PlayerCharacter', {
 			console.log("=================================");
 			
 			
-			var total_bin = 0;
-			for (var i in Game.terrain_bin) {
-				total_bin += Game.terrain_bin[i].entities.length;
-			};
+			if(count_bin)
+			{
+				for (var i in Game.terrain_bin) {
+					total_bin += Game.terrain_bin[i].entities.length;
+				};
+			}
 
 			console.log("map realoded total" , time , "ms", ":" , total_bin, "in bin");
 			
@@ -500,7 +511,7 @@ Crafty.scene('Victory', function() {
 
 //temp network module
 var net_game = {};
-
+var server_address = "10.1.2.132:4004";
 
 // Loading scene
 // -------------
@@ -520,8 +531,8 @@ Crafty.scene('Loading', function(){
 		//new
 		//['http://localhost:4004/img/terrain/terrain.png',
 		//old
-		['http://localhost:4004/img/terrain/terrain.png',
-		'http://localhost:4004/img/character/link.gif'
+		['http://'+server_address+'/img/terrain/terrain.png',
+		'http://'+server_address+'/img/character/link.gif'
 		], function(){
 		// Once the images are loaded...
 
@@ -547,7 +558,7 @@ Crafty.scene('Loading', function(){
 			spr_map[spr][2] = frames[i]["frame"]["w"];
 			spr_map[spr][3] = frames[i]["frame"]["h"];
 		}
-		Crafty.sprite('http://localhost:4004/img/terrain/terrain.png', spr_map);
+		Crafty.sprite('http://'+server_address+'/img/terrain/terrain.png', spr_map);
 
 
 		// Define the individual sprites in the image
@@ -580,7 +591,7 @@ Crafty.scene('Loading', function(){
 		
 
 		
-		Crafty.sprite(24,32,'http://localhost:4004/img/character/link.gif', {
+		Crafty.sprite(24,32,'http://'+server_address+'/img/character/link.gif', {
 			spr_player:  [0, 0],
 		});
 		
