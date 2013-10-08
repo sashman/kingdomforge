@@ -511,7 +511,7 @@ Crafty.scene('Victory', function() {
 
 //temp network module
 var net_game = {};
-var server_address = "10.1.2.132:4004";
+var server_address = "localhost:4004";
 
 // Loading scene
 // -------------
