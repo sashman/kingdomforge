@@ -17,8 +17,9 @@ function Map(){
 			async: false
 			}).responseText;
 
-		if(data.length == 0) return;
-		//console.log(data);
+		//map file doesnt exist
+		if(data.length <= 1) return;
+		
 		var map_object = JSON && JSON.parse(data) || $.parseJSON(data);
 
 		if(this.submaps[_global_x])

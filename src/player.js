@@ -243,6 +243,14 @@ function Player(game){
 					var time = new Date().getTime() - start;
 					console.log("map loaded" , time , "ms");
 
+					//no submap in the buffer
+					if(!map.submaps[submap_newx] || !map.submaps[submap_newx][submap_newy])
+					{
+						this.view_map.submaps[i][edge_to_mid_row] = undefined;	
+						continue;	
+					}
+					 
+
 					submap = map.submaps[submap_newx][submap_newy].map;
 					this.view_map.submaps[i][edge_to_mid_row] = submap;
 
@@ -271,6 +279,14 @@ function Player(game){
 
 					var time = new Date().getTime() - start;
 					console.log("map loaded" , time , "ms");
+
+					//no submap in the buffer
+					if(!map.submaps[submap_newx] || !map.submaps[submap_newx][submap_newy])
+					{
+						this.view_map.submaps[edge_to_mid_row][i] = undefined;
+						continue;	
+					}
+					
 					
 					submap = map.submaps[submap_newx][submap_newy].map;
 					this.view_map.submaps[edge_to_mid_row][i] = submap;
@@ -328,9 +344,40 @@ function Player(game){
 			game.bin_entity(tile_ent, tile);
 
 		}
-
- 
-
 	}
 
+	this.next_map_empty = function(direction)
+	{
+		// directions
+		// 0 NORTH
+		// 1 EAST
+		// 2 SOUTH
+		// 4 WEST
+		switch(direction)
+		{
+			
+			//NORTH						
+			case 0:
+				return (!this.view_map.submaps[1][0]);
+			break;
+
+			//EAST
+			case 1:
+				return (!this.view_map.submaps[2][1]);
+			break;
+
+			//SOUTH
+			case 2:
+				return (!this.view_map.submaps[1][2]);
+			break;
+
+			//WEST
+			case 3:
+				return (!this.view_map.submaps[0][1]);
+			break;
+
+			default: return;
+		}
+
+	}
 }
