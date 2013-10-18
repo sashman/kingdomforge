@@ -208,7 +208,6 @@ Crafty.c('PlayerCharacter', {
 			}
 		});
 		
-
 		this.player = new Player(Game);
 		this.player.submap.x = 10;
 		this.player.submap.y = 10;
