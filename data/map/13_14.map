@@ -7,455 +7,2591 @@
         "content": {
             "background": [
                 {
-                    "type": "GRASS3",
-                    "x": 403,
+                    "type": "WATER",
+                    "x": 448,
+                    "y": 416,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 448,
+                    "y": 420,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 448,
+                    "y": 424,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 448,
+                    "y": 428,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 448,
+                    "y": 432,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 448,
+                    "y": 436,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 448,
+                    "y": 440,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 448,
+                    "y": 444,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 452,
+                    "y": 416,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 452,
+                    "y": 420,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 452,
+                    "y": 424,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 452,
+                    "y": 428,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 452,
+                    "y": 432,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 452,
+                    "y": 436,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 452,
+                    "y": 440,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 452,
+                    "y": 444,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 456,
+                    "y": 416,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 456,
+                    "y": 420,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 456,
+                    "y": 424,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 456,
+                    "y": 428,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 456,
+                    "y": 432,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 456,
+                    "y": 436,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 456,
+                    "y": 440,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 456,
+                    "y": 444,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 460,
+                    "y": 416,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 460,
+                    "y": 420,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 460,
+                    "y": 424,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 460,
+                    "y": 428,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 460,
+                    "y": 432,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 460,
+                    "y": 436,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 460,
+                    "y": 440,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 460,
+                    "y": 444,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 464,
+                    "y": 416,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 464,
+                    "y": 420,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 464,
+                    "y": 424,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 464,
+                    "y": 428,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 464,
+                    "y": 432,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 464,
+                    "y": 436,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 464,
+                    "y": 440,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 464,
+                    "y": 444,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 468,
+                    "y": 416,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 468,
+                    "y": 420,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 468,
+                    "y": 421,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 468,
+                    "y": 422,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 468,
+                    "y": 423,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 469,
+                    "y": 420,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 469,
+                    "y": 421,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 469,
+                    "y": 422,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS1",
+                    "x": 469,
+                    "y": 423,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 470,
+                    "y": 420,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 470,
+                    "y": 421,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS1",
+                    "x": 470,
+                    "y": 422,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS1",
+                    "x": 470,
+                    "y": 423,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 471,
+                    "y": 420,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 471,
+                    "y": 421,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 471,
+                    "y": 422,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 471,
+                    "y": 423,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 468,
+                    "y": 424,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 468,
+                    "y": 425,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 468,
+                    "y": 426,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 468,
+                    "y": 427,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS1",
+                    "x": 469,
+                    "y": 424,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 469,
+                    "y": 425,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 469,
+                    "y": 426,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 469,
+                    "y": 427,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS1",
+                    "x": 470,
+                    "y": 424,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS3",
+                    "x": 470,
+                    "y": 425,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS2",
+                    "x": 470,
+                    "y": 426,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 470,
+                    "y": 427,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 471,
+                    "y": 424,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 471,
+                    "y": 425,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 471,
+                    "y": 426,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 471,
+                    "y": 427,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 468,
+                    "y": 428,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 468,
+                    "y": 429,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 468,
+                    "y": 430,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 468,
+                    "y": 431,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 469,
+                    "y": 428,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 469,
+                    "y": 429,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 469,
+                    "y": 430,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 469,
+                    "y": 431,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 470,
+                    "y": 428,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 470,
+                    "y": 429,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 470,
+                    "y": 430,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 470,
+                    "y": 431,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 471,
+                    "y": 428,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 471,
+                    "y": 429,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS1",
+                    "x": 471,
+                    "y": 430,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS1",
+                    "x": 471,
+                    "y": 431,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 468,
+                    "y": 432,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 468,
+                    "y": 433,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 468,
                     "y": 434,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS2",
-                    "x": 407,
+                    "type": "SMALL_WATER",
+                    "x": 468,
+                    "y": 435,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 469,
+                    "y": 432,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 469,
+                    "y": 433,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 469,
                     "y": 434,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS1",
-                    "x": 411,
+                    "type": "SMALL_WATER",
+                    "x": 469,
+                    "y": 435,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 470,
+                    "y": 432,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS2",
+                    "x": 470,
+                    "y": 433,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 470,
                     "y": 434,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS2",
-                    "x": 415,
+                    "type": "SMALL_WATER",
+                    "x": 470,
+                    "y": 435,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS2",
+                    "x": 471,
+                    "y": 432,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS3",
+                    "x": 471,
+                    "y": 433,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS3",
+                    "x": 471,
                     "y": 434,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
+                    "type": "SMALL_GRASS1",
+                    "x": 471,
+                    "y": 435,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 468,
+                    "y": 436,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 468,
+                    "y": 440,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 468,
+                    "y": 444,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 472,
+                    "y": 416,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 472,
+                    "y": 420,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 472,
+                    "y": 421,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 472,
+                    "y": 422,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 472,
+                    "y": 423,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 473,
+                    "y": 420,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 473,
+                    "y": 421,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 473,
+                    "y": 422,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS1",
+                    "x": 473,
+                    "y": 423,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 474,
+                    "y": 420,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 474,
+                    "y": 421,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS1",
+                    "x": 474,
+                    "y": 422,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS1",
+                    "x": 474,
+                    "y": 423,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 475,
+                    "y": 420,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 475,
+                    "y": 421,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS2",
+                    "x": 475,
+                    "y": 422,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS1",
+                    "x": 475,
+                    "y": 423,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 472,
+                    "y": 424,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 472,
+                    "y": 425,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 472,
+                    "y": 426,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 472,
+                    "y": 427,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 473,
+                    "y": 424,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 473,
+                    "y": 425,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 473,
+                    "y": 426,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 473,
+                    "y": 427,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 474,
+                    "y": 424,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 474,
+                    "y": 425,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 474,
+                    "y": 426,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 474,
+                    "y": 427,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS2",
+                    "x": 475,
+                    "y": 424,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 475,
+                    "y": 425,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 475,
+                    "y": 426,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 475,
+                    "y": 427,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 472,
+                    "y": 428,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 472,
+                    "y": 429,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS2",
+                    "x": 472,
+                    "y": 430,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS1",
+                    "x": 472,
+                    "y": 431,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 473,
+                    "y": 428,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 473,
+                    "y": 429,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS3",
+                    "x": 473,
+                    "y": 430,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS3",
+                    "x": 473,
+                    "y": 431,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 474,
+                    "y": 428,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS0",
+                    "x": 474,
+                    "y": 429,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS0",
+                    "x": 474,
+                    "y": 430,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS3",
+                    "x": 474,
+                    "y": 431,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS3",
+                    "x": 475,
+                    "y": 428,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS0",
+                    "x": 475,
+                    "y": 429,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS0",
+                    "x": 475,
+                    "y": 430,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS0",
+                    "x": 475,
+                    "y": 431,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
                     "type": "GRASS2",
-                    "x": 419,
-                    "y": 434,
+                    "x": 472,
+                    "y": 432,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS0",
-                    "x": 423,
-                    "y": 434,
+                    "type": "SMALL_GRASS2",
+                    "x": 472,
+                    "y": 436,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS2",
-                    "x": 427,
-                    "y": 434,
+                    "type": "SMALL_GRASS3",
+                    "x": 472,
+                    "y": 437,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS3",
-                    "x": 431,
-                    "y": 434,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS2",
-                    "x": 403,
+                    "type": "SMALL_WATER",
+                    "x": 472,
                     "y": 438,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS0",
-                    "x": 407,
+                    "type": "SMALL_WATER",
+                    "x": 472,
+                    "y": 439,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS3",
+                    "x": 473,
+                    "y": 436,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS1",
+                    "x": 473,
+                    "y": 437,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS0",
+                    "x": 473,
                     "y": 438,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS1",
-                    "x": 411,
+                    "type": "SMALL_GRASS2",
+                    "x": 473,
+                    "y": 439,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS0",
+                    "x": 474,
+                    "y": 436,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS3",
+                    "x": 474,
+                    "y": 437,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS1",
+                    "x": 474,
                     "y": 438,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS0",
-                    "x": 415,
+                    "type": "SMALL_GRASS0",
+                    "x": 474,
+                    "y": 439,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS1",
+                    "x": 475,
+                    "y": 436,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS3",
+                    "x": 475,
+                    "y": 437,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS3",
+                    "x": 475,
                     "y": 438,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS2",
-                    "x": 419,
-                    "y": 438,
+                    "type": "SMALL_GRASS0",
+                    "x": 475,
+                    "y": 439,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS1",
-                    "x": 423,
-                    "y": 438,
+                    "type": "SMALL_WATER",
+                    "x": 472,
+                    "y": 440,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS0",
-                    "x": 427,
-                    "y": 438,
+                    "type": "SMALL_WATER",
+                    "x": 472,
+                    "y": 441,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS1",
-                    "x": 431,
-                    "y": 438,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS0",
-                    "x": 403,
+                    "type": "SMALL_WATER",
+                    "x": 472,
                     "y": 442,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS1",
-                    "x": 407,
+                    "type": "SMALL_WATER",
+                    "x": 472,
+                    "y": 443,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS3",
+                    "x": 473,
+                    "y": 440,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 473,
+                    "y": 441,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 473,
                     "y": 442,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS2",
-                    "x": 411,
+                    "type": "SMALL_WATER",
+                    "x": 473,
+                    "y": 443,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS0",
+                    "x": 474,
+                    "y": 440,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS2",
+                    "x": 474,
+                    "y": 441,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 474,
                     "y": 442,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS1",
-                    "x": 415,
+                    "type": "SMALL_WATER",
+                    "x": 474,
+                    "y": 443,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS0",
+                    "x": 475,
+                    "y": 440,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS2",
+                    "x": 475,
+                    "y": 441,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS1",
+                    "x": 475,
                     "y": 442,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS3",
-                    "x": 419,
-                    "y": 442,
+                    "type": "SMALL_GRASS1",
+                    "x": 475,
+                    "y": 443,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS2",
-                    "x": 423,
-                    "y": 442,
+                    "type": "SMALL_WATER",
+                    "x": 472,
+                    "y": 444,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS0",
-                    "x": 427,
-                    "y": 442,
+                    "type": "SMALL_WATER",
+                    "x": 472,
+                    "y": 445,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS0",
-                    "x": 431,
-                    "y": 442,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS2",
-                    "x": 403,
+                    "type": "SMALL_WATER",
+                    "x": 472,
                     "y": 446,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS0",
-                    "x": 407,
+                    "type": "SMALL_WATER",
+                    "x": 472,
+                    "y": 447,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 473,
+                    "y": 444,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 473,
+                    "y": 445,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 473,
                     "y": 446,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS1",
-                    "x": 411,
+                    "type": "SMALL_WATER",
+                    "x": 473,
+                    "y": 447,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS3",
+                    "x": 474,
+                    "y": 444,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 474,
+                    "y": 445,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 474,
                     "y": 446,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS2",
-                    "x": 415,
+                    "type": "SMALL_WATER",
+                    "x": 474,
+                    "y": 447,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS1",
+                    "x": 475,
+                    "y": 444,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS2",
+                    "x": 475,
+                    "y": 445,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS2",
+                    "x": 475,
                     "y": 446,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS2",
-                    "x": 419,
-                    "y": 446,
+                    "type": "SMALL_WATER",
+                    "x": 475,
+                    "y": 447,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "WATER",
+                    "x": 476,
+                    "y": 416,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 476,
+                    "y": 420,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS0",
+                    "x": 476,
+                    "y": 421,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS2",
+                    "x": 476,
+                    "y": 422,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS2",
+                    "x": 476,
+                    "y": 423,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS1",
+                    "x": 477,
+                    "y": 420,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS3",
+                    "x": 477,
+                    "y": 421,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS3",
+                    "x": 477,
+                    "y": 422,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS0",
+                    "x": 477,
+                    "y": 423,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 478,
+                    "y": 420,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 478,
+                    "y": 421,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS1",
+                    "x": 478,
+                    "y": 422,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS3",
+                    "x": 478,
+                    "y": 423,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 479,
+                    "y": 420,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 479,
+                    "y": 421,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_WATER",
+                    "x": 479,
+                    "y": 422,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS1",
+                    "x": 479,
+                    "y": 423,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
                     "type": "GRASS3",
-                    "x": 423,
-                    "y": 446,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS1",
-                    "x": 427,
-                    "y": 446,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS2",
-                    "x": 431,
-                    "y": 446,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS3",
-                    "x": 403,
-                    "y": 450,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS0",
-                    "x": 407,
-                    "y": 450,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS2",
-                    "x": 411,
-                    "y": 450,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS3",
-                    "x": 415,
-                    "y": 450,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS1",
-                    "x": 419,
-                    "y": 450,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS3",
-                    "x": 423,
-                    "y": 450,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS1",
-                    "x": 427,
-                    "y": 450,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS2",
-                    "x": 431,
-                    "y": 450,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS0",
-                    "x": 403,
-                    "y": 454,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS3",
-                    "x": 407,
-                    "y": 454,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS3",
-                    "x": 411,
-                    "y": 454,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS3",
-                    "x": 415,
-                    "y": 454,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS0",
-                    "x": 419,
-                    "y": 454,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS2",
-                    "x": 423,
-                    "y": 454,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS3",
-                    "x": 427,
-                    "y": 454,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS0",
-                    "x": 431,
-                    "y": 454,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS3",
-                    "x": 403,
-                    "y": 458,
+                    "x": 476,
+                    "y": 424,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
                     "type": "GRASS2",
-                    "x": 407,
-                    "y": 458,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS3",
-                    "x": 411,
-                    "y": 458,
+                    "x": 476,
+                    "y": 428,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
                     "type": "GRASS0",
-                    "x": 415,
-                    "y": 458,
+                    "x": 476,
+                    "y": 432,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
                     "type": "GRASS3",
-                    "x": 419,
-                    "y": 458,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS0",
-                    "x": 423,
-                    "y": 458,
+                    "x": 476,
+                    "y": 436,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
                     "type": "GRASS1",
-                    "x": 427,
-                    "y": 458,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS1",
-                    "x": 431,
-                    "y": 458,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS1",
-                    "x": 403,
-                    "y": 462,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS3",
-                    "x": 407,
-                    "y": 462,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS0",
-                    "x": 411,
-                    "y": 462,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS1",
-                    "x": 415,
-                    "y": 462,
+                    "x": 476,
+                    "y": 440,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
                     "type": "GRASS2",
-                    "x": 419,
-                    "y": 462,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS0",
-                    "x": 423,
-                    "y": 462,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS2",
-                    "x": 427,
-                    "y": 462,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "GRASS1",
-                    "x": 431,
-                    "y": 462,
+                    "x": 476,
+                    "y": 444,
                     "xoffset": 0,
                     "yoffset": 0
                 }
             ],
-            "detail": []
+            "detail": [
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 468,
+                    "y": 422,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_NS",
+                    "x": 468,
+                    "y": 422,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_SE_NS",
+                    "x": 468,
+                    "y": 422,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NS_WE",
+                    "x": 468,
+                    "y": 424,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 468,
+                    "y": 425,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_SN",
+                    "x": 468,
+                    "y": 425,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_NE_SN",
+                    "x": 468,
+                    "y": 425,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 469,
+                    "y": 421,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_NS",
+                    "x": 469,
+                    "y": 421,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_SE_NS",
+                    "x": 469,
+                    "y": 421,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NW_NS",
+                    "x": 469,
+                    "y": 422,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 469,
+                    "y": 425,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_SW_SN",
+                    "x": 469,
+                    "y": 425,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NS_WE",
+                    "x": 469,
+                    "y": 426,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 469,
+                    "y": 427,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_SN",
+                    "x": 469,
+                    "y": 427,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_NE_SN",
+                    "x": 469,
+                    "y": 427,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 469,
+                    "y": 432,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_NS",
+                    "x": 469,
+                    "y": 432,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_SE_NS",
+                    "x": 469,
+                    "y": 432,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NS_WE",
+                    "x": 469,
+                    "y": 433,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 469,
+                    "y": 434,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_SN",
+                    "x": 469,
+                    "y": 434,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_NE_SN",
+                    "x": 469,
+                    "y": 434,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_WE_NS",
+                    "x": 470,
+                    "y": 421,
+                    "yoffset": 8,
+                    "xoffset": -8
+                },
+                {
+                    "type": "CLIFF_WE_SN",
+                    "x": 470,
+                    "y": 427,
+                    "yoffset": 8,
+                    "xoffset": -8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 470,
+                    "y": 429,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_NS",
+                    "x": 470,
+                    "y": 429,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_SE_NS",
+                    "x": 470,
+                    "y": 429,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NS_WE",
+                    "x": 470,
+                    "y": 430,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NS_WE",
+                    "x": 470,
+                    "y": 431,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 470,
+                    "y": 432,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NW_NS",
+                    "x": 470,
+                    "y": 432,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 470,
+                    "y": 434,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_SW_SN",
+                    "x": 470,
+                    "y": 434,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NS_WE",
+                    "x": 470,
+                    "y": 435,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 470,
+                    "y": 436,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_SN",
+                    "x": 470,
+                    "y": 436,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_NE_SN",
+                    "x": 470,
+                    "y": 436,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_EW",
+                    "x": 471,
+                    "y": 421,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_NS",
+                    "x": 471,
+                    "y": 421,
+                    "yoffset": 8,
+                    "xoffset": -8
+                },
+                {
+                    "type": "CLIFF_SW_NS",
+                    "x": 471,
+                    "y": 421,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NS_EW",
+                    "x": 471,
+                    "y": 422,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NS_EW",
+                    "x": 471,
+                    "y": 423,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NS_EW",
+                    "x": 471,
+                    "y": 424,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NS_EW",
+                    "x": 471,
+                    "y": 425,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NS_EW",
+                    "x": 471,
+                    "y": 426,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_EW",
+                    "x": 471,
+                    "y": 427,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_SN",
+                    "x": 471,
+                    "y": 427,
+                    "yoffset": 8,
+                    "xoffset": -8
+                },
+                {
+                    "type": "CLIFF_NW_SN",
+                    "x": 471,
+                    "y": 427,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_WE_NS",
+                    "x": 471,
+                    "y": 429,
+                    "yoffset": 8,
+                    "xoffset": -8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 471,
+                    "y": 436,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_SW_SN",
+                    "x": 471,
+                    "y": 436,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NS_WE",
+                    "x": 471,
+                    "y": 437,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 471,
+                    "y": 438,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_SN",
+                    "x": 471,
+                    "y": 438,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_NE_SN",
+                    "x": 471,
+                    "y": 438,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 472,
+                    "y": 422,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_NS",
+                    "x": 472,
+                    "y": 422,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_SE_NS",
+                    "x": 472,
+                    "y": 422,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NS_WE",
+                    "x": 472,
+                    "y": 423,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 472,
+                    "y": 424,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_SN",
+                    "x": 472,
+                    "y": 424,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_NE_SN",
+                    "x": 472,
+                    "y": 424,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_WE_NS",
+                    "x": 472,
+                    "y": 429,
+                    "yoffset": 8,
+                    "xoffset": -8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 472,
+                    "y": 438,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_SW_SN",
+                    "x": 472,
+                    "y": 438,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NS_WE",
+                    "x": 472,
+                    "y": 439,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NS_WE",
+                    "x": 472,
+                    "y": 440,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 472,
+                    "y": 441,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_SN",
+                    "x": 472,
+                    "y": 441,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_NE_SN",
+                    "x": 472,
+                    "y": 441,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 473,
+                    "y": 421,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_NS",
+                    "x": 473,
+                    "y": 421,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_SE_NS",
+                    "x": 473,
+                    "y": 421,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NW_NS",
+                    "x": 473,
+                    "y": 422,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_WE_SN",
+                    "x": 473,
+                    "y": 424,
+                    "yoffset": 8,
+                    "xoffset": -8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 473,
+                    "y": 428,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_NS",
+                    "x": 473,
+                    "y": 428,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_SE_NS",
+                    "x": 473,
+                    "y": 428,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_NS",
+                    "x": 473,
+                    "y": 429,
+                    "yoffset": 8,
+                    "xoffset": -8
+                },
+                {
+                    "type": "CLIFF_NW_NS",
+                    "x": 473,
+                    "y": 429,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 473,
+                    "y": 441,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_SW_SN",
+                    "x": 473,
+                    "y": 441,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_SN",
+                    "x": 473,
+                    "y": 442,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_NE_SN",
+                    "x": 473,
+                    "y": 442,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 473,
+                    "y": 443,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_NS",
+                    "x": 473,
+                    "y": 443,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_SE_NS",
+                    "x": 473,
+                    "y": 443,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NS_WE",
+                    "x": 473,
+                    "y": 444,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 473,
+                    "y": 445,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_SN",
+                    "x": 473,
+                    "y": 445,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_NE_SN",
+                    "x": 473,
+                    "y": 445,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_WE_NS",
+                    "x": 474,
+                    "y": 421,
+                    "yoffset": 8,
+                    "xoffset": -8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 474,
+                    "y": 424,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_SN",
+                    "x": 474,
+                    "y": 424,
+                    "yoffset": 8,
+                    "xoffset": -8
+                },
+                {
+                    "type": "CLIFF_SW_SN",
+                    "x": 474,
+                    "y": 424,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_SN",
+                    "x": 474,
+                    "y": 425,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_NE_SN",
+                    "x": 474,
+                    "y": 425,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 474,
+                    "y": 427,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_NS",
+                    "x": 474,
+                    "y": 427,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_SE_NS",
+                    "x": 474,
+                    "y": 427,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NW_NS",
+                    "x": 474,
+                    "y": 428,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 474,
+                    "y": 442,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_SW_SN",
+                    "x": 474,
+                    "y": 442,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NW_NS",
+                    "x": 474,
+                    "y": 443,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 474,
+                    "y": 445,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_SW_SN",
+                    "x": 474,
+                    "y": 445,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NS_WE",
+                    "x": 474,
+                    "y": 446,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 474,
+                    "y": 447,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_SN",
+                    "x": 474,
+                    "y": 447,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_NE_SN",
+                    "x": 474,
+                    "y": 447,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 475,
+                    "y": 420,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_NS",
+                    "x": 475,
+                    "y": 420,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_SE_NS",
+                    "x": 475,
+                    "y": 420,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_NS",
+                    "x": 475,
+                    "y": 421,
+                    "yoffset": 8,
+                    "xoffset": -8
+                },
+                {
+                    "type": "CLIFF_NW_NS",
+                    "x": 475,
+                    "y": 421,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 475,
+                    "y": 425,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_SW_SN",
+                    "x": 475,
+                    "y": 425,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NS_WE",
+                    "x": 475,
+                    "y": 426,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 475,
+                    "y": 427,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NW_NS",
+                    "x": 475,
+                    "y": 427,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 475,
+                    "y": 447,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_SW_SN",
+                    "x": 475,
+                    "y": 447,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_WE",
+                    "x": 476,
+                    "y": 419,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_NS",
+                    "x": 476,
+                    "y": 419,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_SE_NS",
+                    "x": 476,
+                    "y": 419,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NW_NS",
+                    "x": 476,
+                    "y": 420,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_WE_NS",
+                    "x": 477,
+                    "y": 419,
+                    "yoffset": 8,
+                    "xoffset": -8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_EW",
+                    "x": 478,
+                    "y": 419,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_NS",
+                    "x": 478,
+                    "y": 419,
+                    "yoffset": 8,
+                    "xoffset": -8
+                },
+                {
+                    "type": "CLIFF_SW_NS",
+                    "x": 478,
+                    "y": 419,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_NS_EW",
+                    "x": 478,
+                    "y": 420,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_EW",
+                    "x": 478,
+                    "y": 421,
+                    "yoffset": -8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_NS",
+                    "x": 478,
+                    "y": 421,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_NE_NS",
+                    "x": 478,
+                    "y": 421,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_NS_EW",
+                    "x": 479,
+                    "y": 421,
+                    "yoffset": 24,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_SW_NS",
+                    "x": 479,
+                    "y": 421,
+                    "yoffset": 8,
+                    "xoffset": 8
+                },
+                {
+                    "type": "CLIFF_PADDING_WE_NS",
+                    "x": 479,
+                    "y": 422,
+                    "yoffset": 8,
+                    "xoffset": 24
+                },
+                {
+                    "type": "CLIFF_NE_NS",
+                    "x": 479,
+                    "y": 422,
+                    "yoffset": 8,
+                    "xoffset": 8
+                }
+            ]
         }
     }
 }

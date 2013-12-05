@@ -66,6 +66,10 @@ Game = {
 
 			var tile_object = submap["background"][k];
 			var tile = tile_object["type"];
+
+			if(tile.indexOf("UNKNOWN")!=-1)
+				console.log("BAD TILE", submap_x, submap_y);
+			
 			var x = tile_object["x"] - view_map["xoffset"];
 			var y = tile_object["y"] - view_map["yoffset"];
 			
@@ -82,22 +86,31 @@ Game = {
 			//set boundary triggers
 			if(north_trigger === undefined || north_trigger > tile_ent.y) north_trigger = tile_ent.y;
 			if(south_trigger === undefined || south_trigger < tile_ent.y+tile_ent.h) south_trigger = tile_ent.y + tile_ent.h;
-			if(east_trigger === undefined || east_trigger < tile_ent.x + tile_ent.w) east_trigger = tile_ent.x + tile_ent.w;
-			if(west_trigger === undefined || west_trigger > tile_ent.x) west_trigger = tile_ent.x;
+			if(east_trigger  === undefined || east_trigger  < tile_ent.x+tile_ent.w) east_trigger = tile_ent.x + tile_ent.w;
+			if(west_trigger  === undefined || west_trigger  > tile_ent.x) west_trigger = tile_ent.x;
 	
 		}
 		
-
 		_submap.north_trigger = north_trigger;
 		_submap.south_trigger = south_trigger;
 		_submap.east_trigger = east_trigger;
 		_submap.west_trigger = west_trigger;
+
+/*
+		console.log( submap_x, submap_y, "triggers NSEW",
+		_submap.north_trigger,
+		_submap.south_trigger,
+		_submap.east_trigger,
+		_submap.west_trigger);
+*/
 		
 		//render detail terrain
 		for (var k = 0; k < submap["detail"].length; k++) {
 
 			var tile_object = submap["detail"][k];
 			var tile = tile_object["type"];
+			if(tile.indexOf("UNKNOWN")!=-1)
+				console.log("BAD TILE", submap_x, submap_y);
 			var x = tile_object["x"] - view_map["xoffset"];
 			var y = tile_object["y"] - view_map["yoffset"];
 
@@ -223,6 +236,7 @@ Crafty.c('PlayerCharacter', {
 			"s",  this.player.submap.x, this.player.submap.y,
 			"gp", this.player.global_pos.x , this.player.global_pos.y,
 			"ps", this.x , this.y
+
 			);
 	},
 
@@ -257,7 +271,9 @@ Crafty.c('PlayerCharacter', {
 		//TODO chnage the if to trigger when player is on the boundary of the view map
 		// see view_map_radius in player class
 
-		// this.print_coords();
+		//DEBUG
+		//this.print_coords();
+
 
 		var change = false;
 
@@ -270,6 +286,7 @@ Crafty.c('PlayerCharacter', {
 		var dir = 0;
 		var changed = false;
 
+		
 		//MOVED NORTH
 		if(pos.y < origin_submap.north_trigger){
 			dir = 0;

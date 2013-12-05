@@ -125,7 +125,7 @@ function Player(game){
 	{
 
 		//set up rows/columns to be moved
-		var north_south_dir = true;
+		var north_south_dir = false;
 		var buffer_row, mid_to_edge_row, edge_to_mid_row, new_row_offset;
 		// directions
 		// 0 NORTH
@@ -145,7 +145,7 @@ function Player(game){
 
 			//EAST
 			case 1:
-				north_south_dir = false;
+				north_south_dir = true;
 				buffer_row = 0;
 				mid_to_edge_row = 1;
 				edge_to_mid_row = 2;
@@ -163,7 +163,7 @@ function Player(game){
 
 			//WEST
 			case 3:
-				north_south_dir = false;
+				north_south_dir = true;
 				buffer_row = 2;
 				mid_to_edge_row = 1;
 				edge_to_mid_row = 0;
@@ -300,7 +300,7 @@ function Player(game){
 
 
 		//DEBUG
-		/*
+		
 		for (var i = 0; i < this.view_map.submaps.length; i++) {
 			
 			var line = "";
@@ -309,7 +309,7 @@ function Player(game){
 			}
 			console.log(line);
 		}
-		*/
+		
 
 	}
 
