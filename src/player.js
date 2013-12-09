@@ -1,5 +1,6 @@
 function Player(game){
 
+
 	//========================
 	// Properties related networking
 	//========================	
@@ -255,7 +256,7 @@ function Player(game){
 					this.view_map.submaps[i][edge_to_mid_row] = submap;
 
 				}
-				game.render_submap(this.view_map, submap);
+				game.render_submap(this.view_map, submap, edge_to_mid_row, i);
 
 			}
 
@@ -293,14 +294,14 @@ function Player(game){
 
 				}
 				
-				game.render_submap(this.view_map, submap);
+				game.render_submap(this.view_map, submap, i, edge_to_mid_row);
 				
 			}
 		}
 
 
 		//DEBUG
-		
+		/*
 		for (var i = 0; i < this.view_map.submaps.length; i++) {
 			
 			var line = "";
@@ -309,7 +310,7 @@ function Player(game){
 			}
 			console.log(line);
 		}
-		
+		*/
 
 	}
 

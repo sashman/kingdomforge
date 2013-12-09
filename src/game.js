@@ -53,13 +53,34 @@ Game = {
 		}
 	},
 
-	render_submap : function(view_map, _submap)
+	render_submap : function(view_map, _submap, local_x, local_y)
 	{
+
+
 
 		var submap_x = _submap.x;
 		var submap_y = _submap.y;
 		var north_trigger, south_trigger, east_trigger, west_trigger = undefined;
 		var submap = _submap.content;
+
+
+
+		//optimisation
+		//for all edge submaps, avoid creating out-of-viewport entities
+		//do not render below lower and above upper
+		x_upper = x_lower = undefined; 
+		y_upper = y_lower = undefined;
+		if(local_x != undefined && local_y != undefined)
+		{
+			console.log("local x y", local_x, local_y);
+			if(local_x == 0) x_lower = 32 * 16 + submap["background"][0].x - view_map["xoffset"];
+			else if(local_x == 2) x_upper = 32 * 16 + submap["background"][0].x - view_map["xoffset"];
+
+			if(local_y == 0) y_lower = 32 * 16 + submap["background"][0].y - view_map["yoffset"];
+			else if(local_y == 2) y_upper = 32 * 16 + submap["background"][0].y - view_map["yoffset"];
+
+		}
+
 
 		var start = new Date().getTime();
 		for (var k = 0; k < submap["background"].length; k++) {
@@ -67,11 +88,16 @@ Game = {
 			var tile_object = submap["background"][k];
 			var tile = tile_object["type"];
 
-			if(tile.indexOf("UNKNOWN")!=-1)
-				console.log("BAD TILE", submap_x, submap_y);
-			
+			if(tile.indexOf("UNKNOWN")!=-1) console.log("BAD TILE", submap_x, submap_y);
+
 			var x = tile_object["x"] - view_map["xoffset"];
 			var y = tile_object["y"] - view_map["yoffset"];
+
+			//slip if out of view port
+			if(x_lower != undefined && x > x_lower) continue;
+			if(y_lower != undefined && y > y_lower) continue;
+			if(x_upper != undefined && x < x_upper) continue;
+			if(y_upper != undefined && y < y_upper) continue;
 			
 			
 			var tile_ent = this.unbin_entity(tile);
@@ -114,6 +140,12 @@ Game = {
 			var x = tile_object["x"] - view_map["xoffset"];
 			var y = tile_object["y"] - view_map["yoffset"];
 
+			//slip if out of view port
+			if(x_lower != undefined && x > x_lower) continue;
+			if(y_lower != undefined && y > y_lower) continue;
+			if(x_upper != undefined && x < x_upper) continue;
+			if(y_upper != undefined && y < y_upper) continue;
+
 			
 			var tile_ent = this.unbin_entity(tile);
 			if(!tile_ent) tile_ent = Crafty.e("Actor", "Solid", "spr_"+tile);
@@ -132,6 +164,7 @@ Game = {
 
 	bin_entity : function(entity, type){
 
+		if(!entity) return;
 		entity.visible = false;
 		//entity.at(-10000, -10000);
 
@@ -224,6 +257,7 @@ Crafty.c('PlayerCharacter', {
 		this.player = new Player(Game);
 		this.player.submap.x = 10;
 		this.player.submap.y = 10;
+		this.map_worker = new Worker("src/map_worker.js");
 		this.bind("Moved", this.updatePlayerMoved);
 		this.bind("KeyDown", this.updatePlayerKeyDown);
 	},
@@ -275,7 +309,7 @@ Crafty.c('PlayerCharacter', {
 		//this.print_coords();
 
 
-		var change = false;
+		var changed = false;
 
 		var original_x = this.x;
 		var original_y = this.y;
@@ -284,7 +318,6 @@ Crafty.c('PlayerCharacter', {
 		var count_bin = false;
 
 		var dir = 0;
-		var changed = false;
 
 		
 		//MOVED NORTH
@@ -352,7 +385,12 @@ Crafty.c('PlayerCharacter', {
 				this.print_coords();
 				var start = new Date().getTime();
 
+				//non threaded
 				this.player.shift_view_map(Game.map_grid.map, dir);
+
+				//threaded
+				//cannot be used for now
+				//this.map_worker.postMessage({cmd:"shift"});
 
 				var end = new Date().getTime();
 				var time = end - start;
@@ -360,13 +398,14 @@ Crafty.c('PlayerCharacter', {
 				console.log("=================================");
 				
 				
-				
+				/*
 				if(count_bin)
 				{
 					for (var i in Game.terrain_bin) {
 						total_bin += Game.terrain_bin[i].entities.length;
 					};
 				}
+				*/
 
 				console.log("map realoded total" , time , "ms", ":" , total_bin, "in bin");
 
