@@ -56,7 +56,7 @@
                     "yoffset": 0
                 },
                 {
-                    "type": "SMALL_GRASS3",
+                    "type": "SMALL_GRASS1",
                     "x": 192,
                     "y": 409,
                     "xoffset": 0,
@@ -561,6 +561,13 @@
                 }
             ],
             "detail": [
+                {
+                    "type": "CLIFF_WE_NS",
+                    "x": 192,
+                    "y": 408,
+                    "yoffset": 8,
+                    "xoffset": -8
+                },
                 {
                     "type": "CLIFF_PADDING_NS_EW",
                     "x": 192,

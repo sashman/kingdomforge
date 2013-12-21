@@ -238,7 +238,7 @@
                     "yoffset": 0
                 },
                 {
-                    "type": "SMALL_GRASS0",
+                    "type": "SMALL_GRASS2",
                     "x": 227,
                     "y": 181,
                     "xoffset": 0,
@@ -385,7 +385,7 @@
                     "yoffset": 0
                 },
                 {
-                    "type": "SMALL_GRASS0",
+                    "type": "SMALL_GRASS3",
                     "x": 231,
                     "y": 173,
                     "xoffset": 0,
@@ -399,7 +399,7 @@
                     "yoffset": 0
                 },
                 {
-                    "type": "SMALL_GRASS3",
+                    "type": "SMALL_GRASS2",
                     "x": 231,
                     "y": 175,
                     "xoffset": 0,
@@ -567,7 +567,7 @@
                     "yoffset": 0
                 },
                 {
-                    "type": "SMALL_GRASS3",
+                    "type": "SMALL_GRASS0",
                     "x": 232,
                     "y": 173,
                     "xoffset": 0,
@@ -595,7 +595,7 @@
                     "yoffset": 0
                 },
                 {
-                    "type": "SMALL_GRASS2",
+                    "type": "SMALL_GRASS0",
                     "x": 233,
                     "y": 173,
                     "xoffset": 0,
@@ -623,7 +623,7 @@
                     "yoffset": 0
                 },
                 {
-                    "type": "SMALL_GRASS2",
+                    "type": "SMALL_GRASS1",
                     "x": 234,
                     "y": 173,
                     "xoffset": 0,
@@ -982,6 +982,13 @@
             ],
             "detail": [
                 {
+                    "type": "CLIFF_WE_NS",
+                    "x": 224,
+                    "y": 171,
+                    "yoffset": 8,
+                    "xoffset": -8
+                },
+                {
                     "type": "CLIFF_WE_SN",
                     "x": 224,
                     "y": 173,
@@ -1175,13 +1182,6 @@
                     "x": 229,
                     "y": 181,
                     "yoffset": 8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_NS_EW",
-                    "x": 229,
-                    "y": 182,
-                    "yoffset": -8,
                     "xoffset": 8
                 },
                 {
