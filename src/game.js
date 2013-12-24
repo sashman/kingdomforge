@@ -235,7 +235,7 @@ Crafty.c('PlayerCharacter', {
 		
 		this.bind('NewDirection', function(data) {
 			
-			this.pauseAnimation();
+			//this.pauseAnimation();
 			if (data.x > 0) {
 				this.animate('walk_right', animation_speed, -1);
 			} else if (data.x < 0) {
@@ -245,6 +245,8 @@ Crafty.c('PlayerCharacter', {
 			} else if (data.y < 0) {
 				this.animate('walk_up', animation_speed, -1);
 			}
+
+			if(data.x == 0 && data.y == 0) this.pauseAnimation();
 		});
 		
 		
