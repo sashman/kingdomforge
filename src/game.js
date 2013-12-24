@@ -57,13 +57,15 @@ Game = {
 	{
 
 
-
+		var created = moved = 0;
 		var submap_x = _submap.x;
 		var submap_y = _submap.y;
 		var north_trigger, south_trigger, east_trigger, west_trigger = undefined;
 		var submap = _submap.content;
 
 		var start = new Date().getTime();
+		var move_time = 0;
+
 		for (var k = 0; k < submap["background"].length; k++) {
 
 			var tile_object = submap["background"][k];
@@ -75,11 +77,23 @@ Game = {
 			var y = tile_object["y"] - view_map["yoffset"];
 			
 			var tile_ent = this.unbin_entity(tile);
-			if(!tile_ent) tile_ent = Crafty.e("Actor", "Solid", "spr_"+tile);
-			tile_ent.at(x, y);
-			tile_ent.z = 0;
-			tile_ent.keep = true;
+			if(!tile_ent)
+			{
+				tile_ent = Crafty.e("Actor", "Solid", "spr_"+tile);
+				tile_ent.z = 0;
+				created++;
+			} 
+			
+			var move_start = new Date().getTime();
+			if(tile_ent.x != x * Game.map_grid.tile.width || tile_ent.y != y * Game.map_grid.tile.height)
+			{
+				moved++;
+				tile_ent.at(x, y);
+			}
+			move_time += new Date().getTime() - move_start;
 			tile_object.ent = tile_ent;
+			
+			
 			
 			// tile_object.label = Crafty.e("2D, DOM, Text, Actor").at(x,y).text(submap_x + "," + submap_y);
 
@@ -103,7 +117,8 @@ Game = {
 		_submap.east_trigger,
 		_submap.west_trigger);
 */
-		
+
+
 		//render detail terrain
 		for (var k = 0; k < submap["detail"].length; k++) {
 
@@ -115,17 +130,26 @@ Game = {
 			var y = tile_object["y"] - view_map["yoffset"];
 		
 			var tile_ent = this.unbin_entity(tile);
-			if(!tile_ent) tile_ent = Crafty.e("Actor", "Solid", "spr_"+tile);
-			tile_ent.at(x, y);
-			tile_ent.shift(tile_object["xoffset"], tile_object["yoffset"]);
-			tile_ent.z = 1;
-			tile_ent.keep = true;
+			if(!tile_ent)
+			{
+				tile_ent = Crafty.e("Actor", "Solid", "spr_"+tile);
+				tile_ent.z = 1;
+				created++;
+			}
+			
+			if(tile_ent.x != x * Game.map_grid.tile.width || tile_ent.y != y * Game.map_grid.tile.height)
+			{
+				moved++;
+				tile_ent.at(x, y);
+				tile_ent.shift(tile_object["xoffset"], tile_object["yoffset"]);
+			}
 			tile_object.ent = tile_ent;
 
 		}
 
+
 		var time = new Date().getTime() - start;
-		console.log("submap rendered" , time , "ms");
+		console.log("submap rendered" , time , "ms", "new entities created",created, "moved", moved, "in", move_time, "ms");
 		
 	},
 
@@ -198,10 +222,12 @@ Crafty.c('PlayerCharacter', {
 			//.stopOnSolids()
 			.onHit('Village', this.visitVillage)
 
-			.animate('walk_up',    0, 1, 7)
-			.animate('walk_right', 8, 0, 15)
-			.animate('walk_down',  8, 1, 15)
-			.animate('walk_left',  0, 0, 7)
+
+			.reel('walk_up',    500, 0, 1, 7)
+			.reel('walk_right', 500, 8, 0, 7)
+			.reel('walk_down',  500, 8, 1, 7)
+			.reel('walk_left',  500, 0, 0, 7)
+			
 
 		// Watch for a change of direction and switch animations accordingly
 		var animation_speed = 4;
@@ -209,7 +235,7 @@ Crafty.c('PlayerCharacter', {
 		
 		this.bind('NewDirection', function(data) {
 			
-			this.stop();
+			this.pauseAnimation();
 			if (data.x > 0) {
 				this.animate('walk_right', animation_speed, -1);
 			} else if (data.x < 0) {
@@ -220,6 +246,7 @@ Crafty.c('PlayerCharacter', {
 				this.animate('walk_up', animation_speed, -1);
 			}
 		});
+		
 		
 		this.player = new Player(Game);
 		this.player.submap.x = 10;
@@ -521,7 +548,7 @@ Crafty.scene('Victory', function() {
 
 //temp network module
 var net_game = {};
-var server_address = "localhost:4004";
+var server_address = document.URL;//"localhost:4004";
 
 // Loading scene
 // -------------
@@ -541,8 +568,8 @@ Crafty.scene('Loading', function(){
 		//new
 		//['http://localhost:4004/img/terrain/terrain.png',
 		//old
-		['http://'+server_address+'/img/terrain/terrain.png',
-		'http://'+server_address+'/img/character/link.gif'
+		[server_address+'img/terrain/terrain.png',
+		server_address+'img/character/link.gif'
 		], function(){
 		// Once the images are loaded...
 
@@ -568,7 +595,7 @@ Crafty.scene('Loading', function(){
 			spr_map[spr][2] = frames[i]["frame"]["w"];
 			spr_map[spr][3] = frames[i]["frame"]["h"];
 		}
-		Crafty.sprite('http://'+server_address+'/img/terrain/terrain.png', spr_map);
+		Crafty.sprite(server_address+'img/terrain/terrain.png', spr_map);
 
 
 		// Define the individual sprites in the image
@@ -601,7 +628,7 @@ Crafty.scene('Loading', function(){
 		
 
 		
-		Crafty.sprite(24,32,'http://'+server_address+'/img/character/link.gif', {
+		Crafty.sprite(24,32,server_address+'img/character/link.gif', {
 			spr_player:  [0, 0],
 		});
 		
