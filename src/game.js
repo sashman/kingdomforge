@@ -230,20 +230,21 @@ Crafty.c('PlayerCharacter', {
 			
 
 		// Watch for a change of direction and switch animations accordingly
+
+		//animation speed is not used past crafty 0.6.1
 		var animation_speed = 4;
 		
 		
 		this.bind('NewDirection', function(data) {
-			
-			//this.pauseAnimation();
+
 			if (data.x > 0) {
-				this.animate('walk_right', animation_speed, -1);
+				this.animate('walk_right', -1);
 			} else if (data.x < 0) {
-				this.animate('walk_left', animation_speed, -1);
+				this.animate('walk_left', -1);
 			} else if (data.y > 0) {
-				this.animate('walk_down', animation_speed, -1);
+				this.animate('walk_down', -1);
 			} else if (data.y < 0) {
-				this.animate('walk_up', animation_speed, -1);
+				this.animate('walk_up', -1);
 			}
 
 			if(data.x == 0 && data.y == 0) this.pauseAnimation();
