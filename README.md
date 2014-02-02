@@ -3,7 +3,7 @@ kingdomforge
 
 kingdomforge is an HTML5 based RPG game featuring a procedurally generated world.
 
-Have look at the [Wik](https://github.com/sashman/kingdomforge/wiki) for more info!
+Have look at the [Wiki](https://github.com/sashman/kingdomforge/wiki) for more info!
 
 ##### Prerequisites:
 
