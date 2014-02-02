@@ -29,7 +29,7 @@ Game = {
 	start: function() {
 		// Start crafty and set a background color so that we can see it's working
 		Crafty.init(Game.width(), Game.height());
-		Crafty.background('rgb(87, 109, 20)');
+		//Crafty.background('rgb(87, 109, 20)');
 
 		// Simply start the "Loading" scene to get things going
 		Crafty.scene('Loading');
@@ -607,7 +607,7 @@ Crafty.scene('Loading', function(){
 		//  to remind us that they simply cause the entity
 		//  to be drawn with a certain sprite
 		
-		//old sprite sheet
+		//old sprite sheet example
 		/*
 		Crafty.sprite(25, 25, 'https://dl.dropboxusercontent.com/u/939544/assets/img/terrain/grass_with_cliffs.png', {
 			spr_cliff_NE_NS:    [0,0],
@@ -647,13 +647,27 @@ Crafty.scene('Loading', function(){
 
 		// Draw some text for the player to see in case the file
 		//  takes a noticeable amount of time to load
+		/*
 		Crafty.e('2D, DOM, Text')
-			.attr({ x: 0, y: Game.height()/2 - 24, w: Game.width() })
+			.attr({ x: 0, y: 0})
 			.text('Loading...');
+			*/
+
+
 
 		// Now that our sprites are ready to draw, start the game
 		Crafty.scene('Game');
-	})
+	});
+
+
+	Crafty.e("2D, DOM, Text").attr({w: 100, h: 20, x: 150, y: 120})
+		.text("Loading...")
+		.css({"text-align": "left"});
+
+	Crafty.e("2D, DOM, Text").attr({w: 100, h: 20, x: 150, y: 150})
+		.text("Made with CraftyJS")
+		.css({"text-align": "left"});
+
 });
 
 Game.start();
