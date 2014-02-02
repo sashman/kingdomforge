@@ -3,8 +3,7 @@ kingdomforge
 
 kingdomforge is an HTML5 based RPG game featuring a procedurally generated world.
 
-Prerequisites:
-======
+==== Prerequisites:
 * node.js
 * Python2.7
 
