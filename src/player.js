@@ -318,6 +318,7 @@ function Player(game){
 	this.save_submap = function(submap)
 	{
 
+		if(!submap) return;
 		//save
 		if(!this.submap_buffer[submap.x]) this.submap_buffer[submap.x] = [];
 		this.submap_buffer[submap.x][submap.y] = submap;

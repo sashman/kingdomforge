@@ -2242,1215 +2242,690 @@
             ],
             "detail": [
                 {
-                    "type": "CLIFF_PADDING_NS_EW",
-                    "x": 1,
-                    "y": 297,
-                    "yoffset": 24,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_NS",
-                    "x": 1,
-                    "y": 297,
-                    "yoffset": 8,
-                    "xoffset": -8
-                },
-                {
                     "type": "CLIFF_SW_NS",
                     "x": 1,
                     "y": 297,
-                    "yoffset": 8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_NS",
-                    "x": 1,
-                    "y": 298,
-                    "yoffset": 8,
-                    "xoffset": 24
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NE_NS",
                     "x": 1,
                     "y": 298,
-                    "yoffset": 8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_WE",
-                    "x": 1,
-                    "y": 304,
-                    "yoffset": 24,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_SN",
-                    "x": 1,
-                    "y": 304,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_SW_SN",
                     "x": 1,
                     "y": 304,
-                    "yoffset": 8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_SN",
-                    "x": 1,
-                    "y": 305,
-                    "yoffset": 8,
-                    "xoffset": 24
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NE_SN",
                     "x": 1,
                     "y": 305,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_NS",
                     "x": 2,
                     "y": 298,
-                    "yoffset": 8,
-                    "xoffset": -8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_WE",
-                    "x": 2,
-                    "y": 305,
-                    "yoffset": 24,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_SW_SN",
                     "x": 2,
                     "y": 305,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_WE",
                     "x": 2,
                     "y": 306,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_WE",
-                    "x": 2,
-                    "y": 308,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_SN",
-                    "x": 2,
-                    "y": 308,
-                    "yoffset": 8,
-                    "xoffset": 24
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NE_SN",
                     "x": 2,
                     "y": 308,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_NS",
                     "x": 3,
                     "y": 298,
-                    "yoffset": 8,
-                    "xoffset": -8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_WE",
-                    "x": 3,
-                    "y": 308,
-                    "yoffset": 24,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_SW_SN",
                     "x": 3,
                     "y": 308,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_WE",
                     "x": 3,
                     "y": 309,
-                    "yoffset": -8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_WE",
                     "x": 3,
                     "y": 310,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_WE",
-                    "x": 3,
-                    "y": 311,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_SN",
-                    "x": 3,
-                    "y": 311,
-                    "yoffset": 8,
-                    "xoffset": 24
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NE_SN",
                     "x": 3,
                     "y": 311,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_NS",
                     "x": 4,
                     "y": 298,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_SN",
                     "x": 4,
                     "y": 311,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_NS",
                     "x": 5,
                     "y": 298,
-                    "yoffset": 8,
-                    "xoffset": -8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_EW",
-                    "x": 5,
-                    "y": 308,
-                    "yoffset": 24,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_SN",
-                    "x": 5,
-                    "y": 308,
-                    "yoffset": 8,
-                    "xoffset": 24
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_SE_SN",
                     "x": 5,
                     "y": 308,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_EW",
                     "x": 5,
                     "y": 309,
-                    "yoffset": -8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_EW",
                     "x": 5,
                     "y": 310,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_EW",
-                    "x": 5,
-                    "y": 311,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_SN",
-                    "x": 5,
-                    "y": 311,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NW_SN",
                     "x": 5,
                     "y": 311,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_NS",
                     "x": 6,
                     "y": 298,
-                    "yoffset": 8,
-                    "xoffset": -8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_EW",
-                    "x": 6,
-                    "y": 306,
-                    "yoffset": 24,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_SN",
-                    "x": 6,
-                    "y": 306,
-                    "yoffset": 8,
-                    "xoffset": 24
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_SE_SN",
                     "x": 6,
                     "y": 306,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_EW",
                     "x": 6,
                     "y": 307,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_EW",
-                    "x": 6,
-                    "y": 308,
-                    "yoffset": -8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NW_SN",
                     "x": 6,
                     "y": 308,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_NS",
                     "x": 7,
                     "y": 298,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_SN",
                     "x": 7,
                     "y": 306,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_NS",
                     "x": 8,
                     "y": 298,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_SN",
                     "x": 8,
                     "y": 306,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_NS",
                     "x": 9,
                     "y": 298,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_SN",
                     "x": 9,
                     "y": 306,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_NS",
                     "x": 10,
                     "y": 298,
-                    "yoffset": 8,
-                    "xoffset": -8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_EW",
-                    "x": 10,
-                    "y": 301,
-                    "yoffset": 24,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_SN",
-                    "x": 10,
-                    "y": 301,
-                    "yoffset": 8,
-                    "xoffset": 24
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_SE_SN",
                     "x": 10,
                     "y": 301,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_EW",
                     "x": 10,
                     "y": 302,
-                    "yoffset": -8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_EW",
                     "x": 10,
                     "y": 303,
-                    "yoffset": -8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_EW",
                     "x": 10,
                     "y": 304,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_EW",
-                    "x": 10,
-                    "y": 306,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_SN",
-                    "x": 10,
-                    "y": 306,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NW_SN",
                     "x": 10,
                     "y": 306,
-                    "yoffset": 8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_WE",
-                    "x": 11,
-                    "y": 297,
-                    "yoffset": 24,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_NS",
-                    "x": 11,
-                    "y": 297,
-                    "yoffset": 8,
-                    "xoffset": 24
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_SE_NS",
                     "x": 11,
                     "y": 297,
-                    "yoffset": 8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_NS",
-                    "x": 11,
-                    "y": 298,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NW_NS",
                     "x": 11,
                     "y": 298,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_NS",
                     "x": 12,
                     "y": 297,
-                    "yoffset": 8,
-                    "xoffset": -8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_EW",
-                    "x": 12,
-                    "y": 300,
-                    "yoffset": 24,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_SN",
-                    "x": 12,
-                    "y": 300,
-                    "yoffset": 8,
-                    "xoffset": 24
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_SE_SN",
                     "x": 12,
                     "y": 300,
-                    "yoffset": 8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_SN",
-                    "x": 12,
-                    "y": 301,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NW_SN",
                     "x": 12,
                     "y": 301,
-                    "yoffset": 8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_WE",
-                    "x": 12,
-                    "y": 306,
-                    "yoffset": 24,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_NS",
-                    "x": 12,
-                    "y": 306,
-                    "yoffset": 8,
-                    "xoffset": 24
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_SE_NS",
                     "x": 12,
                     "y": 306,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_WE",
                     "x": 12,
                     "y": 307,
-                    "yoffset": -8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_WE",
                     "x": 12,
                     "y": 308,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_WE",
-                    "x": 12,
-                    "y": 309,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_SN",
-                    "x": 12,
-                    "y": 309,
-                    "yoffset": 8,
-                    "xoffset": 24
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NE_SN",
                     "x": 12,
                     "y": 309,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_NS",
                     "x": 13,
                     "y": 297,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_SN",
                     "x": 13,
                     "y": 300,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_NS",
                     "x": 13,
                     "y": 306,
-                    "yoffset": 8,
-                    "xoffset": -8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_WE",
-                    "x": 13,
-                    "y": 309,
-                    "yoffset": 24,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_SW_SN",
                     "x": 13,
                     "y": 309,
-                    "yoffset": 8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_SN",
-                    "x": 13,
-                    "y": 310,
-                    "yoffset": 8,
-                    "xoffset": 24
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NE_SN",
                     "x": 13,
                     "y": 310,
-                    "yoffset": 8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_EW",
-                    "x": 14,
-                    "y": 297,
-                    "yoffset": 24,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_NS",
-                    "x": 14,
-                    "y": 297,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_SW_NS",
                     "x": 14,
                     "y": 297,
-                    "yoffset": 8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_NS",
-                    "x": 14,
-                    "y": 298,
-                    "yoffset": 8,
-                    "xoffset": 24
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NE_NS",
                     "x": 14,
                     "y": 298,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_SN",
                     "x": 14,
                     "y": 300,
-                    "yoffset": 8,
-                    "xoffset": -8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_EW",
-                    "x": 14,
-                    "y": 306,
-                    "yoffset": 24,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_NS",
-                    "x": 14,
-                    "y": 306,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_SW_NS",
                     "x": 14,
                     "y": 306,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_EW",
                     "x": 14,
                     "y": 307,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_EW",
-                    "x": 14,
-                    "y": 308,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_NS",
-                    "x": 14,
-                    "y": 308,
-                    "yoffset": 8,
-                    "xoffset": 24
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NE_NS",
                     "x": 14,
                     "y": 308,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_SN",
                     "x": 14,
                     "y": 310,
-                    "yoffset": 8,
-                    "xoffset": -8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_EW",
-                    "x": 15,
-                    "y": 298,
-                    "yoffset": 24,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_SW_NS",
                     "x": 15,
                     "y": 298,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_EW",
                     "x": 15,
                     "y": 299,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_EW",
-                    "x": 15,
-                    "y": 300,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_SN",
-                    "x": 15,
-                    "y": 300,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NW_SN",
                     "x": 15,
                     "y": 300,
-                    "yoffset": 8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_EW",
-                    "x": 15,
-                    "y": 308,
-                    "yoffset": 24,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_SW_NS",
                     "x": 15,
                     "y": 308,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_EW",
                     "x": 15,
                     "y": 309,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_EW",
-                    "x": 15,
-                    "y": 310,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_SN",
-                    "x": 15,
-                    "y": 310,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NW_SN",
                     "x": 15,
                     "y": 310,
-                    "yoffset": 8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_WE",
-                    "x": 24,
-                    "y": 297,
-                    "yoffset": 24,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_NS",
-                    "x": 24,
-                    "y": 297,
-                    "yoffset": 8,
-                    "xoffset": 24
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_SE_NS",
                     "x": 24,
                     "y": 297,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_WE",
                     "x": 24,
                     "y": 298,
-                    "yoffset": -8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_WE",
                     "x": 24,
                     "y": 300,
-                    "yoffset": -8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_WE",
                     "x": 24,
                     "y": 301,
-                    "yoffset": -8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_WE",
                     "x": 24,
                     "y": 302,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_WE",
-                    "x": 24,
-                    "y": 303,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_SN",
-                    "x": 24,
-                    "y": 303,
-                    "yoffset": 8,
-                    "xoffset": 24
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NE_SN",
                     "x": 24,
                     "y": 303,
-                    "yoffset": 8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_WE",
-                    "x": 24,
-                    "y": 307,
-                    "yoffset": 24,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_NS",
-                    "x": 24,
-                    "y": 307,
-                    "yoffset": 8,
-                    "xoffset": 24
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_SE_NS",
                     "x": 24,
                     "y": 307,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_WE",
                     "x": 24,
                     "y": 308,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_WE",
-                    "x": 24,
-                    "y": 309,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_SN",
-                    "x": 24,
-                    "y": 309,
-                    "yoffset": 8,
-                    "xoffset": 24
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NE_SN",
                     "x": 24,
                     "y": 309,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_NS",
                     "x": 25,
                     "y": 297,
-                    "yoffset": 8,
-                    "xoffset": -8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_WE",
-                    "x": 25,
-                    "y": 303,
-                    "yoffset": 24,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_SW_SN",
                     "x": 25,
                     "y": 303,
-                    "yoffset": 8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_SN",
-                    "x": 25,
-                    "y": 304,
-                    "yoffset": 8,
-                    "xoffset": 24
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NE_SN",
                     "x": 25,
                     "y": 304,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_NS",
                     "x": 25,
                     "y": 307,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_SN",
                     "x": 25,
                     "y": 309,
-                    "yoffset": 8,
-                    "xoffset": -8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_WE",
-                    "x": 26,
-                    "y": 296,
-                    "yoffset": 24,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_NS",
-                    "x": 26,
-                    "y": 296,
-                    "yoffset": 8,
-                    "xoffset": 24
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_SE_NS",
                     "x": 26,
                     "y": 296,
-                    "yoffset": 8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_NS",
-                    "x": 26,
-                    "y": 297,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NW_NS",
                     "x": 26,
                     "y": 297,
-                    "yoffset": 8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_WE",
-                    "x": 26,
-                    "y": 304,
-                    "yoffset": 24,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_SW_SN",
                     "x": 26,
                     "y": 304,
-                    "yoffset": 8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_SN",
-                    "x": 26,
-                    "y": 305,
-                    "yoffset": 8,
-                    "xoffset": 24
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NE_SN",
                     "x": 26,
                     "y": 305,
-                    "yoffset": 8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_EW",
-                    "x": 26,
-                    "y": 307,
-                    "yoffset": 24,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_NS",
-                    "x": 26,
-                    "y": 307,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_SW_NS",
                     "x": 26,
                     "y": 307,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_EW",
                     "x": 26,
                     "y": 308,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_EW",
-                    "x": 26,
-                    "y": 309,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_SN",
-                    "x": 26,
-                    "y": 309,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NW_SN",
                     "x": 26,
                     "y": 309,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_NS",
                     "x": 27,
                     "y": 296,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_WE_SN",
                     "x": 27,
                     "y": 305,
-                    "yoffset": 8,
-                    "xoffset": -8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_EW",
-                    "x": 28,
-                    "y": 296,
-                    "yoffset": 24,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_NS",
-                    "x": 28,
-                    "y": 296,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_SW_NS",
                     "x": 28,
                     "y": 296,
-                    "yoffset": 8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_NS",
-                    "x": 28,
-                    "y": 297,
-                    "yoffset": 8,
-                    "xoffset": 24
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NE_NS",
                     "x": 28,
                     "y": 297,
-                    "yoffset": 8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_EW",
-                    "x": 28,
-                    "y": 304,
-                    "yoffset": 24,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_SN",
-                    "x": 28,
-                    "y": 304,
-                    "yoffset": 8,
-                    "xoffset": 24
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_SE_SN",
                     "x": 28,
                     "y": 304,
-                    "yoffset": 8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_WE_SN",
-                    "x": 28,
-                    "y": 305,
-                    "yoffset": 8,
-                    "xoffset": -8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NW_SN",
                     "x": 28,
                     "y": 305,
-                    "yoffset": 8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_EW",
-                    "x": 29,
-                    "y": 297,
-                    "yoffset": 24,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_SW_NS",
                     "x": 29,
                     "y": 297,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_EW",
                     "x": 29,
                     "y": 298,
-                    "yoffset": -8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_EW",
                     "x": 29,
                     "y": 299,
-                    "yoffset": -8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_EW",
                     "x": 29,
                     "y": 300,
-                    "yoffset": -8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_EW",
                     "x": 29,
                     "y": 301,
-                    "yoffset": -8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_EW",
                     "x": 29,
                     "y": 302,
-                    "yoffset": -8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NS_EW",
                     "x": 29,
                     "y": 303,
-                    "yoffset": -8,
-                    "xoffset": 8
-                },
-                {
-                    "type": "CLIFF_PADDING_NS_EW",
-                    "x": 29,
-                    "y": 304,
-                    "yoffset": -8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 },
                 {
                     "type": "CLIFF_NW_SN",
                     "x": 29,
                     "y": 304,
-                    "yoffset": 8,
-                    "xoffset": 8
+                    "yoffset": 0,
+                    "xoffset": 0
                 }
             ]
         }

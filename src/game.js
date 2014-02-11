@@ -351,6 +351,7 @@ Crafty.c('PlayerCharacter', {
 		{
 			if(this.player.next_map_empty(dir))
 			{
+				/*
 				switch(dir)
 				{
 					
@@ -373,7 +374,8 @@ Crafty.c('PlayerCharacter', {
 				}
 
 				//probably do not need this
-				this.stopMovement();
+				//this.stopMovement();
+				*/
 
 			} else {
 				
