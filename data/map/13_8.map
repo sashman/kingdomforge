@@ -392,7 +392,7 @@
                     "yoffset": 0
                 },
                 {
-                    "type": "SMALL_GRASS2",
+                    "type": "SMALL_GRASS1",
                     "x": 279,
                     "y": 422,
                     "xoffset": 0,
@@ -579,6 +579,13 @@
                     "type": "CLIFF_NE_SN",
                     "x": 278,
                     "y": 423,
+                    "yoffset": 0,
+                    "xoffset": 0
+                },
+                {
+                    "type": "CLIFF_WE_NS",
+                    "x": 279,
+                    "y": 421,
                     "yoffset": 0,
                     "xoffset": 0
                 },

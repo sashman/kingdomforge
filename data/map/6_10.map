@@ -7,14 +7,14 @@
         "content": {
             "background": [
                 {
-                    "type": "GRASS3",
+                    "type": "GRASS1",
                     "x": 320,
                     "y": 192,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS0",
+                    "type": "GRASS2",
                     "x": 320,
                     "y": 196,
                     "xoffset": 0,
@@ -70,29 +70,29 @@
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS1",
+                    "type": "GRASS0",
                     "x": 324,
                     "y": 196,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "SMALL_GRASS3",
+                    "type": "SMALL_GRASS2",
                     "x": 324,
                     "y": 200,
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                {
+                    "type": "SMALL_GRASS2",
+                    "x": 324,
+                    "y": 201,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
                     "type": "SMALL_GRASS0",
                     "x": 324,
-                    "y": 201,
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                {
-                    "type": "SMALL_GRASS2",
-                    "x": 324,
                     "y": 202,
                     "xoffset": 0,
                     "yoffset": 0
@@ -105,14 +105,14 @@
                     "yoffset": 0
                 },
                 {
-                    "type": "SMALL_GRASS2",
+                    "type": "SMALL_GRASS0",
                     "x": 325,
                     "y": 200,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "SMALL_GRASS2",
+                    "type": "SMALL_GRASS1",
                     "x": 325,
                     "y": 201,
                     "xoffset": 0,
@@ -133,7 +133,7 @@
                     "yoffset": 0
                 },
                 {
-                    "type": "SMALL_GRASS3",
+                    "type": "SMALL_GRASS0",
                     "x": 326,
                     "y": 200,
                     "xoffset": 0,
@@ -224,7 +224,7 @@
                     "yoffset": 0
                 },
                 {
-                    "type": "GRASS1",
+                    "type": "GRASS2",
                     "x": 328,
                     "y": 192,
                     "xoffset": 0,
@@ -280,35 +280,35 @@
                     "yoffset": 0
                 },
                 {
-                    "type": "SMALL_GRASS0",
+                    "type": "SMALL_GRASS3",
                     "x": 332,
                     "y": 192,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "SMALL_GRASS3",
+                    "type": "SMALL_GRASS1",
                     "x": 332,
                     "y": 193,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "SMALL_GRASS1",
+                    "type": "SMALL_GRASS0",
                     "x": 332,
                     "y": 194,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "SMALL_GRASS3",
+                    "type": "SMALL_GRASS2",
                     "x": 332,
                     "y": 195,
                     "xoffset": 0,
                     "yoffset": 0
                 },
                 {
-                    "type": "SMALL_GRASS1",
+                    "type": "SMALL_GRASS2",
                     "x": 333,
                     "y": 192,
                     "xoffset": 0,
@@ -322,7 +322,7 @@
                     "yoffset": 0
                 },
                 {
-                    "type": "SMALL_GRASS3",
+                    "type": "SMALL_GRASS2",
                     "x": 333,
                     "y": 194,
                     "xoffset": 0,
@@ -392,7 +392,7 @@
                     "yoffset": 0
                 },
                 {
-                    "type": "SMALL_GRASS3",
+                    "type": "SMALL_GRASS2",
                     "x": 332,
                     "y": 196,
                     "xoffset": 0,
@@ -772,21 +772,14 @@
             ],
             "detail": [
                 {
-                    "type": "CLIFF_WE_SN",
+                    "type": "CLIFF_NW_SN",
                     "x": 320,
                     "y": 204,
                     "yoffset": 0,
                     "xoffset": 0
                 },
                 {
-                    "type": "CLIFF_WE_SN",
-                    "x": 321,
-                    "y": 204,
-                    "yoffset": 0,
-                    "xoffset": 0
-                },
-                {
-                    "type": "CLIFF_WE_SN",
+                    "type": "CLIFF_NE_SN",
                     "x": 322,
                     "y": 204,
                     "yoffset": 0,
@@ -863,21 +856,14 @@
                     "xoffset": 0
                 },
                 {
-                    "type": "CLIFF_WE_SN",
+                    "type": "CLIFF_NW_SN",
                     "x": 329,
                     "y": 200,
                     "yoffset": 0,
                     "xoffset": 0
                 },
                 {
-                    "type": "CLIFF_WE_SN",
-                    "x": 330,
-                    "y": 200,
-                    "yoffset": 0,
-                    "xoffset": 0
-                },
-                {
-                    "type": "CLIFF_WE_SN",
+                    "type": "CLIFF_NE_SN",
                     "x": 331,
                     "y": 200,
                     "yoffset": 0,
