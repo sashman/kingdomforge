@@ -79,7 +79,7 @@ Game = {
 			var tile_ent = this.unbin_entity(tile);
 			if(!tile_ent)
 			{
-				tile_ent = Crafty.e("Actor", "Solid", "spr_"+tile);
+				tile_ent = Crafty.e("Actor", "spr_"+tile);
 				tile_ent.z = 0;
 				created++;
 			} 
@@ -124,6 +124,9 @@ Game = {
 
 			var tile_object = submap["detail"][k];
 			var tile = tile_object["type"];
+
+			
+
 			if(tile.indexOf("UNKNOWN")!=-1)
 				console.log("BAD TILE", submap_x, submap_y);
 			var x = tile_object["x"] - view_map["xoffset"];
@@ -132,7 +135,22 @@ Game = {
 			var tile_ent = this.unbin_entity(tile);
 			if(!tile_ent)
 			{
-				tile_ent = Crafty.e("Actor", "Solid", "spr_"+tile);
+				
+				tile_ent = Crafty.e("Actor", "Solid", "Collision", "spr_"+tile);
+				var collision = Game.collision_json[tile+".png"];
+				if(collision)
+				{
+					var p = collision;
+					//needed to make copies of the original subarrays
+					var a = p[0];
+					var b = p[1];
+					var c = p[2];
+					var polygon = new Crafty.polygon(a.slice(), b.slice(), c.slice());
+					tile_ent.collision(polygon);
+					
+				
+				}
+				
 				tile_ent.z = 1;
 				created++;
 			}
@@ -219,8 +237,9 @@ Crafty.c('PlayerCharacter', {
 			//speed given here
 			.fourway(2)
 			//TODO put back in
-			//.stopOnSolids()
+			.stopOnSolids()
 			.onHit('Village', this.visitVillage)
+			.collision([0,16], [16,16], [0,28], [28,28])
 
 
 			.reel('walk_up',    500, 0, 1, 7)
@@ -253,7 +272,7 @@ Crafty.c('PlayerCharacter', {
 		
 		this.player = new Player(Game);
 		this.player.submap.x = 10;
-		this.player.submap.y = 10;
+		this.player.submap.y = 11;
 		this.map_worker = new Worker("src/map_worker.js");
 		this.bind("Moved", this.updatePlayerMoved);
 		this.bind("KeyDown", this.updatePlayerKeyDown);
@@ -351,7 +370,7 @@ Crafty.c('PlayerCharacter', {
 		{
 			if(this.player.next_map_empty(dir))
 			{
-				/*
+				
 				switch(dir)
 				{
 					
@@ -375,7 +394,7 @@ Crafty.c('PlayerCharacter', {
 
 				//probably do not need this
 				//this.stopMovement();
-				*/
+				
 
 			} else {
 				
@@ -514,7 +533,7 @@ Crafty.scene('Game', function() {
 
 	var end = new Date().getTime();
 	var time = end - start;
-	//console.log(this.view_map["background"].length + " + " + this.view_map["detail"].length + " map tiles loaded in " + time + "ms");
+	
 	console.log("map tiles loaded in " + time + "ms");
 	
 	// Show the victory screen once all villages are visisted
@@ -585,6 +604,14 @@ Crafty.scene('Loading', function(){
 			async: false
 			}).responseText;
 		var spritesheet_json = JSON && JSON.parse(spritesheet_json) || $.parseJSON(spritesheet_json);
+		//get sprite sheet metadata
+		var collision_json = $.ajax({
+			url: "/img/terrain/collision.json",
+			data: "",
+			async: false
+			}).responseText;
+		Game.collision_json = JSON && JSON.parse(collision_json) || $.parseJSON(collision_json);
+
 
 		//use spritesheet_json to get sprite coordinate and size
 		
