@@ -90,7 +90,7 @@ networking.prototype.onnetmessage = function(data){
     } //command
 }
 
-game_core.prototype.onserverupdate_recieved = function(data){
+networking.prototype.onserverupdate_recieved = function(data){
 
         //TODO: Tie up with data:
 
@@ -158,7 +158,7 @@ game_core.prototype.onserverupdate_recieved = function(data){
 
 }; //game_core.client_onserverupdate_recieved
 
-game_core.prototype.client_process_net_prediction_correction = function() {
+networking.prototype.client_process_net_prediction_correction = function() {
 
         //No updates...
     if(!this.server_updates.length) return;
@@ -369,52 +369,6 @@ networking.prototype.update_physics = function() {
 
 }; //game_core.client_update_physics
 
-server_networking.prototype.process_input = function( player ) {
-
-    //It's possible to have recieved multiple inputs by now,
-    //so we process each one
-    var x_dir = 0;
-    var y_dir = 0;
-
-    var l = player.inputs.length
-
-    for(var _i = 0; _i < l; _i++) {
-        //don't process ones we already have simulated locally
-        if(player.inputs[_i].seq <= player.last_input_seq) continue;
-
-        var input = player.inputs[_i].inputs;
-
-        for(var _j = 0, _c = input.length; _j < _c; _j++) {
-            var key = input[_j];
-
-            if(key == 'l') {
-                x_dir -= 1;
-            }
-            else if(key == 'r') {
-                x_dir += 1;
-            }
-            else if(key == 'd') {
-                y_dir += 1;
-            }
-            else if(key == 'u') {
-                y_dir -= 1;
-            }
-        }
-    }
-
-    //we have a direction vector now, so apply the same physics as the client
-    var resulting_vector = this.physics_movement_vector_from_direction(x_dir,y_dir);
-    if(player.inputs.length) {
-
-        //we can now clear the array since these have been processed
-        player.last_input_time = player.inputs[l-1].time;
-        player.last_input_seq = player.inputs[l-1].seq;
-    }
-
-    //give it back
-    return resulting_vector;
-
-};
 
 /* ==============================================
 * 

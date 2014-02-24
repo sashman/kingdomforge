@@ -236,10 +236,9 @@ Crafty.c('PlayerCharacter', {
 		this.requires('Actor, Fourway, Collision, spr_player, SpriteAnimation')
 			//speed given here
 			.fourway(2)
-			//TODO put back in
 			.stopOnSolids()
 			.onHit('Village', this.visitVillage)
-			.collision([0,16], [16,16], [0,28], [28,28])
+			.collision([4,16], [12,16], [4,28], [24,28])
 
 
 			.reel('walk_up',    500, 0, 1, 7)
@@ -269,10 +268,13 @@ Crafty.c('PlayerCharacter', {
 			if(data.x == 0 && data.y == 0) this.pauseAnimation();
 		});
 		
-		
+		//creation of player object
 		this.player = new Player(Game);
+
+		//setting of player's submap here
 		this.player.submap.x = 10;
 		this.player.submap.y = 11;
+
 		this.map_worker = new Worker("src/map_worker.js");
 		this.bind("Moved", this.updatePlayerMoved);
 		this.bind("KeyDown", this.updatePlayerKeyDown);
@@ -499,9 +501,9 @@ Crafty.scene('Game', function() {
 		}
 	}
 
-
-	// Player character, placed at 5, 5 on our grid
+// creation on player
 	this.player = Crafty.e('PlayerCharacter')
+	// set player's in viewmap grid coordinates
 	this.player.at(33, 33);
 	Crafty.viewport.centerOn(this.player, 1);
 	this.occupied[this.player.at().x][this.player.at().y] = true;
@@ -689,12 +691,8 @@ Crafty.scene('Loading', function(){
 	});
 
 
-	Crafty.e("2D, DOM, Text").attr({w: 100, h: 20, x: 150, y: 120})
-		.text("Loading...")
-		.css({"text-align": "left"});
-
-	Crafty.e("2D, DOM, Text").attr({w: 100, h: 20, x: 150, y: 150})
-		.text("Made with CraftyJS")
+	Crafty.e("2D, DOM, Text").attr({w: 500, x: 150, y: 120})
+		.text("Made with CraftyJS " + Crafty.getVersion() + " [Loading...]")
 		.css({"text-align": "left"});
 
 });
