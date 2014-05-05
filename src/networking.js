@@ -17,6 +17,8 @@ var networking = function(player){
     this._dt = new Date().getTime();    //The local timer delta
     this._dte = new Date().getTime();   //The local timer last frame time
 
+    this.fake_lag = 0;
+
 
     this.create_physics_simulation();
 
