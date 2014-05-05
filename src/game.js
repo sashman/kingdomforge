@@ -167,7 +167,8 @@ Game = {
 
 
 		var time = new Date().getTime() - start;
-		console.log("submap rendered" , time , "ms", "new entities created",created, "moved", moved, "in", move_time, "ms");
+		// debug
+		// console.log("submap rendered" , time , "ms", "new entities created",created, "moved", moved, "in", move_time, "ms");
 		
 	},
 
@@ -275,7 +276,6 @@ Crafty.c('PlayerCharacter', {
 		this.player.submap.x = 10;
 		this.player.submap.y = 11;
 
-		this.map_worker = new Worker("src/map_worker.js");
 		this.bind("Moved", this.updatePlayerMoved);
 		this.bind("KeyDown", this.updatePlayerKeyDown);
 	},
@@ -342,13 +342,13 @@ Crafty.c('PlayerCharacter', {
 		if(pos.y < origin_submap.north_trigger){
 			dir = 0;
 			changed = true;
-			console.log("=========Triggered North===============");
+			// console.log("=========Triggered North===============");
 					
 		//MOVED SOUTH
 		} else if(pos.y > origin_submap.south_trigger){
 			dir = 2;
 			changed = true;
-			console.log("=========Triggered South===============");			
+			// console.log("=========Triggered South===============");			
 		}
 
 
@@ -357,14 +357,14 @@ Crafty.c('PlayerCharacter', {
 
 			dir = 3;
 			changed = true;
-			console.log("=========Triggered West===============");
+			// console.log("=========Triggered West===============");
 
 		//MOVED EAST
 		} else if(pos.x > origin_submap.east_trigger){
 
 			dir = 1;
 			changed = true;
-			console.log("=========Triggered East===============");
+			// console.log("=========Triggered East===============");
 			
 		}
 
@@ -402,15 +402,13 @@ Crafty.c('PlayerCharacter', {
 				
 
 				
-				this.print_coords();
+				// debug
+				// this.print_coords();
 				var start = new Date().getTime();
 
 				//non threaded
 				this.player.shift_view_map(Game.map_grid.map, dir);
 
-				//threaded
-				//cannot be used for now
-				//this.map_worker.postMessage({cmd:"shift"});
 
 				var end = new Date().getTime();
 				var time = end - start;
@@ -673,7 +671,7 @@ Crafty.scene('Loading', function(){
 		/*
 		Initiate network code here
 		*/
-		//net_game = new networking();
+		net_game = new networking();
 		//net_game.connect_to_server();
 
 		// Draw some text for the player to see in case the file

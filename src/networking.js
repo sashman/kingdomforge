@@ -1,6 +1,6 @@
 var networking = function(player){
 	
-    this.theplayer = theplayer;
+    this.theplayer = player;
     this.players = [];
 
 	this.state = "";
@@ -23,7 +23,7 @@ var networking = function(player){
     this.server_updates = [];
 
     //Connect to the socket.io server!
-    //this.client_connect_to_server();
+    this.client_connect_to_server();
 
     //We start pinging the server to determine latency
     this.create_ping_timer();
@@ -35,7 +35,7 @@ networking.prototype.pos = function(a) { return {x:a.x,y:a.y}; };
     //Add a 2d vector with another one and return the resulting vector
 networking.prototype.v_add = function(a,b) { return { x:(a.x+b.x).fixed(), y:(a.y+b.y).fixed() }; };
     //Simple linear interpolation between 2 vectors
-game_core.prototype.v_lerp = function(v,tv,t) { return { x: this.lerp(v.x, tv.x, t), y:this.lerp(v.y, tv.y, t) }; };
+networking.prototype.v_lerp = function(v,tv,t) { return { x: this.lerp(v.x, tv.x, t), y:this.lerp(v.y, tv.y, t) }; };
 
 
 networking.prototype.add_player = function(player){
@@ -217,7 +217,7 @@ networking.prototype.client_process_net_prediction_correction = function() {
 *
    ============================================== */
 
-networking.prototype.connect_to_server = function() {
+networking.prototype.client_connect_to_server = function() {
         
             //Store a local reference to our connection to the server
         this.socket = io.connect();

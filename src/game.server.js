@@ -67,14 +67,18 @@
     
     game_server._onMessage = function(client,message) {
 
+
+        console.log("MESSAGE: " + message);
             //Cut the message up into sub components
         var message_parts = message.split('.');
             //The first is always the type of message
         var message_type = message_parts[0];
 
+/*
         var other_client =
             (client.game.player_host.userid == client.userid) ?
                 client.game.player_client : client.game.player_host;
+                */
 
         if(message_type == 'i') {
                 //Input handler will forward this

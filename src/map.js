@@ -9,7 +9,8 @@ function Map(){
 		//if already loaded, skip
 		if(this.submaps[_global_x] && this.submaps[_global_x][_global_y]) return;
 
-		console.log("requesting [" + _global_x + "," + _global_y+"]");
+		// debug
+		// console.log("requesting [" + _global_x + "," + _global_y+"]");
 
 		var data = $.ajax({
 			url: "/get_map",

@@ -112,14 +112,16 @@ function Player(game){
 		this.view_map["xorigin"] = this.submap.x;
 		this.view_map["yorigin"] = this.submap.y;
 
-		for (var i = 0; i < this.view_map.submaps.length; i++) {
+
+		// debug
+		// for (var i = 0; i < this.view_map.submaps.length; i++) {
 			
-			var line = "";
-			for (var j = 0; j < this.view_map.submaps[i].length; j++) {
-				line += this.view_map.submaps[i][j].x + "," + this.view_map.submaps[i][j].y + " ";
-			}
-			console.log(line);
-		}
+		// 	var line = "";
+		// 	for (var j = 0; j < this.view_map.submaps[i].length; j++) {
+		// 		line += this.view_map.submaps[i][j].x + "," + this.view_map.submaps[i][j].y + " ";
+		// 	}
+		// 	console.log(line);
+		// }
 	},
 
 	this.shift_view_map = function(map, direction)
@@ -231,7 +233,7 @@ function Player(game){
 
 				
 				if(this.submap_buffer[submap_newx] && this.submap_buffer[submap_newx][submap_newy]){
-					console.log("cached", submap_newx, submap_newy);
+					// console.log("cached", submap_newx, submap_newy);
 					submap = this.submap_buffer[submap_newx][submap_newy];
 					this.view_map.submaps[i][edge_to_mid_row] = submap;
 				}
@@ -242,7 +244,8 @@ function Player(game){
 					map.load_submap(submap_newx,submap_newy);
 
 					var time = new Date().getTime() - start;
-					console.log("map loaded" , time , "ms");
+					// debug
+					// console.log("map loaded" , time , "ms");
 
 					//no submap in the buffer
 					if(!map.submaps[submap_newx] || !map.submaps[submap_newx][submap_newy])
@@ -267,7 +270,7 @@ function Player(game){
 
 				
 				if(this.submap_buffer[submap_newx] && this.submap_buffer[submap_newx][submap_newy]){
-					console.log("using cached", submap_newx, submap_newy);
+					// console.log("using cached", submap_newx, submap_newy);
 					submap = this.submap_buffer[submap_newx][submap_newy];
 					this.view_map.submaps[edge_to_mid_row][i] = submap;
 
@@ -279,7 +282,7 @@ function Player(game){
 					map.load_submap(submap_newx,submap_newy);
 
 					var time = new Date().getTime() - start;
-					console.log("map loaded" , time , "ms");
+					// console.log("map loaded" , time , "ms");
 
 					//no submap in the buffer
 					if(!map.submaps[submap_newx] || !map.submaps[submap_newx][submap_newy])
@@ -323,7 +326,7 @@ function Player(game){
 		if(!this.submap_buffer[submap.x]) this.submap_buffer[submap.x] = [];
 		this.submap_buffer[submap.x][submap.y] = submap;
 
-		console.log("***submap saved to buffer", submap.x, submap.y);
+		// console.log("***submap saved to buffer", submap.x, submap.y);
 
 		submap = submap.content;
 
