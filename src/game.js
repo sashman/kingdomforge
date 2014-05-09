@@ -437,26 +437,27 @@ Crafty.c('PlayerCharacter', {
 	//store key presses
 	updatePlayerKeyDown: function(e)
 	{
-		/*
+		
 		//TODO link to players input buffer
-		Taking out just now
-		if(e.key == Crafty.keys['LEFT_ARROW']) {
+		
+		
+		if(e.key == Crafty.keys.A) {
 
-	 	   this.key_inputs.push("l");
+	 	   this.player.key_inputs.push("l");
 
-	    } else if (e.key == Crafty.keys['RIGHT_ARROW']) {
+	    } else if (e.key == Crafty.keys.D) {
 
-	    	this.key_inputs.push("r");
+	    	this.player.key_inputs.push("r");
 
-	    } else if (e.key == Crafty.keys['UP_ARROW']) {
+	    } else if (e.key == Crafty.keys.W) {
 
-	    	this.key_inputs.push("u");
+	    	this.player.key_inputs.push("u");
 
-	    } else if (e.key == Crafty.keys['DOWN_ARROW']) {
+	    } else if (e.key == Crafty.keys.S) {
 
-	    	this.key_inputs.push("d");
+	    	this.player.key_inputs.push("d");
 	    }
-	    */
+	    
 	},
 
 
@@ -536,6 +537,10 @@ Crafty.scene('Game', function() {
 	
 	console.log("map tiles loaded in " + time + "ms");
 	
+
+	Game.net_game.theplayer = this.player.player;
+	Game.net_game.update(new Date().getTime());
+
 	// Show the victory screen once all villages are visisted
 	this.show_victory = this.bind('VillageVisited', function() {
 		if (!Crafty('Village').length) {
@@ -571,7 +576,7 @@ Crafty.scene('Victory', function() {
 
 
 //temp network module
-var net_game = {};
+// var net_game = {};
 var server_address = document.URL;//"localhost:4004";
 
 // Loading scene
@@ -671,8 +676,8 @@ Crafty.scene('Loading', function(){
 		/*
 		Initiate network code here
 		*/
-		net_game = new networking();
-		//net_game.connect_to_server();
+		Game.net_game = new networking();
+		
 
 		// Draw some text for the player to see in case the file
 		//  takes a noticeable amount of time to load

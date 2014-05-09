@@ -396,7 +396,7 @@ networking.prototype.update = function(t) {
 
     //schedule the next update
     //to be used for stand alone
-    //this.updateid = window.requestAnimationFrame( this.update.bind(this), this.viewport );
+    this.updateid = window.requestAnimationFrame( this.update.bind(this), this.viewport );
 
 }; //game_core.update
 
@@ -404,11 +404,12 @@ networking.prototype.handle_input = function() {
 
     var x_dir = 0;
     var y_dir = 0;
-    var input = this.theplayer.inputs;
+    var input = this.theplayer.key_inputs;
+    
 
     if(input.length)
     {
-
+        
         this.input_seq += 1;
 
             //Store the input state as a snapshot of what happened.
@@ -434,6 +435,7 @@ networking.prototype.handle_input = function() {
             //================================================
         //return this.physics_movement_vector_from_direction( x_dir, y_dir );
         this.theplayer.inputs = [];
+        this.theplayer.key_inputs = [];
 
     }
     
@@ -458,15 +460,16 @@ networking.prototype.client_update = function() {
     }
 
         //Now they should have updated, we can draw the entity
-    this.players.other.draw();
+    //this.players.other.draw();
 
         //When we are doing client side prediction, we smooth out our position
         //across frames using local input states we have stored.
-    this.client_update_local_position();
+//    this.client_update_local_position();
 
         //And then we finally draw
-    this.players.self.draw();
+//    this.players.self.draw();
 
+/*
         //and these
     if(this.show_dest_pos && !this.naive_approach) {
         this.ghosts.pos_other.draw();
@@ -480,6 +483,7 @@ networking.prototype.client_update = function() {
 
         //Work out the fps average
     this.client_refresh_fps();
+    */
 
 }; //game_core.update_client
 
