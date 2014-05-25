@@ -163,6 +163,7 @@
 
         var thegame = this.games[gameid];
 
+/*
         if(thegame) {
 
                 //stop the game updates immediate
@@ -195,6 +196,7 @@
                 }
             }
 
+
             delete this.games[gameid];
             this.game_count--;
 
@@ -204,6 +206,7 @@
             this.log('that game was not found!');
         }
 
+*/
     }; //game_server.endGame
 
     game_server.startGame = function(game) {

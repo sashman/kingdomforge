@@ -18,6 +18,7 @@ var networking = function(player){
     this._dte = new Date().getTime();   //The local timer last frame time
 
     this.fake_lag = 0;
+    this.input_seq = 0;
 
 
     this.create_physics_simulation();
@@ -32,7 +33,7 @@ var networking = function(player){
 
 }
 
-// TODO: Move shared functions to other file
+// TODO: Move shared functions to a shared file
 networking.prototype.pos = function(a) { return {x:a.x,y:a.y}; };
     //Add a 2d vector with another one and return the resulting vector
 networking.prototype.v_add = function(a,b) { return { x:(a.x+b.x).fixed(), y:(a.y+b.y).fixed() }; };

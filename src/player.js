@@ -2,6 +2,14 @@ function Player(game){
 
 
 	//========================
+	// Input properties
+	//========================		
+
+	this.key_binds = {};
+		
+
+
+	//========================
 	// Properties related networking
 	//========================	
 	this.id = "1";
@@ -385,4 +393,10 @@ function Player(game){
 		}
 
 	}
+}
+
+
+function Keybinds()
+{
+	this.dir = {};
 }

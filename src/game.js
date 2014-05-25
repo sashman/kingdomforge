@@ -234,9 +234,9 @@ Crafty.c('Actor', {
 // This is the player-controlled character
 Crafty.c('PlayerCharacter', {
 	init: function() {
-		this.requires('Actor, Fourway, Collision, spr_player, SpriteAnimation')
+		this.requires('Actor, Multiway, Collision, spr_player, SpriteAnimation')
 			//speed given here
-			.fourway(2)
+			.multiway(2, {W: -90, S: 90, D: 0, A: 180})
 			.stopOnSolids()
 			.onHit('Village', this.visitVillage)
 			.collision([4,16], [12,16], [4,28], [24,28])
@@ -271,13 +271,35 @@ Crafty.c('PlayerCharacter', {
 		
 		//creation of player object
 		this.player = new Player(Game);
+		//set keybinds
+		var keybinds = new Keybinds();
+		keybinds[Crafty.keys.W] = "up";
+		keybinds[Crafty.keys.S] = "down";
+		keybinds[Crafty.keys.A] = "left";
+		keybinds[Crafty.keys.D] = "right";
+		
+
+		this.player.keybinds = keybinds;
 
 		//setting of player's submap here
+		//TODO: needs to be set by server
+		//this.player.submap = get_player_submap()
 		this.player.submap.x = 10;
 		this.player.submap.y = 11;
 
+		//needed for building up network messages
+		this.direction_key_pressed = 
+		{
+			up : false,
+			down : false,
+			left : false,
+			right : false
+		};
+
+
 		this.bind("Moved", this.updatePlayerMoved);
 		this.bind("KeyDown", this.updatePlayerKeyDown);
+		this.bind("KeyUp", this.updatePlayerKeyUp);
 	},
 
 	print_coords: function()
@@ -292,9 +314,37 @@ Crafty.c('PlayerCharacter', {
 			);
 	},
 
+	//uses the current_direction_key_pressed to build up the key_inputs
+	//TODO: uncouple the hardcoded characters representign direction
+	add_input_key: function()
+	{
+		
+		if(this.direction_key_pressed.left) {
+
+	 	   this.player.key_inputs.push("l");
+
+	    } else if (this.direction_key_pressed.right) {
+
+	    	this.player.key_inputs.push("r");
+
+	    }
+
+	    if (this.direction_key_pressed.up) {
+
+	    	this.player.key_inputs.push("u");
+
+	    } else if (this.direction_key_pressed.down) {
+
+	    	this.player.key_inputs.push("d");
+	    }
+
+	},
+
 	updatePlayerMoved: function(pos)
 	{
-		//console.log(pos);
+
+		this.add_input_key();
+
 		var vpx = this._x - (Crafty.viewport.width/2),
 			vpy = this._y - (Crafty.viewport.height/2);
 
@@ -434,30 +484,15 @@ Crafty.c('PlayerCharacter', {
 
 	},
 
-	//store key presses
+	//set current key press
 	updatePlayerKeyDown: function(e)
 	{
-		
-		//TODO link to players input buffer
-		
-		
-		if(e.key == Crafty.keys.A) {
+		this.direction_key_pressed[this.player.keybinds[e.key]] = true;
+	},
 
-	 	   this.player.key_inputs.push("l");
-
-	    } else if (e.key == Crafty.keys.D) {
-
-	    	this.player.key_inputs.push("r");
-
-	    } else if (e.key == Crafty.keys.W) {
-
-	    	this.player.key_inputs.push("u");
-
-	    } else if (e.key == Crafty.keys.S) {
-
-	    	this.player.key_inputs.push("d");
-	    }
-	    
+	updatePlayerKeyUp: function(e)
+	{
+		this.direction_key_pressed[this.player.keybinds[e.key]] = false;
 	},
 
 
