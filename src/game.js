@@ -590,18 +590,16 @@ Crafty.scene('Loading', function(){
 		Game.net_game = new networking();
 
 
-		//Draw loading text
-		Crafty.e("2D, DOM, Text").attr({w: 500, x: 150, y: 120})
-		.text("Made with CraftyJS " + Crafty.getVersion() + " [Loading...]")
-		.css({"text-align": "left"});
+		
 
 		// Now that our sprites are ready to draw, start the game
 		Crafty.scene('Game');
 	});
 
-
+	//Draw loading text
+	Crafty.e("2D, DOM, Text").attr({w: 500, x: 150, y: 120})
+		.text("Made with CraftyJS " + Crafty.getVersion() + " [Loading...]")
+		.css({"text-align": "left"});
 
 
 });
-
-//Game.start();
