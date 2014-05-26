@@ -334,6 +334,9 @@ Crafty.c('PlayerCharacter', {
 		//set direction input keys
 		this.add_input_key();
 
+		var vpx = this._x - (Crafty.viewport.width/2),
+ 			vpy = this._y - (Crafty.viewport.height/2);
+
 		
 		Crafty.viewport.x= -vpx;
 		Crafty.viewport.y= -vpy;

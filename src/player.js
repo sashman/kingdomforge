@@ -398,5 +398,5 @@ function Player(game){
 
 function Keybinds()
 {
-	this.dir = {};
+	
 }
