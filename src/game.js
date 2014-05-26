@@ -13,6 +13,8 @@ Game = {
 
 	terrain_bin: {},
 
+	server_address : document.URL,
+
 	// The total width of the game screen. Since our grid takes up the entire screen
 	//  this is just the width of a tile times the width of the grid
 	width: function() {
@@ -29,8 +31,7 @@ Game = {
 	start: function() {
 		// Start crafty and set a background color so that we can see it's working
 		Crafty.init(Game.width(), Game.height());
-		//Crafty.background('rgb(87, 109, 20)');
-
+		
 		// Simply start the "Loading" scene to get things going
 		Crafty.scene('Loading');
 	},
@@ -93,9 +94,6 @@ Game = {
 			move_time += new Date().getTime() - move_start;
 			tile_object.ent = tile_ent;
 			
-			
-			
-			// tile_object.label = Crafty.e("2D, DOM, Text, Actor").at(x,y).text(submap_x + "," + submap_y);
 
 			//set boundary triggers
 			if(north_trigger === undefined || north_trigger > tile_ent.y) north_trigger = tile_ent.y;
@@ -109,14 +107,6 @@ Game = {
 		_submap.south_trigger = south_trigger;
 		_submap.east_trigger = east_trigger;
 		_submap.west_trigger = west_trigger;
-
-/*
-		console.log( submap_x, submap_y, "triggers NSEW",
-		_submap.north_trigger,
-		_submap.south_trigger,
-		_submap.east_trigger,
-		_submap.west_trigger);
-*/
 
 
 		//render detail terrain
@@ -167,8 +157,6 @@ Game = {
 
 
 		var time = new Date().getTime() - start;
-		// debug
-		// console.log("submap rendered" , time , "ms", "new entities created",created, "moved", moved, "in", move_time, "ms");
 		
 	},
 
@@ -176,7 +164,7 @@ Game = {
 
 		if(!entity) return;
 		entity.visible = false;
-		//entity.at(-10000, -10000);
+		
 
 		if(!this.terrain_bin[type]) this.terrain_bin[type] = { entities: [] };
 		this.terrain_bin[type].entities.push(entity);
@@ -343,47 +331,33 @@ Crafty.c('PlayerCharacter', {
 	updatePlayerMoved: function(pos)
 	{
 
+		//set direction input keys
 		this.add_input_key();
 
-		var vpx = this._x - (Crafty.viewport.width/2),
-			vpy = this._y - (Crafty.viewport.height/2);
-
-		//if(vpx > 0 && vpx < (Game.width() - Crafty.viewport.width) )
-			Crafty.viewport.x= -vpx;
 		
-		//if(vpy > 0 && vpy < (Game.height()- Crafty.viewport.height) )
-			Crafty.viewport.y= -vpy;
+		Crafty.viewport.x= -vpx;
+		Crafty.viewport.y= -vpy;
 		
 
 		var pix_per_submap = this.player.submap_size * 32;
 
 
 		var origin_submap = this.player.view_map.submaps[this.player.view_map_radius][this.player.view_map_radius];
-		// console.log("north trigger", "ps y", origin_submap.north_trigger);
-		this.player.submap.x = origin_submap.x;//Math.floor(pos.x/ pix_per_submap) + x_submap_offset;
-		this.player.submap.y = origin_submap.y;//Math.floor(pos.y/ pix_per_submap) + y_submap_offset;
 
-		//var x_submap_offset = this.player.view_map["xorigin"] - this.player.view_map_radius;
-		//var y_submap_offset = this.player.view_map["yorigin"] - this.player.view_map_radius;
+		this.player.submap.x = origin_submap.x;
+		this.player.submap.y = origin_submap.y;
+
 
 		this.player.submap_pos.x = pos.x % pix_per_submap;
 		this.player.submap_pos.y = pos.y % pix_per_submap;
 		this.player.global_pos = this.player.submap_to_global(this.player.submap, this.player.submap_pos);
 
-		//TODO chnage the if to trigger when player is on the boundary of the view map
-		// see view_map_radius in player class
-
-		//DEBUG
-		//this.print_coords();
 
 
 		var changed = false;
 
 		var original_x = this.x;
 		var original_y = this.y;
-
-		var total_bin = 0;
-		var count_bin = false;
 
 		var dir = 0;
 
@@ -392,13 +366,12 @@ Crafty.c('PlayerCharacter', {
 		if(pos.y < origin_submap.north_trigger){
 			dir = 0;
 			changed = true;
-			// console.log("=========Triggered North===============");
+			
 					
 		//MOVED SOUTH
 		} else if(pos.y > origin_submap.south_trigger){
 			dir = 2;
-			changed = true;
-			// console.log("=========Triggered South===============");			
+			changed = true;		
 		}
 
 
@@ -407,14 +380,12 @@ Crafty.c('PlayerCharacter', {
 
 			dir = 3;
 			changed = true;
-			// console.log("=========Triggered West===============");
 
 		//MOVED EAST
 		} else if(pos.x > origin_submap.east_trigger){
 
 			dir = 1;
 			changed = true;
-			// console.log("=========Triggered East===============");
 			
 		}
 
@@ -444,43 +415,8 @@ Crafty.c('PlayerCharacter', {
 
 				}
 
-				//probably do not need this
-				//this.stopMovement();
-				
-
-			} else {
-				
-
-				
-				// debug
-				// this.print_coords();
-				var start = new Date().getTime();
-
-				//non threaded
-				this.player.shift_view_map(Game.map_grid.map, dir);
-
-
-				var end = new Date().getTime();
-				var time = end - start;
-
-				console.log("=================================");
-				
-				
-				/*
-				if(count_bin)
-				{
-					for (var i in Game.terrain_bin) {
-						total_bin += Game.terrain_bin[i].entities.length;
-					};
-				}
-				*/
-
-				console.log("map realoded total" , time , "ms", ":" , total_bin, "in bin");
-
 			}
 		}
-
-
 
 	},
 
@@ -490,6 +426,7 @@ Crafty.c('PlayerCharacter', {
 		this.direction_key_pressed[this.player.keybinds[e.key]] = true;
 	},
 
+	//unset the key
 	updatePlayerKeyUp: function(e)
 	{
 		this.direction_key_pressed[this.player.keybinds[e.key]] = false;
@@ -535,84 +472,34 @@ Crafty.scene('Game', function() {
 		}
 	}
 
-// creation on player
+	// creation of player
 	this.player = Crafty.e('PlayerCharacter')
 	// set player's in viewmap grid coordinates
+	// TODO: should be set by the server
 	this.player.at(33, 33);
 	Crafty.viewport.centerOn(this.player, 1);
-	this.occupied[this.player.at().x][this.player.at().y] = true;
 	this.player.z = 2;
 
-	//load surrounding maps
-	var pp = this.player.player.submap;
-	
 
 	//get map terrain for current submap
 	
-	var start = new Date().getTime();
 	this.player.player.set_view_map(Game.map_grid.map);
 	this.view_map = this.player.player.view_map;
-	
 
-	/*TODO
-
-	Instead of loading just current submap, work out what tiles are needed for a submap buffer
-	*/
-
-	
 	//=========================================================
 	// RENDER TERRAIN FOR THE FIRST TIME
 	//=========================================================
 	Game.render_terrain_entities(this.view_map);
 	//=========================================================
 
-
-	var end = new Date().getTime();
-	var time = end - start;
-	
-	console.log("map tiles loaded in " + time + "ms");
-	
-
+	//set the player of the network game and begin update loop
 	Game.net_game.theplayer = this.player.player;
 	Game.net_game.update(new Date().getTime());
-
-	// Show the victory screen once all villages are visisted
-	this.show_victory = this.bind('VillageVisited', function() {
-		if (!Crafty('Village').length) {
-			Crafty.scene('Victory');
-		}
-	});
 	
 }, function() {
 
 });
 
-
-// Victory scene
-// -------------
-// Tells the player when they've won and lets them start a new game
-Crafty.scene('Victory', function() {
-	// Display some text in celebration of the victory
-	Crafty.e('2D, DOM, Text')
-		.attr({ x: 0, y: 0 })
-		.text('Victory!');
-
-	// Watch for the player to press a key, then restart the game
-	//  when a key is pressed
-	this.restart_game = this.bind('KeyDown', function() {
-		Crafty.scene('Game');
-	});
-}, function() {
-	// Remove our event binding from above so that we don't
-	//  end up having multiple redundant event watchers after
-	//  multiple restarts of the game
-	this.unbind('KeyDown', this.restart_game);
-});
-
-
-//temp network module
-// var net_game = {};
-var server_address = document.URL;//"localhost:4004";
 
 // Loading scene
 // -------------
@@ -629,12 +516,8 @@ Crafty.scene('Loading', function(){
 
 
 	Crafty.load(
-		//new
-		//['http://localhost:4004/img/terrain/terrain.png',
-		//old
-		[server_address+'img/terrain/terrain.png',
-		server_address+'img/character/link.gif'
-		], function(){
+		[ Game.server_address+'img/terrain/terrain.png', Game.server_address+'img/character/link.gif'], 
+		function(){
 		// Once the images are loaded...
 
 		//get sprite sheet metadata
@@ -667,7 +550,7 @@ Crafty.scene('Loading', function(){
 			spr_map[spr][2] = frames[i]["frame"]["w"];
 			spr_map[spr][3] = frames[i]["frame"]["h"];
 		}
-		Crafty.sprite(server_address+'img/terrain/terrain.png', spr_map);
+		Crafty.sprite(Game.server_address+'img/terrain/terrain.png', spr_map);
 
 
 		// Define the individual sprites in the image
@@ -700,7 +583,7 @@ Crafty.scene('Loading', function(){
 		
 
 		
-		Crafty.sprite(24,32,server_address+'img/character/link.gif', {
+		Crafty.sprite(24,32,Game.server_address+'img/character/link.gif', {
 			spr_player:  [0, 0],
 		});
 		
@@ -712,26 +595,19 @@ Crafty.scene('Loading', function(){
 		Initiate network code here
 		*/
 		Game.net_game = new networking();
-		
-
-		// Draw some text for the player to see in case the file
-		//  takes a noticeable amount of time to load
-		/*
-		Crafty.e('2D, DOM, Text')
-			.attr({ x: 0, y: 0})
-			.text('Loading...');
-			*/
 
 
+		//Draw loading text
+		Crafty.e("2D, DOM, Text").attr({w: 500, x: 150, y: 120})
+		.text("Made with CraftyJS " + Crafty.getVersion() + " [Loading...]")
+		.css({"text-align": "left"});
 
 		// Now that our sprites are ready to draw, start the game
 		Crafty.scene('Game');
 	});
 
 
-	Crafty.e("2D, DOM, Text").attr({w: 500, x: 150, y: 120})
-		.text("Made with CraftyJS " + Crafty.getVersion() + " [Loading...]")
-		.css({"text-align": "left"});
+
 
 });
 
