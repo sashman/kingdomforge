@@ -9,9 +9,6 @@ function Map(){
 		//if already loaded, skip
 		if(this.submaps[_global_x] && this.submaps[_global_x][_global_y]) return;
 
-		// debug
-		// console.log("requesting [" + _global_x + "," + _global_y+"]");
-
 		var data = $.ajax({
 			url: "/get_map",
 			data: "global_x=" + _global_x + "&global_y=" + _global_y,
@@ -29,10 +26,6 @@ function Map(){
 			this.submaps[_global_x] = []
 			this.submaps[_global_x][_global_y] = map_object;
 		}
-		
-		//debug	
-		//console.log(this.submaps[_global_x][_global_y]);
-		//use map_object["map"]["content"][x][y]["type"] to get tile type 
 
 
 	};

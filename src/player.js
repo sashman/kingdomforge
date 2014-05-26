@@ -7,8 +7,6 @@ function Player(game){
 
 	this.key_binds = {};
 		
-
-
 	//========================
 	// Properties related networking
 	//========================	

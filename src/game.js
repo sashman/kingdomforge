@@ -155,8 +155,6 @@ Game = {
 
 		}
 
-
-		var time = new Date().getTime() - start;
 		
 	},
 
