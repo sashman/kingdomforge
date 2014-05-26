@@ -214,11 +214,6 @@ Crafty.c('Actor', {
 });
 
 
-//player position
-//hardcoded initial position
-
-
-
 // This is the player-controlled character
 Crafty.c('PlayerCharacter', {
 	init: function() {
@@ -237,11 +232,6 @@ Crafty.c('PlayerCharacter', {
 			
 
 		// Watch for a change of direction and switch animations accordingly
-
-		//animation speed is not used past crafty 0.6.1
-		var animation_speed = 4;
-		
-		
 		this.bind('NewDirection', function(data) {
 
 			if (data.x > 0) {
@@ -614,4 +604,4 @@ Crafty.scene('Loading', function(){
 
 });
 
-Game.start();
+//Game.start();

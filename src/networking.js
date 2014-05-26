@@ -33,6 +33,8 @@ var networking = function(player){
 
 }
 
+// (4.22208334636).fixed(n) will return fixed point value to n places, default n = 3
+Number.prototype.fixed = function(n) { n = n || 3; return parseFloat(this.toFixed(n)); };
 // TODO: Move shared functions to a shared file
 networking.prototype.pos = function(a) { return {x:a.x,y:a.y}; };
     //Add a 2d vector with another one and return the resulting vector
@@ -60,7 +62,8 @@ networking.prototype.onconnected = function(data){
 	
 }
 networking.prototype.onnetmessage = function(data){
-	console.log("NETMESSAGE: " + data);
+
+	//console.log("NETMESSAGE: " + data);
 
     var commands = data.split('.');
     var command = commands[0];
