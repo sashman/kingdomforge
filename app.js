@@ -120,7 +120,7 @@
 		//Enter the game server code. The game server handles
 		//client connections looking for a game, creating games,
 		//leaving games, joining games and ending games when they leave.
-	game_server = require('./src/game.server.js');
+	// game_server = require('./src/game.server.js');
 
 		//Socket.io will call this function when a client connects,
 		//So we can send that client looking for a game to play,
