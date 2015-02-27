@@ -1,28 +1,45 @@
 <!doctype html>
 <html>
 <head>
-
-
-	<script type="text/javascript" src="jquery.js"></script>
-	
 	<script src="/socket.io/socket.io.js"></script>
-
 	<script src="lib/crafty-min.js"></script>
+	<script src="modules/bootstrapper.js"></script>
+	<script src="modules/player.js"></script>
+	<script src="modules/playercollection.js"></script>
+	<script src="modules/connector.js"></script>
+	<script src="modules/otherplayers.js"></script>
 
-
-	<script src="src/map.js"></script>
-
-	<script src="src/networking.js"></script>
-
-	<script src="src/player.js"></script>
-
-	<script src="src/game.js"></script>
 
 
 
 	<script>
-		window.addEventListener('load', Game.start);
+		window.addEventListener('load', function() {
+			var bootStrapper = new BootStrapper();
+			bootStrapper.bootStrap();
+
+			var connector = new Connector(io);
+			var socket = connector.requestNewConnection();
+			var otherPlayers = null;
+			var player = null;
+			var players = [];
+
+			socket.on('connected', function (data) {
+				player = new Player(true, data.id);
+				player.setSocket(socket);
+				var players = new PlayerCollection();
+				for (var i = data.players.length - 1; i >= 0; i--) {
+					players.addPlayer( new Player(false, data.players[i].id, data.players[i].r, data.players[i].g, data.players[i].b, data.players[i].x, data.players[i].y) );
+				};
+				otherPlayers = new OtherPlayers(socket, players);
+				otherPlayers.setLocalPlayerId(data.id);
+				socket.emit('createdplayer', player.getPlayerInfo());
+			});
+		});
 	</script>
+
+
+
+
 	<style type="text/css" media="screen">
 		body {
 		  	background: black;
