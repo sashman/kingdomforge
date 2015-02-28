@@ -5,7 +5,7 @@ var Connector = function(io) {
 var p = Connector.prototype;
 
 p.requestNewConnection = function() {
-	return this.io.connect('http://localhost');
+	return this.io.connect('http://' + location.host );
 };
 
 module.exports = Connector;

@@ -13,7 +13,7 @@ app.get( '/*' , function( req, res, next ) {
 });
 
 
-server.listen(80);
+server.listen(4004);
 var playerinfos = new PlayerCollection();
 var sockets = [];
 
