@@ -3,42 +3,19 @@
 <head>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="lib/crafty-min.js"></script>
-	<script src="modules/bootstrapper.js"></script>
+	<script src="modules/client_game_initialiser.js"></script>
+	<script src="modules/scene_loader.js"></script>
 	<script src="modules/player.js"></script>
-	<script src="modules/playercollection.js"></script>
+	<script src="modules/player_collection.js"></script>
 	<script src="modules/connector.js"></script>
-	<script src="modules/otherplayers.js"></script>
-
-
-
+	<script src="modules/other_players.js"></script>
 
 	<script>
 		window.addEventListener('load', function() {
-			var bootStrapper = new BootStrapper();
-			bootStrapper.bootStrap();
-
-			var connector = new Connector(io);
-			var socket = connector.requestNewConnection();
-			var otherPlayers = null;
-			var player = null;
-			var players = [];
-
-			socket.on('connected', function (data) {
-				player = new Player(true, data.id);
-				player.setSocket(socket);
-				var players = new PlayerCollection();
-				for (var i = data.players.length - 1; i >= 0; i--) {
-					players.addPlayer( new Player(false, data.players[i].id, data.players[i].r, data.players[i].g, data.players[i].b, data.players[i].x, data.players[i].y) );
-				};
-				otherPlayers = new OtherPlayers(socket, players);
-				otherPlayers.setLocalPlayerId(data.id);
-				socket.emit('createdplayer', player.getPlayerInfo());
-			});
+			var game = new ClientGameInitialiser();
+			game.initialiseClientGame();
 		});
 	</script>
-
-
-
 
 	<style type="text/css" media="screen">
 		body {
@@ -64,9 +41,7 @@
 		  color: #AAA;
 		}
 	</style>
-	
-
-	
+		
 	<title>KingdomForge</title>
 </head>
 <body>
