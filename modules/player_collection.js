@@ -25,4 +25,9 @@ p.playerCount = function() {
 	return this.players.length;
 };
 
-exports = PlayerCollection;
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+	module.exports = PlayerCollection;
+}
+else {
+	window.PlayerCollection = PlayerCollection;
+}

@@ -40,7 +40,8 @@ var Player = function(isMe, id, spriteSheetUrl, x, y) {
 		w: 50,
 		h: 50,
 		x: t.x,
-		y: t.y
+		y: t.y,
+		z: 2
 	});
 	if (isMe) {
 		t.socket = null;

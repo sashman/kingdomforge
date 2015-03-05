@@ -17,6 +17,10 @@ var p = ClientGameInitialiser.prototype;
 p.initialiseClientGame = function() {
 	var sceneLoader = new SceneLoader();
 	sceneLoader.initScene();
+
+	var terrain = new Terrain();
+	terrain.createTiles();
+
 };
 
 p.handleConnected = function(data) {
