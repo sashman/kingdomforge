@@ -41,4 +41,4 @@ p.handlePlayerMoved = function(data) {
 	this.players.getPlayer(data.id).setPosition(data.x, data.y);
 };
 
-module.exports = OtherPlayers;
+exports = OtherPlayers;

@@ -8,4 +8,4 @@ p.requestNewConnection = function() {
 	return this.io.connect('http://' + location.host );
 };
 
-module.exports = Connector;
+exports = Connector;

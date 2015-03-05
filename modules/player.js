@@ -13,8 +13,30 @@ var Player = function(isMe, id, spriteSheetUrl, x, y) {
 	});
 
 	t.craftyElement = Crafty.e();
-	t.craftyElement.addComponent("2D, Canvas, Color, playerSprite");
-	t.craftyElement.color(t.r, t.g, t.b).attr({
+	t.craftyElement.addComponent("2D, Canvas, Color, playerSprite, SpriteAnimation")
+			.reel('walk_up',    500, 0, 1, 7)
+			.reel('walk_right', 500, 8, 0, 7)
+			.reel('walk_down',  500, 8, 1, 7)
+			.reel('walk_left',  500, 0, 0, 7)
+			
+
+		// Watch for a change of direction and switch animations accordingly
+		t.craftyElement.bind('NewDirection', function(data) {
+
+			if (data.x > 0) {
+				t.craftyElement.animate('walk_right', -1);
+			} else if (data.x < 0) {
+				t.craftyElement.animate('walk_left', -1);
+			} else if (data.y > 0) {
+				t.craftyElement.animate('walk_down', -1);
+			} else if (data.y < 0) {
+				t.craftyElement.animate('walk_up', -1);
+			}
+
+			if(data.x == 0 && data.y == 0) t.craftyElement.pauseAnimation();
+		});
+
+	t.craftyElement/*.color(t.r, t.g, t.b)*/.attr({
 		w: 50,
 		h: 50,
 		x: t.x,
@@ -70,4 +92,4 @@ p.handleMove = function(oldx, oldy) {
 	this.socket.emit("playermoved", this.getPlayerInfo());
 };
 
-module.exports = Player;
+exports = Player;

@@ -25,4 +25,4 @@ p.playerCount = function() {
 	return this.players.length;
 };
 
-module.exports = PlayerCollection;
+exports = PlayerCollection;
