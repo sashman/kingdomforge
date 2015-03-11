@@ -35,4 +35,13 @@ io.on('connection', function(socket) {
 		playerinfos.addPlayer(data);
 		io.to("players").emit("playermoved", data);
 	});
+
+	socket.on('ping', function(data) {
+		console.log(data);
+		var server_time = (new Date).getTime();
+		socket.emit('pong', {
+			'ping_time': server_time - data,
+			'server_time': server_time
+		});
+	});
 });
