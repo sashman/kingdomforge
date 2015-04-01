@@ -1,33 +1,33 @@
 var PlayerCollection = function() {
-	this.players = [];
+    this.players = [];
 };
 
 var p = PlayerCollection.prototype;
 
 p.addPlayer = function(player) {
-	this.players[player.id] = player;
+    this.players[player.id] = player;
 };
 
 p.removePlayer = function(playerid) {
-	this.players = this.players.splice(playerid, 1);
+    this.players = this.players.splice(playerid, 1);
 };
 
 p.getPlayer = function(playerid) {
-	return this.players[playerid];
+    return this.players[playerid];
 };
 
 p.allPlayers = function() {
-	return this.players;
+    return this.players;
 };
 
 p.playerCount = function() {
-	console.log("num players: " + this.players.length);
-	return this.players.length;
+    console.log("num players: " + this.players.length);
+    return this.players.length;
 };
 
 if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
-	module.exports = PlayerCollection;
+    module.exports = PlayerCollection;
 }
 else {
-	window.PlayerCollection = PlayerCollection;
+    window.PlayerCollection = PlayerCollection;
 }

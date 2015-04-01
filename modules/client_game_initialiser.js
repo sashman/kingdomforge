@@ -1,37 +1,32 @@
-var ClientGameInitialiser = function() {
+function ClientGameInitialiser() {
+    this.connector = new Connector(io);
+    this.socket = this.connector.requestNewConnection();
+    this.inputHandler = null;
+    this.pinger = null;
+    this.players = null;
 
-	this.connector = new Connector(io);
-	this.socket = this.connector.requestNewConnection();
-	this.otherPlayers = null;
-	this.player = null;
-	this.players = [];
-
-	var t = this;
-	this.socket.on('connected', function(data) {
-		t.handleConnected(data);
-	});
-};
+    this.socket.on('connected', this.handleConnected.bind(this));
+}
 
 var p = ClientGameInitialiser.prototype;
 
 p.initialiseClientGame = function() {
-	var sceneLoader = new SceneLoader();
-	sceneLoader.initScene();
+    var sceneLoader = new SceneLoader();
+    sceneLoader.initScene();
 
-	var terrain = new Terrain();
-	terrain.createTiles();
-
+    var terrain = new Terrain();
+    terrain.createTiles();
 };
 
 p.handleConnected = function(data) {
+    this.inputHandler = new InputHandler(data.id, this.socket);
+    this.pinger = new Pinger(this.socket);
+    this.pinger.startPing();
+    var character = new Character(data.id, document.URL + 'images/link.gif');
 
-	player = new Player(true, data.id, document.URL + 'images/link.gif');
-	player.setSocket(this.socket);
-
-	this.otherPlayers = new OtherPlayers(this.socket, data);
-	this.otherPlayers.setLocalPlayerId(data.id);
-	this.socket.emit('createdplayer', player.getPlayerInfo());
-
-}
+    this.players = new OtherPlayers(this.socket, data);
+    this.players.setLocalPlayerId(data.id);
+    this.socket.emit('createdplayer', character.getPlayerInfo());
+};
 
 exports = ClientGameInitialiser;
