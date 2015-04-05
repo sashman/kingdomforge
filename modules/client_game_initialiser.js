@@ -14,6 +14,9 @@ p.initialiseClientGame = function() {
     var sceneLoader = new SceneLoader();
     sceneLoader.initScene();
 
+    var terrainRequester = new TerrainRequester(this.socket);
+    terrainRequester.requestMap();
+
     var terrain = new Terrain();
     terrain.createTiles();
 };
