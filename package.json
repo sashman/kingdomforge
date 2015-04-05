@@ -1,8 +1,11 @@
 {
   "name": "kingdomforge",
   "description": "Multiplayer RPG",
+  "repository" : { 
+  	"type" : "git",
+  	"url" : "https://github.com/sashman/kingdomforge.git"
+  },
   "dependencies": {
     "express": "latest",
-    "optimist": "latest"
+    "socket.io": "latest"
   }
-}
