@@ -3,6 +3,7 @@
   "description": "Multiplayer RPG",
   "dependencies": {
     "express": "latest",
-    "optimist": "latest"
+    "optimist": "latest",
+    "socket.io": "latest"
   }
 }
