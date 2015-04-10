@@ -3,12 +3,12 @@ function OtherPlayers(socket, playerData) {
     t.socket = socket;
 
     var players = new PlayerCollection();
-    for (var i = playerData.players.length - 1; i >= 0; i--) {
+    /*for (var i = playerData.players.length - 1; i >= 0; i--) {
         players.addPlayer(new Character(playerData.players[i].id,
                 document.URL + 'images/link.gif',
                 playerData.players[i].x,
                 playerData.players[i].y));
-    }
+    }*/
 
     t.players = players;
 
