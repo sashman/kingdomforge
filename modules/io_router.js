@@ -1,10 +1,11 @@
 var events = require('events');
 var eventEmitter = new events.EventEmitter();
 
+
 function IORouter(io, sockets) {
 	this.io = io;
 	this.sockets = sockets;
-	io.on('connection', this.handleConnection.bind(this));
+	
 }
 
 var p = IORouter.prototype;
@@ -23,9 +24,17 @@ p.handleConnection = function(socket) {
 				//players: playerinfos.allPlayers()
 	});
 	this.sockets.push(socket);
+
+	npm_crafty.addClient(this.craftyServer, socket);
+
 	socket.on('createdplayer', this.handleCreatedPlayer.bind(this));
 	socket.on('key_down', this.handleKeyDown.bind(this));
 	socket.on('ping', this.handlePing.bind(socket));
+};
+
+p.handleDisconnection = function(socket) {
+	console.log('Disconnecting')
+	npm_crafty.removeClient(this.craftyServer, socket);
 };
 
 p.handleKeyDown = function(data) {
