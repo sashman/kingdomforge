@@ -2,7 +2,7 @@ function OtherPlayers(socket, playerData) {
     var t = this;
     t.socket = socket;
 
-    var players = new PlayerCollection();
+    var players = new Collection();
     /*for (var i = playerData.players.length - 1; i >= 0; i--) {
         players.addPlayer(new Character(playerData.players[i].id,
                 document.URL + 'images/link.gif',

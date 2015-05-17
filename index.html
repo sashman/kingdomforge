@@ -8,16 +8,24 @@
 	<script src="modules/input_handler.js"></script>
 	<script src="modules/pinger.js"></script>
 	<script src="modules/character.js"></script>
+	<script src="modules/terrain_requester.js"></script>
 	<script src="modules/tile.js"></script>
 	<script src="modules/terrain.js"></script>
-	<script src="modules/player_collection.js"></script>
+	<script src="modules/collection.js"></script>
 	<script src="modules/connector.js"></script>
 	<script src="modules/other_players.js"></script>
+
+	<!-- TODO: do not expose node_modules -->
+	<script src="node_modules/npm_crafty/lib/crafty_client.js"></script>
+	<script src="node_modules/npm_crafty/lib/npm_crafty.js"></script>
 
 	<script>
 		window.addEventListener('load', function() {
 			var game = new ClientGameInitialiser();
 			game.initialiseClientGame();
+
+			var npm_crafty = require("npm_crafty");
+
 		});
 	</script>
 
