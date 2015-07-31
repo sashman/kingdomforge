@@ -6,6 +6,7 @@
   	"url" : "https://github.com/sashman/kingdomforge.git"
   },
   "dependencies": {
+    "npm_crafty": "latest",
     "express": "latest",
     "socket.io": "latest"
   }
