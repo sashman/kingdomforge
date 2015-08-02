@@ -19,13 +19,14 @@ p.emit = function(eventName, data) {
 };
 
 p.handleConnection = function(socket) {
+
 	socket.emit('connected', {
 		id: this.sockets.length//playerinfos.playerCount(),
 				//players: playerinfos.allPlayers()
 	});
 	this.sockets.push(socket);
 
-	npm_crafty.addClient(this.craftyServer, socket);
+	// npm_crafty.addClient(this.craftyServer, socket);
 
 	socket.on('createdplayer', this.handleCreatedPlayer.bind(this));
 	socket.on('key_down', this.handleKeyDown.bind(this));
@@ -34,7 +35,7 @@ p.handleConnection = function(socket) {
 
 p.handleDisconnection = function(socket) {
 	console.log('Disconnecting')
-	npm_crafty.removeClient(this.craftyServer, socket);
+	// npm_crafty.removeClient(this.craftyServer, socket);
 };
 
 p.handleKeyDown = function(data) {

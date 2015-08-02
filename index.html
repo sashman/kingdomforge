@@ -4,7 +4,7 @@
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="lib/crafty-min.js"></script>
 	<script src="modules/client_game_initialiser.js"></script>
-	<script src="modules/scene_loader.js"></script>
+	
 	<script src="modules/input_handler.js"></script>
 	<script src="modules/pinger.js"></script>
 	<script src="modules/character.js"></script>
@@ -14,6 +14,7 @@
 	<script src="modules/collection.js"></script>
 	<script src="modules/connector.js"></script>
 	<script src="modules/other_players.js"></script>
+	<script src="modules/scene_loader.js"></script>
 
 	<!-- TODO: do not expose node_modules -->
 	<script src="crafty_client.js"></script>
@@ -25,6 +26,21 @@
 			game.initialiseClientGame();
 
 			var npm_crafty = require("npm_crafty");
+			npm_crafty.setupDefault(function() { //immediate callback after Crafty with Crafty.net is available
+				//create Crafty Client
+				Crafty = npm_crafty.createClient("player");
+				
+				var scence_loader = new exports();
+				//start the loading scene of our game
+				scence_loader.initScene();
+
+			}, function(socket) { //connect callback
+				//bind to socket
+				npm_crafty.setServer(Crafty, socket);
+
+
+			}, function(socket) { // disconnect callback
+			});
 
 		});
 	</script>

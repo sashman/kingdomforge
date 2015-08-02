@@ -31,11 +31,13 @@ var Server = npm_crafty.setupDefault( function () { //immediate callback
 }, function (socket) { //connect callback
 	//bind to socket
 	npm_crafty.addClient(Crafty, socket);
-	
+	ioRouter.handleConnection(socket);
 	
 	
 }, function (socket) { //disconnect callback
 	//socket will auto leave room
+
+	// npm_crafty.removeClient(this.craftyServer, socket);
 	
 });
 

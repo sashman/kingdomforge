@@ -9,11 +9,15 @@ function Character(id, spriteSheetUrl, x, y) {
     });
 
     this.craftyElement = Crafty.e();
-    this.craftyElement.addComponent("2D, Canvas, Color, playerSprite, SpriteAnimation")
-            .reel('walk_up', 500, 0, 1, 7)
-            .reel('walk_right', 500, 8, 0, 7)
-            .reel('walk_down', 500, 8, 1, 7)
-            .reel('walk_left', 500, 0, 0, 7);
+    
+    var character = this.craftyElement.addComponent("2D, Canvas, Color, playerSprite, SpriteAnimation");
+    /*
+    character.reel('walk_up', 500, 0, 1, 7)
+    .reel('walk_right', 500, 8, 0, 7)
+    .reel('walk_down', 500, 8, 1, 7)
+    .reel('walk_left', 500, 0, 0, 7);
+    */
+            
 
 
     // Watch for a change of direction and switch animations accordingly

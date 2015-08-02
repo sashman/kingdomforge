@@ -24,4 +24,5 @@ p.count = function() {
 	return this.collection.length;
 };
 
-module.exports = Collection;
+if(typeof(module) != "undefined")
+	module.exports = Collection;
