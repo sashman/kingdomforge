@@ -6,11 +6,13 @@ var npm_crafty = require('npm_crafty');
 var PlayerPool = require('./modules/player_pool');
 var ExpressRouter = require('./modules/express_router');
 var IORouter = require('./modules/io_router');
+var Crafty;
+
 
 var sockets = [];
 //var expressRouter = new ExpressRouter(app);
 var ioRouter = new IORouter(io,sockets);
-var playerPool = new PlayerPool(ioRouter);
+var playerPool = new PlayerPool(ioRouter, Crafty);
 
 
 var Server = npm_crafty.setupDefault( function () { //immediate callback
@@ -23,10 +25,11 @@ var Server = npm_crafty.setupDefault( function () { //immediate callback
 
 	//create Crafty Server and bind it to "Room1"
 	Crafty = npm_crafty.createServer("Room1");
-	
+	playerPool.crafty = Crafty;
+
 	//start the loading scene of our game
 	// var pongBasic = require('./pongBasic.game.js');
-	// pongBasic.startGame(Crafty);
+	// pongBasic.startGame(room);
 	
 }, function (socket) { //connect callback
 	//bind to socket

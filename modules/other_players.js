@@ -1,8 +1,6 @@
 function OtherPlayers(socket, playerData) {
-    var t = this;
-    t.socket = socket;
+    this.socket = socket;
 
-    var players = new Collection();
     /*for (var i = playerData.players.length - 1; i >= 0; i--) {
         players.addPlayer(new Character(playerData.players[i].id,
                 document.URL + 'images/link.gif',
@@ -10,15 +8,9 @@ function OtherPlayers(socket, playerData) {
                 playerData.players[i].y));
     }*/
 
-    t.players = players;
-
-    t.socket.on('newplayer', function(data) {
-        t.handleNewPlayer(data);
-    });
-
-    t.socket.on('playermoved', function(data) {
-        t.handlePlayerMoved(data);
-    });
+    this.players = new Collection();
+    this.socket.on('new__player', this.handleNewPlayer.bind(this));
+   // this.socket.on('playermoved', this.handlePlayerMoved.bind(this));
 }
 
 var p = OtherPlayers.prototype;
@@ -28,17 +20,14 @@ p.setLocalPlayerId = function(localPlayerId) {
 };
 
 p.handleNewPlayer = function(data) {
-    if (data.id == this.localPlayerId) {
-        return;
-    }
-    this.players.addPlayer(new Character(data.id, document.URL + 'images/link.gif', data.x, data.y));
+    console.log("handleNewPlayer");
+    this.players.add(new Character(data.id, document.URL + 'images/link.gif', data.x, data.y));
 };
 
 p.handlePlayerMoved = function(data) {
-    if (data.id == this.localPlayerId) {
-        return;
-    }
-    this.players.getPlayer(data.id).setPosition(data.x, data.y);
+    console.log("handlePlayerMoved");
+    debugger;
+    this.players.getItem(data.id).setPosition(data.x, data.y);
 };
 
 exports = OtherPlayers;

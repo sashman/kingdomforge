@@ -2,7 +2,7 @@
 <html>
 <head>
 	<script src="/socket.io/socket.io.js"></script>
-	<script src="lib/crafty-min.js"></script>
+	<!--<script src="lib/crafty-min.js"></script>-->
 	<script src="modules/client_game_initialiser.js"></script>
 	
 	<script src="modules/input_handler.js"></script>
@@ -22,8 +22,7 @@
 
 	<script>
 		window.addEventListener('load', function() {
-			var game = new ClientGameInitialiser();
-			game.initialiseClientGame();
+
 
 			var npm_crafty = require("npm_crafty");
 			npm_crafty.setupDefault(function() { //immediate callback after Crafty with Crafty.net is available
@@ -37,6 +36,8 @@
 			}, function(socket) { //connect callback
 				//bind to socket
 				npm_crafty.setServer(Crafty, socket);
+				var game = new ClientGameInitialiser(socket);
+				game.initialiseClientGame();
 
 
 			}, function(socket) { // disconnect callback

@@ -1,14 +1,22 @@
-function Character(id, spriteSheetUrl, x, y) {
+if (typeof(require) != "undefined") {
+    var events = require('events');
+    var eventEmitter = new events.EventEmitter();
+}
+function Character(id, spriteSheetUrl, x, y, crafty) {
+    this.crafty = crafty ? crafty : Crafty;
     this.id = id;
-    this.x = x === undefined ? Crafty.math.randomInt(0, 255) : x;
-    this.y = y === undefined ? Crafty.math.randomInt(0, 255) : y;
+    this.x = x === undefined ? this.crafty.math.randomInt(0, 255) : x;
+    this.y = y === undefined ? this.crafty.math.randomInt(0, 255) : y;
 
-    //TODO: move to sprite class
-    Crafty.sprite(24, 32, spriteSheetUrl, {
+    if(this.crafty.sprite){
+        //TODO: move to sprite class
+        this.crafty.sprite(24, 32, spriteSheetUrl, {
         playerSprite: [0, 0]
-    });
+    });    
+    }
+    
 
-    this.craftyElement = Crafty.e();
+    this.craftyElement = this.crafty.e();
     
     var character = this.craftyElement.addComponent("2D, Canvas, Color, playerSprite, SpriteAnimation");
     /*
@@ -44,6 +52,8 @@ function Character(id, spriteSheetUrl, x, y) {
         y: this.y,
         z: 2
     });
+
+    this.craftyElement.bind("Move", this.handleMove.bind(this));
     /*if (isMe) {
         this.socket = null;
         this.craftyElement.bind("Move", function() {
@@ -60,8 +70,50 @@ function Character(id, spriteSheetUrl, x, y) {
 
 var p = Character.prototype;
 
-p.move = function() {
+p.handleKeyDown = function(data) {
 
+//TODO: map to correct resolution
+    this.move(data.key);
+};
+
+p.handleMove = function(key) {
+    console.log("WE MOVED");
+    this.emit('character_moved', this.getPlayerInfo());
+};
+
+p.on = function(eventName, callback) {
+    if (!eventEmitter) {
+        return;
+    }
+    eventEmitter.on(eventName, callback);
+};
+
+p.emit = function(eventName, data) {
+    if (!eventEmitter) {
+        return;
+    }
+    eventEmitter.emit(eventName, data);
+};
+
+p.move = function(key) {
+    switch(key){
+        case this.crafty.keys.W:
+            console.log("w");
+            this.craftyElement.move('n', 1);
+            break;
+        case this.crafty.keys.A:
+            console.log("a");
+            this.craftyElement.move('w', 1);
+            break;
+        case this.crafty.keys.S:
+            console.log("s");
+            this.craftyElement.move('s', 1);
+            break;
+        case this.crafty.keys.D:
+            console.log("d");
+            this.craftyElement.move('e', 1);
+            break;
+    }
 };
 
 p.getPlayerInfo = function() {
@@ -77,4 +129,5 @@ p.setPosition = function(x, y) {
     this.craftyElement.y = y;
 };
 
-exports = Character;
+if(typeof(module) != "undefined")
+    module.exports = Character;

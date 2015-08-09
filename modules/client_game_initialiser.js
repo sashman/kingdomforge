@@ -1,6 +1,11 @@
-function ClientGameInitialiser() {
-    this.connector = new Connector(io);
-    this.socket = this.connector.requestNewConnection();
+function ClientGameInitialiser(socket) {
+    if(!socket){
+        this.connector = new Connector(io);
+        this.socket = this.connector.requestNewConnection();
+    }
+    else{
+        this.socket = socket;
+    }
     this.inputHandler = null;
     this.pinger = null;
     this.players = null;
@@ -30,6 +35,7 @@ p.handleConnected = function(data) {
     this.players = new OtherPlayers(this.socket, data);
     this.players.setLocalPlayerId(data.id);
     this.socket.emit('createdplayer', character.getPlayerInfo());
+    this.socket.on('player_moved', this.players.handlePlayerMoved.bind(this.players));
 };
 
 exports = ClientGameInitialiser;

@@ -33,6 +33,12 @@ p.handleConnection = function(socket) {
 	socket.on('ping', this.handlePing.bind(socket));
 };
 
+p.broadcast = function(eventName, data) {
+	for (var key in this.sockets) {
+		this.sockets[key].emit(eventName, data);
+	}
+};
+
 p.handleDisconnection = function(socket) {
 	console.log('Disconnecting')
 	// npm_crafty.removeClient(this.craftyServer, socket);
@@ -40,17 +46,18 @@ p.handleDisconnection = function(socket) {
 
 p.handleKeyDown = function(data) {
 	console.log("key down");
-	console.log(data);
-	console.log(this);
+	//console.log(data);
+	//console.log(this);
 	this.emit('key_down', data);
 };
 
 p.handleCreatedPlayer = function(data) {
+	console.log("createdplayer");
 	this.emit("newplayer", data);
 };
 
 p.handlePing = function(data) {
-	console.log(data);
+	// console.log(data);
 	var server_time = (new Date).getTime();
 	this.emit('pong', {
 		'ping_time': server_time - data,
